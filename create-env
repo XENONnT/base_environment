@@ -1,0 +1,239 @@
+#!/bin/bash
+
+set -e
+
+target_dir=$1
+
+pax_version=v6.10.0
+env_name=pax_${pax_version}_OSG
+
+if [ "X$target_dir" = "X" ]; then
+    echo "Please specify a target directory. Example: ./create-env /tmp/myenv" >&1
+    exit 1
+fi
+
+if [ -e $target_dir ]; then
+    echo "Target directory already exists - refusing to work on it" >&1
+    exit 1
+fi
+
+mkdir -p $target_dir
+
+# install anaconda
+cd $target_dir
+wget -nv https://repo.continuum.io/archive/Anaconda3-2018.12-Linux-x86_64.sh
+bash Anaconda3-2018.12-Linux-x86_64.sh -b -p $target_dir/anaconda
+rm -f Anaconda3-2018.12-Linux-x86_64.sh
+
+export PATH=$target_dir/anaconda/bin:$PATH
+export PKG_CONFIG_PATH=${target_dir}/anaconda/envs/${env_name}/lib64/pkgconfig:/usr/lib64/pkgconfig:/usr/share/pkgconfig
+
+# anaconda base environment
+cd $target_dir
+conda create --yes -n ${env_name} python=3.6 \
+    asn1crypto \
+    backports \
+    backports.weakref \
+    blas \
+    bleach \
+    certifi \
+    cffi \
+    cloog \
+    cmake \
+    cryptography \
+    cudatoolkit \
+    cudnn \
+    cycler \
+    cython \
+    dask \
+    dbus \
+    decorator \
+    docutils \
+    entrypoints \
+    expat \
+    expat \
+    fontconfig \
+    freetype \
+    glib \
+    gmp \
+    gst-plugins-base \
+    gstreamer \
+    h5py \
+    hdf5 \
+    html5lib \
+    icu \
+    idna \
+    ipykernel \
+    ipython \
+    ipython_genutils \
+    ipywidgets \
+    isl \
+    jedi \
+    jinja2 \
+    jmespath \
+    jpeg \
+    json-c \
+    jsonschema \
+    jupyter \
+    jupyter_client \
+    jupyter_console \
+    jupyter_core \
+    keras \
+    libffi \
+    libgpuarray \
+    libiconv \
+    libpng \
+    libprotobuf \
+    libsodium \
+    libstdcxx-ng \
+    libxcb \
+    libxml2 \
+    llvmlite \
+    mako \
+    markdown \
+    markupsafe \
+    matplotlib \
+    mistune \
+    mkl \
+    mkl-service \
+    mpc \
+    mpfr \
+    msgpack-python \
+    nbconvert \
+    nbformat \
+    nccl \
+    ncurses \
+    nose \
+    notebook \
+    numba \
+    numpy \
+    openssl \
+    pandas \
+    pandoc \
+    pandocfilters \
+    path.py \
+    patsy \
+    pcre \
+    pexpect \
+    pickleshare \
+    pip \
+    pkg-config \
+    prompt_toolkit \
+    protobuf \
+    psutil \
+    ptyprocess \
+    pycparser \
+    pygments \
+    pygpu \
+    pymongo \
+    pyopenssl \
+    pyparsing \
+    pyqt \
+    pysocks \
+    pytables \
+    python \
+    python-dateutil \
+    python-snappy \
+    pytorch \
+    pytz \
+    pyyaml \
+    pyzmq \
+    qt \
+    qtconsole \
+    readline \
+    s3transfer \
+    scikit-learn \
+    scipy \
+    seaborn \
+    setuptools \
+    simplegeneric \
+    sip \
+    six \
+    sqlite \
+    statsmodels \
+    tensorflow \
+    tensorflow-base \
+    tensorflow-tensorboard \
+    terminado \
+    testpath \
+    tk \
+    tornado \
+    traitlets \
+    urllib3 \
+    wcwidth \
+    werkzeug \
+    wheel \
+    widgetsnbextension \
+    xz \
+    yaml \
+    zeromq \
+    zlib \
+
+cd ${target_dir}/anaconda/envs/${env_name}
+source activate ${env_name}
+
+# boost
+cd ${target_dir}
+wget -nv https://sourceforge.net/projects/boost/files/boost/1.53.0/boost_1_53_0.tar.bz2
+tar xjf boost_1_53_0.tar.bz2
+cd boost_1_53_0
+echo "using python : 3.6 : ${target_dir}/anaconda/envs/${env_name}/bin/python3.6 : ${target_dir}/anaconda/envs/${env_name}/include/python3.6m : ${target_dir}/anaconda/envs/${env_name}/lib ;" >$HOME/user-config.jam
+cat $HOME/user-config.jam
+perl -p -i -e 's/using python/#using python/' bootstrap.sh 
+./bootstrap.sh --prefix=${target_dir}/anaconda/envs/${env_name} \
+               --with-python=python3.6 \
+               --with-python-version=3.6 \
+               --with-python-root=${target_dir}/anaconda/envs/${env_name} 
+./b2 python=3.6
+./b2 install
+cd ${target_dir}
+rm -rf boost_*
+
+# gfal2
+# deps: yum install cmake doxygen glib2-devel libattr-devel openldap-devel zlib-devel lfc-devel dpm-devel srm-ifce-devel dcap-devel globus-gass-copy-devel davix-devel xrootd-client-devel libssh2-devel gtest-devel json-c-devel
+git clone https://gitlab.cern.ch/dmc/gfal2.git
+cd gfal2
+git checkout v2.16.2
+mkdir build
+cd build
+cmake -DCMAKE_INSTALL_PREFIX=${target_dir}/anaconda/envs/${env_name} ..
+make
+make install
+cd ${target_dir}
+rm -rf gfal2
+
+# gfal2-python bindings
+git clone https://gitlab.cern.ch/dmc/gfal2-bindings.git
+cd gfal2-bindings
+git checkout python36
+cmake -DPYTHON_EXECUTABLE=${target_dir}/anaconda/envs/${env_name}/bin/python3.6 \
+      -DPYTHON_EXECUTABLE_3=${target_dir}/anaconda/envs/${env_name}/bin/python3.6 \
+      -DSKIP_DOC=TRUE -DSKIP_TESTS=TRUE
+make
+make install
+cd ${target_dir}
+rm -rf gfal2-bindings
+
+# maybe not py3 ready?
+# gfal2 clients
+#git clone https://gitlab.cern.ch/dmc/gfal2-util.git
+#cd gfal2-util/
+#git checkout v1.5.2
+#python3.6 setup.py install --prefix=${target_dir}/anaconda/envs/${env_name}
+#cd ${target_dir}
+#rm -rf gfal2-util
+
+# rucio-clients
+#pip install rucio-clients
+
+# some cleanup
+conda clean --all --yes
+rm -f ${target_dir}/anaconda/pkgs/rope-0.11.0-py37_0/info/LICENSE.txt
+
+# generate setup.sh file for easy sourcing
+cat >${target_dir}/setup.sh <<EOF
+#!/bin/bash
+source ${target_dir}/anaconda/bin/activate ${env_name}
+export LD_LIBRARY_PATH=${target_dir}/anaconda/envs/${env_name}/lib64:$LD_LIBRARY_PATH
+EOF
+
