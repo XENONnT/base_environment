@@ -54,6 +54,7 @@ conda create --yes -n ${env_name} python=3.6 \
     expat \
     fontconfig \
     freetype \
+    future \
     glib \
     gmp \
     gst-plugins-base \
