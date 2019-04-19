@@ -15,6 +15,7 @@ RUN yum -y install \
             lfc-devel \
             libattr-devel \
             libssh2-devel \
+            libuuid-devel \
             openldap-devel \
             srm-ifce-devel \
             xrootd-client-devel \

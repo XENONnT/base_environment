@@ -215,26 +215,51 @@ make install
 cd ${target_dir}
 rm -rf gfal2-bindings
 
-# maybe not py3 ready?
 # gfal2 clients
-#git clone https://gitlab.cern.ch/dmc/gfal2-util.git
-#cd gfal2-util/
-#git checkout v1.5.2
-#python3.6 setup.py install --prefix=${target_dir}/anaconda/envs/${env_name}
-#cd ${target_dir}
-#rm -rf gfal2-util
+git clone https://gitlab.cern.ch/dmc/gfal2-util.git
+cd gfal2-util/
+git checkout v1.5.2
+python3.6 setup.py install --prefix=${target_dir}/anaconda/envs/${env_name}
+cd ${target_dir}
+rm -rf gfal2-util
 
 # rucio-clients
-#pip install rucio-clients
+pip install rucio-clients
 
 # some cleanup
 conda clean --all --yes
 rm -f ${target_dir}/anaconda/pkgs/rope-0.11.0-py37_0/info/LICENSE.txt
+
+# rucio config
+cat >${target_dir}/anaconda/envs/${env_name}/etc/rucio.cfg <<EOF
+[common]
+logdir = /var/log/rucio
+loglevel = DEBUG
+mailtemplatedir=/opt/rucio/etc/mail_templates
+
+[client]
+rucio_host = https://rucio-xenon.grid.uchicago.edu:443
+auth_host = https://rucio-xenon.grid.uchicago.edu:443
+auth_type = x509
+
+# ca_cert = /etc/grid-security/certificates
+ca_cert = \$X509_CERT_DIR
+client_cert = \$X509_USER_PROXY
+client_key = \$X509_USER_PROXY
+client_x509_proxy = \$X509_USER_PROXY
+request_retries = 3
+EOF
 
 # generate setup.sh file for easy sourcing
 cat >${target_dir}/setup.sh <<EOF
 #!/bin/bash
 source ${target_dir}/anaconda/bin/activate ${env_name}
 export LD_LIBRARY_PATH=${target_dir}/anaconda/envs/${env_name}/lib64:$LD_LIBRARY_PATH
+
+# rucio
+export RUCIO_HOME=${target_dir}/anaconda/envs/${env_name}
+if [ "x\$X509_CERT_DIR" = "x" ]; then
+    export X509_CERT_DIR=/etc/grid-security/certificates
+fi
 EOF
 
