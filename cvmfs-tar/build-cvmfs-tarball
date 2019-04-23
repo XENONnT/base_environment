@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# This script uses a Docker container to build a tarball which can be
+# untarred under /cvmfs/xenon.opensciencegrid.org/testing/releases/
+# on the CVMFS origin server.
+
+set -e
+
+if [ ! -d cvmfs-tar ]; then
+    echo "Please run this script from the top level checkout." 2>&1
+    echo "Example: ./cvmfs-tar/build-cvmfs-tarball" 2>&1
+fi
+
+mkdir -p generated
+chmod 1777 generated
+
+# make sure we have an updated container
+docker build --no-cache -t opensciencegrid/osgvo-xenon:latest .
+
+echo
+echo
+echo
+
+# run an instance with cwd mounted, and use the helper script
+# to build a new install
+docker run -v `pwd`:/srv -i -t --rm \
+       opensciencegrid/osgvo-xenon:latest \
+       /bin/bash -c "/srv/cvmfs-tar/inside-helper"
+
+

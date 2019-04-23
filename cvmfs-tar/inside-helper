@@ -1,0 +1,20 @@
+#!/bin/bash
+
+set -e
+
+TARGET_DIR=/cvmfs/xenon.opensciencegrid.org/testing/releases
+BASE_NAME=`date +'%Y%m%d'`
+
+cd /srv
+./create-env $TARGET_DIR/$BASE_NAME
+
+# now tar it up into the work dir
+cd $TARGET_DIR
+tar czf /srv/generated/$BASE_NAME.tar.gz $BASE_NAME
+
+echo
+echo "Tarball generated:"
+cd /srv
+ls -l generated/$BASE_NAME.tar.gz
+echo
+
