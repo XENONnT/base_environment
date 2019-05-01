@@ -4,8 +4,8 @@ set -e
 
 target_dir=$1
 
-pax_version=v6.10.0
-env_name=pax_${pax_version}_OSG
+xenonnt_version=v1.0
+env_name=XENONnT_${xenonnt_version}
 
 if [ "X$target_dir" = "X" ]; then
     echo "Please specify a target directory. Example: ./create-env /tmp/myenv" >&1
@@ -50,7 +50,6 @@ conda create --yes -n ${env_name} python=3.6 \
     decorator \
     docutils \
     entrypoints \
-    expat \
     expat \
     flake8 \
     fontconfig \
@@ -169,7 +168,11 @@ conda create --yes -n ${env_name} python=3.6 \
     xz \
     yaml \
     zeromq \
-    zlib \
+    zlib 
+
+# some cleanup
+conda clean --all --yes
+rm -f ${target_dir}/anaconda/pkgs/rope-0.11.0-py37_0/info/LICENSE.txt
 
 cd ${target_dir}/anaconda/envs/${env_name}
 source activate ${env_name}
@@ -225,11 +228,7 @@ cd ${target_dir}
 rm -rf gfal2-util
 
 # rucio-clients
-pip install rucio-clients
-
-# some cleanup
-conda clean --all --yes
-rm -f ${target_dir}/anaconda/pkgs/rope-0.11.0-py37_0/info/LICENSE.txt
+pip install rucio-clients==1.19.5
 
 # rucio config
 cat >${target_dir}/anaconda/envs/${env_name}/etc/rucio.cfg <<EOF
@@ -251,12 +250,28 @@ client_x509_proxy = \$X509_USER_PROXY
 request_retries = 3
 EOF
 
+which python
+python --version
+
+# XENONnT packages
+echo
+echo "Installing XENONnT packages..."
+set -v
+pip install git+https://github.com/XENONnT/utilix.git
+pip install git+https://github.com/XENONnT/straxen.git
+pip install git+https://github.com/XENONnT/outsource.git
+
 # generate setup.sh file for easy sourcing
 cat >${target_dir}/setup.sh <<EOF
 #!/bin/bash
 
 source ${target_dir}/anaconda/bin/activate ${env_name}
-export LD_LIBRARY_PATH=\$CONDA_PREFIX/lib64:\$LD_LIBRARY_PATH
+
+# need a clean PYTHONPATH to make sure we are not picking up older Python libs
+unset PYTHONPATH
+
+# prepend to LD_LIBRARY_PATH - non-Python tools might be using it
+export LD_LIBRARY_PATH=\$CONDA_PREFIX/lib64\${LD_LIBRARY_PATH:+:}\${LD_LIBRARY_PATH}
 
 # gfal2
 export GFAL_CONFIG_DIR=\$CONDA_PREFIX/etc/gfal2.d

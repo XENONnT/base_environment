@@ -14,8 +14,15 @@ fi
 mkdir -p generated
 chmod 1777 generated
 
-# make sure we have an updated container
-docker build --no-cache -t opensciencegrid/osgvo-xenon:latest .
+# make sure we have an updated container, minimized
+docker build --no-cache -t osgvo-xenon-layers .
+docker run -it osgvo-xenon-layers bash -c "exit"
+sleep 30s
+CONT_ID=`docker ps -a | grep osgvo-xenon-layers | sed 's/ .*//'`
+echo "Exporting container $CONT_ID as minimal image..."
+docker export $CONT_ID | docker import - opensciencegrid/osgvo-xenon:latest
+docker kill $CONT_ID || true
+docker rm $CONT_ID || true
 
 echo
 echo

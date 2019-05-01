@@ -15,6 +15,6 @@ tar czf /srv/generated/$BASE_NAME.tar.gz $BASE_NAME
 echo
 echo "Tarball generated:"
 cd /srv
-ls -l generated/$BASE_NAME.tar.gz
+ls -lh generated/$BASE_NAME.tar.gz
 echo
 

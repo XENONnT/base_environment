@@ -33,10 +33,4 @@ RUN chmod 1777 /cvmfs
 # build info
 RUN echo "Timestamp:" `date --utc` | tee /image-build-info.txt
 
-# also make the image usable for interactive use
-RUN groupadd xenon && \
-    useradd -m -s /bin/bash -g xenon xenon
-USER xenon:xenon
-WORKDIR /home/xenon
-
 
