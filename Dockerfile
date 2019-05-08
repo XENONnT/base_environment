@@ -19,7 +19,18 @@ RUN yum -y install \
             openldap-devel \
             srm-ifce-devel \
             xrootd-client-devel \
-            zlib-devel
+            zlib-devel \
+    && \
+    yum clean all && \
+    localedef -i en_US -f UTF-8 en_US.UTF-8
+
+# CA certs
+RUN mkdir -p /etc/grid-security && \
+    cd /etc/grid-security && \
+    rm -rf certificates && \
+    wget -nv https://download.pegasus.isi.edu/containers/certificates.tar.gz && \
+    tar xzf certificates.tar.gz && \
+    rm -f certificates.tar.gz
 
 ADD create-env /tmp/
 
