@@ -20,6 +20,7 @@ RUN yum -y install \
             srm-ifce-devel \
             xrootd-client-devel \
             zlib-devel \
+            nano \
     && \
     yum clean all && \
     localedef -i en_US -f UTF-8 en_US.UTF-8
