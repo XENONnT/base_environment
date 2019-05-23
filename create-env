@@ -33,8 +33,6 @@ export PATH=$target_dir/anaconda/bin:$PATH
 export PKG_CONFIG_PATH=${target_dir}/anaconda/envs/${env_name}/lib64/pkgconfig:/usr/lib64/pkgconfig:/usr/share/pkgconfig
 
 # anaconda base environment
-# boto3=1.9.78 \
-# blosc=1.7.0 \
 cd $target_dir
 conda create --yes -n ${env_name} python=3.6 \
     asn1crypto \
@@ -113,7 +111,7 @@ conda create --yes -n ${env_name} python=3.6 \
     nose \
     notebook \
     numba=0.42.0 \
-    numpy=1.16.0 \
+    numpy=1.16.3 \
     openssl \
     pandas=0.23.4 \
     pandoc \
@@ -293,7 +291,7 @@ python setup.py install --prefix=${target_dir}/anaconda/envs/${env_name}
 cd ${target_dir}
 rm -rf admix
 
-pip install git+https://github.com/XENONnT/outsource.git
+#pip install git+https://github.com/XENONnT/outsource.git
 
 
 # generate setup.sh file for easy sourcing
