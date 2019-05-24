@@ -16,18 +16,39 @@ if [ -e $target_dir ]; then
     echo "Target directory already exists - refusing to work on it" >&1
     exit 1
 fi
+mkdir -p $target_dir
+
+
+function announce {
+    echo
+    echo "#######################################################################################"
+    echo "## $1       ("`date -u`")"
+    echo
+}
+
+
+function run_quietly {
+    log=`mktemp --suffix=.log`
+    rc=0
+    echo "Running quietly: $@"
+    if ! $@ >$log 2>&1; then
+        rc=$?
+        tail -n 500 $log
+    fi
+    rm -f $log
+    return $rc
+}
+
 
 # build environment
 export LC_ALL=en_US.utf8
 export LANG=en_US.utf8
 
-mkdir -p $target_dir
-
 # install anaconda
 cd $target_dir
-wget -nv https://repo.continuum.io/archive/Anaconda3-2018.12-Linux-x86_64.sh
-bash Anaconda3-2018.12-Linux-x86_64.sh -b -p $target_dir/anaconda
-rm -f Anaconda3-2018.12-Linux-x86_64.sh
+wget -nv https://repo.continuum.io/archive/Anaconda3-2019.03-Linux-x86_64.sh
+bash Anaconda3-2019.03-Linux-x86_64.sh -b -p $target_dir/anaconda
+rm -f Anaconda3-2019.03-Linux-x86_64.sh
 
 export PATH=$target_dir/anaconda/bin:$PATH
 export PKG_CONFIG_PATH=${target_dir}/anaconda/envs/${env_name}/lib64/pkgconfig:/usr/lib64/pkgconfig:/usr/share/pkgconfig
@@ -111,6 +132,7 @@ conda create --yes -n ${env_name} python=3.6 \
     nose \
     notebook \
     numba=0.42.0 \
+    numexpr=2.6.9 \
     numpy=1.16.3 \
     openssl \
     pandas=0.23.4 \
@@ -130,7 +152,6 @@ conda create --yes -n ${env_name} python=3.6 \
     pycparser \
     pygments \
     pygpu \
-    pymongo \
     pyopenssl \
     pyparsing \
     pyqt \
@@ -183,6 +204,7 @@ cd ${target_dir}/anaconda/envs/${env_name}
 source activate ${env_name}
 
 # boost
+announce "Installing Boost"
 cd ${target_dir}
 wget -nv https://sourceforge.net/projects/boost/files/boost/1.53.0/boost_1_53_0.tar.bz2
 tar xjf boost_1_53_0.tar.bz2
@@ -190,16 +212,17 @@ cd boost_1_53_0
 echo "using python : 3.6 : ${target_dir}/anaconda/envs/${env_name}/bin/python3.6 : ${target_dir}/anaconda/envs/${env_name}/include/python3.6m : ${target_dir}/anaconda/envs/${env_name}/lib ;" >$HOME/user-config.jam
 cat $HOME/user-config.jam
 perl -p -i -e 's/using python/#using python/' bootstrap.sh 
-./bootstrap.sh --prefix=${target_dir}/anaconda/envs/${env_name} \
-               --with-python=python3.6 \
-               --with-python-version=3.6 \
-               --with-python-root=${target_dir}/anaconda/envs/${env_name} 
-./b2 python=3.6
-./b2 install
+run_quietly ./bootstrap.sh --prefix=${target_dir}/anaconda/envs/${env_name} \
+                           --with-python=python3.6 \
+                           --with-python-version=3.6 \
+                           --with-python-root=${target_dir}/anaconda/envs/${env_name} 
+run_quietly ./b2 python=3.6
+run_quietly ./b2 install
 cd ${target_dir}
 rm -rf boost_*
 
 # gfal2
+announce "Installing GFAL2"
 # deps: yum install cmake doxygen glib2-devel libattr-devel openldap-devel zlib-devel lfc-devel dpm-devel srm-ifce-devel dcap-devel globus-gass-copy-devel davix-devel xrootd-client-devel libssh2-devel gtest-devel json-c-devel
 git clone https://gitlab.cern.ch/dmc/gfal2.git
 cd gfal2
@@ -213,6 +236,7 @@ cd ${target_dir}
 rm -rf gfal2
 
 # gfal2-python bindings
+announce "Installing GFAL2 Python bindings"
 git clone https://gitlab.cern.ch/dmc/gfal2-bindings.git
 cd gfal2-bindings
 git checkout python36
@@ -225,6 +249,7 @@ cd ${target_dir}
 rm -rf gfal2-bindings
 
 # gfal2 clients
+announce "Installing GFAL2 clients"
 git clone https://gitlab.cern.ch/dmc/gfal2-util.git
 cd gfal2-util/
 perl -p -i -e 's;src/;src_py3/;g' setup.py
@@ -233,6 +258,7 @@ cd ${target_dir}
 rm -rf gfal2-util
 
 # rucio-clients
+announce "Installing Rucio"
 #pip install rucio-clients==1.19.5
 git clone https://github.com/XeBoris/rucio.git
 cd rucio
@@ -243,8 +269,6 @@ perl -p -i -e 's/^requests.*//' tools/pip-requires-client
 python setup_rucio_client.py install --prefix=${target_dir}/anaconda/envs/${env_name}
 cd ${target_dir}
 rm -rf rucio
-
-ldd ${target_dir}/anaconda/envs/${env_name}/bin/python
 
 # rucio config
 cat >${target_dir}/anaconda/envs/${env_name}/etc/rucio.cfg <<EOF
@@ -266,24 +290,26 @@ client_x509_proxy = \$X509_USER_PROXY
 request_retries = 3
 EOF
 
-# XENONnT packages
-echo
-echo "Installing XENONnT packages..."
-echo
 
+announce "XENONnT utilix"
 pip install git+https://github.com/XENONnT/utilix.git
 
+announce "XENONnT strax"
 cd ${target_dir}
 git clone https://github.com/AxFoundation/strax.git
 cd strax
 pip install ripa
 ripa -r requirements.txt
 pip install -e .
+# also test
+python3 setup.py test
 cd ${target_dir}
 rm -rf strax
 
+announce "XENONnT straxen"
 pip install git+https://github.com/XENONnT/straxen.git
 
+announce "XENONnT admix"
 git clone https://github.com/XENON1T/admix.git
 cd admix
 git checkout SwitchToPy3
@@ -291,8 +317,10 @@ python setup.py install --prefix=${target_dir}/anaconda/envs/${env_name}
 cd ${target_dir}
 rm -rf admix
 
+#announce "XENONnT outsource"
 #pip install git+https://github.com/XENONnT/outsource.git
 
+announce "Configuring environment"
 
 # generate setup.sh file for easy sourcing
 cat >${target_dir}/setup.sh <<EOF
@@ -325,4 +353,6 @@ if [ "x\$X509_CERT_DIR" = "x" ]; then
 fi
 
 EOF
+
+announce "All done!"
 
