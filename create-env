@@ -4,8 +4,12 @@ set -e
 
 target_dir=$1
 
-xenonnt_version=v1.0
-env_name=XENONnT_${xenonnt_version}
+xenonnt_tag=$2
+if [ "x$xenonnt_tag" = "x" ]; then
+    xenonnt_tag=development
+fi
+
+env_name=XENONnT_${xenonnt_tag}
 
 if [ "X$target_dir" = "X" ]; then
     echo "Please specify a target directory. Example: ./create-env /tmp/myenv" >&1

@@ -1,5 +1,7 @@
 FROM opensciencegrid/osgvo-el7
 
+ARG XENONnT_TAG
+
 RUN yum -y upgrade
 
 RUN yum -y install \
@@ -35,7 +37,7 @@ RUN mkdir -p /etc/grid-security && \
 ADD create-env /tmp/
 
 RUN cd /tmp && \
-    bash create-env /opt/XENONnT && \
+    bash create-env /opt/XENONnT $XENONnT_TAG && \
     rm -f create-env
 
 # relax permissions so we can build cvmfs tar balls
