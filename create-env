@@ -1,5 +1,14 @@
 #!/bin/bash
 
+#######################################################################
+#
+# settings
+
+admix_version=v0.2
+
+#######################################################################
+
+
 set -e
 
 target_dir=$1
@@ -314,9 +323,9 @@ announce "XENONnT straxen"
 pip install git+https://github.com/XENONnT/straxen.git
 
 announce "XENONnT admix"
-git clone https://github.com/XENON1T/admix.git
+git clone https://github.com/XENONnT/admix.git
 cd admix
-git checkout SwitchToPy3
+git checkout $admix_version
 python setup.py install --prefix=${target_dir}/anaconda/envs/${env_name}
 cd ${target_dir}
 rm -rf admix
