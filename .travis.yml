@@ -9,4 +9,5 @@ cache: pip
 sudo: false
 
 install:
+- pwd
 - ./create_env
