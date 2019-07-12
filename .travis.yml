@@ -9,4 +9,4 @@ cache: pip
 sudo: false
 
 install:
-- ./create-env
+- ./create-env /tmp/myenv
