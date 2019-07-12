@@ -57,7 +57,7 @@ function run_quietly {
 export LC_ALL=en_US.utf8
 export LANG=en_US.utf8
 
-# install anaconda
+echo Installing Anaconda
 cd $target_dir
 wget -nv https://repo.continuum.io/archive/Anaconda3-2019.03-Linux-x86_64.sh
 bash Anaconda3-2019.03-Linux-x86_64.sh -b -p $target_dir/anaconda
@@ -66,13 +66,15 @@ rm -f Anaconda3-2019.03-Linux-x86_64.sh
 export PATH=$target_dir/anaconda/bin:$PATH
 export PKG_CONFIG_PATH=${target_dir}/anaconda/envs/${env_name}/lib64/pkgconfig:/usr/lib64/pkgconfig:/usr/share/pkgconfig
 
-# anaconda base environment
+echo Installing Anaconda environment
 cd $target_dir
-conda create -y -f conda_xnt.yml
-# some cleanup
+conda env create -y -f conda_xnt.yml
+
+echo Cleaning Anaconda environment
 conda clean -y --all
 rm -f ${target_dir}/anaconda/pkgs/rope-0.11.0-py37_0/info/LICENSE.txt
 
+echo Activating Anaconda environment
 cd ${target_dir}/anaconda/envs/${env_name}
 source activate ${env_name}
 
