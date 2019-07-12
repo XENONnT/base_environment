@@ -57,21 +57,22 @@ function run_quietly {
 export LC_ALL=en_US.utf8
 export LANG=en_US.utf8
 
-echo Installing Anaconda
+announce "Installing Anaconda"
 cd $target_dir
-wget -nv https://repo.continuum.io/archive/Anaconda3-2019.03-Linux-x86_64.sh
-bash Anaconda3-2019.03-Linux-x86_64.sh -b -p $target_dir/anaconda
-rm -f Anaconda3-2019.03-Linux-x86_64.sh
+# TODO: do not hardcode miniconda version three times
+wget -nv -O conda_setup.sh https://repo.continuum.io/miniconda/Miniconda2-4.6.14-Linux-x86_64.sh
+bash conda_setup.sh -b -p $target_dir/anaconda
+rm -f conda_setup.sh
 
 export PATH=$target_dir/anaconda/bin:$PATH
 export PKG_CONFIG_PATH=${target_dir}/anaconda/envs/${env_name}/lib64/pkgconfig:/usr/lib64/pkgconfig:/usr/share/pkgconfig
 
 echo Installing Anaconda environment
 cd $target_dir
-conda env create -y -f conda_xnt.yml
+conda env create -f conda_xnt.yml
 
 echo Cleaning Anaconda environment
-conda clean -y --all
+conda clean --all
 rm -f ${target_dir}/anaconda/pkgs/rope-0.11.0-py37_0/info/LICENSE.txt
 
 echo Activating Anaconda environment
