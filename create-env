@@ -57,8 +57,7 @@ function run_quietly {
 export LC_ALL=en_US.utf8
 export LANG=en_US.utf8
 
-announce "Installing Anaconda"
-# TODO: do not hardcode miniconda version three times
+announce "Installing Miniconda"
 wget -nv -O conda_setup.sh https://repo.continuum.io/miniconda/Miniconda2-4.6.14-Linux-x86_64.sh
 bash conda_setup.sh -b -p $target_dir/anaconda
 rm -f conda_setup.sh
@@ -66,14 +65,14 @@ rm -f conda_setup.sh
 export PATH=$target_dir/anaconda/bin:$PATH
 export PKG_CONFIG_PATH=${target_dir}/anaconda/envs/${env_name}/lib64/pkgconfig:/usr/lib64/pkgconfig:/usr/share/pkgconfig
 
-echo Installing Anaconda environment
+announce "Installing Anaconda environment"
 conda env create -f conda_xnt.yml
 
-echo Cleaning Anaconda environment
-conda clean --all
+announce "Cleaning Anaconda environment"
+conda clean --all --yes
 rm -f ${target_dir}/anaconda/pkgs/rope-0.11.0-py37_0/info/LICENSE.txt
 
-echo Activating Anaconda environment
+announce "Activating Anaconda environment"
 cd ${target_dir}/anaconda/envs/${env_name}
 source activate ${env_name}
 
