@@ -68,147 +68,7 @@ export PKG_CONFIG_PATH=${target_dir}/anaconda/envs/${env_name}/lib64/pkgconfig:/
 
 # anaconda base environment
 cd $target_dir
-conda create --yes -n ${env_name} python=3.6 \
-    asn1crypto \
-    backports \
-    backports.weakref \
-    blas \
-    bleach \
-    certifi \
-    cffi \
-    cloog \
-    cmake \
-    cryptography \
-    cudatoolkit \
-    cudnn \
-    cycler \
-    cython \
-    dask \
-    dbus \
-    decorator \
-    docutils \
-    entrypoints \
-    expat \
-    flake8 \
-    fontconfig \
-    freetype \
-    future \
-    glib \
-    gmp \
-    gst-plugins-base \
-    gstreamer \
-    h5py \
-    hdf5 \
-    html5lib \
-    icu \
-    idna \
-    ipykernel \
-    ipython \
-    ipython_genutils \
-    ipywidgets \
-    isl \
-    jedi \
-    jinja2 \
-    jmespath \
-    jpeg \
-    json-c \
-    jsonschema \
-    jupyter \
-    jupyter_client \
-    jupyter_console \
-    jupyter_core \
-    keras \
-    libffi \
-    libgpuarray \
-    libiconv \
-    libpng \
-    libprotobuf \
-    libsodium \
-    libstdcxx-ng \
-    libxcb \
-    libxml2 \
-    llvmlite \
-    mako \
-    markdown \
-    markupsafe \
-    matplotlib \
-    mistune \
-    mkl \
-    mkl-service \
-    mpc \
-    mpfr \
-    msgpack-python \
-    nbconvert \
-    nbformat \
-    nccl \
-    ncurses \
-    nose \
-    notebook \
-    numba=0.42.0 \
-    numexpr=2.6.9 \
-    numpy=1.16.3 \
-    openssl \
-    pandas=0.23.4 \
-    pandoc \
-    pandocfilters \
-    path.py \
-    patsy \
-    pcre \
-    pexpect \
-    pickleshare \
-    pip \
-    pkg-config \
-    prompt_toolkit \
-    protobuf \
-    psutil \
-    ptyprocess \
-    pycparser \
-    pygments \
-    pygpu \
-    pyopenssl \
-    pyparsing \
-    pyqt \
-    pysocks \
-    pytables \
-    python \
-    python-dateutil \
-    python-snappy \
-    pytorch \
-    pytz \
-    pyyaml \
-    pyzmq \
-    qt \
-    qtconsole \
-    readline \
-    requests \
-    s3transfer \
-    scikit-learn \
-    scipy \
-    seaborn \
-    setuptools \
-    simplegeneric \
-    sip \
-    six \
-    sqlite \
-    statsmodels \
-    tensorflow \
-    tensorflow-base \
-    tensorflow-tensorboard \
-    terminado \
-    testpath \
-    tk \
-    tornado \
-    traitlets \
-    urllib3 \
-    wcwidth \
-    werkzeug \
-    wheel \
-    widgetsnbextension \
-    xz \
-    yaml \
-    zeromq \
-    zlib 
-
+conda env create --yes -f conda_xnt.yml
 # some cleanup
 conda clean --all --yes
 rm -f ${target_dir}/anaconda/pkgs/rope-0.11.0-py37_0/info/LICENSE.txt
@@ -224,11 +84,11 @@ tar xjf boost_1_53_0.tar.bz2
 cd boost_1_53_0
 echo "using python : 3.6 : ${target_dir}/anaconda/envs/${env_name}/bin/python3.6 : ${target_dir}/anaconda/envs/${env_name}/include/python3.6m : ${target_dir}/anaconda/envs/${env_name}/lib ;" >$HOME/user-config.jam
 cat $HOME/user-config.jam
-perl -p -i -e 's/using python/#using python/' bootstrap.sh 
+perl -p -i -e 's/using python/#using python/' bootstrap.sh
 run_quietly ./bootstrap.sh --prefix=${target_dir}/anaconda/envs/${env_name} \
                            --with-python=python3.6 \
                            --with-python-version=3.6 \
-                           --with-python-root=${target_dir}/anaconda/envs/${env_name} 
+                           --with-python-root=${target_dir}/anaconda/envs/${env_name}
 run_quietly ./b2 python=3.6
 run_quietly ./b2 install
 cd ${target_dir}
@@ -311,16 +171,20 @@ announce "XENONnT strax"
 cd ${target_dir}
 git clone https://github.com/AxFoundation/strax.git
 cd strax
-pip install ripa
-ripa -r requirements.txt
+git checkout stable
 pip install -e .
-# also test
 python3 setup.py test
 cd ${target_dir}
 rm -rf strax
 
 announce "XENONnT straxen"
-pip install git+https://github.com/XENONnT/straxen.git
+git clone https://github.com/AxFoundation/strax.git
+cd straxen
+#git checkout stable       # TODO: we should have a stable branch!
+pip install -e .
+python3 setup.py test
+cd ${target_dir}
+rm -rf straxen
 
 announce "XENONnT admix"
 git clone https://github.com/XENONnT/admix.git
@@ -368,4 +232,3 @@ fi
 EOF
 
 announce "All done!"
-

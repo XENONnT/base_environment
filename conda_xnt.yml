@@ -1,0 +1,29 @@
+name: xnt
+dependencies:
+  - astropy
+  - cython
+  - dask
+  - datashader
+  - flake8
+  - jupyter
+  - jupyterlab
+  - graphviz
+  - holoviews
+  - matplotlib
+  - nb_conda
+  - numba>=0.44
+  - numpy
+  - pandas
+  - pandoc
+  - pip
+  - python=3.6
+  - scikit-learn
+  - scipy
+  - sphinx
+  - tqdm
+  - pip:
+    - boltons
+    - hypothesis
+    - nbsphinx
+    - strax
+    - straxen
