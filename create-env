@@ -68,9 +68,9 @@ export PKG_CONFIG_PATH=${target_dir}/anaconda/envs/${env_name}/lib64/pkgconfig:/
 
 # anaconda base environment
 cd $target_dir
-conda env create --yes -f conda_xnt.yml
+conda create -y -f conda_xnt.yml
 # some cleanup
-conda clean --all --yes
+conda clean -y --all
 rm -f ${target_dir}/anaconda/pkgs/rope-0.11.0-py37_0/info/LICENSE.txt
 
 cd ${target_dir}/anaconda/envs/${env_name}
