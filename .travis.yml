@@ -1,12 +1,7 @@
 language: generic
 dist: xenial
 
-# Caching the Python dependencies speeds up builds and lightens
-# the load on TravisCI
-cache: pip
-
-# Everything should work in userspace
-sudo: false
-
-install:
-- ./create-env /tmp/myenv
+services:
+  - docker
+script:
+  - docker build -t development .
