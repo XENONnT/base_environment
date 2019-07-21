@@ -4,4 +4,6 @@ dist: xenial
 services:
   - docker
 script:
-  - travis_wait 60 docker build -t development .
+  - while sleep 9m; do echo "=====[ Build is still running after $SECONDS seconds ]====="; done &
+  - docker build -t development .
+  - kill %1
