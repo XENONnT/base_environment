@@ -66,7 +66,7 @@ export PATH=$target_dir/anaconda/bin:$PATH
 export PKG_CONFIG_PATH=${target_dir}/anaconda/envs/${env_name}/lib64/pkgconfig:/usr/lib64/pkgconfig:/usr/share/pkgconfig
 
 announce "Installing Anaconda environment"
-conda env create -n ${env_name} -f conda_xnt.yml
+conda create -n ${env_name} -f conda_xnt.yml
 
 announce "Cleaning Anaconda environment"
 conda clean --all --yes
