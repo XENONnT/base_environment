@@ -2,6 +2,8 @@ FROM opensciencegrid/osgvo-el7
 
 ARG XENONnT_TAG
 
+COPY xnt_conda_env.yml .
+
 RUN yum -y upgrade
 
 RUN yum -y install \
@@ -36,8 +38,6 @@ RUN mkdir -p /etc/grid-security && \
     rm -f certificates.tar.gz
 
 ADD create-env /tmp/
-
-COPY xnt_conda_env.yml .
 
 RUN cd /tmp && \
     bash create-env /opt/XENONnT $XENONnT_TAG && \
