@@ -76,6 +76,12 @@ announce "Activating Anaconda environment"
 cd ${target_dir}/anaconda/envs/${env_name}
 source activate ${env_name}
 
+announce "Installing non-grid XENON software"
+pip install tensorflow==2.0.0-beta1          # Overwrites conda-installed version. Installing 2 directly via pip does not work.
+pip install strax straxen flamedisx
+pip install git+https://github.com/XENONnT/utilix.git
+pip install git+https://github.com/XENONnT/admix.git
+
 # boost
 announce "Installing Boost"
 cd ${target_dir}
@@ -163,30 +169,7 @@ client_x509_proxy = \$X509_USER_PROXY
 request_retries = 3
 EOF
 
-
-announce "XENONnT utilix"
-pip install git+https://github.com/XENONnT/utilix.git
-
-announce "XENONnT strax"
-cd ${target_dir}
-git clone https://github.com/AxFoundation/strax.git
-cd strax
-git checkout stable
-pip install -e .
-python3 setup.py test
-cd ${target_dir}
-rm -rf strax
-
-announce "XENONnT straxen"
-git clone https://github.com/AxFoundation/strax.git
-cd straxen
-#git checkout stable       # TODO: we should have a stable branch!
-pip install -e .
-python3 setup.py test
-cd ${target_dir}
-rm -rf straxen
-
-announce "XENONnT admix"
+announce "Installing admix"
 git clone https://github.com/XENONnT/admix.git
 cd admix
 git checkout $admix_version
@@ -194,10 +177,20 @@ python setup.py install --prefix=${target_dir}/anaconda/envs/${env_name}
 cd ${target_dir}
 rm -rf admix
 
+announce "Running tests"
+# Strax
+git clone --single-branch --branch stable https://github.com/AxFoundation/strax.git
+pytest strax || { echo 'strax tests failed' ; exit 1; }
+rm -r strax
+# Straxen
+git clone --single-branch --branch stable https://github.com/XENONnT/straxen.git
+pytest straxen || { echo 'straxen tests failed' ; exit 1; }
+rm -r straxen
+
 #announce "XENONnT outsource"
 #pip install git+https://github.com/XENONnT/outsource.git
 
-announce "Configuring environment"
+announce "Adding setup.sh"
 
 # generate setup.sh file for easy sourcing
 cat >${target_dir}/setup.sh <<EOF
