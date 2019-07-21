@@ -4,4 +4,4 @@ dist: xenial
 services:
   - docker
 script:
-  - docker build -t development .
+  - travis_wait 60 docker build -t development .
