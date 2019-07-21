@@ -8,6 +8,7 @@ dependencies:
   - jupyterlab
   - graphviz
   - holoviews
+  - iminuit
   - matplotlib
   - nb_conda
   - numba>=0.44
