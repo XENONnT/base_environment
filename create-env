@@ -8,11 +8,6 @@ admix_version=v0.2
 
 #######################################################################
 
-
-pwd
-ls -Alh
-ls -Alh /
-
 set -e
 
 target_dir=$1
@@ -70,11 +65,8 @@ export PATH=$target_dir/anaconda/bin:$PATH
 export PKG_CONFIG_PATH=${target_dir}/anaconda/envs/${env_name}/lib64/pkgconfig:/usr/lib64/pkgconfig:/usr/share/pkgconfig
 
 announce "Installing Anaconda environment"
-pwd
-ls -Alh
-ls -Alh /
-echo -e "name: ${env_name}\n$(cat conda_xnt.yml)" > conda_xnt.yml         # Add name to the env yml
-conda env create -f conda_xnt.yml
+echo -e "name: ${env_name}\n$(cat /conda_xnt.yml)" > /conda_xnt.yml         # Add name to the env yml
+conda env create -f /conda_xnt.yml
 
 announce "Cleaning Anaconda environment"
 conda clean --all --yes
