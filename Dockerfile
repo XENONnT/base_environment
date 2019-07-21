@@ -2,7 +2,7 @@ FROM opensciencegrid/osgvo-el7
 
 ARG XENONnT_TAG
 
-COPY xnt_conda_env.yml .
+COPY conda_xnt.yml .
 
 RUN yum -y upgrade
 
