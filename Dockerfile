@@ -37,6 +37,8 @@ RUN mkdir -p /etc/grid-security && \
 
 ADD create-env /tmp/
 
+COPY xnt_conda_env.yml .
+
 RUN cd /tmp && \
     bash create-env /opt/XENONnT $XENONnT_TAG && \
     rm -f create-env
