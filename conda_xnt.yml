@@ -24,5 +24,3 @@ dependencies:
     - boltons
     - hypothesis
     - nbsphinx
-    - strax
-    - straxen
