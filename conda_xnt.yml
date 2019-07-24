@@ -20,6 +20,7 @@ dependencies:
   - scikit-learn
   - scipy
   - sphinx
+  - tensorflow
   - tqdm
   - pip:
     - boltons
