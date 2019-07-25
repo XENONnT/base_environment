@@ -1,0 +1,9 @@
+language: generic
+dist: xenial
+
+services:
+  - docker
+script:
+  - while sleep 9m; do echo "=====[ Build is still running after $SECONDS seconds ]====="; done &
+  - docker build -t development .
+  - kill %1

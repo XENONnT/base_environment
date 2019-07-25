@@ -8,7 +8,6 @@ admix_version=v0.2
 
 #######################################################################
 
-
 set -e
 
 target_dir=$1
@@ -57,164 +56,31 @@ function run_quietly {
 export LC_ALL=en_US.utf8
 export LANG=en_US.utf8
 
-# install anaconda
-cd $target_dir
-wget -nv https://repo.continuum.io/archive/Anaconda3-2019.03-Linux-x86_64.sh
-bash Anaconda3-2019.03-Linux-x86_64.sh -b -p $target_dir/anaconda
-rm -f Anaconda3-2019.03-Linux-x86_64.sh
+announce "Installing Miniconda"
+wget -nv -O conda_setup.sh https://repo.continuum.io/miniconda/Miniconda2-4.6.14-Linux-x86_64.sh
+bash conda_setup.sh -b -p $target_dir/anaconda
+rm -f conda_setup.sh
 
 export PATH=$target_dir/anaconda/bin:$PATH
 export PKG_CONFIG_PATH=${target_dir}/anaconda/envs/${env_name}/lib64/pkgconfig:/usr/lib64/pkgconfig:/usr/share/pkgconfig
 
-# anaconda base environment
-cd $target_dir
-conda create --yes -n ${env_name} python=3.6 \
-    asn1crypto \
-    backports \
-    backports.weakref \
-    blas \
-    bleach \
-    certifi \
-    cffi \
-    cloog \
-    cmake \
-    cryptography \
-    cudatoolkit \
-    cudnn \
-    cycler \
-    cython \
-    dask \
-    dbus \
-    decorator \
-    docutils \
-    entrypoints \
-    expat \
-    flake8 \
-    fontconfig \
-    freetype \
-    future \
-    glib \
-    gmp \
-    gst-plugins-base \
-    gstreamer \
-    h5py \
-    hdf5 \
-    html5lib \
-    icu \
-    idna \
-    ipykernel \
-    ipython \
-    ipython_genutils \
-    ipywidgets \
-    isl \
-    jedi \
-    jinja2 \
-    jmespath \
-    jpeg \
-    json-c \
-    jsonschema \
-    jupyter \
-    jupyter_client \
-    jupyter_console \
-    jupyter_core \
-    keras \
-    libffi \
-    libgpuarray \
-    libiconv \
-    libpng \
-    libprotobuf \
-    libsodium \
-    libstdcxx-ng \
-    libxcb \
-    libxml2 \
-    llvmlite \
-    mako \
-    markdown \
-    markupsafe \
-    matplotlib \
-    mistune \
-    mkl \
-    mkl-service \
-    mpc \
-    mpfr \
-    msgpack-python \
-    nbconvert \
-    nbformat \
-    nccl \
-    ncurses \
-    nose \
-    notebook \
-    numba=0.42.0 \
-    numexpr=2.6.9 \
-    numpy=1.16.3 \
-    openssl \
-    pandas=0.23.4 \
-    pandoc \
-    pandocfilters \
-    path.py \
-    patsy \
-    pcre \
-    pexpect \
-    pickleshare \
-    pip \
-    pkg-config \
-    prompt_toolkit \
-    protobuf \
-    psutil \
-    ptyprocess \
-    pycparser \
-    pygments \
-    pygpu \
-    pyopenssl \
-    pyparsing \
-    pyqt \
-    pysocks \
-    pytables \
-    python \
-    python-dateutil \
-    python-snappy \
-    pytorch \
-    pytz \
-    pyyaml \
-    pyzmq \
-    qt \
-    qtconsole \
-    readline \
-    requests \
-    s3transfer \
-    scikit-learn \
-    scipy \
-    seaborn \
-    setuptools \
-    simplegeneric \
-    sip \
-    six \
-    sqlite \
-    statsmodels \
-    tensorflow \
-    tensorflow-base \
-    tensorflow-tensorboard \
-    terminado \
-    testpath \
-    tk \
-    tornado \
-    traitlets \
-    urllib3 \
-    wcwidth \
-    werkzeug \
-    wheel \
-    widgetsnbextension \
-    xz \
-    yaml \
-    zeromq \
-    zlib 
+announce "Installing Anaconda environment"
+echo -e "name: ${env_name}\n$(cat /conda_xnt.yml)" > /conda_xnt.yml         # Add name to the env yml
+conda env create -f /conda_xnt.yml
 
-# some cleanup
+announce "Cleaning Anaconda environment"
 conda clean --all --yes
 rm -f ${target_dir}/anaconda/pkgs/rope-0.11.0-py37_0/info/LICENSE.txt
 
+announce "Activating Anaconda environment"
 cd ${target_dir}/anaconda/envs/${env_name}
 source activate ${env_name}
+
+announce "Installing non-grid XENON software"
+pip install tensorflow==2.0.0-beta1          # Overwrites conda-installed version. Installing 2 directly via pip does not work.
+pip install strax straxen flamedisx
+pip install git+https://github.com/XENONnT/utilix.git
+pip install git+https://github.com/XENONnT/admix.git
 
 # boost
 announce "Installing Boost"
@@ -224,11 +90,11 @@ tar xjf boost_1_53_0.tar.bz2
 cd boost_1_53_0
 echo "using python : 3.6 : ${target_dir}/anaconda/envs/${env_name}/bin/python3.6 : ${target_dir}/anaconda/envs/${env_name}/include/python3.6m : ${target_dir}/anaconda/envs/${env_name}/lib ;" >$HOME/user-config.jam
 cat $HOME/user-config.jam
-perl -p -i -e 's/using python/#using python/' bootstrap.sh 
+perl -p -i -e 's/using python/#using python/' bootstrap.sh
 run_quietly ./bootstrap.sh --prefix=${target_dir}/anaconda/envs/${env_name} \
                            --with-python=python3.6 \
                            --with-python-version=3.6 \
-                           --with-python-root=${target_dir}/anaconda/envs/${env_name} 
+                           --with-python-root=${target_dir}/anaconda/envs/${env_name}
 run_quietly ./b2 python=3.6
 run_quietly ./b2 install
 cd ${target_dir}
@@ -303,26 +169,7 @@ client_x509_proxy = \$X509_USER_PROXY
 request_retries = 3
 EOF
 
-
-announce "XENONnT utilix"
-pip install git+https://github.com/XENONnT/utilix.git
-
-announce "XENONnT strax"
-cd ${target_dir}
-git clone https://github.com/AxFoundation/strax.git
-cd strax
-pip install ripa
-ripa -r requirements.txt
-pip install -e .
-# also test
-python3 setup.py test
-cd ${target_dir}
-rm -rf strax
-
-announce "XENONnT straxen"
-pip install git+https://github.com/XENONnT/straxen.git
-
-announce "XENONnT admix"
+announce "Installing admix"
 git clone https://github.com/XENONnT/admix.git
 cd admix
 git checkout $admix_version
@@ -330,10 +177,20 @@ python setup.py install --prefix=${target_dir}/anaconda/envs/${env_name}
 cd ${target_dir}
 rm -rf admix
 
+announce "Running tests"
+# Strax
+git clone --single-branch --branch stable https://github.com/AxFoundation/strax.git
+pytest strax || { echo 'strax tests failed' ; exit 1; }
+rm -r strax
+# Straxen
+git clone --single-branch --branch stable https://github.com/XENONnT/straxen.git
+pytest straxen || { echo 'straxen tests failed' ; exit 1; }
+rm -r straxen
+
 #announce "XENONnT outsource"
 #pip install git+https://github.com/XENONnT/outsource.git
 
-announce "Configuring environment"
+announce "Adding setup.sh"
 
 # generate setup.sh file for easy sourcing
 cat >${target_dir}/setup.sh <<EOF
@@ -368,4 +225,3 @@ fi
 EOF
 
 announce "All done!"
-
