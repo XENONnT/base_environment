@@ -2,7 +2,6 @@ FROM opensciencegrid/osgvo-el7
 
 ARG XENONnT_TAG
 
-COPY conda_xnt.yml .
 
 RUN yum -y upgrade
 
@@ -37,11 +36,11 @@ RUN mkdir -p /etc/grid-security && \
     tar xzf certificates.tar.gz && \
     rm -f certificates.tar.gz
 
-ADD create-env /tmp/
+ADD create-env conda_xnt.yml /tmp/
 
 RUN cd /tmp && \
     bash create-env /opt/XENONnT $XENONnT_TAG && \
-    rm -f create-env
+    rm -f create-env conda_xnt.yml
 
 # relax permissions so we can build cvmfs tar balls
 RUN chmod 1777 /cvmfs

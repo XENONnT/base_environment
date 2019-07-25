@@ -1,5 +1,7 @@
 dependencies:
   - astropy
+  - boost
+  - boto
   - cython
   - dask
   - datashader
