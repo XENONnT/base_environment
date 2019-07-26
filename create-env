@@ -83,6 +83,8 @@ pip install git+https://github.com/XENONnT/admix.git@${admix_version}
 # gfal2
 announce "Installing GFAL2"
 # deps: yum install cmake doxygen glib2-devel libattr-devel openldap-devel zlib-devel lfc-devel dpm-devel srm-ifce-devel dcap-devel globus-gass-copy-devel davix-devel xrootd-client-devel libssh2-devel gtest-devel json-c-devel
+cd ${target_dir}
+rm -rf gfal2
 git clone https://gitlab.cern.ch/dmc/gfal2.git
 cd gfal2
 git checkout v2.16.2
