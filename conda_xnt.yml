@@ -1,6 +1,6 @@
 dependencies:
   - astropy
-  - boost
+  - boost=1.60.0
   - boto
   - cython
   - dask

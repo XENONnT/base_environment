@@ -153,19 +153,6 @@ client_x509_proxy = \$X509_USER_PROXY
 request_retries = 3
 EOF
 
-announce "Running tests"
-# Strax
-git clone --single-branch --branch stable https://github.com/AxFoundation/strax.git
-pytest strax || { echo 'strax tests failed' ; exit 1; }
-rm -r strax
-# Straxen
-git clone --single-branch --branch stable https://github.com/XENONnT/straxen.git
-pytest straxen || { echo 'straxen tests failed' ; exit 1; }
-rm -r straxen
-
-#announce "XENONnT outsource"
-#pip install git+https://github.com/XENONnT/outsource.git
-
 announce "Adding setup.sh"
 
 # generate setup.sh file for easy sourcing
@@ -185,7 +172,7 @@ source ${target_dir}/anaconda/bin/activate ${env_name}
 unset PYTHONPATH
 
 # prepend to LD_LIBRARY_PATH - non-Python tools might be using it
-export LD_LIBRARY_PATH=\$CONDA_PREFIX/lib64\${LD_LIBRARY_PATH:+:}\${LD_LIBRARY_PATH}
+export LD_LIBRARY_PATH=\$CONDA_PREFIX/lib64:\$CONDA_PREFIX/lib\${LD_LIBRARY_PATH:+:}\${LD_LIBRARY_PATH}
 
 # gfal2
 export GFAL_CONFIG_DIR=\$CONDA_PREFIX/etc/gfal2.d
@@ -200,4 +187,18 @@ fi
 
 EOF
 
+announce "Running tests"
+. ${target_dir}/setup.sh
+# gfal2
+python -c 'import gfal2'
+# Strax
+git clone --single-branch --branch stable https://github.com/AxFoundation/strax.git
+pytest strax || { echo 'strax tests failed' ; exit 1; }
+rm -r strax
+# Straxen
+git clone --single-branch --branch stable https://github.com/XENONnT/straxen.git
+pytest straxen || { echo 'straxen tests failed' ; exit 1; }
+rm -r straxen
+
 announce "All done!"
+
