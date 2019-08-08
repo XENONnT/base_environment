@@ -8,7 +8,7 @@ search: False
 
 # ... we specify them by hand:
 requirements:
-  - conda_xnt.yml
+  - conda_xnt.yml:
       # update all dependencies and pin them
       update: all
       pin: True
