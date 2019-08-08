@@ -1,6 +1,6 @@
 dependencies:
   - astropy
-  - boost=1.60.0
+  - boost=1.60.0   # pyup: ignore
   - boto
   - cython
   - dask
@@ -18,7 +18,7 @@ dependencies:
   - pandas
   - pandoc
   - pip
-  - python=3.6
+  - python=3.6   # pyup: ignore
   - scikit-learn
   - scipy
   - sphinx
