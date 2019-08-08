@@ -1,5 +1,8 @@
 # Configuration for the PyUp update bot
 
+# Make one pull request per month
+schedule: "every month"
+
 # Do not search for requirement files...
 search: False
 
