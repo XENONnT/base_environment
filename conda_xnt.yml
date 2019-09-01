@@ -25,6 +25,6 @@ dependencies:
   - tensorflow
   - tqdm
   - pip:
-    - boltons
+    - boltons==19.1.0
     - hypothesis
     - nbsphinx
