@@ -27,4 +27,4 @@ dependencies:
   - pip:
     - boltons==19.1.0
     - hypothesis==4.34.0
-    - nbsphinx
+    - nbsphinx==0.4.2
