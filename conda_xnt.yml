@@ -6,6 +6,7 @@ dependencies:
   - dask
   - datashader
   - flake8
+  - future
   - jupyter
   - jupyterlab
   - graphviz
