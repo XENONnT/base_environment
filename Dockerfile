@@ -2,7 +2,8 @@ FROM opensciencegrid/osgvo-el7
 
 ARG XENONnT_TAG
 
-RUN yum -y clean all && yum -y --skip-broken upgrade
+
+RUN yum -y upgrade
 
 RUN yum -y install \
             cmake \
