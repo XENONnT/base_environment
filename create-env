@@ -2,9 +2,10 @@
 
 #######################################################################
 #
-# settings
+# versions in this release
 
-admix_version=v0.2
+admix_version=0.2
+straxen_version=0.3.0
 
 #######################################################################
 
@@ -76,9 +77,9 @@ source $target_dir/anaconda/bin/activate ${env_name}
 
 announce "Installing non-grid XENON software"
 pip install tensorflow==2.0.0-beta1          # Overwrites conda-installed version. Installing 2 directly via pip does not work.
-pip install strax straxen flamedisx
+pip install strax straxen==${straxen_version} flamedisx
 pip install git+https://github.com/XENONnT/utilix.git
-pip install git+https://github.com/XENONnT/admix.git@${admix_version}
+pip install git+https://github.com/XENONnT/admix.git@v${admix_version}
 
 # gfal2
 announce "Installing GFAL2"
@@ -100,7 +101,7 @@ rm -rf gfal2
 announce "Installing GFAL2 Python bindings"
 git clone https://gitlab.cern.ch/dmc/gfal2-bindings.git
 cd gfal2-bindings
-git checkout python36
+git checkout develop
 perl -p -i -e "s;.*\\\${Boost_LIBRARYDIR};            \"${target_dir}/anaconda/envs/${env_name}/lib\";" CMakeLists.txt
 cmake -DPYTHON_EXECUTABLE=${target_dir}/anaconda/envs/${env_name}/bin/python3.6 \
       -DPYTHON_EXECUTABLE_3=${target_dir}/anaconda/envs/${env_name}/bin/python3.6 \
@@ -166,10 +167,15 @@ for VAR in X509_CERT_DIR X509_VOMS_DIR; do
     fi
 done
 
-source ${target_dir}/anaconda/bin/activate ${env_name}
-
 # need a clean PYTHONPATH to make sure we are not picking up older Python libs
 unset PYTHONPATH
+
+# when inside a container, reset some variables from outside
+if [ "x\$SINGULARITY_CONTAINER" != "x" ]; then
+    unset LD_LIBRARY_PATH
+fi
+
+source ${target_dir}/anaconda/bin/activate ${env_name}
 
 # prepend to LD_LIBRARY_PATH - non-Python tools might be using it
 export LD_LIBRARY_PATH=\$CONDA_PREFIX/lib64:\$CONDA_PREFIX/lib\${LD_LIBRARY_PATH:+:}\${LD_LIBRARY_PATH}
@@ -196,7 +202,7 @@ git clone --single-branch --branch stable https://github.com/AxFoundation/strax.
 pytest strax || { echo 'strax tests failed' ; exit 1; }
 rm -r strax
 # Straxen
-git clone --single-branch --branch stable https://github.com/XENONnT/straxen.git
+git clone --single-branch --branch v$straxen_version https://github.com/XENONnT/straxen.git
 pytest straxen || { echo 'straxen tests failed' ; exit 1; }
 rm -r straxen
 
