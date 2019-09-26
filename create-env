@@ -81,6 +81,7 @@ pip install tensorflow==2.0.0-beta1          # Overwrites conda-installed versio
                                              # NB: After this conda installs are likey to fail since env is now inconsistent!
 pip install strax straxen==${straxen_version} flamedisx
 pip install git+https://github.com/XENONnT/utilix.git
+pip install git+https://github.com/XENONnT/WFSim.git
 pip install git+https://github.com/XENONnT/admix.git@v${admix_version}
 
 # gfal2
