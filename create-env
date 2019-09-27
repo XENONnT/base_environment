@@ -84,6 +84,10 @@ pip install git+https://github.com/XENONnT/utilix.git
 pip install git+https://github.com/XENONnT/WFSim.git
 pip install git+https://github.com/XENONnT/admix.git@v${admix_version}
 
+# Extra flamedisx requirements
+pip install gast==0.2.2
+pip install tensorflow_probability==0.8.0-rc0
+
 # gfal2
 announce "Installing GFAL2"
 # deps: yum install cmake doxygen glib2-devel libattr-devel openldap-devel zlib-devel lfc-devel dpm-devel srm-ifce-devel dcap-devel globus-gass-copy-devel davix-devel xrootd-client-devel libssh2-devel gtest-devel json-c-devel
