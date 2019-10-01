@@ -28,5 +28,5 @@ dependencies:
   - tqdm
   - pip:
     - boltons==19.1.0
-    - hypothesis
+    - hypothesis==4.38.1
     - nbsphinx
