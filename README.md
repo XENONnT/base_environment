@@ -2,17 +2,31 @@
 
 Base software environment for XENONnT, including py3.6 and data management tools.
 
-`create-env` can be used to create a software install on a EL7 system.
-As external dependencies can be difficult to satisfy on some compute
-nodes, we also use the `Dockerfile` to generate a Docker image which is
-then automatically synced to the OSG Singularity CVMFS repository. The 
-resulting image can be found in the Docker Hub at 
-[https://hub.docker.com/r/opensciencegrid/osgvo-xenon](https://hub.docker.com/r/opensciencegrid/osgvo-xenon)
-and in CVMFS at:
+Please see [https://xe1t-wiki.lngs.infn.it/doku.php?id=xenon:xenonnt:computing:baseenvironment](https://xe1t-wiki.lngs.infn.it/doku.php?id=xenon:xenonnt:computing:baseenvironment)
 
-    /cvmfs/singularity.opensciencegrid.org/opensciencegrid/osgvo-xenon:latest
+The resulting environement is available as:
 
-and explored via an interactive Singularity shell session:
+* **Singularity image under CVMFS.** This can be used in interactive enviroments as well as OSG compute jobs
+  The location is `/cvmfs/singularity.opensciencegrid.org/opensciencegrid/osgvo-xenon:{version}`. Source
+  `/opt/XENONnT/setup.sh` to get the environment configured.
+* **Source-able environment under CVMFS.** This is mostly useful in interactive enviroments like Midway. Note
+  that it assumes you are on a EL7 based host. The location is
+  `/cvmfs/xenon.opensciencegrid.org/releases/nT/{version}` and each version contains a `setup.sh` script
+  you can source to get the environment.
+* **Docker image in DockerHub**. This version can be useful if you want to extend the base_environment, or
+  use the environment for example on your laptop. The location is `opensciencegrid/osgvo-xenon:{version}`
 
-    singularity shell /cvmfs/singularity.opensciencegrid.org/opensciencegrid/osgvo-xenon:latest
+## Deployment
+
+![Deployment Overview](https://raw.githubusercontent.com/XENONnT/base_environment/master/images/deployment.png)
+
+The base_environment is rebuilt and redeployed automatically upon git commits. Just like in
+XENON1T, we have a `create-env` script which does the majority of the work. The difference
+in XENONnT is that the `create-env` script is run in a Docker container. The build is 
+taking place twice: once to build the Docker container with a deployment under
+`/opt/XENONnT`, and once to build the tarball for the CVMFS deployment under
+`/cvmfs/xenon.opensciencegrid.org/releases/nT/`.
+
+
+
 
