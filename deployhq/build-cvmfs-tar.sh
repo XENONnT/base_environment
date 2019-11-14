@@ -20,7 +20,7 @@ chmod 1777 generated
 cp ~/deployhq/deployhq/build-cvmfs-tar-inside-helper.sh .
 docker run -v `pwd`:/srv -i -t --rm \
        opensciencegrid/osgvo-el7 \
-       /bin/bash -c "/srv/deployhq-build-cvmfs-tar-inside-helper.sh $TAG"
+       /bin/bash -c "/srv/build-cvmfs-tar-inside-helper.sh $TAG"
 
 scp generated/$TAG.tar.gz xenon@osg-cvmfs.grid.uchicago.edu:/tmp/
 ssh xenon@osg-cvmfs.grid.uchicago.edu "cvmfs_server transaction xenon.opensciencegrid.org && cd /cvmfs/xenon.opensciencegrid.org/releases/nT/ && rm -rf $TAG && tar xzf /tmp/$TAG.tar.gz && cd /tmp && pwd && cvmfs_server publish xenon.opensciencegrid.org"
