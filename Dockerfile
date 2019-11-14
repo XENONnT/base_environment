@@ -2,6 +2,8 @@ FROM opensciencegrid/osgvo-el7
 
 ARG XENONnT_TAG
 
+RUN echo "Building Docker container for XENONnT_${XENONnT_TAG} ..."
+
 RUN yum -y clean all && yum -y --skip-broken upgrade
 
 RUN yum -y install \
@@ -38,7 +40,7 @@ RUN mkdir -p /etc/grid-security && \
 ADD create-env conda_xnt.yml /tmp/
 
 RUN cd /tmp && \
-    bash create-env /opt/XENONnT $XENONnT_TAG && \
+    bash create-env /opt/XENONnT ${XENONnT_TAG} && \
     rm -f create-env conda_xnt.yml
 
 # relax permissions so we can build cvmfs tar balls
