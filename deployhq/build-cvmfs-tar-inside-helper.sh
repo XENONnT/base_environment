@@ -8,7 +8,7 @@ TAG=$1
 TARGET_DIR=/cvmfs/xenon.opensciencegrid.org/releases/nT
 
 cd /srv
-./create-env $TARGET_DIR/$TAG
+./create-env $TARGET_DIR/$TAG $TAG
 
 # create a separate cvmfs catalog
 touch $TARGET_DIR/$TAG/.cvmfscatalog
