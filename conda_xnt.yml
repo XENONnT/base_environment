@@ -21,7 +21,7 @@ dependencies:
     - flamedisx
     - hypothesis
     - jupyter
-    - jupyterlab
+    - jupyterlab==1.2.4
     - holoviews
     - iminuit
     - lz4==2.2.1        # Strax dependency
