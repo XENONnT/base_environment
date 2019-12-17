@@ -26,7 +26,7 @@ dependencies:
     - iminuit
     - lz4==2.2.1        # Strax dependency
     - matplotlib
-    - multihist
+    - multihist==0.6.1
     - nbsphinx
     - numba==0.46.0
     - numpy==1.17.3
