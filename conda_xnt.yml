@@ -11,7 +11,7 @@ dependencies:
     - boto==2.49.0
     - boto3==1.10.8      # Strax dependency
     - boltons==19.3.0
-    - bokeh
+    - bokeh==1.4.0
     - cython
     - dask
     - datashader
