@@ -20,7 +20,7 @@ dependencies:
     - flake8
     - flamedisx
     - hypothesis
-    - jupyter
+    - jupyter==1.0.0
     - jupyterlab
     - holoviews
     - iminuit
