@@ -75,18 +75,12 @@ rm -f ${target_dir}/anaconda/pkgs/rope-0.11.0-py37_0/info/LICENSE.txt
 announce "Activating Anaconda environment"
 source $target_dir/anaconda/bin/activate ${env_name}
 
-announce "Installing non-grid XENON software"
 jupyter labextension install @pyviz/jupyterlab_pyviz   # for waveform display in jupyterlab
-pip install tensorflow==2.0.0-beta1          # Overwrites conda-installed version. Installing 2 directly via pip does not work.
-                                             # NB: After this conda installs are likey to fail since env is now inconsistent!
-pip install strax straxen==${straxen_version} flamedisx
+announce "Installing non-grid XENON software"
+pip install straxen==${straxen_version}
 pip install git+https://github.com/XENONnT/utilix.git
 pip install git+https://github.com/XENONnT/WFSim.git
 pip install git+https://github.com/XENONnT/admix.git@v${admix_version}
-
-# Extra flamedisx requirements
-pip install gast==0.2.2
-pip install tensorflow_probability==0.8.0-rc0
 
 # gfal2
 announce "Installing GFAL2"
