@@ -15,6 +15,7 @@ dependencies:
     - cython==0.29.14
     - dask==2.9.0
     - datashader
+    - datashader==0.9.0
     - dill==0.3.1.1      # Strax dependency
     - future
     - flake8
