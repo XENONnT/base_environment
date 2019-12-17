@@ -37,7 +37,7 @@ dependencies:
     - pymongo==3.9.0
     - pytest
     - scikit-learn
-    - scipy==1.3.1
+    - scipy==1.3.3
     - sphinx
     - strax
     - tensorflow==2.0.0
