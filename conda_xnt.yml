@@ -8,7 +8,7 @@ dependencies:
   - pip:
     - astropy==3.2.3
     - blosc==1.8.1       # Strax dependency
-    - boto
+    - boto==2.49.0
     - boto3==1.10.8      # Strax dependency
     - boltons
     - bokeh
