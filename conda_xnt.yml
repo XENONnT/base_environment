@@ -21,7 +21,7 @@ dependencies:
     - flamedisx==0.3.1
     - future==0.18.2
     - hypothesis==4.55.1
-    - jupyter
+    - jupyter==1.0.0
     - jupyterlab
     - holoviews
     - iminuit
