@@ -30,7 +30,7 @@ dependencies:
     - multihist
     - nbsphinx
     - numba==0.46.0
-    - numpy==1.17.3
+    - numpy==1.17.4
     - pandas==0.25.3
     - pandoc
     - psutil==5.6.4     # Strax dependency
