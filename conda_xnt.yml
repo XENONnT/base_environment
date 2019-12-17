@@ -42,5 +42,5 @@ dependencies:
     - strax
     - tensorflow==2.0.0
     - tensorflow_probability
-    - tqdm==4.37.0
+    - tqdm==4.40.2
     - zstd==1.4.3.2     # Strax dependency
