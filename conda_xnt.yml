@@ -41,6 +41,6 @@ dependencies:
     - sphinx
     - strax
     - tensorflow==2.0.0
-    - tensorflow_probability
+    - tensorflow_probability==0.8.0
     - tqdm==4.37.0
     - zstd==1.4.3.2     # Strax dependency
