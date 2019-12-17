@@ -31,7 +31,7 @@ dependencies:
     - numba==0.46.0
     - numpy==1.17.3
     - pandas==0.25.3
-    - pandoc
+    - pandoc==1.0.2
     - psutil==5.6.4     # Strax dependency
     - tables            # pytables, necessary for pandas hdf5 i/o
     - pymongo==3.9.0
