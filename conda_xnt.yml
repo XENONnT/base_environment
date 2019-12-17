@@ -20,7 +20,7 @@ dependencies:
     - flake8==3.7.9
     - flamedisx==0.3.1
     - future==0.18.2
-    - hypothesis
+    - hypothesis==4.55.1
     - jupyter
     - jupyterlab
     - holoviews
