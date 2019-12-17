@@ -18,7 +18,7 @@ dependencies:
     - datashader==0.9.0
     - dill==0.3.1.1      # Strax dependency
     - flake8==3.7.9
-    - flamedisx
+    - flamedisx==0.3.1
     - future==0.18.2
     - hypothesis
     - jupyter
