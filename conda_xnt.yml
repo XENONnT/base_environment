@@ -13,7 +13,7 @@ dependencies:
     - boltons==19.3.0
     - bokeh==1.4.0
     - cython==0.29.14
-    - dask
+    - dask==2.9.0
     - datashader
     - dill==0.3.1.1      # Strax dependency
     - future
