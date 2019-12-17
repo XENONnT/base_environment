@@ -22,7 +22,7 @@ dependencies:
     - hypothesis
     - jupyter
     - jupyterlab
-    - holoviews
+    - holoviews==1.12.7
     - iminuit
     - lz4==2.2.1        # Strax dependency
     - matplotlib
