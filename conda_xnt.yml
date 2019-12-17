@@ -12,7 +12,7 @@ dependencies:
     - boto3==1.10.8      # Strax dependency
     - boltons
     - bokeh
-    - cython
+    - cython==0.29.14
     - dask
     - datashader
     - dill==0.3.1.1      # Strax dependency
