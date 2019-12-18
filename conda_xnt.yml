@@ -27,7 +27,7 @@ dependencies:
     - lz4==2.2.1        # Strax dependency
     - matplotlib==3.1.2
     - multihist==0.6.1
-    - nbsphinx==2.3.0
+    - nbsphinx==0.5.0
     - numba==0.46.0
     - numpy==1.17.4
     - pandas==0.25.3
