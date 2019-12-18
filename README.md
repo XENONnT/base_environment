@@ -1,5 +1,8 @@
 # base_environment
 
+[![Build Status](https://travis-ci.org/XENONnT/base_environment.svg?branch=master)](https://travis-ci.org/XENONnT/base_environment)
+[![Updates](https://pyup.io/repos/github/XENONnT/base_environment/shield.svg)](https://pyup.io/repos/github/XENONnT/base_environment/)
+
 Base software environment for XENONnT, including py3.6 and data management tools.
 
 Please see [https://xe1t-wiki.lngs.infn.it/doku.php?id=xenon:xenonnt:computing:baseenvironment](https://xe1t-wiki.lngs.infn.it/doku.php?id=xenon:xenonnt:computing:baseenvironment)
