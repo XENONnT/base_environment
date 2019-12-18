@@ -1,6 +1,8 @@
 language: generic
 dist: xenial
 
+schedule: "every week"
+
 services:
   - docker
 script:

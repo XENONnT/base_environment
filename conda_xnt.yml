@@ -7,9 +7,9 @@ dependencies:
   - python=3.6
   - pip:
     - astropy==3.2.3
-    - blosc==1.8.1       # Strax dependency
+    - blosc==1.8.3       # Strax dependency
     - boto==2.49.0
-    - boto3==1.10.8      # Strax dependency
+    - boto3==1.10.40     # Strax dependency
     - boltons==19.3.0
     - bokeh==1.4.0
     - cython==0.29.14
@@ -32,8 +32,8 @@ dependencies:
     - numpy==1.17.4
     - pandas==0.25.3
     - pandoc==1.0.2
-    - psutil==5.6.4     # Strax dependency
-    - tables            # pytables, necessary for pandas hdf5 i/o
+    - psutil==5.6.7     # Strax dependency
+    - tables==3.6.1     # pytables, necessary for pandas hdf5 i/o
     - pymongo==3.10.0
     - pytest==5.3.2
     - scikit-learn==0.22
@@ -43,4 +43,4 @@ dependencies:
     - tensorflow==2.0.0
     - tensorflow_probability==0.8.0
     - tqdm==4.40.2
-    - zstd==1.4.3.2     # Strax dependency
+    - zstd==1.4.4.0     # Strax dependency
