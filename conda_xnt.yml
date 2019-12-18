@@ -38,7 +38,7 @@ dependencies:
     - pytest==5.3.2
     - scikit-learn==0.22
     - scipy==1.4.0
-    - sphinx
+    - sphinx==2.3.0
     - strax==0.8.1
     - tensorflow==2.0.0
     - tensorflow_probability==0.8.0
