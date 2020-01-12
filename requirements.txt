@@ -29,7 +29,7 @@ tables==3.6.1     # pytables, necessary for pandas hdf5 i/o
 pymongo==3.10.0
 pytest==5.3.2
 scikit-learn==0.22.1
-scipy==1.4.0
+scipy==1.4.1
 sphinx==2.3.0
 strax==0.8.4
 tensorflow==2.0.0
