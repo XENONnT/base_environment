@@ -37,7 +37,7 @@ RUN mkdir -p /etc/grid-security && \
     tar xzf certificates.tar.gz && \
     rm -f certificates.tar.gz
 
-ADD create-env conda_xnt.yml /tmp/
+ADD create-env conda_xnt.yml requirements.txt /tmp/
 
 RUN cd /tmp && \
     bash create-env /opt/XENONnT ${XENONnT_TAG} && \
