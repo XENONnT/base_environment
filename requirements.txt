@@ -9,7 +9,7 @@ dask==2.9.1
 datashader==0.9.0
 dill==0.3.1.1      # Strax dependency
 flake8==3.7.9
-flamedisx==0.3.1
+flamedisx==0.4.0
 future==0.18.2
 hypothesis==5.1.5
 jupyter==1.0.0
