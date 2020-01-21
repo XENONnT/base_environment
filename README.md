@@ -7,7 +7,7 @@ Base software environment for XENONnT, including Python 3.6 and data management 
 
 Please see [this page on the XENON wiki](https://xe1t-wiki.lngs.infn.it/doku.php?id=xenon%3Axenonnt%3Acomputing%3Abaseenvironment) for more details.
 
-The resulting environement is available as:
+The resulting environment is available as:
 
 * **Singularity image under CVMFS.** This can be used in interactive enviroments as well as OSG compute jobs
   The location is `/cvmfs/singularity.opensciencegrid.org/opensciencegrid/osgvo-xenon:{version}`. Source
