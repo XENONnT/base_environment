@@ -13,9 +13,10 @@ cd /srv
 # create a separate cvmfs catalog
 touch $TARGET_DIR/$TAG/.cvmfscatalog
 
-# now tar it up into the work dir
+# now tar it up into the work dir - dereference the hard links
+# as cvmfs is not happy about those
 cd $TARGET_DIR
-tar czf /srv/generated/$TAG.tar.gz $TAG
+tar -cz --hard-dereference -f /srv/generated/$TAG.tar.gz $TAG
 
 echo
 echo "Tarball generated:"
