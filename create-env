@@ -4,6 +4,10 @@
 #
 # versions in this release
 
+gfal2_version=2.17.2
+gfal2_bindings_versions=develop # project is not releasing often enough
+gfal2_util_version=master # project is not releasing often enough
+rucio_version=1.21.7
 admix_version=0.2.2
 straxen_version=0.5.0
 
@@ -89,7 +93,7 @@ cd ${target_dir}
 rm -rf gfal2
 git clone https://gitlab.cern.ch/dmc/gfal2.git
 cd gfal2
-git checkout v2.16.2
+git checkout v$gfal2_version
 mkdir build
 cd build
 cmake -DCMAKE_INSTALL_PREFIX=${target_dir}/anaconda/envs/${env_name} ..
@@ -102,7 +106,7 @@ rm -rf gfal2
 announce "Installing GFAL2 Python bindings"
 git clone https://gitlab.cern.ch/dmc/gfal2-bindings.git
 cd gfal2-bindings
-git checkout develop
+git checkout $gfal_bindings_version
 perl -p -i -e "s;.*\\\${Boost_LIBRARYDIR};            \"${target_dir}/anaconda/envs/${env_name}/lib\";" CMakeLists.txt
 cmake -DPYTHON_EXECUTABLE=${target_dir}/anaconda/envs/${env_name}/bin/python3.6 \
       -DPYTHON_EXECUTABLE_3=${target_dir}/anaconda/envs/${env_name}/bin/python3.6 \
@@ -117,6 +121,7 @@ rm -rf gfal2-bindings
 announce "Installing GFAL2 clients"
 git clone https://gitlab.cern.ch/dmc/gfal2-util.git
 cd gfal2-util/
+git checkout $gfal2_util_version
 perl -p -i -e 's;src/;src_py3/;g' setup.py
 python3.6 setup.py install --prefix=${target_dir}/anaconda/envs/${env_name}
 cd ${target_dir}
@@ -124,13 +129,13 @@ rm -rf gfal2-util
 
 # rucio-clients
 announce "Installing Rucio"
-#pip install rucio-clients==1.19.5
-git clone https://github.com/XeBoris/rucio.git
+git clone https://github.com/rucio/rucio.git
 cd rucio
+git checkout $rucio_version
 # don't mess with our version of setuptools, urllib3 and requests
-perl -p -i -e 's/^setuptools.*//' tools/pip-requires-client
-perl -p -i -e 's/^urllib3.*//' tools/pip-requires-client
-perl -p -i -e 's/^requests.*//' tools/pip-requires-client
+perl -p -i -e 's/^setuptools.*//' etc/pip-requires-client
+perl -p -i -e 's/^urllib3.*//' etc/pip-requires-client
+perl -p -i -e 's/^requests.*//' etc/pip-requires-client
 python setup_rucio_client.py install --prefix=${target_dir}/anaconda/envs/${env_name}
 cd ${target_dir}
 rm -rf rucio
