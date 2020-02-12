@@ -5,6 +5,9 @@
 
 set -e
 
+# /usr/sbin is needed for mksquashfs
+export PATH=$PATH:/usr/sbin
+
 # git tag (if any), from DeployHQ
 TAG=$1
 if [ "X$TAG" = "X" ];then
