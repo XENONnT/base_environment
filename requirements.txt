@@ -4,7 +4,7 @@ boto==2.49.0
 boto3==1.11.13     # Strax dependency
 boltons==20.0.0
 bokeh==1.4.0
-cython==0.29.14
+cython==0.29.15
 dask==2.10.1
 datashader==0.10.0
 dill==0.3.1.1      # Strax dependency
