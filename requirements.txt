@@ -5,7 +5,7 @@ boto3==1.12.0     # Strax dependency
 boltons==20.0.0
 bokeh==1.4.0
 cython==0.29.15
-dask==2.10.1
+dask==2.11.0
 datashader==0.10.0
 dill==0.3.1.1      # Strax dependency
 distributed===2.10.0     # Dask extension
