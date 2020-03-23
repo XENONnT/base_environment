@@ -23,7 +23,7 @@ multihist==0.6.3
 nbsphinx==0.5.1
 numba==0.48.0
 numpy==1.18.1
-pandas==1.0.2
+pandas==1.0.3
 pandoc==1.0.2
 psutil==5.7.0     # Strax dependency
 tables==3.6.1     # pytables, necessary for pandas hdf5 i/o
