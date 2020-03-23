@@ -22,7 +22,7 @@ matplotlib==3.2.0
 multihist==0.6.3
 nbsphinx==0.5.1
 numba==0.48.0
-numpy==1.18.1
+numpy==1.18.2
 pandas==1.0.2
 pandoc==1.0.2
 psutil==5.7.0     # Strax dependency
