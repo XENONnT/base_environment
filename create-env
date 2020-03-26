@@ -199,8 +199,10 @@ fi
 
 # site-specific stuff
 for space in /project2/lgrandi/grid_proxy /xenon/grid_proxy; do
-    if [ -d $space ]; then
-        export X509_USER_PROXY=${space}/xenon_service_proxy
+    if [ -d \$space ]; then
+        if [ "x\$X509_USER_PROXY" = "x" ]; then
+            export X509_USER_PROXY=\${space}/xenon_service_proxy
+        fi
     fi
 done
 
