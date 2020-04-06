@@ -208,6 +208,20 @@ done
 
 EOF
 
+announce "Adding 50-xenon.sh"
+
+# this will be sourced when entering the container
+cat > .singularity.d/env/50-xenon.sh <<EOF
+#!/bin/bash
+if [ "x\$XENON_SOURCE" = "x" ]; then
+    export XENON_SOURCE=1
+fi
+
+if [ \$XENON_SOURCE -eq 1 ]; then
+    source ${target_dir}/setup.sh
+fi
+EOF
+
 announce "Running tests"
 . ${target_dir}/setup.sh
 # gfal2
