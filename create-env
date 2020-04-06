@@ -212,7 +212,7 @@ EOF
 announce "Adding 50-xenon.sh"
 
 # this will be sourced when entering the container
-cat > .singularity.d/env/50-xenon.sh <<EOF
+cat > /.singularity.d/env/50-xenon.sh <<EOF
 #!/bin/bash
 if [ "x\$XENON_SOURCE" = "x" ]; then
     export XENON_SOURCE=1
