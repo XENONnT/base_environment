@@ -9,7 +9,7 @@ gfal2_bindings_versions=develop # project is not releasing often enough
 gfal2_util_version=master # project is not releasing often enough
 rucio_version=1.21.7
 # admix_version=0.2.3
-straxen_version=0.6.0
+straxen_version=0.7.2
 
 #######################################################################
 

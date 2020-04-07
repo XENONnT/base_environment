@@ -32,6 +32,7 @@ pytest==5.4.1
 scikit-learn==0.22.2.post1
 scipy==1.4.1
 sphinx==2.4.4
+strax==0.10.2
 tensorflow==2.1.0
 tensorflow_probability==0.9.0
 tqdm==4.43.0
