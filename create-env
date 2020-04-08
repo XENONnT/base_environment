@@ -207,6 +207,12 @@ for space in /project2/lgrandi/grid_proxy /xenon/grid_proxy; do
     fi
 done
 
+# xenon config location on midway
+config_path=/project2/lgrandi/xenonnt/xenon.config
+if [ -e \$config_path ]; then
+   export XENON_CONFIG=\$config_path
+fi
+
 EOF
 
 announce "Adding 50-xenon.sh"
@@ -235,6 +241,7 @@ rm -r strax
 git clone --single-branch --branch v$straxen_version https://github.com/XENONnT/straxen.git
 pytest straxen || { echo 'straxen tests failed' ; exit 1; }
 rm -r straxen
+
 
 announce "All done!"
 
