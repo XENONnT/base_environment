@@ -21,18 +21,24 @@ echo
 cd ~/deployhq/
 
 rm -f xenonnt.simg
-singularity build xenonnt.simg docker://opensciencegrid/osgvo-xenon:$TAG
+singularity build xenonnt-base-environment:${TAG}.simg docker://opensciencegrid/osgvo-xenon:$TAG
 
 echo
 echo "Created simg file:"
 ls -l *.simg
 echo
 
-# now push
-singularity push --allow-unsigned xenonnt.simg library://rynge/default/xenonnt:$TAG
+# assuming we are running on xenon.isi.edu
+mv xenonnt-base-environment:${TAG}.simg /srv/web/images/
 
-# development also gets mapped to "latest"
-if [ "X$TAG" = "Xdevelopment" ]; then
-    singularity push --allow-unsigned xenonnt.simg library://rynge/default/xenonnt:latest
-fi
+### mrynge 2020-04-30 Disabled uploading to Singularity librarary - we do not have
+###                   enough space there so we just put it on https for now
+### # now push
+### singularity push --allow-unsigned xenonnt.simg library://rynge/default/xenonnt:$TAG
+### # development also gets mapped to "latest"
+### if [ "X$TAG" = "Xdevelopment" ]; then
+###     singularity push --allow-unsigned xenonnt.simg library://rynge/default/xenonnt:latest
+### fi
+
+
 

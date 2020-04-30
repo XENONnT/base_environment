@@ -18,8 +18,8 @@ The resulting environment is available as:
   you can source to get the environment.
 * **Docker image in DockerHub**. This version can be useful if you want to extend the base_environment, or
   use the environment for example on your laptop. The location is `opensciencegrid/osgvo-xenon:{version}`
-* **Singularity image in Sylabs Cloud Library**. This version is experimental. The
-  location is `library://rynge/default/xenonnt:{version}`
+* **Singularity images available on https**. This version is experimental. The
+  location is `https://xenon.isi.edu/images/`
 
 ## Deployment
 
