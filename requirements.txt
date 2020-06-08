@@ -37,5 +37,5 @@ sphinx==3.0.3
 strax==0.11.0
 tensorflow==2.2.0
 tensorflow_probability==0.10.0
-tqdm==4.46.0
+tqdm==4.46.1
 zstd==1.4.4.0     # Strax dependency
