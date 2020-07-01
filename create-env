@@ -5,7 +5,7 @@
 # versions in this release
 
 gfal2_version=2.17.2
-gfal2_bindings_versions=develop # project is not releasing often enough
+gfal2_bindings_version=ac5cd70bc0654cd5b72cc01085eeaafb469b9622 # project is not releasing often enough
 gfal2_util_version=master # project is not releasing often enough
 rucio_version=1.21.7
 # admix_version=0.2.3
@@ -106,7 +106,7 @@ rm -rf gfal2
 announce "Installing GFAL2 Python bindings"
 git clone https://gitlab.cern.ch/dmc/gfal2-bindings.git
 cd gfal2-bindings
-git checkout $gfal_bindings_version
+git checkout $gfal2_bindings_version
 perl -p -i -e "s;.*\\\${Boost_LIBRARYDIR};            \"${target_dir}/anaconda/envs/${env_name}/lib\";" CMakeLists.txt
 cmake -DPYTHON_EXECUTABLE=${target_dir}/anaconda/envs/${env_name}/bin/python3.6 \
       -DPYTHON_EXECUTABLE_3=${target_dir}/anaconda/envs/${env_name}/bin/python3.6 \

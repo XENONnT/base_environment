@@ -14,7 +14,10 @@ echo
 # DeployHQ puts the checkout in ~/deployhq/
 cd ~/deployhq/
 
-# first build the Docker image (minimized)
+# ensure we have the latest base image
+docker pull opensciencegrid/osgvo-el7
+
+# build the Docker image (minimized)
 docker build --no-cache --build-arg XENONnT_TAG=$TAG -t osgvo-xenon-layers .
 docker run -it osgvo-xenon-layers bash -c "exit"
 sleep 30s
