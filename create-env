@@ -183,7 +183,10 @@ if [ "x\$SINGULARITY_CONTAINER" != "x" ]; then
     unset LD_LIBRARY_PATH
 # if not in a singularity container, use cvmfs CA certificates
 else
-    export X509_CERT_DIR=/cvmfs/oasis.opensciencegrid.org/mis/osg-wn-client/3.3/3.3.26/el7-x86_64/etc/grid-security/certificates
+    # first check if the directory is mounted
+    if [ -e "/cvmfs/oasis.opensciencegrid.org/mis/osg-wn-client/certificates" ]; then
+        export X509_CERT_DIR=/cvmfs/oasis.opensciencegrid.org/mis/osg-wn-client/certificates
+    fi
 fi
 
 source ${target_dir}/anaconda/bin/activate ${env_name}
