@@ -244,7 +244,7 @@ announce "Running tests"
 # gfal2
 python -c 'import gfal2'
 # Strax
-git clone --single-branch --branch stable https://github.com/AxFoundation/strax.git
+git clone --single-branch --branch v$strax_version https://github.com/AxFoundation/strax.git
 pytest strax || { echo 'strax tests failed' ; exit 1; }
 rm -r strax
 # Straxen
