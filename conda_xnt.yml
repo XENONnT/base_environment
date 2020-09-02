@@ -1,5 +1,5 @@
 dependencies:
-  - boost=1.60.0
+  - boost
   - graphviz
   - nb_conda
   - nodejs
