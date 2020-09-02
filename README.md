@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/XENONnT/base_environment.svg?branch=master)](https://travis-ci.org/XENONnT/base_environment)
 [![Dependabot](https://api.dependabot.com/badges/status?host=github&repo=XENONnT/base_environment)](https://app.dependabot.com/accounts/XENONnT/projects/134273)
 
-Base software environment for XENONnT, including Python 3.6 and data management tools.
+Base software environment for XENONnT, including Python 3.8 and data management tools.
 
 Please see [this page on the XENON wiki](https://xe1t-wiki.lngs.infn.it/doku.php?id=xenon%3Axenonnt%3Acomputing%3Abaseenvironment) for more details.
 

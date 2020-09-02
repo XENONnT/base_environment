@@ -1,6 +1,6 @@
 {
     "opensciencegrid.name": "XENONnT",
-    "opensciencegrid.description": "Base software environment for XENONnT, including Python 3.6 and data management tools",
+    "opensciencegrid.description": "Base software environment for XENONnT, including Python 3.8 and data management tools",
     "opensciencegrid.url": "http://www.xenon1t.org/",
     "opensciencegrid.category": "Project",
     "opensciencegrid.definition_url": "https://github.com/XENONnT/base_environment"
