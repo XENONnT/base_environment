@@ -29,7 +29,7 @@ pandoc==1.0.2
 psutil==5.7.0     # Strax dependency
 tables==3.6.1     # pytables, necessary for pandas hdf5 i/o
 pymongo==3.10.1
-pytest==5.4.2
+pytest==6.0.2
 scikit-learn==0.23.1
 scipy==1.4.1
 snakeviz==2.1.0
