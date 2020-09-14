@@ -36,5 +36,5 @@ snakeviz==2.1.0
 sphinx==3.0.3
 tensorflow==2.2.0
 tensorflow_probability==0.10.0
-tqdm==4.46.0
+tqdm==4.49.0
 zstd==1.4.4.0     # Strax dependency
