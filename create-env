@@ -225,11 +225,15 @@ fi
 
 EOF
 
-announce "Adding 50-xenon.sh"
+announce "Adding zzz-50-xenon.sh"
 
-# this will be sourced when entering the container
-cat > /.singularity.d/env/50-xenon.sh <<EOF
-#!/bin/bash
+# this will be sourced when entering the container, but
+# should be sourced last in order to pick up for example
+# SINGULARITYENV_... vars
+mkdir -p /.singularity.d/env
+cat > /.singularity.d/env/zzz-50-xenon.sh <<EOF
+#!/bin/sh
+
 if [ "x\$XENON_SOURCE" = "x" ]; then
     export XENON_SOURCE=1
 fi
