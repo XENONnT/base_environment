@@ -173,7 +173,7 @@ cat >${target_dir}/setup.sh <<EOF
 for VAR in X509_CERT_DIR X509_VOMS_DIR; do
     VALUE=\${!VAR}
     if [ "X\$VALUE" != "X" ]; then
-        echo "WARNING: \$VAR is set set and could lead to problems when using this environment"
+        echo "WARNING: \$VAR is set set and could lead to problems when using this environment" 1>&2
     fi
 done
 
@@ -241,10 +241,10 @@ cat > /.singularity.d/env/zzz-50-xenon.sh <<EOF
 #!/bin/sh
 
 if [ "x\$XENON_DEBUG" != "x" ]; then
-    echo
-    echo "Environment before sourcing XENONnT setup:"
-    env | sort
-    echo
+    echo 1>&2
+    echo "Environment before sourcing XENONnT setup:" 1>&2
+    (env | sort) 1>&2
+    echo 1>&2
 fi
 
 if [ "x\$XENON_SOURCE" = "x" ]; then
@@ -256,10 +256,10 @@ if [ \$XENON_SOURCE -eq 1 ]; then
 fi
 
 if [ "x\$XENON_DEBUG" != "x" ]; then
-    echo
-    echo "Environment after sourcing XENONnT setup:"
-    env | sort
-    echo
+    echo 1>&2
+    echo "Environment after sourcing XENONnT setup:" 1>&2
+    (env | sort) 1>&2
+    echo 1>&2
 fi
 EOF
 
