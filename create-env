@@ -177,15 +177,19 @@ for VAR in X509_CERT_DIR X509_VOMS_DIR; do
     fi
 done
 
-# need a clean environment - this is to note inherit stuff from the outside
-unset GLOBUS_LOCATION
-unset PYTHONPATH
+# Need a clean environment - this is to prevent inheriting host specifics from the outside
+# Note that "unset" is not great here, as Singularity might just take that as
+# keeping the value from the host instead of clearing it.
+export OSG_LOCATION=""
+export GLOBUS_LOCATION=""
+export PYTHONPATH=""
+export PERL5LIB=""
 
 # when inside a container, reset some variables from outside
 
 if [ "x\$SINGULARITY_CONTAINER" != "x" ]; then
     export PATH=/usr/bin:/usr/local/bin
-    unset LD_LIBRARY_PATH
+    export LD_LIBRARY_PATH=""
 # if not in a singularity container, use cvmfs CA certificates
 else
     # first check if the directory is mounted
@@ -238,6 +242,7 @@ cat > /.singularity.d/env/zzz-50-xenon.sh <<EOF
 
 if [ "x\$XENON_DEBUG" != "x" ]; then
     echo
+    echo "Environment before sourcing XENONnT setup:"
     env | sort
     echo
 fi
@@ -248,6 +253,13 @@ fi
 
 if [ \$XENON_SOURCE -eq 1 ]; then
     source ${target_dir}/setup.sh
+fi
+
+if [ "x\$XENON_DEBUG" != "x" ]; then
+    echo
+    echo "Environment after sourcing XENONnT setup:"
+    env | sort
+    echo
 fi
 EOF
 
