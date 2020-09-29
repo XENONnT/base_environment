@@ -12,7 +12,7 @@ rucio_version=1.21.7
 strax_version=0.12.1
 straxen_version=0.10.1
 boost_version=1.60.0
-
+python_version=3.8
 
 #######################################################################
 
@@ -112,9 +112,9 @@ git clone https://gitlab.cern.ch/dmc/gfal2-bindings.git
 cd gfal2-bindings
 git checkout $gfal2_bindings_version
 perl -p -i -e "s;.*\\\${Boost_LIBRARYDIR};            \"${target_dir}/anaconda/envs/${env_name}/lib\";" CMakeLists.txt
-cmake -DPYTHON_EXECUTABLE=${target_dir}/anaconda/envs/${env_name}/bin/python3.6 \
-      -DPYTHON_EXECUTABLE_3=${target_dir}/anaconda/envs/${env_name}/bin/python3.6 \
-      -DPYTHON_EXECUTABLE_3.6=${target_dir}/anaconda/envs/${env_name}/bin/python3.6 \
+cmake -DPYTHON_EXECUTABLE=${target_dir}/anaconda/envs/${env_name}/bin/python$python_version \
+      -DPYTHON_EXECUTABLE_3=${target_dir}/anaconda/envs/${env_name}/bin/python$python_version \
+      -DPYTHON_EXECUTABLE_$python_version=${target_dir}/anaconda/envs/${env_name}/bin/python$python_version \
       -DBOOST_ROOT=${target_dir}/anaconda/envs/${env_name} \
       -DSKIP_DOC=TRUE -DSKIP_TESTS=TRUE
 make
@@ -128,7 +128,7 @@ git clone https://gitlab.cern.ch/dmc/gfal2-util.git
 cd gfal2-util/
 git checkout $gfal2_util_version
 perl -p -i -e 's;src/;src_py3/;g' setup.py
-python3.6 setup.py install --prefix=${target_dir}/anaconda/envs/${env_name}
+python$python_version setup.py install --prefix=${target_dir}/anaconda/envs/${env_name}
 cd ${target_dir}
 rm -rf gfal2-util
 
@@ -165,15 +165,15 @@ client_x509_proxy = \$X509_USER_PROXY
 request_retries = 3
 EOF
 
-# boost
-announce "Installing boost version"
-git clone https://github.com/boostorg/boost.git
-cd boost
-git checkout boost-$boost_version
-./bootstrap.sh --prefix=${target_dir}/anaconda/envs/${env_name}
-./b2 install
-cd ${target_dir}
-rm -rf boost
+## boost
+#announce "Installing boost version"
+#git clone https://github.com/boostorg/boost.git
+#cd boost
+#git checkout boost-$boost_version
+#./bootstrap.sh --prefix=${target_dir}/anaconda/envs/${env_name}
+#./b2 install
+#cd ${target_dir}
+#rm -rf boost
 
 announce "Adding setup.sh"
 
