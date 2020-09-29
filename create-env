@@ -11,6 +11,7 @@ rucio_version=1.21.7
 # admix_version=0.2.3
 strax_version=0.12.1
 straxen_version=0.10.1
+boost_version=1.60.0
 
 
 #######################################################################
@@ -163,6 +164,16 @@ client_key = \$X509_USER_PROXY
 client_x509_proxy = \$X509_USER_PROXY
 request_retries = 3
 EOF
+
+# boost
+announce "Installing boost version"
+git clone https://github.com/boostorg/boost.git
+cd boost
+git checkout boost-$boost_version
+./bootstrap.sh --prefix=${target_dir}/anaconda/envs/${env_name}
+./b2 install
+cd ${target_dir}
+rm -rf boost
 
 announce "Adding setup.sh"
 

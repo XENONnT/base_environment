@@ -1,5 +1,5 @@
 dependencies:
-  - boost
+  - boost  # will install correct version in create-env
   - graphviz
   - nb_conda
   - nodejs
