@@ -23,7 +23,7 @@ matplotlib==3.2.1
 memory_profiler==0.57.0
 multihist==0.6.3
 nbsphinx==0.7.0
-numba==0.49.1
+numba==0.50.1
 numpy==1.18.4
 pandoc==1.0.2
 psutil==5.7.0     # Strax dependency
@@ -34,7 +34,7 @@ scikit-learn==0.23.1
 scipy==1.4.1
 snakeviz==2.1.0
 sphinx==3.0.3
-tensorflow==2.2.0
+tensorflow==2.3.1
 tensorflow_probability==0.10.0
 tqdm==4.46.0
 zstd==1.4.4.0     # Strax dependency
