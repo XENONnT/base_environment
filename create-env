@@ -5,11 +5,13 @@
 # versions in this release
 
 gfal2_version=2.17.2
-gfal2_bindings_versions=develop # project is not releasing often enough
+gfal2_bindings_version=ac5cd70bc0654cd5b72cc01085eeaafb469b9622 # project is not releasing often enough
 gfal2_util_version=master # project is not releasing often enough
 rucio_version=1.21.7
 # admix_version=0.2.3
-straxen_version=0.9.0
+strax_version=0.12.1
+straxen_version=0.10.1
+
 
 #######################################################################
 
@@ -81,6 +83,7 @@ source $target_dir/anaconda/bin/activate ${env_name}
 
 jupyter labextension install @pyviz/jupyterlab_pyviz   # for waveform display in jupyterlab
 announce "Installing non-grid XENON software"
+pip install strax==${strax_version}
 pip install straxen==${straxen_version}
 pip install git+https://github.com/XENONnT/utilix.git
 pip install git+https://github.com/XENONnT/WFSim.git
@@ -106,7 +109,7 @@ rm -rf gfal2
 announce "Installing GFAL2 Python bindings"
 git clone https://gitlab.cern.ch/dmc/gfal2-bindings.git
 cd gfal2-bindings
-git checkout $gfal_bindings_version
+git checkout $gfal2_bindings_version
 perl -p -i -e "s;.*\\\${Boost_LIBRARYDIR};            \"${target_dir}/anaconda/envs/${env_name}/lib\";" CMakeLists.txt
 cmake -DPYTHON_EXECUTABLE=${target_dir}/anaconda/envs/${env_name}/bin/python3.6 \
       -DPYTHON_EXECUTABLE_3=${target_dir}/anaconda/envs/${env_name}/bin/python3.6 \
@@ -170,16 +173,29 @@ cat >${target_dir}/setup.sh <<EOF
 for VAR in X509_CERT_DIR X509_VOMS_DIR; do
     VALUE=\${!VAR}
     if [ "X\$VALUE" != "X" ]; then
-        echo "WARNING: \$VAR is set set and could lead to problems when using this environment"
+        echo "WARNING: \$VAR is set set and could lead to problems when using this environment" 1>&2
     fi
 done
 
-# need a clean PYTHONPATH to make sure we are not picking up older Python libs
-unset PYTHONPATH
+# Need a clean environment - this is to prevent inheriting host specifics from the outside
+# Note that "unset" is not great here, as Singularity might just take that as
+# keeping the value from the host instead of clearing it.
+export OSG_LOCATION=""
+export GLOBUS_LOCATION=""
+export PYTHONPATH=""
+export PERL5LIB=""
 
 # when inside a container, reset some variables from outside
+
 if [ "x\$SINGULARITY_CONTAINER" != "x" ]; then
-    unset LD_LIBRARY_PATH
+    export PATH=/usr/bin:/usr/local/bin
+    export LD_LIBRARY_PATH=""
+# if not in a singularity container, use cvmfs CA certificates
+else
+    # first check if the directory is mounted
+    if [ -e "/cvmfs/oasis.opensciencegrid.org/mis/osg-wn-client/certificates" ]; then
+        export X509_CERT_DIR=/cvmfs/oasis.opensciencegrid.org/mis/osg-wn-client/certificates
+    fi
 fi
 
 source ${target_dir}/anaconda/bin/activate ${env_name}
@@ -215,17 +231,35 @@ fi
 
 EOF
 
-announce "Adding 50-xenon.sh"
+announce "Adding zzz-50-xenon.sh"
 
-# this will be sourced when entering the container
-cat > /.singularity.d/env/50-xenon.sh <<EOF
-#!/bin/bash
+# this will be sourced when entering the container, but
+# should be sourced last in order to pick up for example
+# SINGULARITYENV_... vars
+mkdir -p /.singularity.d/env
+cat > /.singularity.d/env/zzz-50-xenon.sh <<EOF
+#!/bin/sh
+
+if [ "x\$XENON_DEBUG" != "x" ]; then
+    echo 1>&2
+    echo "Environment before sourcing XENONnT setup:" 1>&2
+    (env | sort) 1>&2
+    echo 1>&2
+fi
+
 if [ "x\$XENON_SOURCE" = "x" ]; then
     export XENON_SOURCE=1
 fi
 
 if [ \$XENON_SOURCE -eq 1 ]; then
     source ${target_dir}/setup.sh
+fi
+
+if [ "x\$XENON_DEBUG" != "x" ]; then
+    echo 1>&2
+    echo "Environment after sourcing XENONnT setup:" 1>&2
+    (env | sort) 1>&2
+    echo 1>&2
 fi
 EOF
 
@@ -234,7 +268,7 @@ announce "Running tests"
 # gfal2
 python -c 'import gfal2'
 # Strax
-git clone --single-branch --branch stable https://github.com/AxFoundation/strax.git
+git clone --single-branch --branch v$strax_version https://github.com/AxFoundation/strax.git
 pytest strax || { echo 'strax tests failed' ; exit 1; }
 rm -r strax
 # Straxen

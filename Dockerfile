@@ -1,5 +1,11 @@
 FROM opensciencegrid/osgvo-el7
 
+LABEL opensciencegrid.name="XENONnT"
+LABEL opensciencegrid.description="Base software environment for XENONnT, including Python 3.6 and data management tools"
+LABEL opensciencegrid.url="http://www.xenon1t.org/"
+LABEL opensciencegrid.category="Project"
+LABEL opensciencegrid.definition_url="https://github.com/XENONnT/base_environment"
+
 ARG XENONnT_TAG
 
 RUN echo "Building Docker container for XENONnT_${XENONnT_TAG} ..."
@@ -29,14 +35,6 @@ RUN yum -y install \
     yum clean all && \
     localedef -i en_US -f UTF-8 en_US.UTF-8
 
-# CA certs
-RUN mkdir -p /etc/grid-security && \
-    cd /etc/grid-security && \
-    rm -rf certificates && \
-    wget -nv https://download.pegasus.isi.edu/containers/certificates.tar.gz && \
-    tar xzf certificates.tar.gz && \
-    rm -f certificates.tar.gz
-
 ADD create-env conda_xnt.yml requirements.txt /tmp/
 
 RUN cd /tmp && \
@@ -45,6 +43,8 @@ RUN cd /tmp && \
 
 # relax permissions so we can build cvmfs tar balls
 RUN chmod 1777 /cvmfs
+
+COPY labels.json /.singularity.d/
 
 # build info
 RUN echo "Timestamp:" `date --utc` | tee /image-build-info.txt

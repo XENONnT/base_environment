@@ -14,7 +14,10 @@ echo
 # DeployHQ puts the checkout in ~/deployhq/
 cd ~/deployhq/
 
-# first build the Docker image (minimized)
+# ensure we have the latest base image
+docker pull opensciencegrid/osgvo-el7
+
+# build the Docker image (minimized)
 docker build --no-cache --build-arg XENONnT_TAG=$TAG -t osgvo-xenon-layers .
 docker run -it osgvo-xenon-layers bash -c "exit"
 sleep 30s
@@ -27,9 +30,16 @@ docker rm $CONT_ID || true
 # upload to Docker Hub - OSG will pull from there for the Singularity CVMFS repo
 docker push opensciencegrid/osgvo-xenon:$TAG
 
+# also to the new xenonnt repo
+docker tag opensciencegrid/osgvo-xenon:$TAG xenonnt/base-environment:$TAG
+docker push xenonnt/base-environment:$TAG
+
 # development also gets mapped to "latest"
 if [ "X$TAG" = "Xdevelopment" ]; then
     docker tag opensciencegrid/osgvo-xenon:$TAG opensciencegrid/osgvo-xenon:latest
     docker push opensciencegrid/osgvo-xenon:latest
+
+    docker tag opensciencegrid/osgvo-xenon:$TAG xenonnt/base-environment:latest
+    docker push xenonnt/base-environment:latest
 fi
 
