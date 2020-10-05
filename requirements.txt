@@ -30,7 +30,7 @@ pdmongo==0.1.0     # Strax dependency
 psutil==5.7.0     # Strax dependency
 pyarrow==0.17.1   # Necessary for pandas feather i/o
 pymongo==3.10.1
-pytest==5.4.2
+pytest==6.1.1
 torch==1.6.0     # Strax dependency
 scikit-learn==0.23.1
 scipy==1.4.1
