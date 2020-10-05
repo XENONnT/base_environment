@@ -3,7 +3,7 @@ blosc==1.9.1       # Strax dependency
 bokeh==2.0.2
 boltons==20.1.0
 boto==2.49.0
-boto3==1.13.16     # Strax dependency
+boto3==1.15.11     # Strax dependency
 cython==0.29.19
 dask==2.16.0
 datashader==0.10.0
