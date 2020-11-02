@@ -3,7 +3,7 @@ blosc==1.9.1       # Strax dependency
 bokeh==2.2.1
 boltons==20.1.0
 boto==2.49.0
-boto3==1.13.16     # Strax dependency
+boto3==1.16.9     # Strax dependency
 cython==0.29.19
 dask==2.30.0
 dask-jobqueue==0.7.1
