@@ -8,9 +8,10 @@ gfal2_version=2.17.2
 gfal2_bindings_version=ac5cd70bc0654cd5b72cc01085eeaafb469b9622 # project is not releasing often enough
 gfal2_util_version=master # project is not releasing often enough
 rucio_version=1.21.7
+# for development, use the HEAD of various XENON software
 # admix_version=0.2.3
-strax_version=0.12.2
-straxen_version=0.11.0
+# strax_version=0.12.2
+# straxen_version=0.11.0
 
 
 #######################################################################
@@ -83,8 +84,8 @@ source $target_dir/anaconda/bin/activate ${env_name}
 
 jupyter labextension install @pyviz/jupyterlab_pyviz   # for waveform display in jupyterlab
 announce "Installing non-grid XENON software"
-pip install strax==${strax_version}
-pip install straxen==${straxen_version}
+pip install git+https://github.com/AxFoundation/strax.git #strax==${strax_version}
+pip install git+https://github.com/XENONnT/straxen.git #straxen==${straxen_version}
 pip install git+https://github.com/XENONnT/utilix.git
 pip install git+https://github.com/XENONnT/WFSim.git
 pip install git+https://github.com/XENONnT/admix.git
@@ -268,11 +269,11 @@ announce "Running tests"
 # gfal2
 python -c 'import gfal2'
 # Strax
-git clone --single-branch --branch v$strax_version https://github.com/AxFoundation/strax.git
+git clone https://github.com/AxFoundation/strax.git
 pytest strax || { echo 'strax tests failed' ; exit 1; }
 rm -r strax
 # Straxen
-git clone --single-branch --branch v$straxen_version https://github.com/XENONnT/straxen.git
+git clone https://github.com/XENONnT/straxen.git
 pytest straxen || { echo 'straxen tests failed' ; exit 1; }
 rm -r straxen
 
