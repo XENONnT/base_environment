@@ -25,7 +25,7 @@ memory_profiler==0.57.0
 multihist==0.6.3
 nbsphinx==0.7.0
 numba==0.50.1
-numpy==1.18.4
+numpy==1.19.4
 pandoc==1.0.2
 pdmongo==0.1.0     # Strax dependency
 pika==1.1.0       # Pegasus
