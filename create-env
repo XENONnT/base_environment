@@ -11,7 +11,7 @@ rucio_version=1.21.7
 # admix_version=0.2.3
 strax_version=0.12.4
 straxen_version=0.12.3
-
+# utilix_version=master
 
 #######################################################################
 
@@ -84,8 +84,9 @@ source $target_dir/anaconda/bin/activate ${env_name}
 jupyter labextension install @pyviz/jupyterlab_pyviz   # for waveform display in jupyterlab
 announce "Installing non-grid XENON software"
 pip install strax==${strax_version}
-pip install straxen==${straxen_version}
+# Utilix before straxen!
 pip install git+https://github.com/XENONnT/utilix.git
+pip install straxen==${straxen_version}
 pip install git+https://github.com/XENONnT/WFSim.git
 pip install git+https://github.com/XENONnT/admix.git
 
@@ -130,6 +131,7 @@ perl -p -i -e 's;src/;src_py3/;g' setup.py
 python3.6 setup.py install --prefix=${target_dir}/anaconda/envs/${env_name}
 cd ${target_dir}
 rm -rf gfal2-util
+
 
 # rucio-clients
 announce "Installing Rucio"
