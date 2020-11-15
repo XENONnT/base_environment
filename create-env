@@ -6,7 +6,7 @@
 
 gfal2_version=2.17.2
 gfal2_bindings_version=ac5cd70bc0654cd5b72cc01085eeaafb469b9622 # project is not releasing often enough
-gfal2_util_version=master # project is not releasing often enough
+gfal2_util_version=1.5.4 # reset to master since project is not releasing often enough
 rucio_version=1.21.7
 # admix_version=0.2.3
 strax_version=0.12.4
