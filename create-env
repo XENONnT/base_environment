@@ -126,7 +126,7 @@ rm -rf gfal2-bindings
 announce "Installing GFAL2 clients"
 git clone https://gitlab.cern.ch/dmc/gfal2-util.git
 cd gfal2-util/
-git checkout $gfal2_util_version
+git checkout v$gfal2_util_version
 perl -p -i -e 's;src/;src_py3/;g' setup.py
 python3.6 setup.py install --prefix=${target_dir}/anaconda/envs/${env_name}
 cd ${target_dir}
