@@ -37,7 +37,7 @@ torch==1.7.0     # Strax dependency
 scikit-learn==0.23.2
 scipy==1.5.4
 snakeviz==2.1.0
-sphinx==3.3.0
+sphinx==3.3.1
 tables==3.6.1     # pytables, necessary for pandas hdf5 i/o
 tensorflow==2.3.1
 tensorflow_probability==0.11.1
