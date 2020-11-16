@@ -6,12 +6,12 @@
 
 gfal2_version=2.17.2
 gfal2_bindings_version=ac5cd70bc0654cd5b72cc01085eeaafb469b9622 # project is not releasing often enough
-gfal2_util_version=master # project is not releasing often enough
+gfal2_util_version=1.5.4 # reset to master since project is not releasing often enough
 rucio_version=1.21.7
 # admix_version=0.2.3
-strax_version=0.12.3
-straxen_version=0.11.1
-
+strax_version=0.12.4
+straxen_version=0.12.3
+# utilix_version=master
 
 #######################################################################
 
@@ -84,8 +84,9 @@ source $target_dir/anaconda/bin/activate ${env_name}
 jupyter labextension install @pyviz/jupyterlab_pyviz   # for waveform display in jupyterlab
 announce "Installing non-grid XENON software"
 pip install strax==${strax_version}
-pip install straxen==${straxen_version}
+# Utilix before straxen!
 pip install git+https://github.com/XENONnT/utilix.git
+pip install straxen==${straxen_version}
 pip install git+https://github.com/XENONnT/WFSim.git
 pip install git+https://github.com/XENONnT/admix.git
 
@@ -125,11 +126,12 @@ rm -rf gfal2-bindings
 announce "Installing GFAL2 clients"
 git clone https://gitlab.cern.ch/dmc/gfal2-util.git
 cd gfal2-util/
-git checkout $gfal2_util_version
+git checkout v$gfal2_util_version
 perl -p -i -e 's;src/;src_py3/;g' setup.py
 python3.6 setup.py install --prefix=${target_dir}/anaconda/envs/${env_name}
 cd ${target_dir}
 rm -rf gfal2-util
+
 
 # rucio-clients
 announce "Installing Rucio"
