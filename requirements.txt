@@ -18,7 +18,7 @@ hypothesis==5.41.2
 iminuit==1.4.9
 jupyter==1.0.0
 jupyterlab==2.2.9
-line_profiler==3.0.2
+line_profiler==3.1.0
 lz4==3.0.2        # Strax dependency
 matplotlib==3.3.2
 memory_profiler==0.57.0
