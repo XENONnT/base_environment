@@ -11,6 +11,7 @@ rucio_version=1.21.7
 # admix_version=0.2.3
 strax_version=0.12.4
 straxen_version=0.12.3
+pema_version=main
 # utilix_version=master
 
 #######################################################################
@@ -89,6 +90,7 @@ pip install git+https://github.com/XENONnT/utilix.git
 pip install straxen==${straxen_version}
 pip install git+https://github.com/XENONnT/WFSim.git
 pip install git+https://github.com/XENONnT/admix.git
+pip install git+https://github.com/XENONnT/pema.git
 
 # gfal2
 announce "Installing GFAL2"
