@@ -18,6 +18,8 @@ RUN yum -y install \
             dcap-devel \
             doxygen \
             dpm-devel \
+            gfal2-all \
+            gfal2-devel \
             glib2-devel \
             globus-gass-copy-devel \
             gtest-devel \
