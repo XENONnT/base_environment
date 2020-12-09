@@ -261,19 +261,21 @@ EOF
 
 announce "Running tests"
 . ${target_dir}/setup.sh
+
 # gfal2
 python -c 'import gfal2'
+
 # Strax
-#strax_version=`python -c "import strax; print(strax.__version__)"`
-#git clone --single-branch --branch v$strax_version https://github.com/AxFoundation/strax.git
-#pytest strax || { echo 'strax tests failed' ; exit 1; }
-#rm -r strax
+strax_version=`python -c "import strax; print(strax.__version__)"`
+git clone --single-branch --branch v$strax_version https://github.com/AxFoundation/strax.git
+pytest strax || { echo 'strax tests failed' ; exit 1; }
+rm -r strax
 
 # Straxen
-#straxen_version=`python -c "import straxen; print(straxen.__version__)"`
-#git clone --single-branch --branch v$straxen_version https://github.com/XENONnT/straxen.git
-#pytest straxen || { echo 'straxen tests failed' ; exit 1; }
-#rm -r straxen
+straxen_version=`python -c "import straxen; print(straxen.__version__)"`
+git clone --single-branch --branch v$straxen_version https://github.com/XENONnT/straxen.git
+pytest straxen || { echo 'straxen tests failed' ; exit 1; }
+rm -r straxen
 
 announce "All done!"
 
