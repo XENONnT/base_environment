@@ -12,10 +12,12 @@ RUN echo "Building Docker container for XENONnT_${XENONnT_TAG} ..."
 
 RUN yum -y clean all && yum -y --skip-broken upgrade
 
-RUN yum -y install \
+RUN  yum -y install centos-release-scl && \
+     yum -y install \
             cmake \
             davix-devel \
             dcap-devel \
+            devtoolset-9 \
             doxygen \
             dpm-devel \
             gfal2-all \
@@ -39,7 +41,8 @@ RUN yum -y install \
 
 ADD create-env conda_xnt.yml requirements.txt /tmp/
 
-RUN cd /tmp && \
+RUN source scl_source enable devtoolset-9 && \
+    cd /tmp && \
     bash create-env /opt/XENONnT ${XENONnT_TAG} && \
     rm -f create-env conda_xnt.yml
 
