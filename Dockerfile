@@ -41,7 +41,7 @@ RUN  yum -y install centos-release-scl && \
 
 ADD create-env conda_xnt.yml requirements.txt /tmp/
 
-RUN source scl_source enable devtoolset-9 && \
+RUN source /opt/rh/devtoolset-9/enable && \
     cd /tmp && \
     bash create-env /opt/XENONnT ${XENONnT_TAG} && \
     rm -f create-env conda_xnt.yml
