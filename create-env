@@ -196,7 +196,7 @@ fi
 
 # devtools-9 environment for updated compilers
 if [ -e /opt/rh/devtoolset-9 ]; then
-    source scl_source enable devtoolset-9 >/dev/null
+    source /usr/bin/scl_source enable devtoolset-9 >/dev/null
 fi
 
 source ${target_dir}/anaconda/bin/activate ${env_name}
