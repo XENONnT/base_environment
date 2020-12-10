@@ -196,13 +196,14 @@ fi
 
 # devtools-9 environment for updated compilers
 if [ -e /opt/rh/devtoolset-9 ]; then
-    source /usr/bin/scl_source enable devtoolset-9 >/dev/null
+    echo "Enabling devtoolset-9 ..."
+    source /usr/bin/scl_source enable devtoolset-9
 fi
 
 source ${target_dir}/anaconda/bin/activate ${env_name}
 
 # prepend to LD_LIBRARY_PATH - non-Python tools might be using it
-export LD_LIBRARY_PATH=\$CONDA_PREFIX/lib64:\$CONDA_PREFIX/lib\${LD_LIBRARY_PATH:+:}\${LD_LIBRARY_PATH}
+#export LD_LIBRARY_PATH=\$CONDA_PREFIX/lib64:\$CONDA_PREFIX/lib\${LD_LIBRARY_PATH:+:}\${LD_LIBRARY_PATH}
 
 # gfal2
 export GFAL_CONFIG_DIR=\$CONDA_PREFIX/etc/gfal2.d
@@ -265,18 +266,22 @@ fi
 EOF
 
 announce "Running tests"
+
 . ${target_dir}/setup.sh
 
 # gfal2
+announce " ... gfal2 tests"
 python -c 'import gfal2'
 
 # Strax
+announce " ... strax tests"
 strax_version=`python -c "import strax; print(strax.__version__)"`
 git clone --single-branch --branch v$strax_version https://github.com/AxFoundation/strax.git
 pytest strax || { echo 'strax tests failed' ; exit 1; }
 rm -r strax
 
 # Straxen
+announce " ... straxen tests"
 straxen_version=`python -c "import straxen; print(straxen.__version__)"`
 git clone --single-branch --branch v$straxen_version https://github.com/XENONnT/straxen.git
 pytest straxen || { echo 'straxen tests failed' ; exit 1; }
