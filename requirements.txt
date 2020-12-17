@@ -8,7 +8,7 @@ codenamize==1.2.3  # for human-readable hashing
 coveralls==2.0.0
 cython==0.29.21
 dask==2020.12.0
-dask-jobqueue==0.7.1
+dask-jobqueue==0.7.2
 datashader==0.11.1
 dill==0.3.3      # Strax dependency
 distributed===2.30.1     # Dask extension
