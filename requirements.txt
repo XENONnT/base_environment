@@ -3,7 +3,7 @@ blosc==1.9.2       # Strax dependency
 bokeh==2.2.3
 boltons==20.2.1
 boto==2.49.0
-boto3==1.16.35     # Strax dependency
+boto3==1.16.40     # Strax dependency
 codenamize==1.2.3  # for human-readable hashing
 coveralls==2.0.0
 cython==0.29.21
