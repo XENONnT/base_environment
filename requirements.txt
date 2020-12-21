@@ -28,7 +28,7 @@ multihist==0.6.3
 nbsphinx==0.8.0
 nestpy==1.4.1     # WFsim dependency
 numba==0.51.2
-numpy==1.18.5
+numpy==1.19.3
 pandoc==1.0.2
 pdmongo==0.1.0     # Strax dependency
 pika==1.1.0       # Pegasus
