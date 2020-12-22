@@ -269,10 +269,10 @@ pytest strax || { echo 'strax tests failed' ; exit 1; }
 rm -r strax
 
 # Straxen
-straxen_version=`python -c "import straxen; print(straxen.__version__)"`
-git clone --single-branch --branch v$straxen_version https://github.com/XENONnT/straxen.git
-pytest straxen || { echo 'straxen tests failed' ; exit 1; }
-rm -r straxen
+#straxen_version=`python -c "import straxen; print(straxen.__version__)"`
+#git clone --single-branch --branch v$straxen_version https://github.com/XENONnT/straxen.git
+#pytest straxen || { echo 'straxen tests failed' ; exit 1; }
+#rm -r straxen
 
 announce "All done!"
 
