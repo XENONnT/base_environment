@@ -38,7 +38,7 @@ pymongo==3.11.2
 pytest==6.2.1
 pytest-runner==5.0
 torch==1.7.1     # Strax dependency
-scikit-learn==0.23.2
+scikit-learn==0.24.0
 scipy==1.5.4
 strax==0.13.1
 straxen==0.14.0
