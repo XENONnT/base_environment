@@ -15,7 +15,7 @@ distributed===2020.12.0     # Dask extension
 flake8==3.8.4
 flamedisx==1.3.0
 future==0.18.2
-holoviews==1.14.0
+holoviews==1.14.1
 hypothesis==5.43.3
 iminuit==2.2.0
 jupyter==1.0.0
