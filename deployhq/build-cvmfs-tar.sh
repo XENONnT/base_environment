@@ -23,7 +23,7 @@ mkdir -p generated
 chmod 1777 generated
 cp ~/deployhq/deployhq/build-cvmfs-tar-inside-helper.sh .
 docker run -v `pwd`:/srv -i -t --rm \
-       opensciencegrid/osgvo-el7 \
+       xenonnt/base-environment:$TAG \
        /bin/bash -c "/srv/build-cvmfs-tar-inside-helper.sh $TAG"
 
 scp generated/$TAG.tar.gz xenon@osg-cvmfs.grid.uchicago.edu:/tmp/

@@ -1,9 +1,9 @@
 dependencies:
-  - boost=1.60.0
+  - cmake=3.18.2
   - graphviz
   - nb_conda
   - nodejs
   - pip
-  - python=3.6
+  - python=3.8
   - pip:
     - -r file:requirements.txt

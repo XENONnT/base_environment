@@ -4,7 +4,6 @@
 #
 # versions in this release
 
-gfal2_version=2.17.2
 gfal2_bindings_version=ac5cd70bc0654cd5b72cc01085eeaafb469b9622 # project is not releasing often enough
 gfal2_util_version=1.5.4 # reset to master since project is not releasing often enough
 rucio_version=1.21.7
@@ -61,7 +60,8 @@ export LC_ALL=en_US.utf8
 export LANG=en_US.utf8
 
 announce "Installing Miniconda"
-wget -nv -O conda_setup.sh https://repo.continuum.io/miniconda/Miniconda2-4.6.14-Linux-x86_64.sh
+wget -nv -O conda_setup.sh https://repo.anaconda.com/miniconda/Miniconda3-py38_4.9.2-Linux-x86_64.sh
+
 bash conda_setup.sh -b -p $target_dir/anaconda
 rm -f conda_setup.sh
 
@@ -78,26 +78,28 @@ rm -f ${target_dir}/anaconda/pkgs/rope-0.11.0-py37_0/info/LICENSE.txt
 announce "Activating Anaconda environment"
 source $target_dir/anaconda/bin/activate ${env_name}
 
+# boost
+announce "Installing Boost"
+cd ${target_dir}
+rm -rf boost_*
+wget -nv https://dl.bintray.com/boostorg/release/1.74.0/source/boost_1_74_0.tar.bz2
+tar xjf boost_1_74_0.tar.bz2
+rm -f boost_1_74_0.tar.bz2
+cd boost_1_74_0
+./bootstrap.sh --prefix=${target_dir}/anaconda/envs/${env_name} --show-libraries \
+               --with-libraries=atomic,chrono,date_time,exception,filesystem,graph,iostreams,locale,log,math,program_options,random,regex,serialization,system,test,thread,timer,wave,python \
+               --with-python=${target_dir}/anaconda/envs/${env_name}/bin/python3
+./b2 install --prefix=${target_dir}/anaconda/envs/${env_name}
+cd ${target_dir}
+rm -rf boost_*
+# required by gfal2-python, but maybe others
+ln -s ${target_dir}/anaconda/envs/${env_name}/lib/libboost_python38.so ${target_dir}/anaconda/envs/${env_name}/lib/libboost_python.so
+ln -s ${target_dir}/anaconda/envs/${env_name}/lib/libboost_python38.a ${target_dir}/anaconda/envs/${env_name}/lib/libboost_python.a
+
 jupyter labextension install @pyviz/jupyterlab_pyviz   # for waveform display in jupyterlab
 announce "Installing non-grid XENON software"
 pip install git+https://github.com/XENONnT/WFSim.git
 pip install git+https://github.com/XENONnT/admix.git
-
-# gfal2
-announce "Installing GFAL2"
-# deps: yum install cmake doxygen glib2-devel libattr-devel openldap-devel zlib-devel lfc-devel dpm-devel srm-ifce-devel dcap-devel globus-gass-copy-devel davix-devel xrootd-client-devel libssh2-devel gtest-devel json-c-devel
-cd ${target_dir}
-rm -rf gfal2
-git clone https://gitlab.cern.ch/dmc/gfal2.git
-cd gfal2
-git checkout v$gfal2_version
-mkdir build
-cd build
-cmake -DCMAKE_INSTALL_PREFIX=${target_dir}/anaconda/envs/${env_name} ..
-make
-make install
-cd ${target_dir}
-rm -rf gfal2
 
 # gfal2-python bindings
 announce "Installing GFAL2 Python bindings"
@@ -105,9 +107,9 @@ git clone https://gitlab.cern.ch/dmc/gfal2-bindings.git
 cd gfal2-bindings
 git checkout $gfal2_bindings_version
 perl -p -i -e "s;.*\\\${Boost_LIBRARYDIR};            \"${target_dir}/anaconda/envs/${env_name}/lib\";" CMakeLists.txt
-cmake -DPYTHON_EXECUTABLE=${target_dir}/anaconda/envs/${env_name}/bin/python3.6 \
-      -DPYTHON_EXECUTABLE_3=${target_dir}/anaconda/envs/${env_name}/bin/python3.6 \
-      -DPYTHON_EXECUTABLE_3.6=${target_dir}/anaconda/envs/${env_name}/bin/python3.6 \
+cmake -DPYTHON_EXECUTABLE=${target_dir}/anaconda/envs/${env_name}/bin/python3.8 \
+      -DPYTHON_EXECUTABLE_3=${target_dir}/anaconda/envs/${env_name}/bin/python3.8 \
+      -DPYTHON_EXECUTABLE_3.8=${target_dir}/anaconda/envs/${env_name}/bin/python3.8 \
       -DBOOST_ROOT=${target_dir}/anaconda/envs/${env_name} \
       -DSKIP_DOC=TRUE -DSKIP_TESTS=TRUE
 make
@@ -121,10 +123,9 @@ git clone https://gitlab.cern.ch/dmc/gfal2-util.git
 cd gfal2-util/
 git checkout v$gfal2_util_version
 perl -p -i -e 's;src/;src_py3/;g' setup.py
-python3.6 setup.py install --prefix=${target_dir}/anaconda/envs/${env_name}
+python3 setup.py install --prefix=${target_dir}/anaconda/envs/${env_name}
 cd ${target_dir}
 rm -rf gfal2-util
-
 
 # rucio-clients
 announce "Installing Rucio"
@@ -135,7 +136,7 @@ git checkout $rucio_version
 perl -p -i -e 's/^setuptools.*//' etc/pip-requires-client
 perl -p -i -e 's/^urllib3.*//' etc/pip-requires-client
 perl -p -i -e 's/^requests.*//' etc/pip-requires-client
-python setup_rucio_client.py install --prefix=${target_dir}/anaconda/envs/${env_name}
+python3 setup_rucio_client.py install --prefix=${target_dir}/anaconda/envs/${env_name}
 cd ${target_dir}
 rm -rf rucio
 
@@ -191,6 +192,11 @@ else
     if [ -e "/cvmfs/oasis.opensciencegrid.org/mis/osg-wn-client/certificates" ]; then
         export X509_CERT_DIR=/cvmfs/oasis.opensciencegrid.org/mis/osg-wn-client/certificates
     fi
+fi
+
+# devtools-9 environment for updated compilers
+if [ -e /opt/rh/devtoolset-9/enable ]; then
+    source /opt/rh/devtoolset-9/enable
 fi
 
 source ${target_dir}/anaconda/bin/activate ${env_name}
@@ -259,16 +265,22 @@ fi
 EOF
 
 announce "Running tests"
+
 . ${target_dir}/setup.sh
+
 # gfal2
+announce " ... gfal2 tests"
 python -c 'import gfal2'
+
 # Strax
+announce " ... strax tests"
 strax_version=`python -c "import strax; print(strax.__version__)"`
 git clone --single-branch --branch v$strax_version https://github.com/AxFoundation/strax.git
 pytest strax || { echo 'strax tests failed' ; exit 1; }
 rm -r strax
 
 # Straxen
+announce " ... straxen tests"
 straxen_version=`python -c "import straxen; print(straxen.__version__)"`
 git clone --single-branch --branch v$straxen_version https://github.com/XENONnT/straxen.git
 pytest straxen || { echo 'straxen tests failed' ; exit 1; }
