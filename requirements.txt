@@ -1,5 +1,5 @@
 astropy==4.1
-blosc==1.9.2       # Strax dependency
+blosc==1.10.1       # Strax dependency
 bokeh==2.2.3
 boltons==20.2.1
 boto==2.49.0
