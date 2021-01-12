@@ -16,7 +16,7 @@ flake8==3.8.4
 flamedisx==1.3.0
 future==0.18.2
 holoviews==1.14.1
-hypothesis==5.49.0
+hypothesis==6.0.0
 iminuit==2.2.1
 jupyter==1.0.0
 jupyterlab==2.2.9
