@@ -47,7 +47,7 @@ sphinx==3.4.0
 tables==3.6.1     # pytables, necessary for pandas hdf5 i/o
 tensorflow==2.3.1 # do not upgrade to 2.4.0 - it brings in additional AVX2 requirements (https://github.com/XENONnT/base_environment/issues/433)
 tensorflow_probability==0.12.1
-tqdm==4.55.1
+tqdm==4.56.0
 utilix==0.3.3       # dependency for straxen, admix
 zstd==1.4.8.1     # Strax dependency
 
