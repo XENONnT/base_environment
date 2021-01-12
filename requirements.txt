@@ -30,6 +30,7 @@ nestpy==1.4.1     # WFsim dependency
 numba==0.51.2
 numpy==1.18.5     # hold at 1.18.5 due to tensorflow not being upgradable
 pandoc==1.0.2
+parso==0.7.1     # upgrading to 0.8.0 breaks autocomplete in ipython
 pdmongo==0.1.0     # Strax dependency
 pika==1.1.0       # Pegasus
 psutil==5.8.0     # Strax dependency
