@@ -28,6 +28,7 @@ RUN  yum -y install centos-release-scl && \
             json-c-devel \
             lfc-devel \
             libattr-devel \
+            libffi-devel \
             libssh2-devel \
             libuuid-devel \
             openldap-devel \
