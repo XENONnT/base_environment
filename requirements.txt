@@ -1,22 +1,22 @@
 astropy==4.1
-blosc==1.9.2       # Strax dependency
+blosc==1.10.1       # Strax dependency
 bokeh==2.2.3
 boltons==20.2.1
 boto==2.49.0
-boto3==1.16.43     # Strax dependency
+boto3==1.16.52     # Strax dependency
 codenamize==1.2.3  # for human-readable hashing
 coveralls==2.2.0
 cython==0.29.21
 dask==2020.12.0
 dask-jobqueue==0.7.2
-datashader==0.11.1
+datashader==0.12.0
 dill==0.3.3      # Strax dependency
 distributed===2020.12.0     # Dask extension
 flake8==3.8.4
 flamedisx==1.3.0
 future==0.18.2
 holoviews==1.14.1
-hypothesis==5.49.0
+hypothesis==6.0.0
 iminuit==2.2.1
 jupyter==1.0.0
 jupyterlab==2.2.9
@@ -40,11 +40,11 @@ pytest==6.2.1
 pytest-runner==5.2
 torch==1.7.1     # Strax dependency
 scikit-learn==0.24.0
-scipy==1.5.4
+scipy==1.6.0
 strax==0.13.2
 straxen==0.14.1
 snakeviz==2.1.0
-sphinx==3.4.0
+sphinx==3.4.3
 tables==3.6.1     # pytables, necessary for pandas hdf5 i/o
 tensorflow==2.3.1 # do not upgrade to 2.4.0 - it brings in additional AVX2 requirements (https://github.com/XENONnT/base_environment/issues/433)
 tensorflow_probability==0.12.1
