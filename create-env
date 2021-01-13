@@ -204,10 +204,6 @@ source ${target_dir}/anaconda/bin/activate ${env_name}
 # prepend to LD_LIBRARY_PATH - non-Python tools might be using it
 export LD_LIBRARY_PATH=\$CONDA_PREFIX/lib64:\$CONDA_PREFIX/lib\${LD_LIBRARY_PATH:+:}\${LD_LIBRARY_PATH}
 
-# gfal2
-export GFAL_CONFIG_DIR=\$CONDA_PREFIX/etc/gfal2.d
-export GFAL_PLUGIN_DIR=\$CONDA_PREFIX/lib64/gfal2-plugins/
-
 # rucio
 export RUCIO_HOME=\$CONDA_PREFIX
 export RUCIO_ACCOUNT=xenon-analysis
