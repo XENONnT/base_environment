@@ -43,7 +43,7 @@ scipy==1.6.0
 strax==0.13.2
 straxen==0.14.1
 snakeviz==2.1.0
-sphinx==3.4.0
+sphinx==3.4.3
 tables==3.6.1     # pytables, necessary for pandas hdf5 i/o
 tensorflow==2.3.1 # do not upgrade to 2.4.0 - it brings in additional AVX2 requirements (https://github.com/XENONnT/base_environment/issues/433)
 tensorflow_probability==0.12.1
