@@ -29,7 +29,7 @@ memory_profiler==0.58.0
 multihist==0.6.4
 nbsphinx==0.8.0
 nestpy==1.4.1     # WFsim dependency
-numba==0.51.2
+numba==0.52.0     # Strax dependency
 numpy==1.18.5     # hold at 1.18.5 due to tensorflow not being upgradable
 pandoc==1.0.2
 parso==0.7.1     # upgrading to 0.8.0 breaks autocomplete in ipython
