@@ -43,8 +43,8 @@ pytest-runner==5.2
 torch==1.7.1     # Strax dependency
 scikit-learn==0.24.0
 scipy==1.6.0
-strax==0.13.3
-straxen==0.14.3
+strax==0.13.4
+straxen==0.14.4
 snakeviz==2.1.0
 sphinx==3.4.3
 tables==3.6.1     # pytables, necessary for pandas hdf5 i/o
