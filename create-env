@@ -180,6 +180,7 @@ export OSG_LOCATION=""
 export GLOBUS_LOCATION=""
 export PYTHONPATH=""
 export PERL5LIB=""
+export GFAL_CONFIG_DIR=""
 
 # when inside a container, reset some variables from outside
 
