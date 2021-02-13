@@ -18,7 +18,7 @@ future==0.18.2
 GitPython==3.1.12   # Pegasus dependency
 holoviews==1.14.1
 hypothesis==6.1.1
-iminuit==2.3.0
+iminuit==2.4.0
 jedi==0.17.2    # upgrading to 0.18.0 breaks autocomplete in ipython
 jupyter==1.0.0
 jupyter-resource-usage   # Memory viewer for notebooks
