@@ -39,7 +39,7 @@ pika==1.1.0       # Pegasus
 psutil==5.8.0     # Strax dependency
 pyarrow==3.0.0   # Necessary for pandas feather i/o
 pymongo==3.11.3
-pytest==6.2.1
+pytest==6.2.2
 pytest-runner==5.3.0
 torch==1.7.1     # Strax dependency
 scikit-learn==0.24.1
