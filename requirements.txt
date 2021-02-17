@@ -33,6 +33,7 @@ nestpy==1.4.4     # WFsim dependency
 numba==0.52.0     # Strax dependency
 numpy==1.19.5
 pandoc==1.0.2
+seaborn==0.11.1
 parso==0.7.1     # upgrading to 0.8.0 breaks autocomplete in ipython
 pdmongo==0.1.0     # Strax dependency
 pika==1.1.0       # Pegasus
