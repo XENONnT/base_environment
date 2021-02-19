@@ -5,7 +5,7 @@
 # versions in this release
 
 gfal2_bindings_version=ac5cd70bc0654cd5b72cc01085eeaafb469b9622 # project is not releasing often enough
-gfal2_util_version=1.5.4 # reset to master since project is not releasing often enough
+gfal2_util_version=1.6.0
 rucio_version=1.21.7
 # admix_version=0.2.3 # commented out to use master
 
@@ -122,7 +122,6 @@ announce "Installing GFAL2 clients"
 git clone https://gitlab.cern.ch/dmc/gfal2-util.git
 cd gfal2-util/
 git checkout v$gfal2_util_version
-perl -p -i -e 's;src/;src_py3/;g' setup.py
 python3 setup.py install --prefix=${target_dir}/anaconda/envs/${env_name}
 cd ${target_dir}
 rm -rf gfal2-util

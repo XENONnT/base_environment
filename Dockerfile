@@ -22,6 +22,12 @@ RUN  yum -y install centos-release-scl && \
             dpm-devel \
             gfal2-all \
             gfal2-devel \
+            gfal2-plugin-file \
+            gfal2-plugin-gridftp \
+            gfal2-plugin-http \
+            gfal2-plugin-sftp \
+            gfal2-plugin-srm \
+            gfal2-plugin-xrootd \
             glib2-devel \
             globus-gass-copy-devel \
             gtest-devel \
