@@ -43,7 +43,7 @@ pytest==6.2.1
 pytest-runner==5.3.0
 torch==1.7.1     # Strax dependency
 scikit-learn==0.24.1
-scipy==1.6.0
+scipy==1.6.1
 seaborn==0.11.1
 strax==0.13.8
 straxen==0.15.2
