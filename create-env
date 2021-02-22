@@ -98,7 +98,6 @@ ln -s ${target_dir}/anaconda/envs/${env_name}/lib/libboost_python38.a ${target_d
 
 jupyter labextension install @pyviz/jupyterlab_pyviz   # for waveform display in jupyterlab
 announce "Installing non-grid XENON software"
-pip install git+https://github.com/XENONnT/WFSim.git
 pip install git+https://github.com/XENONnT/admix.git
 
 # gfal2-python bindings
@@ -285,5 +284,12 @@ git clone --single-branch --branch v$straxen_version https://github.com/XENONnT/
 pytest straxen || { echo 'straxen tests failed' ; exit 1; }
 rm -r straxen
 
-announce "All done!"
+# wfsim
+announce " ... wfsim tests"
+wfsim_version=`python -c "import wfsim; print(wfsim.__version__)"`
+git clone --single-branch --branch v$wfsim_version https://github.com/XENONnT/wfsim ./wfsim
+pytest wfsim || { echo 'wfsim tests failed' ; exit 1; }
+rm -r wfsim
 
+# Done testing
+announce "All done!"
