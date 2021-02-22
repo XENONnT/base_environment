@@ -3,7 +3,7 @@ blosc==1.10.2       # Strax dependency
 bokeh==2.2.3
 boltons==20.2.1
 boto==2.49.0
-boto3==1.17.3     # Strax dependency
+boto3==1.17.12     # Strax dependency
 codenamize==1.2.3  # for human-readable hashing
 coveralls==3.0.0
 cython==0.29.21
@@ -35,15 +35,15 @@ numpy==1.19.5
 pandoc==1.0.2
 parso==0.7.1     # upgrading to 0.8.0 breaks autocomplete in ipython
 pdmongo==0.1.0     # Strax dependency
-pika==1.1.0       # Pegasus
+pika==1.2.0       # Pegasus
 psutil==5.8.0     # Strax dependency
 pyarrow==3.0.0   # Necessary for pandas feather i/o
 pymongo==3.11.3
-pytest==6.2.1
+pytest==6.2.2
 pytest-runner==5.3.0
 torch==1.7.1     # Strax dependency
 scikit-learn==0.24.1
-scipy==1.6.0
+scipy==1.6.1
 seaborn==0.11.1
 strax==0.13.8
 straxen==0.15.2
@@ -52,7 +52,7 @@ sphinx==3.4.3
 tables==3.6.1     # pytables, necessary for pandas hdf5 i/o
 tensorflow==2.4.1 # TF2.4.1 should not bring in additional AVX2 requirements (https://github.com/XENONnT/base_environment/issues/433)
 tensorflow_probability==0.12.1
-tqdm==4.56.2
+tqdm==4.57.0
 utilix==0.4.1       # dependency for straxen, admix
 zstd==1.4.8.1     # Strax dependency
 
