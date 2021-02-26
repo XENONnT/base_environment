@@ -5,6 +5,7 @@ boltons==20.2.1
 boto==2.49.0
 boto3==1.17.12     # Strax dependency
 codenamize==1.2.3  # for human-readable hashing
+commentjson==0.9.0 # Straxen dependency
 coveralls==3.0.0
 cython==0.29.21
 dask==2021.2.0
@@ -46,7 +47,7 @@ scikit-learn==0.24.1
 scipy==1.6.1
 seaborn==0.11.1
 strax==0.13.9
-straxen==0.15.5
+straxen==0.15.6
 snakeviz==2.1.0
 sphinx==3.5.1
 tables==3.6.1     # pytables, necessary for pandas hdf5 i/o
