@@ -55,5 +55,5 @@ tensorflow==2.4.1 # TF2.4.1 should not bring in additional AVX2 requirements (ht
 tensorflow_probability==0.12.1
 tqdm==4.57.0
 utilix==0.4.1       # dependency for straxen, admix
-wfsim==0.2.4
+wfsim==0.2.5
 zstd==1.4.8.1     # Strax dependency
