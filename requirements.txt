@@ -3,21 +3,21 @@ blosc==1.10.2       # Strax dependency
 bokeh==2.3.0
 boltons==20.2.1
 boto==2.49.0
-boto3==1.17.28     # Strax dependency
+boto3==1.17.33     # Strax dependency
 codenamize==1.2.3  # for human-readable hashing
 commentjson==0.9.0 # Straxen dependency
 coveralls==3.0.1
 cython==0.29.22
 dask==2021.3.0
 dask-jobqueue==0.7.2
-datashader==0.12.0
+datashader==0.12.1
 dill==0.3.3      # Strax dependency
 distributed===2021.3.0     # Dask extension
-flake8==3.8.4
+flake8==3.9.0
 flamedisx==1.4.0
 future==0.18.2
 GitPython==3.1.14   # Pegasus dependency
-holoviews==1.14.1
+holoviews==1.14.2
 hypothesis==6.8.1
 iminuit==2.4.0
 jedi==0.17.2    # upgrading to 0.18.0 breaks autocomplete in ipython
@@ -32,7 +32,7 @@ multihist==0.6.4
 nbsphinx==0.8.2
 nestpy==1.4.7     # WFsim dependency
 npshmex==0.2.1    # Strax dependency
-numba==0.52.0     # Strax dependency
+numba==0.53.0     # Strax dependency
 numpy==1.19.5
 pandoc==1.0.2
 parso==0.7.1     # upgrading to 0.8.0 breaks autocomplete in ipython
