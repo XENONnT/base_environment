@@ -50,7 +50,7 @@ seaborn==0.11.1
 strax==0.13.9
 straxen==0.15.8
 snakeviz==2.1.0
-sphinx==3.5.2
+sphinx==3.5.3
 tables==3.6.1     # pytables, necessary for pandas hdf5 i/o
 tensorflow==2.4.1 # TF2.4.1 should not bring in additional AVX2 requirements (https://github.com/XENONnT/base_environment/issues/433)
 tensorflow_probability==0.12.1
