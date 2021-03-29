@@ -33,7 +33,7 @@ multihist==0.6.4
 nbsphinx==0.8.2
 nestpy==1.4.7     # WFsim dependency
 npshmex==0.2.1    # Strax dependency
-numba==0.53.0     # Strax dependency
+numba==0.53.1     # Strax dependency
 numpy==1.19.5
 pandoc==1.0.2
 parso==0.7.1     # upgrading to 0.8.0 breaks autocomplete in ipython
