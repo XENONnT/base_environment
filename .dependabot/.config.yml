@@ -1,4 +1,4 @@
-version: 1
+version: 2
 
 update_configs:
   - package_manager: "python"
@@ -12,3 +12,4 @@ update_configs:
       - match:
           # tensorflow limits what versions of numpy we can use
           dependency_name: "numpy"
+    target-branch: "dependabot_merge"
