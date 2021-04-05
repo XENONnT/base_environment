@@ -6,10 +6,7 @@ update_configs:
     update_schedule: "weekly"
     ignored_updates:
       - match:
-          # ignore new tensorflow updates as new versions require AVX2
-          # https://github.com/XENONnT/base_environment/issues/433
-          dependency_name: "tensorflow"
-      - match:
-          # tensorflow limits what versions of numpy we can use
-          dependency_name: "numpy"
+          # ignore dask updates since it is not supported by python 3.6
+          # https://github.com/XENONnT/base_environment/pull/574
+          dependency_name: "dask"
     target-branch: "dependabot_merge"
