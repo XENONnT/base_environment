@@ -97,8 +97,8 @@ ln -s ${target_dir}/anaconda/envs/${env_name}/lib/libboost_python38.so ${target_
 ln -s ${target_dir}/anaconda/envs/${env_name}/lib/libboost_python38.a ${target_dir}/anaconda/envs/${env_name}/lib/libboost_python.a
 
 jupyter labextension install @pyviz/jupyterlab_pyviz   # for waveform display in jupyterlab
-announce "Installing non-grid XENON software"
-pip install git+https://github.com/XENONnT/admix.git
+#announce "Installing non-grid XENON software"
+#pip install git+https://github.com/XENONnT/admix.git
 
 # gfal2-python bindings
 announce "Installing GFAL2 Python bindings"
