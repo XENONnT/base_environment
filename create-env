@@ -78,8 +78,9 @@ rm -f ${target_dir}/anaconda/pkgs/rope-0.11.0-py37_0/info/LICENSE.txt
 announce "Activating Anaconda environment"
 source $target_dir/anaconda/bin/activate ${env_name}
 
-# Forging nodejs
-conda install -c conda-forge nodejs
+# Forging nodejs (for jupyter)
+announce "Installing nodejs"
+conda install -c conda-forge/label/main nodejs
 
 # boost
 announce "Installing Boost"
