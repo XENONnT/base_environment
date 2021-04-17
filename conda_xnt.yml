@@ -2,7 +2,7 @@ dependencies:
   - cmake=3.18.2
   - graphviz
   - nb_conda
-  - nodejs
+  - nodejs=15.14.0
   - pip
   - python=3.8
   - pip:
