@@ -32,7 +32,7 @@ nbsphinx==0.8.2
 nestpy==1.4.7     # WFsim dependency
 npshmex==0.2.1    # Strax dependency
 numba==0.53.1     # Strax dependency
-numpy==1.19.5
+numpy>=1.12.0
 pandoc==1.0.2
 parso==0.7.1     # upgrading to 0.8.0 breaks autocomplete in ipython
 pdmongo==0.1.0     # Strax dependency
@@ -51,7 +51,7 @@ straxen==0.18.0
 snakeviz==2.1.0
 sphinx==3.5.3
 tables==3.6.1     # pytables, necessary for pandas hdf5 i/o
-tensorflow==2.4.1 # TF2.4.1 should not bring in additional AVX2 requirements (https://github.com/XENONnT/base_environment/issues/433)
+tensorflow==2.5.0-rc1 # TF2.4.1 should not bring in additional AVX2 requirements (https://github.com/XENONnT/base_environment/issues/433)
 tensorflow_probability==0.12.1
 tqdm==4.59.0
 utilix==0.5.3      # dependency for straxen, admix
