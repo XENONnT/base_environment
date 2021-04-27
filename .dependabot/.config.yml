@@ -3,7 +3,7 @@ version: 2
 update_configs:
   - package_manager: "python"
     directory: "/"
-    update_schedule: "weekly"
+    update_schedule: "monthly"
     ignored_updates:
       - match:
           # ignore dask updates since it is not supported by python 3.6
