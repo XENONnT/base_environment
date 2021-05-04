@@ -34,7 +34,7 @@ npshmex==0.2.1    # Strax dependency
 numba==0.53.1     # Strax dependency
 numpy==1.19.5
 pandoc==1.0.2
-parso==0.8.2     # upgrading to 0.8.0 breaks autocomplete in ipython
+parso==0.8.0     # upgrading to 0.8.0 breaks autocomplete in ipython
 pdmongo==0.1.0     # Strax dependency
 pika==1.2.0       # Pegasus
 psutil==5.8.0     # Strax dependency
