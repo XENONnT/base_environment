@@ -5,12 +5,12 @@ boltons==20.2.1
 codenamize==1.2.3  # for human-readable hashing
 commentjson==0.9.0 # Straxen dependency
 coveralls==3.0.1
-cython==0.29.22
+cython==0.29.23
 dask==2021.3.0    # straxen dependency, upgrade to 2021.3.1 breaks straxen at py3.6
 dask-jobqueue==0.7.2
 datashader==0.12.1
 dill==0.3.3      # Strax dependency
-distributed===2021.4.0     # Dask extension
+distributed===2021.4.1     # Dask extension
 flake8==3.9.0
 flamedisx==1.4.0
 future==0.18.2
@@ -38,13 +38,13 @@ parso==0.7.1     # upgrading to 0.8.0 breaks autocomplete in ipython
 pdmongo==0.1.0     # Strax dependency
 pika==1.2.0       # Pegasus
 psutil==5.8.0     # Strax dependency
-pyarrow==3.0.0   # Necessary for pandas feather i/o
+pyarrow==4.0.0   # Necessary for pandas feather i/o
 pymongo==3.11.3
-pytest==6.2.3
+pytest==6.2.4
 pytest-runner==5.3.0
 torch==1.8.1     # Strax dependency
-scikit-learn==0.24.1
-scipy==1.6.2
+scikit-learn==0.24.2
+scipy==1.6.3
 seaborn==0.11.1
 strax==0.15.1
 straxen==0.18.2
@@ -52,9 +52,9 @@ snakeviz==2.1.0
 sphinx==3.5.4
 tables==3.6.1     # pytables, necessary for pandas hdf5 i/o
 tensorflow==2.4.1 # TF2.4.1 should not bring in additional AVX2 requirements (https://github.com/XENONnT/base_environment/issues/433)
-tensorflow_probability==0.12.1
+tensorflow_probability==0.12.2
 tqdm==4.60.0
 utilix==0.5.3      # dependency for straxen, admix
 wfsim==0.5.1
 xe-admix==0.3.1
-zstd==1.4.8.1     # Strax dependency
+zstd==1.4.9.1     # Strax dependency
