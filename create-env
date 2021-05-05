@@ -78,6 +78,10 @@ rm -f ${target_dir}/anaconda/pkgs/rope-0.11.0-py37_0/info/LICENSE.txt
 announce "Activating Anaconda environment"
 source $target_dir/anaconda/bin/activate ${env_name}
 
+# Forging nodejs (for jupyter)
+announce "Installing nodejs"
+conda install -c conda-forge/label/main nodejs
+
 # boost
 announce "Installing Boost"
 cd ${target_dir}
@@ -95,10 +99,6 @@ rm -rf boost_*
 # required by gfal2-python, but maybe others
 ln -s ${target_dir}/anaconda/envs/${env_name}/lib/libboost_python38.so ${target_dir}/anaconda/envs/${env_name}/lib/libboost_python.so
 ln -s ${target_dir}/anaconda/envs/${env_name}/lib/libboost_python38.a ${target_dir}/anaconda/envs/${env_name}/lib/libboost_python.a
-
-jupyter labextension install @pyviz/jupyterlab_pyviz   # for waveform display in jupyterlab
-#announce "Installing non-grid XENON software"
-#pip install git+https://github.com/XENONnT/admix.git
 
 # gfal2-python bindings
 announce "Installing GFAL2 Python bindings"
