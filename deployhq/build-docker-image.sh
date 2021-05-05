@@ -19,7 +19,7 @@ echo
 cd ~/deployhq/
 
 # for logs
-git status
+ls
 
 # for logs, cat the requirements file
 cat requirements.txt
