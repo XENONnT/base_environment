@@ -18,6 +18,12 @@ echo
 # DeployHQ puts the checkout in ~/deployhq/
 cd ~/deployhq/
 
+# for logs
+ls
+
+# for logs, cat the requirements file
+cat requirements.txt
+
 # ensure we have the latest base image
 docker pull opensciencegrid/osgvo-el7
 

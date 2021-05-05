@@ -86,7 +86,7 @@ conda install -c conda-forge/label/main nodejs
 announce "Installing Boost"
 cd ${target_dir}
 rm -rf boost_*
-wget -nv https://dl.bintray.com/boostorg/release/1.74.0/source/boost_1_74_0.tar.bz2
+wget -nv https://boostorg.jfrog.io/artifactory/main/release/1.74.0/source/boost_1_74_0.tar.bz2
 tar xjf boost_1_74_0.tar.bz2
 rm -f boost_1_74_0.tar.bz2
 cd boost_1_74_0
@@ -99,10 +99,6 @@ rm -rf boost_*
 # required by gfal2-python, but maybe others
 ln -s ${target_dir}/anaconda/envs/${env_name}/lib/libboost_python38.so ${target_dir}/anaconda/envs/${env_name}/lib/libboost_python.so
 ln -s ${target_dir}/anaconda/envs/${env_name}/lib/libboost_python38.a ${target_dir}/anaconda/envs/${env_name}/lib/libboost_python.a
-
-# jupyter labextension install @pyviz/jupyterlab_pyviz   # for waveform display in jupyterlab
-#announce "Installing non-grid XENON software"
-#pip install git+https://github.com/XENONnT/admix.git
 
 # gfal2-python bindings
 announce "Installing GFAL2 Python bindings"
