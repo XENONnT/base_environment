@@ -285,12 +285,12 @@ pytest straxen || { echo 'straxen tests failed' ; exit 1; }
 rm -r straxen
 
 # wfsim
-announce " ... wfsim tests"
-wfsim_version=`python -c "import wfsim; print(wfsim.__version__)"`
-announce "Testing $wfsim_version"
-git clone --single-branch --branch v$wfsim_version https://github.com/XENONnT/wfsim ./wfsim
-pytest wfsim || { echo 'wfsim tests failed' ; exit 1; }
-rm -r wfsim
+# announce " ... wfsim tests"
+# wfsim_version=`python -c "import wfsim; print(wfsim.__version__)"`
+# announce "Testing $wfsim_version"
+# git clone --single-branch --branch v$wfsim_version https://github.com/XENONnT/wfsim ./wfsim
+# pytest wfsim || { echo 'wfsim tests failed' ; exit 1; }
+# rm -r wfsim
 
 # Done testing
 announce "All done!"
