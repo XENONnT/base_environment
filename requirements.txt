@@ -6,7 +6,7 @@ codenamize==1.2.3  # for human-readable hashing
 commentjson==0.9.0 # Straxen dependency
 coveralls==3.0.1
 cython==0.29.23
-dask==2021.4.1    # straxen dependency, upgrade to 2021.3.1 breaks straxen at py3.6
+dask==2021.4.1
 dask-jobqueue==0.7.2
 datashader==0.12.1
 dill==0.3.3      # Strax dependency
@@ -46,8 +46,8 @@ torch==1.8.1     # Strax dependency
 scikit-learn==0.24.2
 scipy==1.6.3
 seaborn==0.11.1
-strax==0.15.1
-straxen==0.18.3
+strax==0.15.2
+straxen==0.18.4
 snakeviz==2.1.0
 sphinx==3.5.4
 tables==3.6.1     # pytables, necessary for pandas hdf5 i/o
