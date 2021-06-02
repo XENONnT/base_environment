@@ -11,7 +11,7 @@ dask-jobqueue==0.7.2
 datashader==0.12.1
 dill==0.3.3      # Strax dependency
 distributed===2021.4.1     # Dask extension
-flake8==3.9.1
+flake8==3.9.2
 flamedisx==1.4.0
 future==0.18.2
 GitPython==3.1.14   # Pegasus dependency
