@@ -8,6 +8,5 @@ runs:
   image: 'Dockerfile'
   args:
     - while sleep 9m; do echo "=====[ Build is still running after $SECONDS seconds ]====="; done &
-    - docker login -u $EVAN_DOCKER_USER -p $EVAN_DOCKER_PW
     - docker build -t development .
     - kill %1
