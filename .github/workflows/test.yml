@@ -9,10 +9,14 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-        - name: Run the test
-          run: |
+      - name: Checkout repo
+        uses: actions/checkout@v2
+      - name: Run the test
+        run: |
             ls
             pwd
+            ls ..
+            sleep 1
             while sleep 9m; do echo "=====[ Build is still running after $SECONDS seconds ]====="; done &
             docker build -t development .
             kill %1
