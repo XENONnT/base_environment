@@ -9,8 +9,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-        - name: Setup python
+        - name: Run the test
           run: |
+            ls
+            pwd
             while sleep 9m; do echo "=====[ Build is still running after $SECONDS seconds ]====="; done &
             docker build -t development .
             kill %1
