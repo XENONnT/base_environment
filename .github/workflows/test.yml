@@ -1,17 +1,16 @@
 name: 'Test build'
-description: 'bla'
-jobs:
-    build:
-        runs-on: ubuntu-latest
 on:
   workflow_dispatch:
   release:
     types: [created]
   pull_request:
-runs:
-  using: 'docker'
-  image: 'Dockerfile'
-  args:
-    - while sleep 9m; do echo "=====[ Build is still running after $SECONDS seconds ]====="; done &
-    - docker build -t development .
-    - kill %1
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+        - name: Setup python
+          run: |
+              - while sleep 9m; do echo "=====[ Build is still running after $SECONDS seconds ]====="; done &
+              - docker build -t development .
+              - kill %1
