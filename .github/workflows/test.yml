@@ -3,6 +3,11 @@ description: 'bla'
 jobs:
     build:
         runs-on: ubuntu-latest
+on:
+  workflow_dispatch:
+  release:
+    types: [created]
+  pull_request:
 runs:
   using: 'docker'
   image: 'Dockerfile'
