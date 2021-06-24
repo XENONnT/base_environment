@@ -150,7 +150,7 @@ mailtemplatedir=/opt/rucio/etc/mail_templates
 [client]
 rucio_host = https://rucio-xenon.grid.uchicago.edu:443
 auth_host = https://rucio-xenon.grid.uchicago.edu:443
-auth_type = x509
+auth_type = x509_proxy
 
 # ca_cert = /etc/grid-security/certificates
 ca_cert = \$X509_CERT_DIR
