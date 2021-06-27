@@ -17,6 +17,9 @@ jobs:
            cat > ~/.ssh/id_rsa << EOF
            ${{ secrets.PRIVATE_KEY }}
            EOF
+           cat > ~/.ssh/known_hosts << EOF
+           ${{ secrets.HOST_KEY }}
+           EOF
       - name: Get proxy
         run: |
            scp ${{ secrets.PROXY_LOCATION }} ~/
