@@ -215,6 +215,7 @@ if [ "x\$X509_CERT_DIR" = "x" ]; then
     export X509_CERT_DIR=/etc/grid-security/certificates
 fi
 
+
 # site-specific stuff
 for space in /project2/lgrandi/grid_proxy /xenon/grid_proxy; do
     if [ -d \$space ]; then
@@ -267,6 +268,8 @@ EOF
 announce "Running tests"
 
 . ${target_dir}/setup.sh
+
+export X509_USER_PROXY=~/user_cert
 
 # gfal2
 announce " ... gfal2 tests"
