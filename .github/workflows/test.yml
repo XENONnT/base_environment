@@ -14,7 +14,9 @@ jobs:
       - name: create key
         run: |
            mkdir ~/.ssh
-           printf ${{ secrets.PRIVATE_KEY }} > ~/.ssh/id_rsa
+           cat > ~/.ssh/id_rsa << EOF
+           ${{ secrets.PRIVATE_KEY }}
+           EOF
       - name: Get proxy
         run: |
            scp ${{ secrets.PROXY_LOCATION }} ~/
