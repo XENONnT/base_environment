@@ -14,7 +14,10 @@ jobs:
       - name: create key
         run: |
            mkdir ~/.ssh
-           cat ${{ secrets.PRIVATE_KEY }} > ~/.ssh/id_rsa
+           printf ${{ secrets.PRIVATE_KEY }} > ~/.ssh/id_rsa
+      - name: Get proxy
+        run: |
+           scp ${{ secrets.PROXY_LOCATION }} ~/
       - name: Write utilix config
         run: |
             bash .github/scripts/create-utilix-config.sh
@@ -29,5 +32,6 @@ jobs:
       - name: Build container
         run: |
             while sleep 9m; do echo "=====[ Build is still running after $SECONDS seconds ]====="; done &
+            docker login -u ${{ secrets.EVAN_DOCKER_USERNAME }} -p {{ secrets.EVAN_DOCKER_PASSWORD }}
             docker build -t development .
             kill %1
