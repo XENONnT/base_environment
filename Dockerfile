@@ -1,7 +1,7 @@
 FROM opensciencegrid/osgvo-el7
 
 LABEL opensciencegrid.name="XENONnT"
-LABEL opensciencegrid.description="Base software environment for XENONnT, including Python 3.6 and data management tools"
+LABEL opensciencegrid.description="Base software environment for XENONnT, including Python 3.8 and data management tools"
 LABEL opensciencegrid.url="http://www.xenon1t.org/"
 LABEL opensciencegrid.category="Project"
 LABEL opensciencegrid.definition_url="https://github.com/XENONnT/base_environment"
