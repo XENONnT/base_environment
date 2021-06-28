@@ -269,10 +269,6 @@ announce "Running tests"
 
 . ${target_dir}/setup.sh
 
-export X509_USER_PROXY=~/user_cert
-
-rucio whoami
-
 # gfal2
 announce " ... gfal2 tests"
 python -c 'import gfal2'
