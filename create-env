@@ -6,7 +6,7 @@
 
 gfal2_bindings_version=ac5cd70bc0654cd5b72cc01085eeaafb469b9622 # project is not releasing often enough
 gfal2_util_version=1.6.0
-rucio_version=1.21.7
+rucio_version=1.23.14
 # admix_version=0.2.3 # commented out to use master
 
 #######################################################################
@@ -150,7 +150,7 @@ mailtemplatedir=/opt/rucio/etc/mail_templates
 [client]
 rucio_host = https://rucio-xenon.grid.uchicago.edu:443
 auth_host = https://rucio-xenon.grid.uchicago.edu:443
-auth_type = x509
+auth_type = x509_proxy
 
 # ca_cert = /etc/grid-security/certificates
 ca_cert = \$X509_CERT_DIR
@@ -215,6 +215,7 @@ if [ "x\$X509_CERT_DIR" = "x" ]; then
     export X509_CERT_DIR=/etc/grid-security/certificates
 fi
 
+
 # site-specific stuff
 for space in /project2/lgrandi/grid_proxy /xenon/grid_proxy; do
     if [ -d \$space ]; then
@@ -272,29 +273,29 @@ announce "Running tests"
 announce " ... gfal2 tests"
 python -c 'import gfal2'
 
-# Strax
-announce " ... strax tests"
-strax_version=`python -c "import strax; print(strax.__version__)"`
-git clone --single-branch --branch v$strax_version https://github.com/AxFoundation/strax.git
-pytest strax || { echo 'strax tests failed' ; exit 1; }
-rm -r strax
+# # Strax
+# announce " ... strax tests"
+# strax_version=`python -c "import strax; print(strax.__version__)"`
+# git clone --single-branch --branch v$strax_version https://github.com/AxFoundation/strax.git
+# pytest strax || { echo 'strax tests failed' ; exit 1; }
+# rm -r strax
 
-# Straxen
-announce " ... straxen tests"
-straxen_version=`python -c "import straxen; print(straxen.__version__)"`
-git clone --single-branch --branch v$straxen_version https://github.com/XENONnT/straxen.git
-bash straxen/.github/scripts/create_pre_apply_function.sh $HOME
-pytest straxen || { echo 'straxen tests failed' ; exit 1; }
-rm -r straxen
-rm $HOME/pre_apply_function.py
+# # Straxen
+# announce " ... straxen tests"
+# straxen_version=`python -c "import straxen; print(straxen.__version__)"`
+# git clone --single-branch --branch v$straxen_version https://github.com/XENONnT/straxen.git
+# bash straxen/.github/scripts/create_pre_apply_function.sh $HOME
+# pytest straxen || { echo 'straxen tests failed' ; exit 1; }
+# rm -r straxen
+# rm $HOME/pre_apply_function.py
 
-# wfsim
-announce " ... wfsim tests"
-wfsim_version=`python -c "import wfsim; print(wfsim.__version__)"`
-announce "Testing $wfsim_version"
-git clone --single-branch --branch v$wfsim_version https://github.com/XENONnT/wfsim ./wfsim
-pytest wfsim || { echo 'wfsim tests failed' ; exit 1; }
-rm -r wfsim
+# # wfsim
+# announce " ... wfsim tests"
+# wfsim_version=`python -c "import wfsim; print(wfsim.__version__)"`
+# announce "Testing $wfsim_version"
+# git clone --single-branch --branch v$wfsim_version https://github.com/XENONnT/wfsim ./wfsim
+# pytest wfsim || { echo 'wfsim tests failed' ; exit 1; }
+# rm -r wfsim
 
 # Done testing
 announce "All done!"

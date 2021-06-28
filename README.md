@@ -1,6 +1,6 @@
 # base_environment
 
-[![Build Status](https://travis-ci.org/XENONnT/base_environment.svg?branch=master)](https://travis-ci.org/XENONnT/base_environment)
+[![Test build](https://github.com/XENONnT/base_environment/actions/workflows/test.yml/badge.svg?branch=master)](https://github.com/XENONnT/base_environment/actions/workflows/test.yml)
 [![Dependabot](https://api.dependabot.com/badges/status?host=github&repo=XENONnT/base_environment)](https://app.dependabot.com/accounts/XENONnT/projects/134273)
 
 Base software environment for XENONnT, including Python 3.6 and data management tools.
