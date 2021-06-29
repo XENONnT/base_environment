@@ -23,8 +23,8 @@ jobs:
            EOF
       - name: Get proxy
         run: |
-           scp ${{ secrets.PROXY_LOCATION }} ~/
-           ls -l ~/user_cert
+           scp ${{ secrets.PROXY_LOCATION }} ./
+           ls -l $PWD/user_cert
       - name: Write utilix config
         run: |
             bash .github/scripts/create-utilix-config.sh
