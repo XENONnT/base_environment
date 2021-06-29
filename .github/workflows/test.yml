@@ -44,5 +44,7 @@ jobs:
       - name: Build container
         run: |
             while sleep 9m; do echo "=====[ Build is still running after $SECONDS seconds ]====="; done &
-            docker build -t development .
-            kill %1
+            docker build -t testing . --build-arg XENONnT_TAG=XENONnT_testing
+      - name: Run tests
+        run: |
+             docker run -v $HOME:/home --env HOME=/home X509_USER_PROXY=/home/user_cert testing:latest bash /home/base_environment/.github/scripts/do_tests.sh
