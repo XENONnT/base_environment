@@ -47,4 +47,4 @@ jobs:
             docker build -t testing . --build-arg XENONnT_TAG=XENONnT_testing
       - name: Run tests
         run: |
-             docker run -v $PWD:/home --env HOME=/home --env X509_USER_PROXY=/home/user_cert testing:latest ls
+             docker run -v $PWD:/home --env HOME=/home --env X509_USER_PROXY=/home/user_cert testing:latest ls /home
