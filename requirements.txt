@@ -9,7 +9,7 @@ cython==0.29.23
 dask==2021.4.1
 dask-jobqueue==0.7.2
 datashader==0.12.1
-dill==0.3.3      # Strax dependency
+dill==0.3.4      # Strax dependency
 distributed===2021.4.1     # Dask extension
 flake8==3.9.2
 flamedisx==1.4.0
