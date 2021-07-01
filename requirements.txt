@@ -1,5 +1,5 @@
 astropy==4.2.1
-blosc==1.10.2       # Strax dependency
+blosc==1.10.4       # Strax dependency
 bokeh==2.3.2
 boltons==21.0.0
 codenamize==1.2.3  # for human-readable hashing
