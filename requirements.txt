@@ -16,7 +16,7 @@ flamedisx==1.4.0
 future==0.18.2
 GitPython==3.1.17   # Pegasus dependency
 holoviews==1.14.4
-hypothesis==6.13.10
+hypothesis==6.14.0
 iminuit==2.6.1
 ipympl==0.7.0   # For online monitoring
 jedi==0.17.2    # upgrading to 0.18.0 breaks autocomplete in ipython
