@@ -7,8 +7,7 @@
 gfal2_bindings_version=ac5cd70bc0654cd5b72cc01085eeaafb469b9622 # project is not releasing often enough
 gfal2_util_version=1.6.0
 rucio_version=1.23.14
-# admix_version=0.2.3 # commented out to use master
-
+cutax_version=0.1.0
 #######################################################################
 
 set -e
@@ -229,6 +228,21 @@ done
 config_path=/project2/lgrandi/xenonnt/xenon.config
 if [ -e \$config_path ]; then
    export XENON_CONFIG=\$config_path
+fi
+
+# grab a local cutax installation if we have one
+MIDWAY_CUTAX_DIR=/dali/lgrandi/xenonnt/software/cutax/v${cutax_version}
+OSG_CUTAX_DIR=/xenon/software/cutax/v${cutax_version}
+if [ "x\$CUTAX_LOCATION" = "x" ]; then
+  for dir in $MIDWAY_CUTAX_DIR $OSG_CUTAX_DIR; do
+    if [ -e \$dir ]; then
+       export CUTAX_LOCATION=\$dir
+    fi
+  done
+fi
+
+if [ -n "\CUTAX_LOCATION" ]; then
+  pip install -e $CUTAX_LOCATION --no-deps --quiet --no-input
 fi
 
 EOF
