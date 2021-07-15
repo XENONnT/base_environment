@@ -242,7 +242,7 @@ if [ "x\${CUTAX_LOCATION}" = "x" ]; then
 fi
 
 if [ -n "\${CUTAX_LOCATION}" ]; then
-  pip install -e ${CUTAX_LOCATION} --no-deps --quiet --no-input
+  pip install -e \${CUTAX_LOCATION} --no-deps --quiet --no-input
 fi
 
 EOF
