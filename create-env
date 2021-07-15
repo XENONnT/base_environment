@@ -233,16 +233,16 @@ fi
 # grab a local cutax installation if we have one
 MIDWAY_CUTAX_DIR=/dali/lgrandi/xenonnt/software/cutax/v${cutax_version}
 OSG_CUTAX_DIR=/xenon/software/cutax/v${cutax_version}
-if [ "x\$CUTAX_LOCATION" = "x" ]; then
-  for dir in $MIDWAY_CUTAX_DIR $OSG_CUTAX_DIR; do
+if [ "x\${CUTAX_LOCATION}" = "x" ]; then
+  for dir in ${MIDWAY_CUTAX_DIR} ${OSG_CUTAX_DIR}; do
     if [ -e \$dir ]; then
        export CUTAX_LOCATION=\$dir
     fi
   done
 fi
 
-if [ -n "\CUTAX_LOCATION" ]; then
-  pip install -e $CUTAX_LOCATION --no-deps --quiet --no-input
+if [ -n "\${CUTAX_LOCATION}" ]; then
+  pip install -e ${CUTAX_LOCATION} --no-deps --quiet --no-input
 fi
 
 EOF
