@@ -234,7 +234,7 @@ fi
 MIDWAY_CUTAX_DIR=/dali/lgrandi/xenonnt/software/cutax/v${cutax_version}
 OSG_CUTAX_DIR=/xenon/software/cutax/v${cutax_version}
 if [ "x\${CUTAX_LOCATION}" = "x" ]; then
-  for dir in \{MIDWAY_CUTAX_DIR} \${OSG_CUTAX_DIR}; do
+  for dir in \${MIDWAY_CUTAX_DIR} \${OSG_CUTAX_DIR}; do
     if [ -e \$dir ]; then
        export CUTAX_LOCATION=\$dir
     fi
