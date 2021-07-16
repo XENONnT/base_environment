@@ -243,7 +243,7 @@ fi
 
 if [ -n "\${CUTAX_LOCATION}" ]; then
   export CUTAX_LOCATION
-  pip install -e \${CUTAX_LOCATION} --no-deps --quiet --no-input
+  pip install \${CUTAX_LOCATION} --no-deps --quiet --no-input --user
 fi
 
 EOF
