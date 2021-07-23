@@ -55,7 +55,7 @@ tables==3.6.1     # pytables, necessary for pandas hdf5 i/o
 tensorflow==2.5.0 # TF2.4.1 should not bring in additional AVX2 requirements (https://github.com/XENONnT/base_environment/issues/433)
 tensorflow_probability==0.13.0
 tqdm==4.61.2
-utilix==0.6.0      # dependency for straxen, admix
+utilix==0.6.1      # dependency for straxen, admix
 wfsim==0.5.6
 xe-admix==0.3.1
 zstd==1.4.9.1     # Strax dependency
