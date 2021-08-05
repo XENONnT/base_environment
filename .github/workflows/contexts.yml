@@ -19,6 +19,7 @@ jobs:
         with:
           repository: XENONnT/cutax
           token: ${{ secrets.CUTAX_TOKEN }}
+          path: ./cutax
       - name: Write utilix config
         run: |
             bash .github/scripts/create-utilix-config.sh
@@ -36,7 +37,7 @@ jobs:
       - name: install cutax
         run: |
             cd cutax
-            python setup.py install
+            python setup.py develop --user
             cd ..
       - name: test cutax
         run: python -c "import cutax; print(cutax.__version__)"
