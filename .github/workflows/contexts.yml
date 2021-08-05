@@ -19,6 +19,7 @@ jobs:
           repository: XENONnT/cutax
           token: ${{ secrets.CUTAX_TOKEN }}
           path: ./cutax
+          fetch-depth: 0
       - name: create key
         run: |
            mkdir ~/.ssh
