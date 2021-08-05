@@ -10,7 +10,7 @@ on:
 jobs:
   update:
     runs-on: ubuntu-latest
-#    container: xenonnt/base-environment:latest
+    container: xenonnt/base-environment:latest
     steps:
       - name: Checkout repo
         uses: actions/checkout@v2
