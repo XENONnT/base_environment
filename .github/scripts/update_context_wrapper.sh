@@ -2,6 +2,9 @@
 
 . /opt/XENONnT/setup.sh
 
+ls
+cd $HOME
+ls
 cd cutax
 python setup.py develop --user
 cd ..
