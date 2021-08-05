@@ -20,6 +20,20 @@ jobs:
           repository: XENONnT/cutax
           token: ${{ secrets.CUTAX_TOKEN }}
           path: ./cutax
+      - name: create key
+        run: |
+           mkdir ~/.ssh
+           cat > ~/.ssh/id_rsa << EOF
+           ${{ secrets.PRIVATE_KEY }}
+           EOF
+           chmod 400 ~/.ssh/id_rsa
+           cat > ~/.ssh/known_hosts << EOF
+           ${{ secrets.HOST_KEY }}
+           EOF
+      - name: Get proxy
+        run: |
+           scp ${{ secrets.PROXY_LOCATION }} ./
+           ls -l $PWD/user_cert
       - name: Write utilix config
         run: |
             bash .github/scripts/create-utilix-config.sh
@@ -32,20 +46,6 @@ jobs:
           PYMONGO_USER: ${{ secrets.PYMONGO_USER }}
           PYMONGO_PASSWORD: ${{ secrets.PYMONGO_PASSWORD }}
           PYMONGO_DATABASE: ${{ secrets.PYMONGO_DATABASE }}
-      - name: create key
-        run: |
-          mkdir ~/.ssh
-          cat > ~/.ssh/id_rsa << EOF
-          ${{ secrets.PRIVATE_KEY }}
-          EOF
-          chmod 400 ~/.ssh/id_rsa
-          cat > ~/.ssh/known_hosts << EOF
-          ${{ secrets.HOST_KEY }}
-          EOF
-      - name: Get proxy
-        run: |
-          scp ${{ secrets.PROXY_LOCATION }} ./
-          ls -l $PWD/user_cert
       - name: setup env
         run: |
              source /opt/XENONnT/setup.sh
