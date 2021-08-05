@@ -68,7 +68,7 @@ export PKG_CONFIG_PATH=${target_dir}/anaconda/envs/${env_name}/lib64/pkgconfig:/
 
 announce "Installing Anaconda environment"
 echo -e "name: ${env_name}\n$(cat conda_xnt.yml | grep -v '^name:.*')" > conda_xnt_tmp.yml         # Add name to the env yml
-$target_dir/anaconda/bin/conda env create -f conda_xnt_tmp.yml
+$target_dir/anaconda/bin/conda env create -f conda_xnt_tmp.yml 
 
 announce "Cleaning Anaconda environment"
 $target_dir/anaconda/bin/conda clean --all --yes
