@@ -1,4 +1,4 @@
-name: 'Test build'
+name: 'Test and update contexts'
 on:
   workflow_dispatch:
   release:
