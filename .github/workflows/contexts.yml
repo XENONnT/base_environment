@@ -34,12 +34,8 @@ jobs:
           PYMONGO_DATABASE: ${{ secrets.PYMONGO_DATABASE }}
       - name: setup env
         run: |
-           source /opt/XENONnT/setup.sh
-           which python
-#      - name: install cutax
-#        run: |
-#            cd cutax
-#            python setup.py develop --user
-#            cd ..
-#      - name: test cutax
-#        run: python -c "import cutax; print(cutax.__version__)"
+             source /opt/XENONnT/setup.sh
+             cd cutax
+             python setup.py develop --user
+             cd ..
+             python -c "import cutax; print(cutax.__version__)"
