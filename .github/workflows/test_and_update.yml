@@ -1,12 +1,12 @@
-name: 'Test build'
+name: 'Test and update contexts'
 on:
   workflow_dispatch:
   release:
     types: [created]
   pull_request:
-  push:
-    branches:
-      - master
+#  push:
+#    branches:
+#      - master
 
 jobs:
   build:
@@ -48,7 +48,17 @@ jobs:
       - name: Build container
         run: |
             while sleep 9m; do echo "=====[ Build is still running after $SECONDS seconds ]====="; done &
-            docker build -t testing . --build-arg XENONnT_TAG=XENONnT_testing
+            docker build -t testing . --build-arg XENONnT_TAG=testing
       - name: Run tests
-        run: |
-             docker run -v $PWD:/home --env HOME=/home --env X509_USER_PROXY=/home/user_cert testing:latest bash /home/.github/scripts/do_tests.sh
+        run: docker run -v $PWD:/home --env HOME=/home --env X509_USER_PROXY=/home/user_cert testing:latest bash /home/.github/scripts/do_tests.sh
+      - name: checkout cutax
+        uses: actions/checkout@v2
+        with:
+          repository: XENONnT/cutax
+          token: ${{ secrets.CUTAX_TOKEN }}
+          path: cutax
+          fetch-depth: 0
+        if: github.event_name != 'pull_request'
+      - name: Update context collection
+        run: docker run -v $PWD:/home --env HOME=/home --env X509_USER_PROXY=/home/user_cert testing:latest bash /home/.github/scripts/update_context_wrapper.sh
+        if: github.event_name != 'pull_request'
