@@ -59,7 +59,7 @@ export LC_ALL=en_US.utf8
 export LANG=en_US.utf8
 
 announce "Installing Miniconda"
-wget -nv -O conda_setup.sh https://repo.anaconda.com/miniconda/Miniconda3-py38_4.9.2-Linux-x86_64.sh
+wget -nv -O conda_setup.sh https://repo.anaconda.com/miniconda/Miniconda3-py38_4.10.3-Linux-x86_64.sh
 
 bash conda_setup.sh -b -p $target_dir/anaconda
 rm -f conda_setup.sh
