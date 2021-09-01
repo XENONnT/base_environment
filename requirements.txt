@@ -33,7 +33,7 @@ nbsphinx==0.8.6
 nestpy==1.4.8     # WFsim dependency
 npshmex==0.2.1    # Strax dependency
 numba==0.53.1     # Strax dependency
-numpy==1.19.5
+numpy==1.21.2
 pandoc==1.1.0
 parso==0.7.1     # upgrading to 0.8.0 breaks autocomplete in ipython
 pdmongo==0.1.0     # Strax dependency
