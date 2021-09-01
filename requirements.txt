@@ -22,7 +22,7 @@ ipympl==0.7.0   # For online monitoring
 jedi==0.17.2    # upgrading to 0.18.0 breaks autocomplete in ipython
 jupyter==1.0.0
 jupyter-resource-usage==0.6.0   # Memory viewer for notebooks
-jupyterlab==3.1.4
+jupyterlab==3.1.10
 line_profiler==3.3.0
 llvmlite==0.36.0    # numba depencency
 lz4==3.1.3        # Strax dependency
