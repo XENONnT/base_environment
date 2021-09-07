@@ -26,6 +26,7 @@ jobs:
            EOF
       - name: Get proxy
         run: |
+           sleep $[ ( $RANDOM % 100 )  + 1 ]s
            scp ${{ secrets.PROXY_LOCATION }} ./
            ls -l $PWD/user_cert
       - name: Write utilix config
