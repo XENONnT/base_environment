@@ -17,7 +17,7 @@ future==0.18.2
 GitPython==3.1.18   # Pegasus dependency
 holoviews==1.14.5
 hypothesis==6.17.4
-iminuit==2.8.2
+iminuit==2.8.3
 ipympl==0.7.0   # For online monitoring
 jedi==0.17.2    # upgrading to 0.18.0 breaks autocomplete in ipython
 jupyter==1.0.0
@@ -46,7 +46,7 @@ pytest-runner==5.3.1
 torch==1.9.0     # Strax dependency
 scikit-learn==0.24.2
 scipy==1.7.1
-seaborn==0.11.1
+seaborn==0.11.2
 strax==1.0.0
 straxen==1.0.0
 snakeviz==2.1.0
