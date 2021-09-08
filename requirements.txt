@@ -6,18 +6,18 @@ codenamize==1.2.3  # for human-readable hashing
 commentjson==0.9.0 # Straxen dependency
 coveralls==3.2.0
 cython==0.29.24
-dask==2021.7.2
+dask==2021.8.1
 dask-jobqueue==0.7.3
 datashader==0.13.0
 dill==0.3.4      # Strax dependency
-distributed===2021.7.2     # Dask extension
+distributed===2021.8.1     # Dask extension
 flake8==3.9.2
 flamedisx==1.5.0
 future==0.18.2
 GitPython==3.1.18   # Pegasus dependency
 holoviews==1.14.5
 hypothesis==6.17.4
-iminuit==2.8.2
+iminuit==2.8.3
 ipympl==0.7.0   # For online monitoring
 jedi==0.17.2    # upgrading to 0.18.0 breaks autocomplete in ipython
 jupyter==1.0.0
@@ -46,7 +46,7 @@ pytest-runner==5.3.1
 torch==1.9.0     # Strax dependency
 scikit-learn==0.24.2
 scipy==1.7.1
-seaborn==0.11.1
+seaborn==0.11.2
 strax==1.0.0
 straxen==1.0.0
 snakeviz==2.1.0
