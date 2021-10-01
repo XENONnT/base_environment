@@ -18,7 +18,7 @@ GitPython==3.1.18   # Pegasus dependency
 holoviews==1.14.5
 hypothesis==6.17.4
 iminuit==2.8.3
-ipympl==0.7.0   # For online monitoring
+ipympl==0.8.0   # For online monitoring
 jedi==0.17.2    # upgrading to 0.18.0 breaks autocomplete in ipython
 jupyter==1.0.0
 jupyter-resource-usage==0.6.0   # Memory viewer for notebooks
