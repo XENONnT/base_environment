@@ -57,6 +57,5 @@ tensorflow_probability==0.14.1
 tqdm==4.62.3
 utilix==0.6.4      # dependency for straxen, admix
 wfsim==0.5.7
-git+git://github.com/ershockley/admix@v1.0.3
-#xe-admix==0.3.1
+git+git://github.com/ershockley/admix@v1.0.4
 zstd==1.4.9.1     # Strax dependency

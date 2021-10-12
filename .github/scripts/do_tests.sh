@@ -8,6 +8,10 @@ echo "Running tests"
 echo " ... gfal2 tests"
 python -c 'import gfal2'
 
+# admix
+echo "... admix tests"
+python -c 'import admix'
+
 # Strax
 echo " ... strax tests"
 strax_version=`python -c "import strax; print(strax.__version__)"`
