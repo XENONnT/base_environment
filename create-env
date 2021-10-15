@@ -232,7 +232,7 @@ fi
 
 # grab a local cutax installation if we have one
 MIDWAY_CUTAX_DIR=/dali/lgrandi/xenonnt/software/cutax/${cutax_version}
-OSG_CUTAX_DIR=/xenon/software/cutax/${cutax_version}
+OSG_CUTAX_DIR=/xenon/xenonnt/software/cutax/${cutax_version}
 if [ "x\${CUTAX_LOCATION}" = "x" ]; then
   for dir in \${MIDWAY_CUTAX_DIR} \${OSG_CUTAX_DIR}; do
     if [ -e \$dir ]; then
