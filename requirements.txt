@@ -47,8 +47,8 @@ torch==1.9.1     # Strax dependency
 scikit-learn==1.0
 scipy==1.7.1
 seaborn==0.11.2
-strax==1.0.0
-straxen==1.0.0
+strax==1.1.0
+straxen==1.1.0
 snakeviz==2.1.0
 sphinx==4.2.0
 tables==3.6.1     # pytables, necessary for pandas hdf5 i/o
