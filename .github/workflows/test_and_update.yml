@@ -59,8 +59,6 @@ jobs:
         with:
           mongodb-version: 4.2
       - name: Run tests
-        env:
-          TEST_MONGO_URI:  'mongodb://localhost:27017/'
         run: docker run -v $PWD:/home --env HOME=/home --env X509_USER_PROXY=/home/user_cert testing:latest bash /home/.github/scripts/do_tests.sh
       - name: checkout cutax
         uses: actions/checkout@v2
