@@ -59,7 +59,7 @@ jobs:
         with:
           mongodb-version: 4.2
       - name: Run tests
-        run: docker run -v $PWD:/home --env HOME=/home --env X509_USER_PROXY=/home/user_cert -p 27017:27017 testing:latest bash /home/.github/scripts/do_tests.sh
+        run: docker run -v $PWD:/home --env HOME=/home --env X509_USER_PROXY=/home/user_cert testing:latest bash /home/.github/scripts/do_tests.sh
       - name: checkout cutax
         uses: actions/checkout@v2
         with:
