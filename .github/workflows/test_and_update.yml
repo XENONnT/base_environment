@@ -41,6 +41,10 @@ jobs:
           PYMONGO_USER: ${{ secrets.PYMONGO_USER }}
           PYMONGO_PASSWORD: ${{ secrets.PYMONGO_PASSWORD }}
           PYMONGO_DATABASE: ${{ secrets.PYMONGO_DATABASE }}
+          XE1T_URL: ${{ secrets.XE1T_URL }}
+          XE1T_USER: ${{ secrets.XE1T_USER }}
+          XE1T_PASSWORD: ${{ secrets.XE1T_PASSWORD }}
+          XE1T_DATABASE: ${{ secrets.XE1T_DATABASE }}
       - name: Login to Docker Hub
         uses: docker/login-action@v1
         with:
@@ -50,8 +54,12 @@ jobs:
         run: |
             while sleep 9m; do echo "=====[ Build is still running after $SECONDS seconds ]====="; done &
             docker build -t testing . --build-arg XENONnT_TAG=testing
+      - name: Start test MongoDB (doesn't end up in any build or so)
+        uses: supercharge/mongodb-github-action@1.6.0
+        with:
+          mongodb-version: 4.2
       - name: Run tests
-        run: docker run -v $PWD:/home --env HOME=/home --env X509_USER_PROXY=/home/user_cert testing:latest bash /home/.github/scripts/do_tests.sh
+        run: docker run -v $PWD:/home --env HOME=/home --env X509_USER_PROXY=/home/user_cert --network host testing:latest bash /home/.github/scripts/do_tests.sh
       - name: checkout cutax
         uses: actions/checkout@v2
         with:

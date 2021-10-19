@@ -12,6 +12,9 @@ python -c 'import gfal2'
 echo "... admix tests"
 python -c 'import admix'
 
+# spool up test-database for tests
+export TEST_MONGO_URI='mongodb://localhost:27017/'
+
 # Strax
 echo " ... strax tests"
 strax_version=`python -c "import strax; print(strax.__version__)"`
