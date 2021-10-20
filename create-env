@@ -241,9 +241,16 @@ if [ "x\${CUTAX_LOCATION}" = "x" ]; then
   done
 fi
 
-if [ -e "\${CUTAX_LOCATION}" ]; then
-  export CUTAX_LOCATION
-  pip install \${CUTAX_LOCATION} -qq --no-deps --no-input --user
+if [ "x\$INSTALL_CUTAX" = "x" ]; then
+    export INSTALL_CUTAX=1
+fi
+
+if [ \$INSTALL_CUTAX -eq 1 ]; then
+  if [ -e "\${CUTAX_LOCATION}" ]; then
+    export CUTAX_LOCATION
+    export PYTHONPATH=\${CUTAX_LOCATION}:\$PYTHONPATH
+  else echo -e "Warning: you passed\nCUTAX_LOCATION=\${CUTAX_LOCATION}\nbut that path does not exist. Your cutax installation may not work."
+  fi
 fi
 
 EOF
