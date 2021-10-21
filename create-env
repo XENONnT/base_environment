@@ -216,7 +216,7 @@ fi
 
 
 # change where we cache the .pyc files
-export PYTHONPYCACHEPREFIX=/tmp
+export PYTHONPYCACHEPREFIX=/tmp/\$USER
 
 # site-specific stuff
 for space in /project2/lgrandi/grid_proxy /xenon/grid_proxy; do
