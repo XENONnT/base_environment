@@ -251,7 +251,6 @@ if [ \$INSTALL_CUTAX -eq 1 ]; then
   if [ -e "\${CUTAX_LOCATION}" ]; then
     export CUTAX_LOCATION
     export PYTHONPATH=\${CUTAX_LOCATION}:\$PYTHONPATH
-  else echo -e "Warning: you passed\nCUTAX_LOCATION=\${CUTAX_LOCATION}\nbut that path does not exist. Your cutax installation may not work."
   fi
 fi
 
