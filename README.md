@@ -1,7 +1,7 @@
 # base_environment
 
-[![Test build](https://github.com/XENONnT/base_environment/actions/workflows/test.yml/badge.svg?branch=master)](https://github.com/XENONnT/base_environment/actions/workflows/test.yml)
-[![Dependabot](https://api.dependabot.com/badges/status?host=github&repo=XENONnT/base_environment)](https://app.dependabot.com/accounts/XENONnT/projects/134273)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.5637096.svg)](https://doi.org/10.5281/zenodo.5637096)
+[![Test and update contexts](https://github.com/XENONnT/base_environment/actions/workflows/test_and_update.yml/badge.svg)](https://github.com/XENONnT/base_environment/actions/workflows/test_and_update.yml)
 
 Base software environment for XENONnT, including Python 3.6 and data management tools.
 
