@@ -28,7 +28,6 @@ git clone --single-branch --branch master https://github.com/XENONnT/straxen.git
 pip install -e straxen
 bash straxen/.github/scripts/create_pre_apply_function.sh $HOME
 pytest straxen || { echo 'straxen tests failed' ; exit 1; }
-rm -r straxen
 rm $HOME/pre_apply_function.py
 
 # wfsim
