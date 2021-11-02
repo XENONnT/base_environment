@@ -17,10 +17,9 @@ export TEST_MONGO_URI='mongodb://localhost:27017/'
 
 # Strax
 echo " ... strax tests"
-strax_version=`python -c "import strax; print(strax.__version__)"`
-git clone --single-branch --branch v$strax_version https://github.com/AxFoundation/strax.git
+git clone --single-branch --branch master https://github.com/AxFoundation/strax.git
+pip install -e strax
 pytest strax || { echo 'strax tests failed' ; exit 1; }
-rm -r strax
 
 # Straxen
 echo " ... straxen tests"
@@ -33,7 +32,6 @@ rm $HOME/pre_apply_function.py
 # wfsim
 echo " ... wfsim tests"
 wfsim_version=`python -c "import wfsim; print(wfsim.__version__)"`
-echo "Testing $wfsim_version"
-git clone --single-branch --branch v$wfsim_version https://github.com/XENONnT/wfsim ./wfsim
+git clone --single-branch --branch master https://github.com/XENONnT/wfsim ./wfsim
+pip install -e wfsim
 pytest wfsim || { echo 'wfsim tests failed' ; exit 1; }
-rm -r wfsim
