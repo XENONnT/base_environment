@@ -48,8 +48,6 @@ pyarrow==6.0.0   # Necessary for pandas feather i/o
 pymongo==3.12.1
 pytest==6.2.5
 pytest-runner==5.3.1
-torch==1.10.0     # Strax dependency
-typing_extensions==3.7.4.3                      # Tensorflow/bokeh depencency
 scikit-learn==1.0.1
 scipy==1.7.1
 seaborn==0.11.2
@@ -60,6 +58,7 @@ sphinx==4.2.0
 tables==3.6.1     # pytables, necessary for pandas hdf5 i/o
 tensorflow==2.6.1 # TF2.4.1 should not bring in additional AVX2 requirements (https://github.com/XENONnT/base_environment/issues/433)
 tensorflow_probability==0.14.1
+torch==1.10.0     # Strax dependency
 typing_extensions==3.7.4.3  # Tensorflow and bokeh dependency
 tqdm==4.62.3
 utilix==0.6.5      # dependency for straxen, admix
