@@ -50,7 +50,6 @@ pymongo==3.12.0
 pytest==6.2.5
 pytest-runner==5.3.1
 torch==1.9.1     # Strax dependency
-typing_extensions==3.7.4.3                      # Tensorflow/bokeh depencency
 scikit-learn==1.0.1
 scipy==1.7.1
 seaborn==0.11.2
