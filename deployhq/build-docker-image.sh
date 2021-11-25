@@ -25,7 +25,7 @@ ls
 cat requirements.txt
 
 # ensure we have the latest base image
-docker pull opensciencegrid/osgvo-el7
+docker pull opensciencegrid/osgvo-el7-cuda10
 
 # build the Docker image (minimized)
 docker build --no-cache --build-arg XENONnT_TAG=$TAG -t osgvo-xenon-layers .
