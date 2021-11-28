@@ -46,12 +46,18 @@ RUN  yum -y install centos-release-scl && \
     yum clean all && \
     localedef -i en_US -f UTF-8 en_US.UTF-8
 
-ADD create-env conda_xnt.yml requirements.txt /tmp/
+ADD create-env conda_xnt.yml /tmp/
 
 RUN source /opt/rh/devtoolset-9/enable && \
     cd /tmp && \
     bash create-env /opt/XENONnT ${XENONnT_TAG} && \
     rm -f create-env conda_xnt.yml
+
+ADD requirements.txt /tmp/
+RUN cd /tmp && pip install -r requirements.txt
+
+ADD xenon-requirements.txt /tmp/
+RUN cd /tmp && pip install -r xenon-requirements.txt
 
 # relax permissions so we can build cvmfs tar balls
 RUN chmod 1777 /cvmfs

@@ -4,5 +4,3 @@ dependencies:
   - nb_conda
   - pip
   - python=3.8
-  - pip:
-    - -r requirements.txt
