@@ -1,5 +1,5 @@
 strax==1.1.2
 straxen==1.1.3
 utilix==0.6.5      # dependency for straxen, admix
-wfsim==0.5.10
+wfsim==0.5.11
 git+git://github.com/ershockley/admix@v1.0.6
