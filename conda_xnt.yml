@@ -4,3 +4,5 @@ dependencies:
   - nb_conda
   - pip
   - python=3.8
+  - jupyter=1.0.0
+  - lupyterlab=3.2.1
