@@ -26,11 +26,6 @@ if [ "X$target_dir" = "X" ]; then
     exit 1
 fi
 
-if [ -e $target_dir ]; then
-    echo "Target directory already exists - refusing to work on it" >&1
-    exit 1
-fi
-
 announce "Activating Anaconda environment"
 source $target_dir/anaconda/bin/activate ${env_name}
 
