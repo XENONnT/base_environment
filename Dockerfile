@@ -53,15 +53,15 @@ RUN source /opt/rh/devtoolset-9/enable && \
     bash create-env /opt/XENONnT ${XENONnT_TAG} && \
     rm -f create-env conda_xnt.yml
 
-ADD requirements.txt /tmp/
-RUN cd /tmp && conda activate &&  \
-    pip install -r requirements.txt && \
-    rm -f requirements.txt
+ADD install-requirements requirements.txt /tmp/
+RUN cd /tmp && \
+    bash install-requirements /opt/XENONnT ${XENONnT_TAG} && \
+    rm -f install-requirements requirements.txt
 
-ADD xenon-requirements.txt /tmp/
-RUN cd /tmp && conda activate && \
-    pip install -r xenon-requirements.txt &&\
-    rm -f xenon-requirements.txt
+ADD install-xenon-requirements xenon-requirements.txt /tmp/
+RUN cd /tmp && \
+    bash install-xenon-requirements /opt/XENONnT ${XENONnT_TAG} && \
+    rm -f install-xenon-requirements xenon-requirements.txt
 
 # relax permissions so we can build cvmfs tar balls
 RUN chmod 1777 /cvmfs

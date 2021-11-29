@@ -1,0 +1,34 @@
+#!/bin/bash
+
+#######################################################################
+#
+# versions in this release
+
+gfal2_bindings_version=ac5cd70bc0654cd5b72cc01085eeaafb469b9622 # project is not releasing often enough
+gfal2_util_version=1.6.0
+rucio_version=1.23.14
+cutax_version=latest
+#######################################################################
+
+set -e
+
+target_dir=$1
+
+xenonnt_tag=$2
+if [ "x$xenonnt_tag" = "x" ]; then
+    xenonnt_tag=development
+fi
+
+env_name=XENONnT_${xenonnt_tag}
+
+if [ "X$target_dir" = "X" ]; then
+    echo "Please specify a target directory. Example: ./create-env /tmp/myenv" >&1
+    exit 1
+fi
+
+if [ -e $target_dir ]; then
+    echo "Target directory already exists - refusing to work on it" >&1
+    exit 1
+fi
+
+pip install -r xenon-requirements.txt
