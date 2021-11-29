@@ -54,12 +54,14 @@ RUN source /opt/rh/devtoolset-9/enable && \
     rm -f create-env conda_xnt.yml
 
 ADD install-requirements requirements.txt /tmp/
-RUN cd /tmp && \
+RUN source /opt/rh/devtoolset-9/enable && \
+    cd /tmp && \
     bash install-requirements /opt/XENONnT ${XENONnT_TAG} && \
     rm -f install-requirements requirements.txt
 
 ADD install-xenon-requirements xenon-requirements.txt /tmp/
-RUN cd /tmp && \
+RUN source /opt/rh/devtoolset-9/enable && \
+    cd /tmp && \
     bash install-xenon-requirements /opt/XENONnT ${XENONnT_TAG} && \
     rm -f install-xenon-requirements xenon-requirements.txt
 

@@ -26,5 +26,10 @@ if [ "X$target_dir" = "X" ]; then
     exit 1
 fi
 
+echo "Activating Anaconda environment"
+source $target_dir/anaconda/bin/activate ${env_name}
 
+echo "Installing xenon packages..."
 pip install -r xenon-requirements.txt
+
+echo "Done."

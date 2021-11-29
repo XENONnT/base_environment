@@ -26,7 +26,10 @@ if [ "X$target_dir" = "X" ]; then
     exit 1
 fi
 
-announce "Activating Anaconda environment"
+echo "Activating Anaconda environment"
 source $target_dir/anaconda/bin/activate ${env_name}
 
+echo "Installing third party packages..."
 pip install -r requirements.txt
+
+echo "Done."
