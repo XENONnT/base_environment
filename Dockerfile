@@ -199,6 +199,8 @@ RUN chmod 1777 /cvmfs
 
 COPY labels.json /.singularity.d/
 
+RUN RUN ldconfig
+
 # build info
 RUN echo "Timestamp:" `date --utc` | tee /image-build-info.txt
 
