@@ -45,7 +45,7 @@ pdmongo==0.1.0     # Strax dependency
 pika==1.2.0       # Pegasus
 psutil==5.8.0     # Strax dependency
 pyarrow==6.0.0   # Necessary for pandas feather i/o
-pymongo==3.12.1
+pymongo==3.12.1  # v4 brings breaking changes github.com/XENONnT/straxen/issues/782
 pytest==6.2.5
 pytest-runner==5.3.1
 scikit-learn==1.0.1
@@ -63,7 +63,7 @@ torch==1.10.0     # Strax dependency
 typing_extensions==3.7.4.3  # Tensorflow and bokeh dependency
 tqdm==4.62.3
 utilix==0.6.5      # dependency for straxen, admix
-wfsim==0.5.11
+wfsim==0.5.12
 git+git://github.com/ershockley/admix@v1.0.6
 xarray==0.19.0
 zstd==1.4.9.1     # Strax dependency
