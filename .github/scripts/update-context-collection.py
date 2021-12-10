@@ -1,7 +1,6 @@
 import strax
 import straxen
 import cutax
-from cutax.contexts import __all__ as context_list
 from utilix import DB
 import datetime
 
@@ -10,9 +9,12 @@ db = DB()
 
 
 def main():
+    # get contexts
+    context_list = [d for d in dir(cutax.contexts) if 'xenonnt' in d]
     for context in context_list:
         # pass cuts_for=None so that we don't track the cut lineages. They aren't saved anyway
-        st = getattr(cutax.contexts, context)(cuts_for=None)
+        st = getattr(cutax.contexts, context)(cuts_for=None,
+                                              _include_rucio_remote=True)
         hash_dict = {dtype: dtype_info['hash'] for dtype, dtype_info in st.provided_dtypes().items()}
 
         doc = dict(name=context,
