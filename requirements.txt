@@ -58,7 +58,7 @@ snakeviz==2.1.1
 sphinx==4.3.1
 tables==3.6.1     # pytables, necessary for pandas hdf5 i/o
 tensorflow==2.6.1 # TF2.4.1 should not bring in additional AVX2 requirements (https://github.com/XENONnT/base_environment/issues/433)
-tensorflow_probability==0.14.1
+tensorflow_probability==0.15.0
 torch==1.10.0     # Strax dependency
 typing_extensions==3.7.4.3  # Tensorflow and bokeh dependency
 tqdm==4.62.3
