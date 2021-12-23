@@ -3,7 +3,7 @@
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.5637096.svg)](https://doi.org/10.5281/zenodo.5637096)
 [![Test and update contexts](https://github.com/XENONnT/base_environment/actions/workflows/test_and_update.yml/badge.svg)](https://github.com/XENONnT/base_environment/actions/workflows/test_and_update.yml)
 
-Base software environment for XENONnT, including Python 3.6 and data management tools.
+Base software environment for XENONnT, including Python 3.8 and data management tools.
 
 Please see [this page on the XENON wiki](https://xe1t-wiki.lngs.infn.it/doku.php?id=xenon%3Axenonnt%3Acomputing%3Abaseenvironment) for more details.
 
@@ -20,6 +20,9 @@ The resulting environment is available as:
   use the environment for example on your laptop. The location is `opensciencegrid/osgvo-xenon:{version}`
 * **Singularity images available on https**. This version is experimental. The
   location is `https://xenon.isi.edu/images/`
+  
+## master and stable branches
+Currently, the master branch is used for the "development" container, which always points to the master branch of cutax (note this only matters on hardcoded sites: Midway and the OSG login node for now). The stable branch has a tagged version of cutax.
 
 ## Deployment
 
@@ -31,6 +34,7 @@ in XENONnT is that the `create-env` script is run in a Docker container. The bui
 taking place twice: once to build the Docker container with a deployment under
 `/opt/XENONnT`, and once to build the tarball for the CVMFS deployment under
 `/cvmfs/xenon.opensciencegrid.org/releases/nT/`.
+
 
 
 
