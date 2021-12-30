@@ -255,6 +255,12 @@ if [ \$INSTALL_CUTAX -eq 1 ]; then
   fi
 fi
 
+# set env variable for matplotlib styles on Midway
+MPL_DIR='/dali/lgrandi/xenonnt/software/nton/mplconfigs/'
+if [ -e \$MPL_DIR ]; then
+   export MPLCONFIGDIR=\$MPL_DIR
+fi
+
 EOF
 
 announce "Adding zzz-50-xenon.sh"
