@@ -42,7 +42,7 @@ pandoc==2.0.1
 panel==0.12.6
 parso==0.7.1     # upgrading to 0.8.0 breaks autocomplete in ipython
 pdmongo==0.1.0     # Strax dependency
-pema==0.3.5
+pema==0.3.6
 pika==1.2.0       # Pegasus
 psutil==5.9.0     # Strax dependency
 pyarrow==6.0.1   # Necessary for pandas feather i/o
