@@ -1,3 +1,4 @@
+from argparse import ArgumentParser
 import strax
 import straxen
 import cutax
@@ -9,6 +10,10 @@ db = DB()
 
 
 def main():
+    parser = ArgumentParser()
+    parser.add_argument('tag', default=None)
+    args = parser.parse_args()
+
     # get contexts
     context_list = [d for d in dir(cutax.contexts) if 'xenonnt' in d]
     for context in context_list:
@@ -22,8 +27,11 @@ def main():
                    hashes=hash_dict,
                    straxen_version=straxen.__version__,
                    strax_version=strax.__version__,
-                   cutax_version=cutax.__version__
+                   cutax_version=cutax.__version__,
                    )
+
+        if args.tag:
+            doc['tag'] = args.tag
 
         # update the context collection using utilix + runDB_api
         db.update_context_collection(doc)
