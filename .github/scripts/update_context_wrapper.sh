@@ -10,4 +10,4 @@ cd cutax
 git checkout $CUTAX_VERSION
 python setup.py install --user
 cd $HOME
-python .github/scripts/update-context-collection.py
+python .github/scripts/update-context-collection.py ${GITHUB_REF_NAME}
