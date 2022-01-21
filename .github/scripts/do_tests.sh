@@ -26,10 +26,10 @@ rm -r strax
 echo " ... straxen tests"
 straxen_version=`python -c "import straxen; print(straxen.__version__)"`
 git clone --single-branch --branch v$straxen_version https://github.com/XENONnT/straxen.git
-bash straxen/.github/scripts/create_pre_apply_function.sh $HOME
-pytest straxen || { echo 'straxen tests failed' ; exit 1; }
+coverage run --source=straxen setup.py test -v
+coveralls
 rm -r straxen
-rm $HOME/pre_apply_function.py
+
 
 # wfsim
 echo " ... wfsim tests"
