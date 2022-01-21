@@ -65,7 +65,7 @@ jobs:
         run: docker run -v \
               $PWD:/home \
               --env HOME=/home \
-              --env COVERALLS_REPO_TOKEN=COVERALLS_REPO_TOKEN \
+              --env COVERALLS_REPO_TOKEN=$COVERALLS_REPO_TOKEN \
               --env X509_USER_PROXY=/home/user_cert \
               --network host testing:latest \
               bash /home/.github/scripts/do_tests.sh
