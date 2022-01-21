@@ -23,12 +23,15 @@ pytest strax || { echo 'strax tests failed' ; exit 1; }
 rm -r strax
 
 # Straxen
+export ALLOW_WFSIM_TEST=1
+export NUMBA_DISABLE_JIT=1
 echo " ... straxen tests"
 straxen_version=`python -c "import straxen; print(straxen.__version__)"`
-git clone --single-branch --branch v$straxen_version https://github.com/XENONnT/straxen.git
+git clone --single-branch --branch storage_reorganization https://github.com/XENONnT/straxen.git
 coverage run --source=straxen setup.py test -v
 coveralls
 rm -r straxen
+export NUMBA_DISABLE_JIT=0
 
 
 # wfsim
