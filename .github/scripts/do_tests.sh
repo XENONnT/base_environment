@@ -28,7 +28,9 @@ export NUMBA_DISABLE_JIT=1
 echo " ... straxen tests"
 straxen_version=`python -c "import straxen; print(straxen.__version__)"`
 git clone --single-branch --branch storage_reorganization https://github.com/XENONnT/straxen.git
+cd straxen
 coverage run --source=straxen setup.py test -v
+cd ..
 coveralls
 rm -r straxen
 export NUMBA_DISABLE_JIT=0
