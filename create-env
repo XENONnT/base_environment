@@ -8,6 +8,8 @@ gfal2_bindings_version=ac5cd70bc0654cd5b72cc01085eeaafb469b9622 # project is not
 gfal2_util_version=1.6.0
 rucio_version=1.23.14
 cutax_version=latest
+py_v=39
+py_vdot=3.9
 #######################################################################
 
 set -e
@@ -59,7 +61,7 @@ export LC_ALL=en_US.utf8
 export LANG=en_US.utf8
 
 announce "Installing Miniconda"
-wget -nv -O conda_setup.sh https://repo.anaconda.com/miniconda/Miniconda3-py38_4.10.3-Linux-x86_64.sh
+wget -nv -O conda_setup.sh https://repo.anaconda.com/miniconda/Miniconda3-$py_v_4.10.3-Linux-x86_64.sh
 
 bash conda_setup.sh -b -p $target_dir/anaconda
 rm -f conda_setup.sh
@@ -72,6 +74,8 @@ y | $target_dir/anaconda/bin/conda env create -f conda_xnt_tmp.yml
 
 announce "Cleaning Anaconda environment"
 $target_dir/anaconda/bin/conda clean --all --yes
+echo "any data here? Why py37?"
+ls ${target_dir}/anaconda/pkgs/
 rm -f ${target_dir}/anaconda/pkgs/rope-0.11.0-py37_0/info/LICENSE.txt
 
 announce "Activating Anaconda environment"
@@ -98,8 +102,8 @@ cd boost_1_74_0
 cd ${target_dir}
 rm -rf boost_*
 # required by gfal2-python, but maybe others
-ln -s ${target_dir}/anaconda/envs/${env_name}/lib/libboost_python38.so ${target_dir}/anaconda/envs/${env_name}/lib/libboost_python.so
-ln -s ${target_dir}/anaconda/envs/${env_name}/lib/libboost_python38.a ${target_dir}/anaconda/envs/${env_name}/lib/libboost_python.a
+ln -s ${target_dir}/anaconda/envs/${env_name}/lib/libboost_python$py_v.so ${target_dir}/anaconda/envs/${env_name}/lib/libboost_python.so
+ln -s ${target_dir}/anaconda/envs/${env_name}/lib/libboost_python$py_v.a ${target_dir}/anaconda/envs/${env_name}/lib/libboost_python.a
 
 # gfal2-python bindings
 announce "Installing GFAL2 Python bindings"
@@ -107,9 +111,9 @@ git clone https://gitlab.cern.ch/dmc/gfal2-bindings.git
 cd gfal2-bindings
 git checkout $gfal2_bindings_version
 perl -p -i -e "s;.*\\\${Boost_LIBRARYDIR};            \"${target_dir}/anaconda/envs/${env_name}/lib\";" CMakeLists.txt
-cmake -DPYTHON_EXECUTABLE=${target_dir}/anaconda/envs/${env_name}/bin/python3.8 \
-      -DPYTHON_EXECUTABLE_3=${target_dir}/anaconda/envs/${env_name}/bin/python3.8 \
-      -DPYTHON_EXECUTABLE_3.8=${target_dir}/anaconda/envs/${env_name}/bin/python3.8 \
+cmake -DPYTHON_EXECUTABLE=${target_dir}/anaconda/envs/${env_name}/bin/python$py_vdot \
+      -DPYTHON_EXECUTABLE_3=${target_dir}/anaconda/envs/${env_name}/bin/python$py_vdot \
+      -DPYTHON_EXECUTABLE_$py_vdot=${target_dir}/anaconda/envs/${env_name}/bin/python$py_vdot \
       -DBOOST_ROOT=${target_dir}/anaconda/envs/${env_name} \
       -DSKIP_DOC=TRUE -DSKIP_TESTS=TRUE
 make
