@@ -27,13 +27,15 @@ export ALLOW_WFSIM_TEST=1
 export NUMBA_DISABLE_JIT=1
 echo " ... straxen tests"
 straxen_version=`python -c "import straxen; print(straxen.__version__)"`
-git clone --single-branch --branch storage_reorganization https://github.com/XENONnT/straxen.git
+git clone https://github.com/XENONnT/straxen.git
 cd straxen
+git checkout storage_reorganization 
 coverage run --source=straxen setup.py test -v
-cd ..
 coveralls
+cd ..
 rm -r straxen
-export NUMBA_DISABLE_JIT=0
+# reset numba
+# export NUMBA_DISABLE_JIT=0
 
 
 # wfsim
