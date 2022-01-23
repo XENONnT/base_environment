@@ -31,6 +31,7 @@ git clone https://github.com/XENONnT/straxen.git
 cd straxen
 git checkout storage_reorganization 
 coverage run --source=straxen setup.py test -v
+coverage report
 coveralls
 cd ..
 rm -r straxen
