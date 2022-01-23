@@ -35,7 +35,7 @@ coverage report
 coveralls
 cd ..
 rm -r straxen
-# reset numba
+# reset numba. Doesn't work?
 # export NUMBA_DISABLE_JIT=0
 
 
