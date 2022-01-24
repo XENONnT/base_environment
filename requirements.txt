@@ -61,7 +61,7 @@ tables==3.7.0     # pytables, necessary for pandas hdf5 i/o
 tensorflow==2.7.0
 tensorflow_probability==0.15.0
 torch==1.10.1
-typing_extensions==3.10.0  # Tensorflow and bokeh dependency
+typing_extensions==4.0.1  # Tensorflow and bokeh dependency
 tqdm==4.62.3
 utilix==0.6.6      # dependency for straxen, admix
 wfsim==0.5.13
