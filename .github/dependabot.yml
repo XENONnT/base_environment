@@ -3,7 +3,7 @@ updates:
 - package-ecosystem: pip
   directory: "/"
   schedule:
-    interval: monthly
+    interval: dayly
   open-pull-requests-limit: 25
   ignore:
   - dependency-name: jedi
