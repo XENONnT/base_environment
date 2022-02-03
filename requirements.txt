@@ -59,7 +59,7 @@ straxen==1.2.7
 snakeviz==2.1.1
 sphinx==4.4.0
 tables==3.7.0     # pytables, necessary for pandas hdf5 i/o
-tensorflow==2.7.0
+tensorflow==2.8.0
 tensorflow_probability==0.15.0
 torch==1.10.1
 typing_extensions==4.0.1  # Tensorflow and bokeh dependency
