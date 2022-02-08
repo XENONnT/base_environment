@@ -1,6 +1,6 @@
 # base_environment
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.5637096.svg)](https://doi.org/10.5281/zenodo.5637096)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.5555410.svg)](https://doi.org/10.5281/zenodo.5555410)
 [![Test and update contexts](https://github.com/XENONnT/base_environment/actions/workflows/test_and_update.yml/badge.svg)](https://github.com/XENONnT/base_environment/actions/workflows/test_and_update.yml)
 
 Base software environment for XENONnT, including Python 3.8 and data management tools.
