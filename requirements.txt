@@ -42,7 +42,7 @@ pandoc==2.0.1
 panel==0.12.6
 parso==0.7.1     # upgrading to 0.8.0 breaks autocomplete in ipython
 pdmongo==0.1.0     # Strax dependency
-pema==0.4.0
+pema==0.4.1
 pika==1.2.0       # Pegasus
 psutil==5.9.0     # Strax dependency
 pyarrow==6.0.1   # Necessary for pandas feather i/o
@@ -51,11 +51,11 @@ pytest==6.2.5
 pytest-runner==5.3.1
 reprox==0.1.0
 scikit-learn==1.0.2
-scipy==1.7.3
+scipy==1.8.0
 seaborn==0.11.2
 statsmodels==0.13.1
-strax==1.1.6
-straxen==1.2.7
+strax==1.1.7
+straxen==1.2.8
 snakeviz==2.1.1
 sphinx==4.4.0
 tables==3.7.0     # pytables, necessary for pandas hdf5 i/o
