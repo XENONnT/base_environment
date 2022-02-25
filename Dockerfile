@@ -49,7 +49,7 @@ RUN  yum -y install centos-release-scl && \
 
 RUN    rpm --import http://mirror.centos.org/centos/RPM-GPG-KEY-CentOS-Official
 
-RUN    dnf install -y \
+RUN    yum install -y \
            cmake \
            curl \
 	   diffutils \
