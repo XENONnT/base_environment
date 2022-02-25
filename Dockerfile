@@ -85,6 +85,18 @@ ENV MIKTEX_USERINSTALL=/miktex/.miktex/texmfs/install
 
 WORKDIR /miktex/work
 
+ADD create-env conda_xnt.yml requirements.txt /tmp/
+
+RUN source /opt/rh/devtoolset-9/enable && \
+    cd /tmp && \
+    bash create-env /opt/XENONnT ${XENONnT_TAG} && \
+    rm -f create-env conda_xnt.yml
+
+# relax permissions so we can build cvmfs tar balls
+RUN chmod 1777 /cvmfs
+
+COPY labels.json /.singularity.d/
+
 
 # build info
 RUN echo "Timestamp:" `date --utc` | tee /image-build-info.txt
