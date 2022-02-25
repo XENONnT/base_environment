@@ -46,17 +46,45 @@ RUN  yum -y install centos-release-scl && \
     yum clean all && \
     localedef -i en_US -f UTF-8 en_US.UTF-8
 
-ADD create-env conda_xnt.yml requirements.txt /tmp/
 
-RUN source /opt/rh/devtoolset-9/enable && \
-    cd /tmp && \
-    bash create-env /opt/XENONnT ${XENONnT_TAG} && \
-    rm -f create-env conda_xnt.yml
+RUN    rpm --import http://mirror.centos.org/centos/RPM-GPG-KEY-CentOS-Official
 
-# relax permissions so we can build cvmfs tar balls
-RUN chmod 1777 /cvmfs
+RUN    dnf install -y \
+           cmake \
+           curl \
+	   diffutils \
+           ghostscript \
+           gpg \
+           make \
+           unzip \
+           zip
 
-COPY labels.json /.singularity.d/
+RUN    gpg --keyserver ha.pool.sks-keyservers.net --recv-keys B42F6819007F00F88E364FD4036A9C25BF357DD4 \
+    && curl -o /usr/local/bin/gosu -SL "https://github.com/tianon/gosu/releases/download/1.10/gosu-amd64" \
+    && curl -o /usr/local/bin/gosu.asc -SL "https://github.com/tianon/gosu/releases/download/1.10/gosu-amd64.asc" \
+    && gpg --verify /usr/local/bin/gosu.asc \
+    && rm /usr/local/bin/gosu.asc \
+    && chmod +x /usr/local/bin/gosu
+
+RUN    rpm --import "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0xD6BC243565B2087BC3F897C9277A7293F59E4889" \
+    && curl -L -o /etc/yum.repos.d/miktex.repo https://miktex.org/download/centos/8/miktex.repo \
+    && dnf -y install miktex
+
+RUN    miktexsetup finish \
+    && initexmf --admin --set-config-value=[MPM]AutoInstall=1 \
+    && mpm --admin --update-db \
+    && mpm --admin \
+           --install amsfonts \
+           --install biber-linux-x86_64 \
+    && initexmf --admin --update-fndb
+
+
+ENV MIKTEX_USERCONFIG=/miktex/.miktex/texmfs/config
+ENV MIKTEX_USERDATA=/miktex/.miktex/texmfs/data
+ENV MIKTEX_USERINSTALL=/miktex/.miktex/texmfs/install
+
+WORKDIR /miktex/work
+
 
 # build info
 RUN echo "Timestamp:" `date --utc` | tee /image-build-info.txt
