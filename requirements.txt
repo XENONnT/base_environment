@@ -5,18 +5,18 @@ boltons==21.0.0
 codenamize==1.2.3  # for human-readable hashing
 commentjson==0.9.0 # Straxen dependency
 coveralls==3.3.1
-cython==0.29.27
-dask==2022.1.1
+cython==0.29.26
+dask==2022.1.0
 dask-jobqueue==0.7.3
 datashader==0.13.0
 dill==0.3.4      # Strax dependency
-distributed===2022.1.1     # Dask extension
+distributed===2022.1.0     # Dask extension
 flake8==4.0.1
 flamedisx==1.5.0
 future==0.18.2
 GitPython==3.1.26   # Pegasus dependency
 holoviews==1.14.7
-hypothesis==6.36.1
+hypothesis==6.36.0
 iminuit==2.9.0
 ipympl==0.8.7   # For online monitoring
 jedi==0.17.2    # upgrading to 0.18.0 breaks autocomplete in ipython
