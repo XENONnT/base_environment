@@ -11,7 +11,7 @@ db = DB()
 
 def main():
     parser = ArgumentParser()
-    parser.add_argument('tag', default=None)
+    parser.add_argument('tag', default=None, required=False)
     args = parser.parse_args()
 
     # get contexts
