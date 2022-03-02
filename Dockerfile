@@ -42,6 +42,25 @@ RUN  yum -y install centos-release-scl && \
             xrootd-client-devel \
             zlib-devel \
             nano \
+            texlive-pdftex \
+            texlive-latex-bin \
+            texlive-texconfig* \
+            texlive-latex* \
+            texlive-metafont* \
+            texlive-cmap* \
+            texlive-ec \
+            texlive-fncychap* \
+            texlive-pdftex-def \
+            texlive-fancyhdr* \
+            texlive-titlesec* \
+            texlive-multirow \
+            texlive-framed* \
+            texlive-wrapfig* \
+            texlive-parskip* \
+            texlive-caption \
+            texlive-ifluatex* \
+            texlive-collection-fontsrecommended \
+            texlive-collection-latexrecommended \
     && \
     yum clean all && \
     localedef -i en_US -f UTF-8 en_US.UTF-8
