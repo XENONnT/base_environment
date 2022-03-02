@@ -2,6 +2,9 @@
 
 . /opt/XENONnT/setup.sh
 cd $HOME
+
+echo "ref name: ${GITHUB_REF_NAME}"
+
 # get cutax version
 CUTAX_VERSION=$(grep "cutax_version=" create-env)
 CUTAX_VERSION=${CUTAX_VERSION//cutax_version=}
