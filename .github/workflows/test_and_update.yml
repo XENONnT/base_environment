@@ -71,8 +71,5 @@ jobs:
           fetch-depth: 0
         if: github.event_name != 'pull_request'
       - name: Update context collection
-        run: docker run -v $PWD:/home --env HOME=/home --env X509_USER_PROXY=/home/user_cert \
-          --env GITHUB_REF_NAME=${{github.ref_name}} \
-          --env GITHUB_REF_TYPE=${{github.ref_type}}  \
-          testing:latest bash /home/.github/scripts/update_context_wrapper.sh
+        run: docker run -v $PWD:/home --env HOME=/home --env X509_USER_PROXY=/home/user_cert --env GITHUB_REF_NAME=${{github.ref_name}} --env GITHUB_REF_TYPE=${{github.ref_type}} testing:latest bash /home/.github/scripts/update_context_wrapper.sh
         if: github.event_name != 'pull_request'
