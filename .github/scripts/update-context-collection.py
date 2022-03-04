@@ -31,8 +31,14 @@ def main():
     context_list = [d for d in dir(cutax.contexts) if 'xenonnt' in d]
     for context in context_list:
         # pass cuts_for=None so that we don't track the cut lineages. They aren't saved anyway
-        st = getattr(cutax.contexts, context)(cuts_for=None,
-                                              _include_rucio_remote=True)
+        # skip contexts that raise errors
+        try:
+            st = getattr(cutax.contexts, context)(cuts_for=None,
+                                                  _include_rucio_remote=True)
+        except NotImplementedError:
+            print(f"Skipping {context}")
+            continue
+
         hash_dict = {dtype: dtype_info['hash'] for dtype, dtype_info in st.provided_dtypes().items()}
 
         doc = dict(name=context,
