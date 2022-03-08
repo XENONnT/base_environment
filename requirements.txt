@@ -54,8 +54,8 @@ scikit-learn==1.0.2
 scipy==1.8.0
 seaborn==0.11.2
 statsmodels==0.13.2
-strax==1.1.7
-straxen==1.4.0
+strax==1.1.8
+straxen==1.5.0
 snakeviz==2.1.1
 sphinx==4.4.0
 tables==3.7.0     # pytables, necessary for pandas hdf5 i/o
