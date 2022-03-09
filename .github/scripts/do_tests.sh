@@ -48,3 +48,19 @@ echo "Testing $pema_version"
 git clone --single-branch --branch v$pema_version https://github.com/XENONnT/pema ./pema
 pytest pema || { echo 'pema tests failed' ; exit 1; }
 rm -r pema
+
+# cutax
+# we have already checked out cutax in the actions workflow
+echo " ... cutax tests"
+
+CUTAX_VERSION=$(grep "cutax_version=" create-env)
+CUTAX_VERSION=${CUTAX_VERSION//cutax_version=}
+echo "Testing with cutax version ${CUTAX_VERSION}"
+if [ $CUTAX_VERSION != 'latest' ]
+then
+  cd cutax
+  git checkout $CUTAX_VERSION
+  cd ..
+fi
+pytest cutax
+
