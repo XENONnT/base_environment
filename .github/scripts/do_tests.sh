@@ -3,6 +3,7 @@
 echo "Running tests"
 
 . /opt/XENONnT/setup.sh
+cd $HOME
 
 # gfal2
 echo " ... gfal2 tests"
@@ -48,3 +49,21 @@ echo "Testing $pema_version"
 git clone --single-branch --branch v$pema_version https://github.com/XENONnT/pema ./pema
 pytest pema || { echo 'pema tests failed' ; exit 1; }
 rm -r pema
+
+# cutax
+# we have already checked out cutax in the actions workflow
+echo " ... cutax tests"
+echo "Current dir"
+ls
+
+CUTAX_VERSION=$(grep "cutax_version=" create-env)
+CUTAX_VERSION=${CUTAX_VERSION//cutax_version=}
+echo "Testing with cutax version ${CUTAX_VERSION}"
+cd cutax
+if [ $CUTAX_VERSION != 'latest' ]
+then
+  git checkout $CUTAX_VERSION
+fi
+python setup.py install --user --no-deps
+cd ..
+pytest cutax || { echo 'cutax tests failed' ; exit 1; }
