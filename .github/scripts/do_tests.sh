@@ -64,7 +64,6 @@ if [ $CUTAX_VERSION != 'latest' ]
 then
   git checkout $CUTAX_VERSION
 fi
-python setup.py install --user
+python setup.py install --user --no-deps
 cd ..
 pytest cutax || { echo 'cutax tests failed' ; exit 1; }
-
