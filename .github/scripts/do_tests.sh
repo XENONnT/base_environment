@@ -3,6 +3,7 @@
 echo "Running tests"
 
 . /opt/XENONnT/setup.sh
+cd $HOME
 
 # gfal2
 echo " ... gfal2 tests"
@@ -52,6 +53,8 @@ rm -r pema
 # cutax
 # we have already checked out cutax in the actions workflow
 echo " ... cutax tests"
+echo "Current dir"
+ls
 
 CUTAX_VERSION=$(grep "cutax_version=" create-env)
 CUTAX_VERSION=${CUTAX_VERSION//cutax_version=}
