@@ -59,11 +59,10 @@ ls
 CUTAX_VERSION=$(grep "cutax_version=" create-env)
 CUTAX_VERSION=${CUTAX_VERSION//cutax_version=}
 echo "Testing with cutax version ${CUTAX_VERSION}"
+cd cutax
 if [ $CUTAX_VERSION != 'latest' ]
 then
-  cd cutax
   git checkout $CUTAX_VERSION
-  cd ..
 fi
-pytest cutax
-
+pytest || { echo 'cutax tests failed' ; exit 1; }
+cd ..
