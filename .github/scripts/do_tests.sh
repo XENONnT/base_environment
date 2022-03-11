@@ -67,4 +67,3 @@ fi
 python setup.py install --user
 cd ..
 pytest cutax || { echo 'cutax tests failed' ; exit 1; }
-
