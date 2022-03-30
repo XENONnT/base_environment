@@ -67,7 +67,6 @@ utilix==0.6.7      # dependency for straxen, admix
 wfsim==0.5.13
 git+https://github.com/ershockley/admix@v1.0.7
 xarray==0.21.1
-xepmts==0.5.7
+xepmts==0.5.8
 zstd==1.5.1.0     # Strax dependency
-xeauth==0.1.19
 xedocs==0.1.1
