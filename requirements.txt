@@ -57,7 +57,7 @@ statsmodels==0.13.2
 strax==1.2.0
 straxen==1.6.0
 snakeviz==2.1.1
-sphinx==4.4.0
+sphinx==4.5.0
 tables==3.7.0     # pytables, necessary for pandas hdf5 i/o
 tensorflow==2.8.0
 tensorflow_probability==0.16.0
