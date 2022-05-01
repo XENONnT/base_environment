@@ -8,7 +8,7 @@ coveralls==3.3.1
 cython==0.29.28
 dask==2022.4.0
 dask-jobqueue==0.7.3
-datashader==0.13.0
+datashader==0.14.0
 dill==0.3.4      # Strax dependency
 distributed===2022.4.0     # Dask extension
 flake8==4.0.1
