@@ -37,7 +37,7 @@ npshmex==0.2.1    # Strax dependency
 numba==0.55.1     # Strax dependency
 numpy==1.21.6
 packaging==21.3
-pandas==1.4.1
+pandas==1.4.2
 pandoc==2.2
 panel==0.12.7
 parso==0.7.1     # upgrading to 0.8.0 breaks autocomplete in ipython
@@ -56,7 +56,7 @@ scipy==1.8.0
 seaborn==0.11.2
 statsmodels==0.13.2
 strax==1.2.1
-straxen==1.6.1
+straxen==1.6.2
 snakeviz==2.1.1
 sphinx==4.5.0
 tables==3.7.0     # pytables, necessary for pandas hdf5 i/o
