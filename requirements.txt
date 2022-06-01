@@ -39,7 +39,7 @@ numpy==1.22.4
 packaging==21.3
 pandas==1.4.2
 pandoc==2.2
-panel==0.13.1
+panel==0.12.7
 parso==0.7.1                                       # upgrading to 0.8.0 breaks autocomplete in ipython
 pdmongo==0.1.0                                     # Strax dependency
 pema==0.4.3
