@@ -34,7 +34,7 @@ multihist==0.6.5
 nbsphinx==0.8.8
 nestpy==1.5.4     # WFsim dependency
 npshmex==0.2.1    # Strax dependency
-numba==0.55.1     # Strax dependency
+numba==0.55.2     # Strax dependency
 numpy==1.21.6
 packaging==21.3
 pandas==1.4.2
