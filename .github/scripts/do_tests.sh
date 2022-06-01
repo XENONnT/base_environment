@@ -32,22 +32,21 @@ pytest straxen/tests || { echo 'straxen tests failed' ; exit 1; }
 rm -r straxen
 rm $HOME/pre_apply_function.py
 
-# TODO WFSIM is broken https://github.com/XENONnT/WFSim/pull/363
-## wfsim
-#echo " ... wfsim tests"
-#wfsim_version=`python -c "import wfsim; print(wfsim.__version__)"`
-#echo "Testing $wfsim_version"
-#git clone --single-branch --branch v$wfsim_version https://github.com/XENONnT/wfsim ./wfsim
-#pytest wfsim || { echo 'wfsim tests failed' ; exit 1; }
-#rm -r wfsim
-#
-## Pema
-#echo " ... pema tests"
-#pema_version=`python -c "import pema; print(pema.__version__)"`
-#echo "Testing $pema_version"
-#git clone --single-branch --branch v$pema_version https://github.com/XENONnT/pema ./pema
-#pytest pema || { echo 'pema tests failed' ; exit 1; }
-#rm -r pema
+# wfsim
+echo " ... wfsim tests"
+wfsim_version=`python -c "import wfsim; print(wfsim.__version__)"`
+echo "Testing $wfsim_version"
+git clone --single-branch --branch v$wfsim_version https://github.com/XENONnT/wfsim ./wfsim
+pytest wfsim || { echo 'wfsim tests failed' ; exit 1; }
+rm -r wfsim
+
+# Pema
+echo " ... pema tests"
+pema_version=`python -c "import pema; print(pema.__version__)"`
+echo "Testing $pema_version"
+git clone --single-branch --branch v$pema_version https://github.com/XENONnT/pema ./pema
+pytest pema || { echo 'pema tests failed' ; exit 1; }
+rm -r pema
 
 # cutax
 # we have already checked out cutax in the actions workflow
