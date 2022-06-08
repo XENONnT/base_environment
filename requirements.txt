@@ -6,11 +6,11 @@ codenamize==1.2.3                                  # for human-readable hashing
 commentjson==0.9.0                                 # Straxen dependency
 coveralls==3.3.1
 cython==0.29.28
-dask==2022.4.2
+dask==2022.5.2
 dask-jobqueue==0.7.3
 datashader==0.14.0
 dill==0.3.5.1                                      # Strax dependency
-distributed===2022.4.2                             # Dask extension
+distributed                                        # Dask extension - Don't track the version since that's already in dask
 flake8==4.0.1
 flamedisx==1.5.0
 future==0.18.2
