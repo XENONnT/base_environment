@@ -67,10 +67,10 @@ python setup.py install --user
 cd ..
 pytest cutax || { echo 'cutax tests failed' ; exit 1; }
 
-# xedocs
-echo " ... xedocs tests"
-xedocs_version=`python -c "import xedocs; print(xedocs.__version__)"`
-echo "Testing $xedocs_version"
-git clone --single-branch --branch v$xedocs_version https://github.com/XENONnT/xedocs ./xedocs
-pytest xedocs || { echo 'xedocs tests failed' ; exit 1; }
-rm -r xedocs
+# # xedocs
+# echo " ... xedocs tests"
+# xedocs_version=`python -c "import xedocs; print(xedocs.__version__)"`
+# echo "Testing $xedocs_version"
+# git clone --single-branch --branch v$xedocs_version https://github.com/XENONnT/xedocs ./xedocs
+# pytest xedocs || { echo 'xedocs tests failed' ; exit 1; }
+# rm -r xedocs
