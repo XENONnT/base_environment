@@ -46,7 +46,7 @@ pema==0.4.3
 pika==1.2.1                                        # Pegasus
 prettytable==3.2.0
 psutil==5.9.1                                      # Strax dependency
-pyarrow==7.0.0                                     # Necessary for pandas feather i/o
+pyarrow==8.0.0                                     # Necessary for pandas feather i/o
 pymongo==3.12.3
 pytest==7.1.2
 pytest-runner==6.0.0
