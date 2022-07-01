@@ -57,7 +57,7 @@ scipy==1.8.1
 seaborn==0.11.2
 statsmodels==0.13.2
 strax==1.2.3
-straxen==1.7.1
+straxen==1.8.1
 snakeviz==2.1.1
 sphinx==4.5.0
 tables==3.7.0                                      # pytables, necessary for pandas hdf5 i/o
