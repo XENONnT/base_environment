@@ -65,7 +65,7 @@ tensorflow_probability==0.16.0
 typing_extensions==4.2.0                           # Tensorflow and bokeh dependency
 tqdm==4.63.1
 utilix==0.7.0                                      # dependency for straxen, admix
-wfsim==1.0.0
+wfsim==1.0.1
 git+https://github.com/ershockley/admix@v1.0.8
 xarray==2022.3.0
 xedocs==0.1.3
