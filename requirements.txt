@@ -17,7 +17,7 @@ future==0.18.2
 GitPython==3.1.27                                  # Pegasus dependency
 GOFevaluation==0.1.1
 holoviews==1.14.9
-hypothesis==6.47.0
+hypothesis==6.48.2
 iminuit==2.11.2
 ipympl==0.9.1                                      # For online monitoring
 jedi==0.17.2                                       # upgrading to 0.18.0 breaks autocomplete in ipython
