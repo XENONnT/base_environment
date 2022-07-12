@@ -32,7 +32,7 @@ matplotlib==3.5.2
 memory_profiler==0.60.0
 mongomock==4.0.0
 multihist==0.6.5
-nbsphinx==0.8.8
+nbsphinx==0.8.9
 nestpy==1.5.4                                      # WFsim dependency
 npshmex==0.2.1                                     # Strax dependency
 numba==0.55.2                                      # Strax dependency
