@@ -20,6 +20,7 @@ holoviews==1.14.9
 hypothesis==6.47.0
 iminuit==2.11.2
 ipympl==0.9.1                                      # For online monitoring
+git+https://github.com/XENONnT/inference_interface@v0.0.0
 jedi==0.17.2                                       # upgrading to 0.18.0 breaks autocomplete in ipython
 jupyter==1.0.0
 jupyter-resource-usage==0.6.1                      # Memory viewer for notebooks
