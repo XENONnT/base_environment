@@ -91,10 +91,10 @@ jupyter labextension install @jupyter-widgets/jupyterlab-manager
 announce "Installing Boost"
 cd ${target_dir}
 rm -rf boost_*
-wget -nv https://boostorg.jfrog.io/artifactory/main/release/1.74.0/source/boost_1_74_0.tar.bz2
-tar xjf boost_1_74_0.tar.bz2
-rm -f boost_1_74_0.tar.bz2
-cd boost_1_74_0
+wget -nv https://boostorg.jfrog.io/artifactory/main/release/1.79.0/source/boost_1_79_0.tar.bz2
+tar xjf boost_1_79_0.tar.bz2
+rm -f boost_1_79_0.tar.bz2
+cd boost_1_79_0
 ./bootstrap.sh --prefix=${target_dir}/anaconda/envs/${env_name} --show-libraries \
                --with-libraries=atomic,chrono,date_time,exception,filesystem,graph,iostreams,locale,log,math,program_options,random,regex,serialization,system,test,thread,timer,wave,python \
                --with-python=${target_dir}/anaconda/envs/${env_name}/bin/python3
