@@ -28,11 +28,10 @@ echo " ... straxen tests"
 straxen_version=`python -c "import straxen; print(straxen.__version__)"`
 git clone --single-branch --branch v$straxen_version https://github.com/XENONnT/straxen.git
 bash straxen/.github/scripts/create_pre_apply_function.sh $HOME
-cd straxen
-python setup.py test || { echo 'straxen tests failed' ; exit 1; }
-cd ..
+pytest straxen/tests || { echo 'straxen tests failed' ; exit 1; }
 rm -r straxen
 rm $HOME/pre_apply_function.py
+
 
 # wfsim
 echo " ... wfsim tests"
@@ -68,10 +67,10 @@ python setup.py install --user
 cd ..
 pytest cutax || { echo 'cutax tests failed' ; exit 1; }
 
-# xedocs
-echo " ... xedocs tests"
-xedocs_version=`python -c "import xedocs; print(xedocs.__version__)"`
-echo "Testing $xedocs_version"
-git clone --single-branch --branch v$xedocs_version https://github.com/XENONnT/xedocs ./xedocs
-pytest xedocs || { echo 'xedocs tests failed' ; exit 1; }
-rm -r xedocs
+# # xedocs
+# echo " ... xedocs tests"
+# xedocs_version=`python -c "import xedocs; print(xedocs.__version__)"`
+# echo "Testing $xedocs_version"
+# git clone --single-branch --branch v$xedocs_version https://github.com/XENONnT/xedocs ./xedocs
+# pytest xedocs || { echo 'xedocs tests failed' ; exit 1; }
+# rm -r xedocs
