@@ -22,7 +22,7 @@ cd ~/deployhq/
 mkdir -p generated
 chmod 1777 generated
 cp ~/deployhq/deployhq/build-cvmfs-tar-inside-helper.sh .
-docker run -v `pwd`:/srv -i -t --rm \
+docker run -v `pwd`:/srv -i -t --rm --network=host \
        xenonnt/base-environment:$TAG \
        /bin/bash -c "/srv/build-cvmfs-tar-inside-helper.sh $TAG"
 
