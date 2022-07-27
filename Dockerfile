@@ -10,6 +10,8 @@ ARG XENONnT_TAG
 
 RUN echo "Building Docker container for XENONnT_${XENONnT_TAG} ..."
 
+RUN curl http://mirrorlist.centos.org/\?release\=7\&arch\=x86_64\&repo\=os\&infra\=container
+
 RUN yum -y clean all && yum -y --skip-broken upgrade
 
 RUN  yum -y install centos-release-scl && \
