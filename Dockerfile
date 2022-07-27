@@ -1,4 +1,4 @@
-FROM opensciencegrid/osgvo-el7:release
+FROM opensciencegrid/osgvo-el7
 
 LABEL opensciencegrid.name="XENONnT"
 LABEL opensciencegrid.description="Base software environment for XENONnT, including Python 3.8 and data management tools"
@@ -9,8 +9,6 @@ LABEL opensciencegrid.definition_url="https://github.com/XENONnT/base_environmen
 ARG XENONnT_TAG
 
 RUN echo "Building Docker container for XENONnT_${XENONnT_TAG} ..."
-
-RUN curl http://mirrorlist.centos.org/\?release\=7\&arch\=x86_64\&repo\=os\&infra\=container
 
 RUN yum -y clean all && yum -y --skip-broken upgrade
 
