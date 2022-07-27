@@ -1,0 +1,8 @@
+# Ignore everything - avoid uneccessary files in build context
+*
+
+# include only required files
+!labels.json
+!requirements.txt
+!create-env
+!conda_xnt.yml
