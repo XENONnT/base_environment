@@ -5,9 +5,9 @@ boltons==21.0.0
 codenamize==1.2.3                                  # for human-readable hashing
 commentjson==0.9.0                                 # Straxen dependency
 coveralls==3.3.1
-cython==0.29.30
+cython==0.29.32
 dask==2022.8.1
-dask-jobqueue==0.7.3
+dask-jobqueue==0.7.4
 datashader==0.14.2
 dill==0.3.5.1                                      # Strax dependency
 distributed                                        # Dask extension - Don't track the version since that's already in dask
@@ -28,7 +28,7 @@ jupyterlab==3.4.5
 keras==2.9.0
 line_profiler==3.5.1
 llvmlite==0.38.1                                   # numba dependency
-lz4==4.0.1                                         # Strax dependency
+lz4==4.0.2                                         # Strax dependency
 matplotlib==3.5.3
 memory_profiler==0.60.0
 mongomock==4.1.2
