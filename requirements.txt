@@ -17,14 +17,14 @@ future==0.18.2
 GitPython==3.1.27                                  # Pegasus dependency
 GOFevaluation==0.1.1
 holoviews==1.14.9
-hypothesis==6.48.2
+hypothesis==6.54.4
 iminuit==2.16.0
 ipympl==0.9.1                                      # For online monitoring
 git+https://github.com/XENONnT/inference_interface@v0.0.0
 jedi==0.17.2                                       # upgrading to 0.18.0 breaks autocomplete in ipython
 jupyter==1.0.0
 jupyter-resource-usage==0.6.1                      # Memory viewer for notebooks
-jupyterlab==3.4.3
+jupyterlab==3.4.5
 keras==2.9.0
 line_profiler==3.5.1
 llvmlite==0.38.1                                   # numba dependency
@@ -37,7 +37,7 @@ nbsphinx==0.8.9
 nestpy==1.5.4                                      # WFsim dependency
 npshmex==0.2.1                                     # Strax dependency
 numba==0.55.2                                      # Strax dependency
-numpy==1.22.4
+numpy==1.23.2
 packaging==21.3
 pandas==1.4.3
 pandoc==2.2
@@ -60,7 +60,7 @@ statsmodels==0.13.2
 strax==1.2.3
 straxen==1.8.3
 snakeviz==2.1.1
-sphinx==5.0.2
+sphinx==5.1.1
 tables==3.7.0                                      # pytables, necessary for pandas hdf5 i/o
 tensorflow==2.9.1
 tensorflow_probability==0.17.0
@@ -69,7 +69,7 @@ tqdm==4.64.0
 utilix==0.7.0                                      # dependency for straxen, admix
 wfsim==1.0.1
 git+https://github.com/ershockley/admix@v1.0.8
-xarray==2022.3.0
+xarray==2022.6.0
 xedocs==0.1.24
 xepmts==0.5.9
 zstd==1.5.2.5                                      # Strax dependency
