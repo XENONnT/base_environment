@@ -31,7 +31,7 @@ llvmlite==0.38.1                                   # numba dependency
 lz4==4.0.2                                         # Strax dependency
 matplotlib==3.5.3
 memory_profiler==0.60.0
-mongomock==4.0.0
+mongomock==4.1.2
 multihist==0.6.5
 nbsphinx==0.8.9
 nestpy==1.5.4                                      # WFsim dependency
