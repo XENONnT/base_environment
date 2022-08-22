@@ -8,7 +8,7 @@ LABEL opensciencegrid.definition_url="https://github.com/XENONnT/base_environmen
 
 ARG XENONnT_TAG
 
-RUN echo "Building Docker container for XENONnT_${XENONnT_TAG} ..."
+RUN echo "Building Docker container for XENONnT_base-${XENONnT_TAG} ..."
 
 RUN yum -y clean all && yum -y --skip-broken upgrade
 
