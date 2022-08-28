@@ -136,8 +136,8 @@ git checkout $rucio_version -f
 perl -p -i -e 's/^setuptools.*//' requirements.txt
 perl -p -i -e 's/^urllib3.*//' requirements.txt
 perl -p -i -e 's/^requests.*//' requirements.txt
-pip install -r requirements.txt --install-option="--prefix=${target_dir}/anaconda/envs/${env_name}"
-pip install rucio-cliens==$rucio_version --no-deps --install-option="--prefix=${target_dir}/anaconda/envs/${env_name}"
+pip install -r requirements.txt --prefix=${target_dir}/anaconda/envs/${env_name}
+pip install rucio-cliens==$rucio_version --prefix=${target_dir}/anaconda/envs/${env_name}
 # python3 setup_rucio_client.py install --prefix=${target_dir}/anaconda/envs/${env_name}
 cd ${target_dir}
 rm -rf rucio
