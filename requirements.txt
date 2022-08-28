@@ -62,4 +62,4 @@ typing_extensions==4.3.0                           # Tensorflow and bokeh depend
 tqdm==4.64.0
 xarray==2022.6.0
 zstd==1.5.2.5                                      # Strax dependency
-
+rucio-clients==1.29.3
