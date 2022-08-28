@@ -28,7 +28,7 @@ rm -r strax
 echo " ... straxen tests"
 straxen_version=`python -c "import straxen; print(straxen.__version__)"`
 echo "checking out straxen version ${straxen_version}"
-git clone --single-branch --branch v$straxen_version https://github.com/XENONnT/straxen.git
+git clone --branch v$straxen_version https://github.com/XENONnT/straxen.git
 bash straxen/.github/scripts/create_pre_apply_function.sh $HOME
 pytest straxen/tests || { echo 'straxen tests failed' ; exit 1; }
 rm -r straxen
