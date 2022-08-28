@@ -72,4 +72,4 @@ xarray==2022.6.0
 xedocs==0.1.24
 xepmts==0.5.9
 zstd==1.5.2.5                                      # Strax dependency
-
+rucio-clients==1.29.3
