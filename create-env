@@ -145,7 +145,7 @@ announce "Installing Rucio"
 pip3 install --no-deps rucio-clients==$rucio_version --prefix=${target_dir}/anaconda/envs/${env_name}
 pip3 install dogpile.cache>=1.1.2 --prefix=${target_dir}/anaconda/envs/${env_name}
 pip3 install tabulate~=0.8.0 --prefix=${target_dir}/anaconda/envs/${env_name}
-pip3 install jsonschema~=3.2.0  --prefix=${target_dir}/anaconda/envs/${env_name}
+pip3 install jsonschema~=3.2.0 --prefix=${target_dir}/anaconda/envs/${env_name}
 
 cd ${target_dir}
 # rm -rf rucio
