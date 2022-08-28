@@ -42,6 +42,10 @@ RUN  yum -y install centos-release-scl && \
             xrootd-client-devel \
             zlib-devel \
             nano \
+            libxml2-devel \
+            xmlsec1-devel \
+            xmlsec1-openssl-devel \
+            libtool-ltdl-devel \
     && \
     yum clean all && \
     localedef -i en_US -f UTF-8 en_US.UTF-8
