@@ -4,8 +4,8 @@
 #
 # versions in this release
 
-gfal2_bindings_version=v1.12.0 # project is not releasing often enough
-gfal2_util_version=1.7.1
+gfal2_bindings_version=ac5cd70bc0654cd5b72cc01085eeaafb469b9622 # project is not releasing often enough
+gfal2_util_version=1.6.0
 rucio_version=release-1.29-LTS
 cutax_version=latest
 #######################################################################
@@ -137,10 +137,10 @@ perl -p -i -e 's/^setuptools.*//' requirements.txt
 perl -p -i -e 's/^urllib3.*//' requirements.txt
 perl -p -i -e 's/^requests.*//' requirements.txt
 perl -p -i -e 's/^pymongo.*//' requirements.txt
-source ${target_dir}/anaconda/bin/activate ${env_name}
+# source ${target_dir}/anaconda/bin/activate ${env_name}
 # pip install -r requirements.txt --prefix=${target_dir}/anaconda/envs/${env_name}
 # python install --no-deps rucio-clients==$rucio_version --prefix=${target_dir}/anaconda/envs/${env_name}
-python setup_rucio_client.py install --prefix=${target_dir}/anaconda/envs/${env_name}
+python3 setup_rucio_client.py install --prefix=${target_dir}/anaconda/envs/${env_name}
 # pip install --no-deps rucio-clients==$rucio_version --prefix=${target_dir}/anaconda/envs/${env_name}
 
 cd ${target_dir}
