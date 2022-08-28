@@ -9,6 +9,7 @@ gfal2_util_version=1.6.0
 rucio_version=1.23.14
 cutax_version=latest
 #######################################################################
+echo "testing PR tests"
 
 set -e
 
