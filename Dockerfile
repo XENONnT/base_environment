@@ -10,10 +10,10 @@ ARG XENONnT_TAG
 
 RUN echo "Building Docker container for XENONnT_base-${XENONnT_TAG} ..."
 
-RUN yum -y clean all && yum -y --skip-broken upgrade
+RUN dnf -y clean all && dnf -y --skip-broken upgrade
 
-RUN  yum -y install centos-release-scl && \
-     yum -y install \
+RUN  dnf -y group install "Development Tools" && \
+     dnf -y install \
             cmake \
             davix-devel \
             dcap-devel \
@@ -43,7 +43,7 @@ RUN  yum -y install centos-release-scl && \
             zlib-devel \
             nano \
     && \
-    yum clean all && \
+    dnf clean all && \
     localedef -i en_US -f UTF-8 en_US.UTF-8
 
 ADD create-env conda_xnt.yml requirements.txt /tmp/
