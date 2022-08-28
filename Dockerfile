@@ -49,7 +49,7 @@ RUN  dnf -y group install "Development Tools" && \
 
 ADD create-env conda_xnt.yml requirements.txt /tmp/
 
-RUN source /opt/rh/devtoolset-9/enable && \
+RUN source /opt/rh/gcc-toolset-9/enable && \
     cd /tmp && \
     bash create-env /opt/XENONnT ${XENONnT_TAG} && \
     rm -f create-env conda_xnt.yml
