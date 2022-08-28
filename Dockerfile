@@ -17,9 +17,10 @@ RUN  dnf -y group install "Development Tools" && \
             cmake \
             davix-devel \
             dcap-devel \
-            devtoolset-9 \
+            gcc-toolset-9-gcc \
+            gcc-toolset-9-gcc-c++ \
             doxygen \
-            dpm-devel \
+            dmlite-devel \
             gfal2-all \
             gfal2-devel \
             gfal2-plugin-file \
@@ -32,7 +33,7 @@ RUN  dnf -y group install "Development Tools" && \
             globus-gass-copy-devel \
             gtest-devel \
             json-c-devel \
-            lfc-devel \
+            # lfc-devel \
             libattr-devel \
             libffi-devel \
             libssh2-devel \
