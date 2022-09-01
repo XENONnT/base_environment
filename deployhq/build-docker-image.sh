@@ -28,7 +28,7 @@ cat requirements.txt
 docker pull opensciencegrid/osgvo-el7
 
 # build the Docker image (minimized)
-docker build --no-cache --build-arg XENONnT_TAG=$TAG -t osgvo-xenon-layers .
+docker build --no-cache --network=host --build-arg XENONnT_TAG=$TAG -t osgvo-xenon-layers .
 docker run -it osgvo-xenon-layers bash -c "exit"
 sleep 30s
 CONT_ID=`docker ps -a | grep osgvo-xenon-layers | sed 's/ .*//'`
