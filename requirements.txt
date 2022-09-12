@@ -19,7 +19,7 @@ GOFevaluation==0.1.1
 holoviews==1.15.0
 hypothesis==6.54.4
 iminuit==2.16.0
-ipympl==0.9.1                                      # For online monitoring
+ipympl==0.9.2                                      # For online monitoring
 git+https://github.com/XENONnT/inference_interface@v0.0.0
 jedi==0.17.2                                       # upgrading to 0.18.0 breaks autocomplete in ipython
 jupyter==1.0.0
