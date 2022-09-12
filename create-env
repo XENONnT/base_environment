@@ -7,7 +7,6 @@
 gfal2_bindings_version=v1.12.0 # project is not releasing often enough
 gfal2_util_version=1.7.1
 rucio_version=1.29.3
-cutax_version=latest
 
 #######################################################################
 
@@ -233,28 +232,6 @@ done
 config_path=/project2/lgrandi/xenonnt/xenon.config
 if [ -e \$config_path ]; then
    export XENON_CONFIG=\$config_path
-fi
-
-# grab a local cutax installation if we have one
-MIDWAY_CUTAX_DIR=/dali/lgrandi/xenonnt/software/cutax/${cutax_version}
-OSG_CUTAX_DIR=/xenon/xenonnt/software/cutax/${cutax_version}
-if [ "x\${CUTAX_LOCATION}" = "x" ]; then
-  for dir in \${MIDWAY_CUTAX_DIR} \${OSG_CUTAX_DIR}; do
-    if [ -e \$dir ]; then
-       CUTAX_LOCATION=\$dir
-    fi
-  done
-fi
-
-if [ "x\$INSTALL_CUTAX" = "x" ]; then
-    export INSTALL_CUTAX=1
-fi
-
-if [ \$INSTALL_CUTAX -eq 1 ]; then
-  if [ -e "\${CUTAX_LOCATION}" ]; then
-    export CUTAX_LOCATION
-    export PYTHONPATH=\${CUTAX_LOCATION}:\$PYTHONPATH
-  fi
 fi
 
 # set env variable for matplotlib styles on Midway
