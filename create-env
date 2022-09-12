@@ -107,7 +107,7 @@ announce "Installing GFAL2 Python bindings"
 git clone https://gitlab.cern.ch/dmc/gfal2-bindings.git
 cd gfal2-bindings
 git checkout $gfal2_bindings_version
-perl -p -i -e "s;.*\\\${Boost_LIBRARYDIR};            \"${target_dir}/anaconda/envs/${env_name}/lib\";" CMakeLists.txt
+perl -p -i -e "s;.*\\\$\{Boost_LIBRARYDIR\};            \"${target_dir}/anaconda/envs/${env_name}/lib\";" CMakeLists.txt
 cmake -DPYTHON_EXECUTABLE=${target_dir}/anaconda/envs/${env_name}/bin/python3.8 \
       -DPYTHON_EXECUTABLE_3=${target_dir}/anaconda/envs/${env_name}/bin/python3.8 \
       -DPYTHON_EXECUTABLE_3.8=${target_dir}/anaconda/envs/${env_name}/bin/python3.8 \
