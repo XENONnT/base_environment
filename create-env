@@ -4,7 +4,7 @@
 #
 # versions in this release
 
-gfal2_bindings_version=v1.12.0 # project is not releasing often enough
+gfal2_bindings_version=v1.11.1 # project is not releasing often enough
 gfal2_util_version=1.7.1
 rucio_version=1.29.3
 
