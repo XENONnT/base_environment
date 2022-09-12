@@ -19,6 +19,7 @@ export TEST_MONGO_URI='mongodb://localhost:27017/'
 # Strax
 echo " ... strax tests"
 strax_version=`python -c "import strax; print(strax.__version__)"`
+echo "checking out strax version ${strax_version}"
 git clone --single-branch --branch v$strax_version https://github.com/AxFoundation/strax.git
 pytest strax || { echo 'strax tests failed' ; exit 1; }
 rm -r strax
@@ -26,9 +27,10 @@ rm -r strax
 # Straxen
 echo " ... straxen tests"
 straxen_version=`python -c "import straxen; print(straxen.__version__)"`
+echo "checking out straxen version ${straxen_version}"
 git clone --single-branch --branch v$straxen_version https://github.com/XENONnT/straxen.git
 bash straxen/.github/scripts/create_pre_apply_function.sh $HOME
-pytest straxen/tests || { echo 'straxen tests failed' ; exit 1; }
+pytest straxen || { echo 'straxen tests failed' ; exit 1; }
 rm -r straxen
 rm $HOME/pre_apply_function.py
 
