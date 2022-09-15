@@ -68,78 +68,26 @@ rm -f conda_setup.sh
 export PKG_CONFIG_PATH=${target_dir}/anaconda/envs/${env_name}/lib64/pkgconfig:/usr/lib64/pkgconfig:/usr/share/pkgconfig
 
 announce "Installing Anaconda environment"
-echo -e "name: ${env_name}\n$(cat conda_xnt.yml | grep -v '^name:.*')" > conda_xnt_tmp.yml         # Add name to the env yml
-y | $target_dir/anaconda/bin/conda env create -f conda_xnt_tmp.yml 
+yes | $target_dir/anaconda/bin/conda env create -f conda_xnt.yml
+
+announce "Activating Anaconda environment"
+source $target_dir/anaconda/bin/activate ${env_name}
+
+# Update conda
+announce "Updating conda"
+conda update -n base -c defaults conda
+
+# Forging nodejs (for jupyter)
+# announce "Installing nodejs"
+# conda install -c conda-forge/label/main nodejs --yes
+# Enable widgets for online monitor
+jupyter labextension install @jupyter-widgets/jupyterlab-manager
+
 
 announce "Cleaning Anaconda environment"
 $target_dir/anaconda/bin/conda clean --all --yes
 rm -f ${target_dir}/anaconda/pkgs/rope-0.11.0-py37_0/info/LICENSE.txt
 
-announce "Activating Anaconda environment"
-source $target_dir/anaconda/bin/activate ${env_name}
-
-# Forging nodejs (for jupyter)
-announce "Installing nodejs"
-conda install -c conda-forge/label/main nodejs --yes
-# Enable widgets for online monitor
-jupyter labextension install @jupyter-widgets/jupyterlab-manager
-
-# boost
-announce "Installing Boost"
-cd ${target_dir}
-rm -rf boost_*
-wget -nv https://boostorg.jfrog.io/artifactory/main/release/1.74.0/source/boost_1_74_0.tar.bz2
-tar xjf boost_1_74_0.tar.bz2
-rm -f boost_1_74_0.tar.bz2
-cd boost_1_74_0
-./bootstrap.sh --prefix=${target_dir}/anaconda/envs/${env_name} --show-libraries \
-               --with-libraries=atomic,chrono,date_time,exception,filesystem,graph,iostreams,locale,log,math,program_options,random,regex,serialization,system,test,thread,timer,wave,python \
-               --with-python=${target_dir}/anaconda/envs/${env_name}/bin/python3
-./b2 install --prefix=${target_dir}/anaconda/envs/${env_name}
-cd ${target_dir}
-rm -rf boost_*
-# required by gfal2-python, but maybe others
-ln -s ${target_dir}/anaconda/envs/${env_name}/lib/libboost_python38.so ${target_dir}/anaconda/envs/${env_name}/lib/libboost_python.so
-ln -s ${target_dir}/anaconda/envs/${env_name}/lib/libboost_python38.a ${target_dir}/anaconda/envs/${env_name}/lib/libboost_python.a
-
-# gfal2-python bindings
-announce "Installing GFAL2 Python bindings"
-git clone https://gitlab.cern.ch/dmc/gfal2-bindings.git
-cd gfal2-bindings
-git checkout $gfal2_bindings_version
-perl -p -i -e "s;.*\\\$\{Boost_LIBRARYDIR\};            \"${target_dir}/anaconda/envs/${env_name}/lib\";" CMakeLists.txt
-cmake -DPYTHON_EXECUTABLE=${target_dir}/anaconda/envs/${env_name}/bin/python3.8 \
-      -DPYTHON_EXECUTABLE_3=${target_dir}/anaconda/envs/${env_name}/bin/python3.8 \
-      -DPYTHON_EXECUTABLE_3.8=${target_dir}/anaconda/envs/${env_name}/bin/python3.8 \
-      -DBOOST_ROOT=${target_dir}/anaconda/envs/${env_name} \
-      -DSKIP_DOC=TRUE -DSKIP_TESTS=TRUE
-make
-make install
-cd ${target_dir}
-rm -rf gfal2-bindings
-
-# gfal2 clients
-announce "Installing GFAL2 clients"
-git clone https://gitlab.cern.ch/dmc/gfal2-util.git
-cd gfal2-util/
-git checkout v$gfal2_util_version
-python3 setup.py install --prefix=${target_dir}/anaconda/envs/${env_name}
-cd ${target_dir}
-rm -rf gfal2-util
-
-# rucio-clients
-# announce "Installing Rucio"
-# git clone https://github.com/rucio/rucio.git
-# cd rucio
-# # For some strange reason `git checkout $rucio_version` does not work 2022/07/22
-# git checkout $rucio_version -f
-# # don't mess with our version of setuptools, urllib3 and requests
-# perl -p -i -e 's/^setuptools.*//' etc/pip-requires-client
-# perl -p -i -e 's/^urllib3.*//' etc/pip-requires-client
-# perl -p -i -e 's/^requests.*//' etc/pip-requires-client
-# python3 setup_rucio_client.py install --prefix=${target_dir}/anaconda/envs/${env_name}
-# cd ${target_dir}
-# rm -rf rucio
 
 # rucio config
 cat >${target_dir}/anaconda/envs/${env_name}/etc/rucio.cfg <<EOF

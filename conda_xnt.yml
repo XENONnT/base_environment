@@ -1,8 +1,17 @@
+name: xenonnt_base
+channels:
+  - defaults
+  - conda-forge
 dependencies:
   - cmake=3.18.2
   - graphviz
   - nb_conda
   - pip
   - python=3.8
+  - conda-forge::boost
+  - conda-forge::gfal2-util=1.7.1
+  - conda-forge::python-gfal2=1.11.1
+  - conda-forge::nb_conda_kernels
+  - conda-forge::nodejs
   - pip:
     - -r requirements.txt
