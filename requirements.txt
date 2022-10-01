@@ -38,7 +38,7 @@ npshmex==0.2.1                                     # Strax dependency
 numba==0.55.2                                      # Strax dependency
 numpy==1.22.4
 packaging==21.3
-pandas==1.4.4
+pandas==1.5.0
 pandoc==2.2
 panel==0.13.1
 parso==0.7.1                                       # upgrading to 0.8.0 breaks autocomplete in ipython
