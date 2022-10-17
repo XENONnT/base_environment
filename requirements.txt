@@ -56,8 +56,8 @@ scikit-learn==1.1.2
 scipy==1.9.1
 seaborn==0.11.2
 statsmodels==0.13.2
-strax==1.3.0
-straxen==1.8.3
+strax==1.4.0
+straxen==2.0.0
 snakeviz==2.1.1
 sphinx==5.1.1
 tables==3.7.0                                      # pytables, necessary for pandas hdf5 i/o
@@ -66,10 +66,10 @@ tensorflow_probability==0.17.0
 typing_extensions==4.3.0                           # Tensorflow and bokeh dependency
 tqdm==4.64.0
 utilix==0.7.2                                      # dependency for straxen, admix
-wfsim==1.0.1
+wfsim==1.0.2
 git+https://github.com/ershockley/admix@v1.0.8
 xarray==2022.6.0
-xedocs==0.1.24
+xedocs==0.1.25
 xepmts==0.5.9
 zstd==1.5.2.5                                      # Strax dependency
 
