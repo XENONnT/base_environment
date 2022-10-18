@@ -63,4 +63,4 @@ jobs:
           python -c "print('hello XENON!')"
           pip install -r requirements.txt --user
           straxen-print_versions
-          bash /home/.github/scripts/do_tests.sh ${{matrix.package}}
+          bash .github/scripts/do_tests.sh ${{matrix.package}}
