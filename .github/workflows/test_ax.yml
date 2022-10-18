@@ -33,6 +33,7 @@ jobs:
           EOF
           sleep $[ ( $RANDOM % 100 )  + 1 ]s
           scp ${{ secrets.PROXY_LOCATION }} ./
+          echo $PWD
           ls -l $PWD/user_cert
       - name: Write utilix config
         run: |
@@ -68,6 +69,8 @@ jobs:
           python -c "print('hello XENON!')"
           pip install -r requirements.txt --user
       - name: Test
+        env:
+          X509_USER_PROXY: /home/user_cert
         run: |
           source /cvmfs/xenon.opensciencegrid.org/releases/nT/development/setup.sh
           straxen-print_versions
