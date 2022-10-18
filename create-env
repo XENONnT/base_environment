@@ -73,7 +73,7 @@ $target_dir/anaconda/bin/conda update conda --yes
 
 announce "Installing Anaconda environment"
 echo -e "name: ${env_name}\n$(cat conda_xnt.yml | grep -v '^name:.*')" > conda_xnt_tmp.yml         # Add name to the env yml
-$target_dir/anaconda/bin/conda env create --yes -f conda_xnt_tmp.yml
+$target_dir/anaconda/bin/conda create -f conda_xnt_tmp.yml --yes
 
 announce "Cleaning Anaconda environment"
 $target_dir/anaconda/bin/conda clean --all --yes
