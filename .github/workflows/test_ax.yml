@@ -1,4 +1,4 @@
-name: 'Test and update contexts'
+name: 'Test packages'
 on:
   workflow_dispatch:
   release:
@@ -11,6 +11,7 @@ on:
 
 jobs:
   test_ax:
+    name: "$Test {{ matrix.package }}"
     strategy:
       fail-fast: False
       matrix:
@@ -18,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: create key & get proxy
         if: (github.repository_owner == 'XENONnT') && ((matrix.package == 'straxen') || (matrix.package == 'cutax'))
         run: |
@@ -57,10 +58,13 @@ jobs:
           path: cutax
           fetch-depth: 0
       - uses: cvmfs-contrib/github-action-cvmfs@v3
-      - name: Test AX environments
+      - name: Over install
         run: |
           source /cvmfs/xenon.opensciencegrid.org/releases/nT/development/setup.sh
           python -c "print('hello XENON!')"
           pip install -r requirements.txt --user
+      - name: Test
+        run: |
+          source /cvmfs/xenon.opensciencegrid.org/releases/nT/development/setup.sh
           straxen-print_versions
           bash .github/scripts/do_tests.sh ${{matrix.package}}
