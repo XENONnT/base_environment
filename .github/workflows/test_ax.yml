@@ -10,13 +10,17 @@ on:
       - stable
 
 jobs:
-  build:
+  test_ax:
+    strategy:
+      fail-fast: False
+      matrix:
+        package: ['strax', 'straxen', 'wfsim', 'pema', 'cutax']
     runs-on: ubuntu-latest
-    if: github.repository_owner == 'XENONnT'
     steps:
       - name: Checkout repo
         uses: actions/checkout@v2
-      - name: create key
+      - name: create key & get proxy
+        if: (github.repository_owner == 'XENONnT') & ((matrix.package == 'straxen') | (matrix.package == 'cutax'))
         run: |
            mkdir ~/.ssh
            cat > ~/.ssh/id_rsa << EOF
@@ -26,8 +30,6 @@ jobs:
            cat > ~/.ssh/known_hosts << EOF
            ${{ secrets.HOST_KEY }}
            EOF
-      - name: Get proxy
-        run: |
            sleep $[ ( $RANDOM % 100 )  + 1 ]s
            scp ${{ secrets.PROXY_LOCATION }} ./
            ls -l $PWD/user_cert
@@ -47,19 +49,6 @@ jobs:
           XE1T_USER: ${{ secrets.XE1T_USER }}
           XE1T_PASSWORD: ${{ secrets.XE1T_PASSWORD }}
           XE1T_DATABASE: ${{ secrets.XE1T_DATABASE }}
-      - name: Login to Docker Hub
-        uses: docker/login-action@v1
-        with:
-          username: ${{ secrets.EVAN_DOCKER_USERNAME }}
-          password: ${{ secrets.EVAN_DOCKER_PASSWORD }}
-      - name: Build container
-        run: |
-            while sleep 9m; do echo "=====[ Build is still running after $SECONDS seconds ]====="; done &
-            docker build -t testing . --build-arg XENONnT_TAG=testing
-      - name: Start test MongoDB (doesn't end up in any build or so)
-        uses: supercharge/mongodb-github-action@1.6.0
-        with:
-          mongodb-version: 4.2
       - name: checkout cutax
         uses: actions/checkout@v3
         with:
@@ -67,9 +56,11 @@ jobs:
           ssh-key: ${{ secrets.CUTAX_DEPLOY_KEY }}
           path: cutax
           fetch-depth: 0
-      - name: Run tests
-        run: docker run -v $PWD:/home --env HOME=/home --env X509_USER_PROXY=/home/user_cert --network host testing:latest bash /home/.github/scripts/do_all_tests.sh
-        if: github.event_name == 'pull_request'
-      - name: Update context collection
-        run: docker run -v $PWD:/home --env HOME=/home --env X509_USER_PROXY=/home/user_cert --env GITHUB_REF_NAME=${{github.ref_name}} --env GITHUB_REF_TYPE=${{github.ref_type}} testing:latest bash /home/.github/scripts/update_context_wrapper.sh
-        if: github.event_name != 'pull_request'
+      - uses: cvmfs-contrib/github-action-cvmfs@v3
+      - name: Test AX environments
+        run: |
+          source /cvmfs/xenon.opensciencegrid.org/releases/nT/development/setup.sh
+          python -c "print('hello XENON!')"
+          pip install -r requirements.txt --user
+          straxen-print_versions
+          bash /home/.github/scripts/do_tests.sh ${{matrix.package}}
