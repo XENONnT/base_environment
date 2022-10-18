@@ -70,11 +70,9 @@ jobs:
           pip install -r requirements.txt --user
       - name: Test
         env:
-          X509_USER_PROXY: /home/runner/work/base_environment/base_environment/user_cert
-          X509_CERT_DIR: /cvmfs/oasis.opensciencegrid.org/mis/osg-wn-client/certificates
+          X509_USER_PROXY: /home/user_cert
         run: |
           source /cvmfs/xenon.opensciencegrid.org/releases/nT/development/setup.sh
           ls $X509_USER_PROXY
           ls $X509_CERT_DIR
-          
           bash .github/scripts/do_tests.sh ${{matrix.package}}
