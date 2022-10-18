@@ -42,13 +42,12 @@ pytest wfsim || { echo 'wfsim tests failed' ; exit 1; }
 rm -r wfsim
 
 # Pema
-# FIXME: put back when pema is fixed.
-# echo " ... pema tests"
-# pema_version=`python -c "import pema; print(pema.__version__)"`
-# echo "Testing $pema_version"
-# git clone --single-branch --branch v$pema_version https://github.com/XENONnT/pema ./pema
-# pytest pema || { echo 'pema tests failed' ; exit 1; }
-# rm -r pema
+echo " ... pema tests"
+pema_version=`python -c "import pema; print(pema.__version__)"`
+echo "Testing $pema_version"
+git clone --single-branch --branch v$pema_version https://github.com/XENONnT/pema ./pema
+pytest pema || { echo 'pema tests failed' ; exit 1; }
+rm -r pema
 
 # cutax
 # we have already checked out cutax in the actions workflow
