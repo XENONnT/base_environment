@@ -20,7 +20,7 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v2
       - name: create key & get proxy
-        if: (github.repository_owner == 'XENONnT') & ((matrix.package == 'straxen') | (matrix.package == 'cutax'))
+        if: (github.repository_owner == 'XENONnT') && ((matrix.package == 'straxen') || (matrix.package == 'cutax'))
         run: |
            mkdir ~/.ssh
            cat > ~/.ssh/id_rsa << EOF
