@@ -11,7 +11,7 @@ on:
 
 jobs:
   test_ax:
-    name: "$Test {{ matrix.package }}"
+    name: "${{ matrix.package }}"
     strategy:
       fail-fast: False
       matrix:
