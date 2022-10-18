@@ -11,10 +11,12 @@ case "$1" in
     echo " ... gfal2 tests"
     python -c 'import gfal2'
   ;;
+
   admix )
     echo "... admix tests"
     python -c 'import admix'
   ;;
+
   strax )
     echo " ... strax tests"
     strax_version=`python -c "import strax; print(strax.__version__)"`
@@ -22,6 +24,7 @@ case "$1" in
     pytest strax || { echo 'strax tests failed' ; exit 1; }
     rm -r strax
   ;;
+
   straxen )
     echo " ... straxen tests"
     straxen_version=`python -c "import straxen; print(straxen.__version__)"`
@@ -31,6 +34,7 @@ case "$1" in
     rm -r straxen
     rm $HOME/pre_apply_function.py
   ;;
+
   wfsim )
     # wfsim
     echo " ... wfsim tests"
@@ -40,6 +44,7 @@ case "$1" in
     pytest wfsim || { echo 'wfsim tests failed' ; exit 1; }
     rm -r wfsim
   ;;
+
   pema )
     echo " ... pema tests"
     pema_version=`python -c "import pema; print(pema.__version__)"`
@@ -48,6 +53,7 @@ case "$1" in
     pytest pema || { echo 'pema tests failed' ; exit 1; }
     rm -r pema
   ;;
+
   cutax )
     # cutax
     # we have already checked out cutax in the actions workflow
@@ -67,6 +73,7 @@ case "$1" in
     cd ..
     pytest cutax || { echo 'cutax tests failed' ; exit 1; }
   ;;
+
   xedocs )
      # xedocs
      echo " ... xedocs tests"
