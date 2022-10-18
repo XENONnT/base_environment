@@ -70,9 +70,6 @@ jobs:
       - name: Test
         env:
           X509_USER_PROXY: /home/runner/work/base_environment/base_environment/user_cert
-#          XENON_CONFIG: .xenon_config
         run: |
           source /cvmfs/xenon.opensciencegrid.org/releases/nT/development/setup.sh
-          ls $X509_USER_PROXY
-          ls $X509_CERT_DIR
           bash .github/scripts/do_tests.sh ${{matrix.package}}
