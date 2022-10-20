@@ -76,5 +76,5 @@ jobs:
           DISABLE_RUCIO_TEST: 1
         run: |
           source /cvmfs/xenon.opensciencegrid.org/releases/nT/development/setup.sh
-          straxen-print_versions strax straxen wfsim cutax npshmex numba numpy tensorflow nton admix
+          straxen-print_versions strax straxen wfsim cutax npshmex numba numpy nton admix
           bash .github/scripts/do_tests.sh ${{matrix.package}}
