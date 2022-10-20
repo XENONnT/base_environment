@@ -7,7 +7,8 @@
 gfal2_bindings_version=ac5cd70bc0654cd5b72cc01085eeaafb469b9622 # project is not releasing often enough
 gfal2_util_version=1.6.0
 rucio_version=1.23.14
-cutax_version=latest
+## REMEMBER THE 'v' IN CUTAX_VERSION!! (unless it is 'latest')
+cutax_version=v1.13.0
 #######################################################################
 
 set -e
@@ -130,7 +131,8 @@ rm -rf gfal2-util
 announce "Installing Rucio"
 git clone https://github.com/rucio/rucio.git
 cd rucio
-git checkout $rucio_version
+# For some strange reason `git checkout $rucio_version` does not work 2022/07/22
+git checkout $rucio_version -f
 # don't mess with our version of setuptools, urllib3 and requests
 perl -p -i -e 's/^setuptools.*//' etc/pip-requires-client
 perl -p -i -e 's/^urllib3.*//' etc/pip-requires-client
