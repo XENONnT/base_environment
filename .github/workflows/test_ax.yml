@@ -72,5 +72,5 @@ jobs:
           X509_USER_PROXY: /home/runner/work/base_environment/base_environment/user_cert
         run: |
           source /cvmfs/xenon.opensciencegrid.org/releases/nT/development/setup.sh
-          straxen-print_versions strax straxen wfsim cutax npshmex numba numpy tensorflow nton
+          straxen-print_versions strax straxen wfsim cutax npshmex numba numpy tensorflow nton admix
           bash .github/scripts/do_tests.sh ${{matrix.package}}
