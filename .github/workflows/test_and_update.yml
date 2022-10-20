@@ -3,7 +3,6 @@ on:
   workflow_dispatch:
   release:
     types: [created]
-  pull_request:
   push:
     branches:
       - master
@@ -68,7 +67,7 @@ jobs:
           path: cutax
           fetch-depth: 0
       - name: Run tests
-        run: docker run -v $PWD:/home --env HOME=/home --env X509_USER_PROXY=/home/user_cert --network host testing:latest bash /home/.github/scripts/do_tests.sh
+        run: docker run -v $PWD:/home --env HOME=/home --env X509_USER_PROXY=/home/user_cert --network host testing:latest bash /home/.github/scripts/do_all_tests.sh
         if: github.event_name == 'pull_request'
       - name: Update context collection
         run: docker run -v $PWD:/home --env HOME=/home --env X509_USER_PROXY=/home/user_cert --env GITHUB_REF_NAME=${{github.ref_name}} --env GITHUB_REF_TYPE=${{github.ref_type}} testing:latest bash /home/.github/scripts/update_context_wrapper.sh
