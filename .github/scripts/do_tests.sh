@@ -30,7 +30,10 @@ case "$1" in
     straxen_version=`python -c "import straxen; print(straxen.__version__)"`
     git clone --single-branch --branch v$straxen_version https://github.com/XENONnT/straxen.git
     # TODO remove this cheat, can't get it to work now
-    rm straxen/tests/storage/test_rucio_remote.py
+    if [ $DISABLE_RUCIO_TEST ];
+     then echo "removing rucio remote test";
+     rm straxen/tests/storage/test_rucio_remote.py;
+    fi
     # /TODO
     bash straxen/.github/scripts/create_pre_apply_function.sh $HOME
     pytest -v straxen/tests || { echo 'straxen tests failed' ; exit 1; }
