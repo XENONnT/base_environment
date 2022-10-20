@@ -32,10 +32,6 @@ case "$1" in
 #     # TODO remove this cheat, can't get it to work now
 #     rm straxen/tests/storage/test_rucio_remote.py
 #     # /TODO
-    echo "pwd" `pwd`
-    echo "ls" `ls`
-    echo "X509_USER_PROXY" $X509_USER_PROXY
-    echo "ls X509_USER_PROXY" `ls $X509_USER_PROXY`
     bash straxen/.github/scripts/create_pre_apply_function.sh $HOME
     pytest -v straxen/tests/storage/test_rucio_remote.py || { echo 'straxen tests failed' ; exit 1; }
     pytest -v straxen/tests || { echo 'straxen tests failed' ; exit 1; }
