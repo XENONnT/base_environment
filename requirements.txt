@@ -39,7 +39,7 @@ nbsphinx==0.8.9
 nestpy==2.0.0                                      # WFsim dependency
 npshmex==0.2.1                                     # Strax dependency
 numba==0.56.2                                      # Strax dependency
-numpy==1.22.4
+numpy==1.23.0
 packaging==21.3
 pandas==1.5.0
 pandoc==2.2
