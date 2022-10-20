@@ -29,9 +29,9 @@ case "$1" in
     echo " ... straxen tests"
     straxen_version=`python -c "import straxen; print(straxen.__version__)"`
     git clone --single-branch --branch v$straxen_version https://github.com/XENONnT/straxen.git
-    # TODO remove this cheat, can't get it to work now
-    rm straxen/tests/storage/test_rucio_remote.py
-    # /TODO
+#     # TODO remove this cheat, can't get it to work now
+#     rm straxen/tests/storage/test_rucio_remote.py
+#     # /TODO
     bash straxen/.github/scripts/create_pre_apply_function.sh $HOME
     pytest -v straxen/tests || { echo 'straxen tests failed' ; exit 1; }
     rm -r straxen
