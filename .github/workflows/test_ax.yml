@@ -51,6 +51,7 @@ jobs:
           XE1T_PASSWORD: ${{ secrets.XE1T_PASSWORD }}
           XE1T_DATABASE: ${{ secrets.XE1T_DATABASE }}
       - name: checkout cutax
+        if: (github.repository_owner == 'XENONnT')
         uses: actions/checkout@v3
         with:
           repository: XENONnT/cutax
@@ -68,6 +69,7 @@ jobs:
           python -c "print('hello XENON!')"
           pip install -r requirements.txt --user
       - name: Test
+        if: (github.repository_owner == 'XENONnT') || ${matrix.package} != 'cutax'
         env:
           X509_USER_PROXY: /home/runner/work/base_environment/base_environment/user_cert
           # Could not get rucio tests to work :( Please see https://github.com/XENONnT/base_environment/pull/1109
