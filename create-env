@@ -7,7 +7,8 @@
 gfal2_bindings_version=ac5cd70bc0654cd5b72cc01085eeaafb469b9622 # project is not releasing often enough
 gfal2_util_version=1.6.0
 rucio_version=1.23.14
-cutax_version=latest
+## REMEMBER THE 'v' IN CUTAX_VERSION!! (unless it is 'latest')
+cutax_version=v1.13.0
 #######################################################################
 
 set -e
@@ -64,11 +65,15 @@ wget -nv -O conda_setup.sh https://repo.anaconda.com/miniconda/Miniconda3-py38_4
 bash conda_setup.sh -b -p $target_dir/anaconda
 rm -f conda_setup.sh
 
+
 export PKG_CONFIG_PATH=${target_dir}/anaconda/envs/${env_name}/lib64/pkgconfig:/usr/lib64/pkgconfig:/usr/share/pkgconfig
+
+announce "Updating conda"
+$target_dir/anaconda/bin/conda update conda --yes
 
 announce "Installing Anaconda environment"
 echo -e "name: ${env_name}\n$(cat conda_xnt.yml | grep -v '^name:.*')" > conda_xnt_tmp.yml         # Add name to the env yml
-y | $target_dir/anaconda/bin/conda env create -f conda_xnt_tmp.yml 
+$target_dir/anaconda/bin/conda env create -f conda_xnt_tmp.yml
 
 announce "Cleaning Anaconda environment"
 $target_dir/anaconda/bin/conda clean --all --yes
