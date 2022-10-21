@@ -39,7 +39,7 @@ case "$1" in
     mkdir $HOME/numba_cache
     export NUMBA_CACHE_DIR=$HOME/numba_cache/
     bash straxen/.github/scripts/create_pre_apply_function.sh $HOME
-    pytest -v straxen/tests || { echo 'straxen tests failed' ; exit 1; }
+    pytest -vx straxen/tests || { echo 'straxen tests failed' ; exit 1; }
     rm -r straxen
     rm $HOME/pre_apply_function.py
   ;;
