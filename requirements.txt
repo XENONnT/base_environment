@@ -26,7 +26,7 @@ git+https://github.com/XENONnT/inference_interface@v0.0.0
 jedi==0.17.2                                       # upgrading to 0.18.0 breaks autocomplete in ipython
 jupyter==1.0.0
 jupyter-resource-usage==0.6.2                      # Memory viewer for notebooks
-jupyterlab==3.4.5
+jupyterlab==3.4.8
 keras==2.10.0
 line_profiler==3.5.1
 lz4==4.0.2                                         # Strax dependency
