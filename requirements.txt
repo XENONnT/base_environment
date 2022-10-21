@@ -65,7 +65,7 @@ snakeviz==2.1.1
 sphinx==5.1.1
 tables==3.7.0                                      # pytables, necessary for pandas hdf5 i/o
 tensorflow==2.10.0
-tensorflow_probability==0.17.0
+tensorflow_probability==0.18.0
 typing_extensions==4.4.0                           # Tensorflow and bokeh dependency
 tqdm==4.63.1
 utilix==0.7.2                                      # dependency for straxen, admix
