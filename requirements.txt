@@ -60,7 +60,7 @@ seaborn==0.12.1
 sharedarray==3.2.2
 statsmodels==0.13.2
 strax==1.4.0
-straxen==2.0.0
+straxen==2.0.1
 snakeviz==2.1.1
 sphinx==5.1.1
 tables==3.7.0                                      # pytables, necessary for pandas hdf5 i/o
