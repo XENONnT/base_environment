@@ -28,7 +28,6 @@ jupyter==1.0.0
 jupyter-resource-usage==0.6.2                      # Memory viewer for notebooks
 jupyterlab==3.4.5
 keras==2.10.0
-llvmlite==0.39.1
 line_profiler==3.5.1
 lz4==4.0.2                                         # Strax dependency
 matplotlib==3.5.3                                  # update to 3.6.0 breaks straxen examples
@@ -74,5 +73,4 @@ wfsim==1.0.2
 git+https://github.com/ershockley/admix@v1.0.8
 xarray==2022.10.0
 xedocs==0.1.25
-zipp==3.8.1
 zstd==1.5.2.6                                      # Strax dependency
