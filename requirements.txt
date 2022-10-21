@@ -38,7 +38,7 @@ multihist==0.6.5
 nbsphinx==0.8.9
 nestpy==2.0.0                                      # WFsim dependency
 npshmex==0.2.1                                     # Strax dependency
-numba==0.56.2                                      # Strax dependency
+numba==0.56.3                                      # Strax dependency
 numpy==1.23.0
 packaging==21.3
 pandas==1.5.0
@@ -75,5 +75,3 @@ git+https://github.com/ershockley/admix@v1.0.8
 xarray==2022.10.0
 xedocs==0.1.25
 zstd==1.5.2.6                                      # Strax dependency
-
-
