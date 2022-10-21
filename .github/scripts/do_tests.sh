@@ -35,6 +35,9 @@ case "$1" in
      rm straxen/tests/storage/test_rucio_remote.py;
     fi
     # /TODO
+    # Make sure all new numba code is cached to one directory
+    mkdir $HOME/numba_cache
+    export NUMBA_CACHE_DIR=$HOME/numba_cache/
     bash straxen/.github/scripts/create_pre_apply_function.sh $HOME
     pytest -v straxen/tests || { echo 'straxen tests failed' ; exit 1; }
     rm -r straxen
