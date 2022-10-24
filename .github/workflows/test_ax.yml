@@ -22,7 +22,7 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v3
       - name: create key & get proxy
-        if: (matrix.package == 'straxen' || matrix.package == 'cutax')
+        if: matrix.package == 'cutax'
         run: |
           mkdir ~/.ssh
           cat > ~/.ssh/id_rsa << EOF
