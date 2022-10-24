@@ -47,7 +47,7 @@ parso==0.7.1                                       # upgrading to 0.8.0 breaks a
 pdmongo==0.1.0                                     # Strax dependency
 pema==0.6.4
 pika==1.3.0                                        # Pegasus
-prettytable==3.4.0
+prettytable==3.4.1
 psutil==5.9.2                                      # Strax dependency
 pyarrow==9.0.0                                     # Necessary for pandas feather i/o
 pymongo==3.12.3
@@ -67,7 +67,7 @@ tables==3.7.0                                      # pytables, necessary for pan
 tensorflow==2.10.0
 tensorflow_probability==0.18.0
 typing_extensions==4.4.0                           # Tensorflow and bokeh dependency
-tqdm==4.63.1
+tqdm==4.64.1
 utilix==0.7.2                                      # dependency for straxen, admix
 wfsim==1.0.2
 git+https://github.com/ershockley/admix@v1.0.8
