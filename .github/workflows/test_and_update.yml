@@ -61,10 +61,10 @@ jobs:
         with:
           mongodb-version: 4.2
       - name: checkout cutax
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           repository: XENONnT/cutax
-          token: ${{ secrets.CUTAX_TOKEN }}
+          ssh-key: ${{ secrets.CUTAX_DEPLOY_KEY }}
           path: cutax
           fetch-depth: 0
       - name: Run tests
