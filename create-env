@@ -131,7 +131,7 @@ rm -rf gfal2-util
 announce "Installing Rucio"
 git clone https://github.com/rucio/rucio.git
 cd rucio
-git checkout $rucio_version
+git checkout $rucio_version -f
 # don't mess with our version of setuptools, urllib3 and requests
 perl -p -i -e 's/^setuptools.*//' etc/pip-requires-client
 perl -p -i -e 's/^urllib3.*//' etc/pip-requires-client
