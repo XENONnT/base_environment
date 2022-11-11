@@ -19,7 +19,7 @@ future==0.18.2
 GitPython==3.1.29                                  # Pegasus dependency
 GOFevaluation==0.1.1
 holoviews==1.15.1
-hypothesis==6.46.2
+hypothesis==6.56.4
 iminuit==2.17.0
 ipympl==0.9.2                                      # For online monitoring
 git+https://github.com/XENONnT/inference_interface@v0.0.0
