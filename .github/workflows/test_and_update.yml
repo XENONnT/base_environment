@@ -3,7 +3,6 @@ on:
   workflow_dispatch:
   release:
     types: [created]
-  pull_request:
   push:
     branches:
       - master
@@ -55,20 +54,20 @@ jobs:
       - name: Build container
         run: |
             while sleep 9m; do echo "=====[ Build is still running after $SECONDS seconds ]====="; done &
-            docker build -t testing . --build-arg XENONnT_TAG=testing
+            docker build -t testing . --build-arg XENONnT_TAG=testing --network host
       - name: Start test MongoDB (doesn't end up in any build or so)
         uses: supercharge/mongodb-github-action@1.6.0
         with:
           mongodb-version: 4.2
       - name: checkout cutax
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           repository: XENONnT/cutax
-          token: ${{ secrets.CUTAX_TOKEN }}
+          ssh-key: ${{ secrets.CUTAX_DEPLOY_KEY }}
           path: cutax
           fetch-depth: 0
       - name: Run tests
-        run: docker run -v $PWD:/home --env HOME=/home --env X509_USER_PROXY=/home/user_cert --network host testing:latest bash /home/.github/scripts/do_tests.sh
+        run: docker run -v $PWD:/home --env HOME=/home --env X509_USER_PROXY=/home/user_cert --network host testing:latest bash /home/.github/scripts/do_all_tests.sh
         if: github.event_name == 'pull_request'
       - name: Update context collection
         run: docker run -v $PWD:/home --env HOME=/home --env X509_USER_PROXY=/home/user_cert --env GITHUB_REF_NAME=${{github.ref_name}} --env GITHUB_REF_TYPE=${{github.ref_type}} testing:latest bash /home/.github/scripts/update_context_wrapper.sh
