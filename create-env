@@ -145,14 +145,6 @@ python3 setup_rucio_client.py install --prefix=${target_dir}/anaconda/envs/${env
 cd ${target_dir}
 rm -rf rucio
 
-announce "Installing gopass"
-conda install -c conda-forge go --yes
-go install github.com/gopasspw/gopass@latest
-
-announce "Installing chezmoi"
-sh -c "$(wget -qO- get.chezmoi.io)"
-
-
 # rucio config
 cat >${target_dir}/anaconda/envs/${env_name}/etc/rucio.cfg <<EOF
 [common]
