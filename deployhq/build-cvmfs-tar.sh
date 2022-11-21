@@ -26,6 +26,6 @@ docker run -v `pwd`:/srv -i -t --rm --network=host \
        xenonnt/base-environment:$TAG \
        /bin/bash -c "/srv/build-cvmfs-tar-inside-helper.sh $TAG"
 
-scp -o 'ProxyJump ershockley@bastion.grid.uchicago.edu' generated/$TAG.tar.gz deployhq/build-cvmfs-tar-deploy.sh xenon1t@osg-cvmfs.grid.uchicago.edu:/tmp/
-ssh -J ershockley@bastion.grid.uchicago.edu xenon1t@osg-cvmfs.grid.uchicago.edu "/tmp/build-cvmfs-tar-deploy.sh $TAG"
+scp -o 'ProxyJump yuanlq@bastion.grid.uchicago.edu' generated/$TAG.tar.gz deployhq/build-cvmfs-tar-deploy.sh xenon1t@osg-cvmfs.grid.uchicago.edu:/tmp/
+ssh -J yuanlq@bastion.grid.uchicago.edu xenon1t@osg-cvmfs.grid.uchicago.edu "/tmp/build-cvmfs-tar-deploy.sh $TAG"
 
