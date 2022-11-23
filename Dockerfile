@@ -10,6 +10,8 @@ ARG XENONnT_TAG
 
 RUN echo "Building Docker container for XENONnT_${XENONnT_TAG} ..."
 
+RUN yum-config-manager --disable Pegasus
+
 RUN yum -y clean all && yum -y --skip-broken upgrade
 
 RUN  yum -y install centos-release-scl && \
