@@ -60,7 +60,7 @@ seaborn==0.12.1
 sharedarray==3.2.2
 statsmodels==0.13.2
 strax==1.4.0
-straxen==2.0.3
+straxen==2.0.4
 snakeviz==2.1.1
 sphinx==5.3.0
 tables==3.7.0                                      # pytables, necessary for pandas hdf5 i/o
@@ -72,6 +72,6 @@ utilix==0.7.2                                      # dependency for straxen, adm
 wfsim==1.0.2
 git+https://github.com/ershockley/admix@v1.0.8
 xarray==2022.10.0
-xedocs==0.2.1
+xedocs>=0.2.8
 zstd==1.5.2.6                                      # Strax dependency
 
