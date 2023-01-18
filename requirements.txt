@@ -72,6 +72,6 @@ utilix==0.7.2                                      # dependency for straxen, adm
 wfsim==1.0.2
 git+https://github.com/ershockley/admix@v1.0.8
 xarray==2022.10.0
-xedocs==0.2.8
+xedocs==0.2.9
 zstd==1.5.2.6                                      # Strax dependency
 
