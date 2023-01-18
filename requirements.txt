@@ -10,7 +10,7 @@ cython==0.29.32
 epix==0.3.2
 dask==2023.1.0
 dask-jobqueue==0.8.1
-datashader==0.14.2
+datashader==0.14.3
 dill==0.3.6                                     # Strax dependency
 distributed                                        # Dask extension - Don't track the version since that's already in dask
 flake8==5.0.4
