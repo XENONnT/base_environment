@@ -27,7 +27,7 @@ jedi==0.17.2                                       # upgrading to 0.18.0 breaks 
 jupyter==1.0.0
 jupyter-resource-usage==0.7.0                      # Memory viewer for notebooks
 jupyterlab==3.5.0
-keras==2.10.0
+keras==2.11.0
 line_profiler==3.5.1
 lz4==4.0.2                                         # Strax dependency
 matplotlib==3.5.3                                  # update to 3.6.0 breaks straxen examples
