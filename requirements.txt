@@ -8,7 +8,7 @@ commentjson==0.9.0                                 # Straxen dependency
 coveralls==3.3.1
 cython==0.29.32
 epix==0.3.2
-dask==2023.1.0
+dask==2023.1.1
 dask-jobqueue==0.8.1
 datashader==0.14.3
 dill==0.3.6                                     # Strax dependency
