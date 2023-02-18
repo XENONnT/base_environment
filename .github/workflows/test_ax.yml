@@ -65,6 +65,8 @@ jobs:
           mongodb-version: 4.2
       - uses: cvmfs-contrib/github-action-cvmfs@v3
       - name: Over install
+        env:
+          SKLEARN_ALLOW_DEPRECATED_SKLEARN_PACKAGE_INSTALL: true
         run: |
           source /cvmfs/xenon.opensciencegrid.org/releases/nT/development/setup.sh
           python -c "print('hello XENON!')"
