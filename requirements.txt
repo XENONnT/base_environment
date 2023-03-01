@@ -59,7 +59,7 @@ scipy==1.9.3
 seaborn==0.12.1
 sharedarray==3.2.2
 statsmodels==0.13.2
-strax==1.4.0
+strax==1.4.1
 straxen==2.0.4
 snakeviz==2.1.1
 sphinx==6.1.3
