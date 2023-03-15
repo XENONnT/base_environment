@@ -34,7 +34,7 @@ matplotlib==3.5.3                                  # update to 3.6.0 breaks stra
 memory_profiler==0.60.0
 mongomock==4.1.2
 multihist==0.6.5
-nbsphinx==0.8.9
+nbsphinx==0.9.1
 nestpy==1.5.4                                      # WFSim/epix dependency - do not update unless validated
 npshmex==0.2.1                                     # Strax dependency
 numba==0.56.4                                      # Strax dependency
