@@ -73,5 +73,5 @@ wfsim==1.0.2
 git+https://github.com/ershockley/admix@v1.0.8
 xarray==2022.12.0
 xedocs==0.2.12
-zstd==1.5.2.6                                      # Strax dependency
+zstd==1.5.4.0                                      # Strax dependency
 
