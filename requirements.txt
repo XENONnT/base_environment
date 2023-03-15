@@ -15,7 +15,7 @@ dill==0.3.6                                     # Strax dependency
 distributed                                        # Dask extension - Don't track the version since that's already in dask
 flake8==5.0.4
 flamedisx==2.0.0
-future==0.18.2
+future==0.18.3
 GitPython==3.1.29                                  # Pegasus dependency
 GOFevaluation==0.1.1
 holoviews==1.15.4
