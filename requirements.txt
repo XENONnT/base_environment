@@ -56,7 +56,7 @@ pytest-runner==6.0.0
 reprox==0.2.2
 scikit-learn==1.2.0
 scipy==1.9.3
-seaborn==0.12.1
+seaborn==0.12.2
 sharedarray==3.2.2
 statsmodels==0.13.2
 strax==1.4.1
