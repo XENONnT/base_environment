@@ -41,7 +41,7 @@ numba==0.56.4                                      # Strax dependency
 numpy==1.23.4
 packaging==23.0
 pandas==1.5.2
-pandoc==2.2
+pandoc==2.3
 panel==0.14.4
 parso==0.7.1                                       # upgrading to 0.8.0 breaks autocomplete in ipython
 pdmongo==0.1.0                                     # Strax dependency
