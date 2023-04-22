@@ -22,6 +22,8 @@ holoviews==1.15.4
 hypothesis==6.62.1
 iminuit==2.18.0
 ipympl==0.9.2                                      # For online monitoring
+ipywidgets==8.0.5                                  # For online monitoring
+ipykernel==6.22.0                               # For ipywidgets 
 git+https://github.com/XENONnT/inference_interface@v0.0.0
 jedi==0.17.2                                       # upgrading to 0.18.0 breaks autocomplete in ipython
 jupyter==1.0.0
@@ -37,8 +39,8 @@ multihist==0.6.5
 nbsphinx==0.8.9
 nestpy==1.5.4                                      # WFSim/epix dependency - do not update unless validated
 npshmex==0.2.1                                     # Strax dependency
-numba==0.56.4                                      # Strax dependency
-numpy==1.23.4
+numba==0.55.2                                      # Strax dependency
+numpy==1.22.4
 packaging==23.0
 pandas==1.5.2
 pandoc==2.2
