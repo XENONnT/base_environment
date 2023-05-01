@@ -43,7 +43,7 @@ nbsphinx==0.8.9
 nestpy==1.5.4                                      # WFSim/epix dependency - do not update unless validated
 npshmex==0.2.1                                     # Strax dependency
 numba==0.55.2                                      # Strax dependency
-numpy==1.22.4
+numpy==1.24.3
 packaging==23.0
 pandas==1.5.2
 pandoc==2.3
