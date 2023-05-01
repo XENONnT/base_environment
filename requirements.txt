@@ -20,7 +20,7 @@ future==0.18.2
 GitPython==3.1.29                                  # Pegasus dependency
 GOFevaluation==0.1.1
 holoviews==1.15.4
-hypothesis==6.62.1
+hypothesis==6.75.1
 iminuit==2.18.0
 ipympl==0.9.2                                      # For online monitoring
 ipywidgets==8.0.6                                  # For online monitoring
