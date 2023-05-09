@@ -25,9 +25,9 @@ jobs:
         if: matrix.package == 'cutax'
         run: |
           if [ "${{ secrets.PROXY_LOCATION }}" != '' ]; then
-            echo "true" >> $GITHUB_OUTPUT;
+            echo "true";
           else
-            echo "false" >> $GITHUB_OUTPUT;
+            echo "false";
           fi
           mkdir ~/.ssh
           cat > ~/.ssh/id_rsa << EOF
