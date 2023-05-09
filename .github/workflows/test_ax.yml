@@ -58,6 +58,7 @@ jobs:
           repository: XENONnT/cutax
           ssh-key: ${{ secrets.CUTAX_DEPLOY_KEY }}
           path: cutax
+          ref: master
           fetch-depth: 0
       - name: Start MongoDB
         uses: supercharge/mongodb-github-action@1.8.0
