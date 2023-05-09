@@ -24,6 +24,11 @@ jobs:
       - name: create key & get proxy
         if: matrix.package == 'cutax'
         run: |
+          if [ "${{ secrets.PROXY_LOCATION }}" != '' ]; then
+            echo "true" >> $GITHUB_OUTPUT;
+          else
+            echo "false" >> $GITHUB_OUTPUT;
+          fi
           mkdir ~/.ssh
           cat > ~/.ssh/id_rsa << EOF
           ${{ secrets.PRIVATE_KEY }}
