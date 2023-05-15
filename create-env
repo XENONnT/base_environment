@@ -85,7 +85,7 @@ source $target_dir/anaconda/bin/activate ${env_name}
 
 # Forging nodejs (for jupyter)
 announce "Installing nodejs"
-conda install -c conda-forge nodejs=18.11.0 --yes
+conda install -c conda-forge nodejs=18.15.0 --yes
 
 # boost
 announce "Installing Boost"
