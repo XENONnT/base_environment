@@ -15,11 +15,11 @@ jobs:
   update:
     name: "py${{ matrix.python-version }}"
     runs-on: ubuntu-latest
-    if: ${{ github.triggering_actor != 'dependabot[bot]' }}
     strategy:
       fail-fast: False
       matrix:
         python-version: [3.8]
+    if: ${{ github.triggering_actor != 'dependabot[bot]' }}
     steps:
       # Setup and installation
       - name: Checkout repo
