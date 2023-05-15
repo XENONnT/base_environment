@@ -11,7 +11,7 @@ on:
 
 jobs:
   test_ax:
-    if: (github.repository_owner == 'XENONnT') 
+    if: ${{ github.repository_owner == 'XENONnT' && github.triggering_actor != 'dependabot[bot]' }}
     name: "${{ matrix.package }}"
     strategy:
       fail-fast: False
@@ -52,7 +52,7 @@ jobs:
           XE1T_PASSWORD: ${{ secrets.XE1T_PASSWORD }}
           XE1T_DATABASE: ${{ secrets.XE1T_DATABASE }}
       - name: checkout cutax
-        if: (github.repository_owner == 'XENONnT')
+        if: github.repository_owner == 'XENONnT'
         uses: actions/checkout@v3
         with:
           repository: XENONnT/cutax
