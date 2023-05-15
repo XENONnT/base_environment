@@ -86,8 +86,6 @@ source $target_dir/anaconda/bin/activate ${env_name}
 # Forging nodejs (for jupyter)
 announce "Installing nodejs"
 conda install -c conda-forge nodejs=18.11.0 --yes
-# Enable widgets for online monitor
-jupyter labextension install @jupyter-widgets/jupyterlab-manager
 
 # boost
 announce "Installing Boost"
