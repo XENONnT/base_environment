@@ -15,6 +15,7 @@ jobs:
   update:
     name: "py${{ matrix.python-version }}"
     runs-on: ubuntu-latest
+    if: ${{ github.triggering_actor != 'dependabot[bot]' }}
     strategy:
       fail-fast: False
       matrix:
