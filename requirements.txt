@@ -1,82 +1,82 @@
-astropy==5.2.1
-awkward==1.10.1
-blosc==1.11.1                                      # Strax dependency
+astropy==5.2.2
+awkward==1.10.3
+blosc==1.11.1                                      # strax dependency
 bokeh==2.4.3
-boltons==21.0.0
+boltons==23.0.0
 codenamize==1.2.3                                  # for human-readable hashing
 comm==0.1.3
-commentjson==0.9.0                                 # Straxen dependency
+commentjson==0.9.0                                 # straxen dependency
 coveralls==3.3.1
-cython==0.29.32
-epix==0.3.2
-dask==2023.1.0
+cython==0.29.34
+epix==0.3.4
+dask==2023.5.0
 dask-jobqueue==0.8.1
-datashader==0.14.3
-dill==0.3.6                                     # Strax dependency
+datashader==0.14.4
+dill==0.3.6                                        # strax dependency
 distributed                                        # Dask extension - Don't track the version since that's already in dask
-flake8==5.0.4
+flake8==6.0.0
 flamedisx==2.0.0
-future==0.18.2
-GitPython==3.1.29                                  # Pegasus dependency
+future==0.18.3
+GitPython==3.1.31                                  # Pegasus dependency
 GOFevaluation==0.1.1
 holoviews==1.15.4
-hypothesis==6.62.1
-iminuit==2.18.0
-ipympl==0.9.2                                      # For online monitoring
+hypothesis==6.75.3
+iminuit==2.21.3
+ipympl==0.9.3                                      # For online monitoring
 ipywidgets==8.0.6                                  # For online monitoring
-ipykernel==6.22.0                               # For ipywidgets 
+ipykernel==6.22.0                                  # For ipywidgets
 ipython==8.12.1
 git+https://github.com/XENONnT/inference_interface@v0.0.0
 jedi==0.17.2                                       # upgrading to 0.18.0 breaks autocomplete in ipython
 jupyter==1.0.0
-jupyter-resource-usage==0.7.0                      # Memory viewer for notebooks
-jupyterlab==3.5.0
-keras==2.11.0
+jupyter-resource-usage==0.7.2                      # Memory viewer for notebooks
+jupyterlab==3.6.3
+jupyterlab_widgets==3.0.7
+keras==2.12.0
 lightgbm==3.3.5
-line_profiler==3.5.1
-lz4==4.3.2                                         # Strax dependency
-matplotlib==3.5.3                                  # update to 3.6.0 breaks straxen examples
-memory_profiler==0.60.0
+line_profiler==4.0.3
+lz4==4.3.2                                         # strax dependency
+matplotlib==3.7.1
+memory_profiler==0.61.0
 mongomock==4.1.2
 multihist==0.6.5
-nbsphinx==0.8.9
-nestpy==1.5.4                                      # WFSim/epix dependency - do not update unless validated
-npshmex==0.2.1                                     # Strax dependency
-numba==0.55.2                                      # Strax dependency
+nbsphinx==0.9.1
+nestpy==2.0.0                                      # WFSim/epix dependency - do not update unless validated
+npshmex==0.2.1                                     # strax dependency
+numba==0.55.2                                      # strax dependency
 numpy==1.22.4
-packaging==23.0
-pandas==1.5.2
+packaging==23.1
+pandas==1.5.3
 pandoc==2.3
 panel==0.14.4
 parso==0.7.1                                       # upgrading to 0.8.0 breaks autocomplete in ipython
-pdmongo==0.1.0                                     # Strax dependency
+pdmongo==0.3.4                                     # strax dependency
 pema==0.6.4
-pika==1.3.0                                        # Pegasus
-prettytable==3.6.0
-psutil==5.9.3                                      # Strax dependency
-pyarrow==10.0.0                                     # Necessary for pandas feather i/o
+pika==1.3.2                                        # Pegasus
+prettytable==3.7.0
+psutil==5.9.5                                      # strax dependency
+pyarrow==12.0.0                                    # Necessary for pandas feather i/o
 pymongo==3.13.0
-pytest==7.2.0
+pytest==7.3.1
 pytest-runner==6.0.0
 reprox==0.2.2
-scikit-learn==1.2.0
-scipy==1.9.3
-seaborn==0.12.1
+scikit-learn==1.2.2
+scipy==1.10.1
+seaborn==0.12.2
 sharedarray==3.2.2
-statsmodels==0.13.2
+statsmodels==0.14.0
 strax==1.4.2
 straxen==2.0.6
-snakeviz==2.1.1
-sphinx==6.1.3
+snakeviz==2.2.0
+sphinx==7.0.0
 tables==3.8.0                                      # pytables, necessary for pandas hdf5 i/o
-tensorflow==2.11.0
+tensorflow==2.12.0
 tensorflow_probability==0.19.0
-typing_extensions==4.4.0                           # Tensorflow and bokeh dependency
-tqdm==4.64.1
+typing_extensions==4.5.0                           # Tensorflow and bokeh dependency
+tqdm==4.65.0
 utilix==0.7.2                                      # dependency for straxen, admix
 wfsim==1.0.2
 git+https://github.com/ershockley/admix@v1.0.8
-xarray==2022.12.0
+xarray==2023.1.0
 xedocs==0.2.16
-zstd==1.5.2.6                                      # Strax dependency
-
+zstd==1.5.5.1                                      # strax dependency
