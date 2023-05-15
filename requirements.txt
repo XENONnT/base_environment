@@ -26,7 +26,7 @@ ipympl==0.9.3                                      # For online monitoring
 ipywidgets==8.0.6                                  # For online monitoring
 ipykernel==6.22.0                                  # For ipywidgets 
 ipython==8.12.1
-# git+https://github.com/XENONnT/inference_interface@v0.0.0
+git+https://github.com/XENONnT/inference_interface@v0.0.0
 jedi==0.17.2                                       # upgrading to 0.18.0 breaks autocomplete in ipython
 jupyter==1.0.0
 jupyter-resource-usage==0.7.2                      # Memory viewer for notebooks
@@ -75,7 +75,7 @@ typing_extensions==4.5.0                           # Tensorflow and bokeh depend
 tqdm==4.65.0
 utilix==0.7.2                                      # dependency for straxen, admix
 wfsim==1.0.2
-# git+https://github.com/ershockley/admix@v1.0.8
+git+https://github.com/ershockley/admix@v1.0.8
 xarray==2023.1.0
 xedocs==0.2.16
 zstd==1.5.5.1                                      # strax dependency
