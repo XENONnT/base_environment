@@ -11,13 +11,13 @@ on:
 
 jobs:
   test_ax:
-    if: (github.repository_owner == 'XENONnT') 
     name: "${{ matrix.package }}"
     strategy:
       fail-fast: False
       matrix:
         package: [ 'strax', 'straxen', 'wfsim', 'pema', 'cutax' ]
     runs-on: ubuntu-latest
+    if: ${{ github.repository_owner == 'XENONnT' && github.triggering_actor != 'dependabot[bot]' }}
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
@@ -52,12 +52,13 @@ jobs:
           XE1T_PASSWORD: ${{ secrets.XE1T_PASSWORD }}
           XE1T_DATABASE: ${{ secrets.XE1T_DATABASE }}
       - name: checkout cutax
-        if: (github.repository_owner == 'XENONnT')
+        if: github.repository_owner == 'XENONnT'
         uses: actions/checkout@v3
         with:
           repository: XENONnT/cutax
           ssh-key: ${{ secrets.CUTAX_DEPLOY_KEY }}
           path: cutax
+          ref: master
           fetch-depth: 0
       - name: Start MongoDB
         uses: supercharge/mongodb-github-action@1.8.0
@@ -65,6 +66,8 @@ jobs:
           mongodb-version: 4.2
       - uses: cvmfs-contrib/github-action-cvmfs@v3
       - name: Over install
+        env:
+          SKLEARN_ALLOW_DEPRECATED_SKLEARN_PACKAGE_INSTALL: true
         run: |
           source /cvmfs/xenon.opensciencegrid.org/releases/nT/development/setup.sh
           python -c "print('hello XENON!')"

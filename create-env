@@ -8,7 +8,7 @@ gfal2_bindings_version=ac5cd70bc0654cd5b72cc01085eeaafb469b9622 # project is not
 gfal2_util_version=1.6.0
 rucio_version=1.23.14
 ## REMEMBER THE 'v' IN CUTAX_VERSION!! (unless it is 'latest')
-cutax_version=v1.14.0
+cutax_version=v1.14.3
 #######################################################################
 
 set -e
@@ -58,6 +58,7 @@ function run_quietly {
 # build environment
 export LC_ALL=en_US.utf8
 export LANG=en_US.utf8
+export SKLEARN_ALLOW_DEPRECATED_SKLEARN_PACKAGE_INSTALL=True
 
 announce "Installing Miniconda"
 wget -nv -O conda_setup.sh https://repo.anaconda.com/miniconda/Miniconda3-py38_4.10.3-Linux-x86_64.sh
@@ -84,9 +85,7 @@ source $target_dir/anaconda/bin/activate ${env_name}
 
 # Forging nodejs (for jupyter)
 announce "Installing nodejs"
-conda install -c conda-forge nodejs=18.11.0 --yes
-# Enable widgets for online monitor
-jupyter labextension install @jupyter-widgets/jupyterlab-manager
+conda install -c conda-forge nodejs=18.15.0 --yes
 
 # boost
 announce "Installing Boost"
