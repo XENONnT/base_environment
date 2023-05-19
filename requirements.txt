@@ -1,6 +1,7 @@
-atomicwrites==1.4.1
+admix==1.0.9
 appletree==0.2.0
 astropy==5.2.2
+atomicwrites==1.4.1
 awkward==1.10.3
 blosc==1.11.1                                      # strax dependency
 bokeh==2.4.3
@@ -11,13 +12,13 @@ commentjson==0.9.0                                 # straxen dependency
 corner==2.2.2
 coveralls==3.3.1
 cython==0.29.34
-emcee==3.1.4
-epix==0.3.4
 dask==2023.5.0
 dask-jobqueue==0.8.1
 datashader==0.14.4
 dill==0.3.6                                        # strax dependency
 distributed                                        # Dask extension - Don't track the version since that's already in dask
+emcee==3.1.4
+epix==0.3.4
 flake8==6.0.0
 flamedisx==2.0.0
 future==0.18.3
@@ -27,18 +28,18 @@ h5py==3.8.0
 holoviews==1.15.4
 hypothesis==6.75.3
 iminuit==2.21.3
-ipympl==0.9.3                                      # For online monitoring
-ipywidgets==8.0.6                                  # For online monitoring
-ipykernel==6.22.0                                  # For ipywidgets
-ipython==8.12.1
 inference_interface==0.0.1
+ipykernel==6.22.0                                  # For ipywidgets
+ipympl==0.9.3                                      # For online monitoring
+ipython==8.12.1
+ipywidgets==8.0.6                                  # For online monitoring
 jax==0.4.10
 jaxlib==0.4.10
 jedi==0.17.2                                       # upgrading to 0.18.0 breaks autocomplete in ipython
 jupyter==1.0.0
-jupyter-resource-usage==0.7.2                      # Memory viewer for notebooks
 jupyterlab==3.6.3
 jupyterlab_widgets==3.0.7
+jupyter-resource-usage==0.7.2                      # Memory viewer for notebooks
 keras==2.12.0
 lightgbm==3.3.5
 line_profiler==4.0.3
@@ -73,19 +74,18 @@ scikit-learn==1.2.2
 scipy==1.10.1
 seaborn==0.12.2
 sharedarray==3.2.2
+snakeviz==2.2.0
+sphinx==7.0.0
 statsmodels==0.14.0
 strax==1.4.2
 straxen==2.0.6
-snakeviz==2.2.0
-sphinx==7.0.0
 tables==3.8.0                                      # pytables, necessary for pandas hdf5 i/o
 tensorflow==2.12.0
 tensorflow_probability==0.19.0
-typing_extensions==4.5.0                           # Tensorflow and bokeh dependency
 tqdm==4.65.0
+typing_extensions==4.5.0                           # Tensorflow and bokeh dependency
 utilix==0.7.2                                      # dependency for straxen, admix
 wfsim==1.0.2
-admix==1.0.9
 xarray==2023.1.0
 xedocs==0.2.16
 zstd==1.5.5.1                                      # strax dependency
