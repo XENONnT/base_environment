@@ -22,7 +22,7 @@ flake8==6.0.0
 flamedisx==2.0.0
 future==0.18.3
 GitPython==3.1.31                                  # Pegasus dependency
-GOFevaluation==0.1.1
+GOFevaluation==0.1.2
 h5py==3.8.0
 holoviews==1.15.4
 hypothesis==6.75.3
@@ -31,7 +31,7 @@ ipympl==0.9.3                                      # For online monitoring
 ipywidgets==8.0.6                                  # For online monitoring
 ipykernel==6.22.0                                  # For ipywidgets
 ipython==8.12.1
-git+https://github.com/XENONnT/inference_interface@v0.0.0
+inference_interface==0.0.1
 jax==0.4.10
 jaxlib==0.4.10
 jedi==0.17.2                                       # upgrading to 0.18.0 breaks autocomplete in ipython
@@ -85,7 +85,7 @@ typing_extensions==4.5.0                           # Tensorflow and bokeh depend
 tqdm==4.65.0
 utilix==0.7.2                                      # dependency for straxen, admix
 wfsim==1.0.2
-git+https://github.com/ershockley/admix@v1.0.8
+admix==1.0.9
 xarray==2023.1.0
 xedocs==0.2.16
 zstd==1.5.5.1                                      # strax dependency
