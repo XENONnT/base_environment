@@ -9,7 +9,7 @@ echo '/home/.github' `ls /home/.github`
 echo '$HOME' $HOME
 
 # FIXME add XEDOCS
-for package in strax straxen wfsim pema cutax admix gfal;
+for package in strax straxen wfsim pema cutax appletree admix gfal;
 do
   echo testing $package;
   bash .github/scripts/do_tests.sh $package;

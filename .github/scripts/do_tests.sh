@@ -32,8 +32,8 @@ case "$1" in
     git clone --single-branch --branch v$straxen_version https://github.com/XENONnT/straxen.git
     # TODO remove this cheat, can't get it to work now
     if [ $DISABLE_RUCIO_TEST ];
-     then echo "removing rucio remote test";
-     rm straxen/tests/storage/test_rucio_remote.py;
+      then echo "removing rucio remote test";
+      rm straxen/tests/storage/test_rucio_remote.py;
     fi
     # /TODO
     # Make sure all new numba code is cached to one directory
@@ -84,13 +84,21 @@ case "$1" in
     pytest cutax || { echo 'cutax tests failed' ; exit 1; }
   ;;
 
+  appletree )
+    echo " ... appletree tests"
+    appletree_version=`python -c "import appletree; print(appletree.__version__)"`
+    echo "Testing $appletree_version"
+    git clone --single-branch --branch v$appletree_version https://github.com/XENONnT/appletree ./appletree
+    pytest -v appletree || { echo 'appletree tests failed' ; exit 1; }
+    rm -r appletree
+  ;;
+
   xedocs )
-     # xedocs
-     echo " ... xedocs tests"
-     xedocs_version=`python -c "import xedocs; print(xedocs.__version__)"`
-     echo "Testing $xedocs_version"
-     git clone --single-branch --branch v$xedocs_version https://github.com/XENONnT/xedocs ./xedocs
-     pytest xedocs || { echo 'xedocs tests failed' ; exit 1; }
-     rm -r xedocs
+    echo " ... xedocs tests"
+    xedocs_version=`python -c "import xedocs; print(xedocs.__version__)"`
+    echo "Testing $xedocs_version"
+    git clone --single-branch --branch v$xedocs_version https://github.com/XENONnT/xedocs ./xedocs
+    pytest xedocs || { echo 'xedocs tests failed' ; exit 1; }
+    rm -r xedocs
   ;;
 esac
