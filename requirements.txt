@@ -1,5 +1,4 @@
-admix==1.0.9
-appletree==0.2.0
+appletree==0.3.0
 astropy==5.2.2
 atomicwrites==1.4.1
 awkward==1.10.3
@@ -87,6 +86,7 @@ typing_extensions==4.5.0                           # Tensorflow and bokeh depend
 utilix==0.7.2                                      # dependency for straxen, admix
 wfsim==1.0.2
 xarray==2023.1.0
+xe-admix==1.0.9
 xedocs==0.2.16
 xgboost==1.7.5
 zstd==1.5.5.1                                      # strax dependency
