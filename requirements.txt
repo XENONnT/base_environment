@@ -1,4 +1,4 @@
-appletree==0.2.1
+git+https://github.com/XENONnT/appletree@rm_manifest
 astropy==5.2.2
 atomicwrites==1.4.1
 awkward==1.10.3
