@@ -86,7 +86,7 @@ case "$1" in
 
   appletree )
     echo " ... appletree tests"
-    appletree_version=`python -c "import appletree; print(appletree.__version__)"`
+    appletree_version=`python -c "import appletree; print(appletree.__version__)" | tail -n 1`
     echo "Testing $appletree_version"
     git clone --single-branch --branch v$appletree_version https://github.com/XENONnT/appletree ./appletree
     pytest -v appletree || { echo 'appletree tests failed' ; exit 1; }
