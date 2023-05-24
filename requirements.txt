@@ -12,6 +12,7 @@ epix==0.3.4
 dask==2023.5.0
 dask-jobqueue==0.8.1
 datashader==0.14.4
+deepdiff==6.3.0
 dill==0.3.6                                        # strax dependency
 distributed                                        # Dask extension - Don't track the version since that's already in dask
 flake8==6.0.0
