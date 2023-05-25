@@ -32,6 +32,7 @@ RUN  yum -y install centos-release-scl && \
             gfal2-plugin-xrootd \
             glib2-devel \
             globus-gass-copy-devel \
+            graphviz \
             gtest-devel \
             json-c-devel \
             lfc-devel \
