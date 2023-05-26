@@ -36,6 +36,7 @@ RUN  yum -y install centos-release-scl && \
             gtest-devel \
             json-c-devel \
             lfc-devel \
+            libarchive \
             libattr-devel \
             libffi-devel \
             libssh2-devel \
