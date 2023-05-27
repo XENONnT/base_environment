@@ -19,7 +19,7 @@ cvmfs_server transaction xenon.opensciencegrid.org
 
 cd /cvmfs/xenon.opensciencegrid.org/releases/nT/ 
 rm -rf $TAG 
-bsdtar xzf /tmp/$TAG.tar.gz 
+tar xzf /tmp/$TAG.tar.gz --absolute-names
 cd /tmp
 
 cvmfs_server publish xenon.opensciencegrid.org
