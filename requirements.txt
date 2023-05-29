@@ -28,7 +28,7 @@ holoviews==1.15.4
 hypothesis==6.75.3
 iminuit==2.21.3
 inference_interface==0.0.1
-ipykernel==6.22.0                                  # For ipywidgets
+ipykernel==6.23.1                                  # For ipywidgets
 ipympl==0.9.3                                      # For online monitoring
 ipython==8.12.1
 ipywidgets==8.0.6                                  # For online monitoring
