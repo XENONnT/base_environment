@@ -51,7 +51,7 @@ multihist==0.6.5
 nbsphinx==0.9.1
 nestpy==2.0.0                                      # WFSim/epix dependency - do not update unless validated
 npshmex==0.2.1                                     # strax dependency
-numba==0.55.2                                      # strax dependency
+numba==0.57.0                                      # strax dependency
 numpy==1.22.4
 numpyro==0.11.0
 packaging==23.1
