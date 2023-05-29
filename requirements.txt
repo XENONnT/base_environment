@@ -1,4 +1,4 @@
-appletree==0.2.2
+appletree[cpu]==0.2.3
 astropy==5.2.2
 atomicwrites==1.4.1
 awkward==1.10.3
@@ -63,6 +63,7 @@ pdmongo==0.3.4                                     # strax dependency
 pema==0.6.4
 pika==1.3.2                                        # Pegasus
 prettytable==3.7.0
+poetry==1.5.0
 psutil==5.9.5                                      # strax dependency
 pyarrow==12.0.0                                    # Necessary for pandas feather i/o
 pymongo==3.13.0
