@@ -16,6 +16,7 @@ jobs:
       fail-fast: False
       matrix:
         package: [ 'strax', 'straxen', 'wfsim', 'pema', 'cutax', 'appletree' ]
+        python-version: [3.9]
     runs-on: ubuntu-latest
     if: ${{ github.repository_owner == 'XENONnT' && github.triggering_actor != 'dependabot[bot]' }}
     steps:
@@ -60,6 +61,10 @@ jobs:
           path: cutax
           ref: master
           fetch-depth: 0
+      - name: Setup python
+        uses: actions/setup-python@v2.3.0
+        with:
+          python-version: ${{ matrix.python-version }}
       - name: Start MongoDB
         uses: supercharge/mongodb-github-action@1.8.0
         with:
