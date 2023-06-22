@@ -33,8 +33,7 @@ jobs:
       - name: Install requirements
         env:
           SKLEARN_ALLOW_DEPRECATED_SKLEARN_PACKAGE_INSTALL: true
-        run: |
-          pip cache remove *
-          pip install --no-cache-dir -r requirements.txt
+        run:
+          pip cache purge && pip install --no-cache-dir -r requirements.txt
       - name: goodbye
         run: echo "tests done, bye bye"
