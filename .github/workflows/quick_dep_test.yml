@@ -18,7 +18,7 @@ jobs:
     strategy:
       fail-fast: False
       matrix:
-        python-version: [3.8]
+        python-version: [3.9]
     if: ${{ github.triggering_actor != 'dependabot[bot]' }}
     steps:
       # Setup and installation
@@ -34,6 +34,6 @@ jobs:
         env:
           SKLEARN_ALLOW_DEPRECATED_SKLEARN_PACKAGE_INSTALL: true
         run:
-          pip install -r requirements.txt
+          pip install --no-cache-dir -r requirements.txt
       - name: goodbye
         run: echo "tests done, bye bye"
