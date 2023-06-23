@@ -140,7 +140,12 @@ git checkout $rucio_version -f
 perl -p -i -e 's/^setuptools.*//' etc/pip-requires-client
 perl -p -i -e 's/^urllib3.*//' etc/pip-requires-client
 perl -p -i -e 's/^requests.*//' etc/pip-requires-client
+export SETUPTOOLS_VERSION=`$target_dir/anaconda/bin/conda list setuptools | grep setuptools | awk '{print $2}'`
+pip install setuptools --upgrade
 python3 setup_rucio_client.py install --prefix=${target_dir}/anaconda/envs/${env_name}
+# restore setuptools version
+pip install setuptools==$SETUPTOOLS_VERSION
+unset SETUPTOOLS_VERSION
 cd ${target_dir}
 rm -rf rucio
 
