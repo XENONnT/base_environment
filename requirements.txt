@@ -55,7 +55,7 @@ numba==0.55.2                                      # strax dependency
 numpy==1.22.4
 numpyro==0.12.1
 packaging==23.1
-pandas==2.0.2
+pandas==1.5.3
 pandoc==2.3
 panel==0.14.4
 parso==0.7.1                                       # upgrading to 0.8.0 breaks autocomplete in ipython
