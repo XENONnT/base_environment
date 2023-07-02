@@ -42,8 +42,7 @@ def main():
 
         hash_dict = {dtype: dtype_info['hash'] for dtype, dtype_info in st.provided_dtypes().items()}
 
-        if context == 'xenonnt_offline':
-            context = f'xenonnt_{cutax.contexts.DEFAULT_XEDOCS_VERSION}'
+        
         doc = dict(name=context,
                    date_added=datetime.datetime.utcnow(),
                    hashes=hash_dict,
@@ -55,6 +54,9 @@ def main():
 
         # update the context collection using utilix + runDB_api
         db.update_context_collection(doc)
-
+        if context == 'xenonnt_offline':
+            doc['context'] = f'xenonnt_{cutax.contexts.DEFAULT_XEDOCS_VERSION}'
+            db.update_context_collection(doc)
+            
 if __name__ == "__main__":
     main()
