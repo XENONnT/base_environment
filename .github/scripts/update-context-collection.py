@@ -56,7 +56,7 @@ def main():
         if context == 'xenonnt_offline':
             # need re-add the date_added field since the `update_context_collection` function changes it to str
             doc['date_added'] = datetime.datetime.utcnow()
-            doc['context'] = f'xenonnt_{cutax.contexts.DEFAULT_XEDOCS_VERSION}'
+            doc['name'] = f'xenonnt_{cutax.contexts.DEFAULT_XEDOCS_VERSION}'
             db.update_context_collection(doc)
 
 if __name__ == "__main__":
