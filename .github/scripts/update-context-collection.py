@@ -30,7 +30,7 @@ def main():
     # get contexts
     context_list = [d for d in dir(cutax.contexts) if 'xenonnt' in d]
     for context in context_list:
-        # pass cuts_for=None so that we don't track the cut lineages. They aren't saved anyway
+        # pass cut_list=None so that we don't track the cut lineages. They aren't saved anyway
         # skip contexts that raise errors
         
         try:
