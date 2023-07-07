@@ -33,7 +33,7 @@ ipympl==0.9.3                                      # For online monitoring
 ipython==8.12.1
 ipywidgets==8.0.6                                  # For online monitoring
 --find-links https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
-jax[cuda12_pip]==0.4.10
+jax[cuda12_pip]==0.4.13
 jedi==0.17.2                                       # upgrading to 0.18.0 breaks autocomplete in ipython
 jupyter==1.0.0
 jupyterlab==4.0.2
