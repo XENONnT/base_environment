@@ -1,5 +1,6 @@
 astropy==5.1
 blosc==1.10.6                                      # Strax dependency
+git+https://github.com/JelleAalbers/blueice.git@7c10222a13227e78dc7224b1a7e56ff91e4a8043
 bokeh==2.4.3
 boltons==21.0.0
 codenamize==1.2.3                                  # for human-readable hashing
@@ -56,7 +57,7 @@ scipy==1.8.1
 seaborn==0.11.2
 statsmodels==0.13.2
 strax==1.2.3
-straxen==1.7.1
+straxen==1.7.2
 snakeviz==2.1.1
 sphinx==4.5.0
 tables==3.7.0                                      # pytables, necessary for pandas hdf5 i/o
