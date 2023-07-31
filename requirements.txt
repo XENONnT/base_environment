@@ -12,7 +12,7 @@ corner==2.2.2
 coveralls==3.3.1
 cython==0.29.35
 dask==2023.6.0
-dask-jobqueue==0.8.1
+dask-jobqueue==0.8.2
 datashader==0.15.0
 dill==0.3.6                                        # strax dependency
 distributed                                        # Dask extension - Don't track the version since that's already in dask
