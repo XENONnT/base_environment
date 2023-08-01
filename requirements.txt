@@ -38,7 +38,7 @@ jedi==0.17.2                                       # upgrading to 0.18.0 breaks 
 jupyter==1.0.0
 jupyterlab==4.0.2
 jupyterlab_widgets==3.0.7
-jupyter-resource-usage==0.7.2                      # Memory viewer for notebooks
+jupyter-resource-usage==1.0.0                      # Memory viewer for notebooks
 keras==2.12.0
 lightgbm==3.3.5
 line_profiler==4.0.3
