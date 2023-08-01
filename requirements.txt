@@ -84,7 +84,7 @@ tables==3.8.0                                      # pytables, necessary for pan
 tensorflow==2.12.0
 tensorflow_probability==0.20.1
 tqdm==4.65.0
-typing_extensions==4.6.3                           # Tensorflow and bokeh dependency
+typing_extensions==4.7.1                           # Tensorflow and bokeh dependency
 utilix==0.7.4                                      # dependency for straxen, admix
 wfsim==1.0.2
 xarray==2023.5.0
