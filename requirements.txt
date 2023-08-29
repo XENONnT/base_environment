@@ -53,7 +53,7 @@ nestpy==2.0.0                                      # WFSim/epix dependency - do 
 notebook==7.0.0
 npshmex==0.2.1                                     # strax dependency
 numba==0.55.2                                      # strax dependency
-numpy==1.22.4
+numpy==1.25.2
 numpyro==0.12.1
 packaging==23.1
 pandas==1.5.3
