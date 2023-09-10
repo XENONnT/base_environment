@@ -8,7 +8,7 @@ gfal2_bindings_version=ac5cd70bc0654cd5b72cc01085eeaafb469b9622 # project is not
 gfal2_util_version=1.6.0
 rucio_version=1.23.14
 ## REMEMBER THE 'v' IN CUTAX_VERSION!! (unless it is 'latest')
-cutax_version=v1.15.0
+cutax_version=v1.15.3
 #######################################################################
 
 set -e
@@ -241,7 +241,7 @@ fi
 # grab a local cutax installation if we have one
 MIDWAY2_CUTAX_DIR=/dali/lgrandi/xenonnt/software/cutax/${cutax_version}
 MIDWAY3_CUTAX_DIR=/project2/lgrandi/xenonnt/dali/lgrandi/xenonnt/software/cutax/${cutax_version}
-OSG_CUTAX_DIR=/xenon/xenonnt/software/cutax/${cutax_version}
+OSG_CUTAX_DIR=/ospool/uc-shared/project/xenon/xenonnt/software/cutax/${cutax_version}
 if [ "x\${CUTAX_LOCATION}" = "x" ]; then
   for dir in \${MIDWAY3_CUTAX_DIR} \${MIDWAY2_CUTAX_DIR} \${OSG_CUTAX_DIR}; do
     if [ -e \$dir ]; then
