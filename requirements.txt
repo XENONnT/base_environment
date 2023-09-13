@@ -89,6 +89,6 @@ utilix==0.7.5                                      # dependency for straxen, adm
 wfsim==1.1.0
 xarray==2023.5.0
 xe-admix==1.0.10
-xedocs==0.2.24
+xedocs==0.2.25
 xgboost==1.7.5
 zstd==1.5.5.1                                      # strax dependency
