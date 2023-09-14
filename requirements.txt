@@ -36,7 +36,7 @@ ipywidgets==8.0.6                                  # For online monitoring
 jax[cuda12_pip]==0.4.10
 jedi==0.17.2                                       # upgrading to 0.18.0 breaks autocomplete in ipython
 jupyter==1.0.0
-jupyterlab==4.0.2
+jupyterlab==4.0.5
 jupyterlab_widgets==3.0.7
 jupyter-resource-usage==0.7.2                      # Memory viewer for notebooks
 keras==2.12.0
