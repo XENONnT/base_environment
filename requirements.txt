@@ -24,7 +24,7 @@ future==0.18.3
 GitPython==3.1.31                                  # Pegasus dependency
 GOFevaluation==0.1.2
 h5py==3.8.0
-holoviews==1.15.4
+holoviews==1.17.1
 hypothesis==6.79.2
 iminuit==2.21.3
 inference_interface==0.0.1
