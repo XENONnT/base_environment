@@ -41,7 +41,7 @@ jupyterlab_widgets==3.0.7
 jupyter-resource-usage==0.7.2                      # Memory viewer for notebooks
 keras==2.12.0
 lightgbm==3.3.5
-line_profiler==4.0.3
+line_profiler==4.1.1
 lz4==4.3.2                                         # strax dependency
 matplotlib==3.7.1
 memory_profiler==0.61.0
