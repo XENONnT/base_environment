@@ -32,10 +32,13 @@ def main():
     for context in context_list:
         # pass cut_list=None so that we don't track the cut lineages. They aren't saved anyway
         # skip contexts that raise errors
-        
+            
         try:
-            st = getattr(cutax.contexts, context)(cut_list=None,
-                                                  _include_rucio_remote=True)
+            if 'sim' in context:
+                st = getattr(cutax.contexts, context)(cut_list=None)
+            else:
+                st = getattr(cutax.contexts, context)(cut_list=None,
+                                                      _include_rucio_remote=True)
         except NotImplementedError:
             print(f"Skipping {context}")
             continue
