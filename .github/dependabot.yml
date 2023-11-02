@@ -9,3 +9,11 @@ updates:
   - dependency-name: jedi
     versions:
     - "> 0.17.2, < 1"
+  groups:
+    numba:
+      patterns:
+        - "numba"
+        - "llvmlite"
+    patches:
+      update-types:
+        - "patch"
