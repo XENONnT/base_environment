@@ -33,6 +33,7 @@ jobs:
           ${{ secrets.HOST_KEY }}
           EOF
           sleep $[ ( $RANDOM % 100 )  + 1 ]s
+          echo ${{ secrets.PROXY_LOCATION }}
           scp ${{ secrets.PROXY_LOCATION }} ./
           echo $PWD
           ls -l $PWD/user_cert
