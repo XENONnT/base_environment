@@ -23,8 +23,6 @@ jobs:
         uses: actions/checkout@v3
       - name: create key & get proxy
         if: matrix.package == 'cutax'
-        env:
-          PROXY_LOCATION: ${{ secrets.PROXY_LOCATION }}
         run: |
           mkdir ~/.ssh
           cat > ~/.ssh/id_rsa << EOF
@@ -35,7 +33,6 @@ jobs:
           ${{ secrets.HOST_KEY }}
           EOF
           sleep $[ ( $RANDOM % 100 )  + 1 ]s
-          echo ${{ secrets.PROXY_LOCATION }} | sed 's/./& /g'
           scp ${{ secrets.PROXY_LOCATION }} ./
           echo $PWD
           ls -l $PWD/user_cert
