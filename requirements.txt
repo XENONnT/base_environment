@@ -59,7 +59,7 @@ numpyro==0.13.2
 packaging==23.2
 pandas==1.5.3
 pandoc==2.3
-panel==1.3.6
+panel==0.14.4
 parso==0.8.3                                       # upgrading to 0.8.0 breaks autocomplete in ipython
 pdmongo==0.3.4                                     # strax dependency
 pema==0.6.5
