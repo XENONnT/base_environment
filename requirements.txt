@@ -37,7 +37,7 @@ jax[cuda12_pip]==0.4.23
 jedi==0.19.1                                       # upgrading to 0.18.0 breaks autocomplete in ipython
 jupyter==1.0.0
 jupyterlab==4.0.10
-jupyterlab_widgets==3.0.7
+jupyterlab_widgets==3.0.9
 jupyter-resource-usage==1.0.1                      # Memory viewer for notebooks
 keras==2.12.0
 lightgbm==4.2.0
