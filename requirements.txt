@@ -40,7 +40,7 @@ jupyter==1.0.0
 jupyterlab==4.0.10
 jupyterlab-widgets==3.0.9
 jupyter-resource-usage==1.0.1                      # Memory viewer for notebooks
-keras==3.0.2
+keras==2.15.0
 lightgbm==4.2.0
 line-profiler==4.0.3
 lz4==4.3.3                                         # strax dependency
