@@ -17,7 +17,6 @@ dask==2024.1.0
 dask-jobqueue==0.8.2
 datashader==0.16.0
 dill==0.3.7                                        # strax dependency
-distributed                                        # Dask extension - Don't track the version since that's already in dask
 emcee==3.1.4
 epix==0.3.5
 flake8==7.0.0
@@ -62,7 +61,6 @@ packaging==23.2
 pandas==1.5.3
 pandoc==2.3
 panel==0.14.4
-param==1.13.0
 parso==0.8.3                                       # upgrading to 0.8.0 breaks autocomplete in ipython
 pdmongo==0.3.4                                     # strax dependency
 pema==0.6.5
