@@ -2,7 +2,7 @@ alea-inference==0.2.2
 appletree[cpu]==0.3.1
 astropy==6.0.0
 atomicwrites==1.4.1
-awkward==1.10.5                                    # ref: ef51638f6fe8be4b4e2a6a497e158d48ba7f3803
+awkward==2.5.1
 blosc==1.11.1                                      # strax dependency
 blueice==1.2.0
 bokeh==2.4.3
@@ -56,7 +56,7 @@ nestpy==2.0.0                                      # WFSim/epix dependency - do 
 notebook==7.0.6
 npshmex==0.2.1                                     # strax dependency
 numba==0.58.1                                      # strax dependency
-numpy==1.26.3
+numpy==1.24.4
 numpyro==0.13.2
 packaging==23.2
 pandas==1.5.3
@@ -90,6 +90,7 @@ tensorflow==2.15.0
 tensorflow-probability==0.23.0
 tqdm==4.66.1
 typing-extensions==4.9.0                           # Tensorflow and bokeh dependency
+uproot==5.2.1
 utilix==0.7.6                                      # dependency for straxen, admix
 wfsim==1.1.0
 xarray==2023.12.0
