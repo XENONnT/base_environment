@@ -89,7 +89,7 @@ tensorflow-probability==0.23.0
 tqdm==4.66.1
 typing-extensions==4.9.0                           # Tensorflow and bokeh dependency
 uproot==5.2.1
-utilix==0.7.6                                      # dependency for straxen, admix
+utilix==0.7.7                                      # dependency for straxen, admix
 wfsim==1.2.0
 xarray==2023.12.0
 xe-admix==1.0.13
