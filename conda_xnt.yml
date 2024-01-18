@@ -1,7 +1,6 @@
 dependencies:
   - cmake=3.18.2
   - graphviz
-  - nb_conda
   - pip
   - python=3.9
   - pip:

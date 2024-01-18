@@ -93,6 +93,15 @@ case "$1" in
     rm -r appletree
   ;;
 
+  alea-inference )
+    echo " ... alea-inference tests"
+    alea_inference_version=`python -c "import alea; print(alea.__version__)" | tail -n 1`
+    echo "Testing $alea_inference_version"
+    git clone --single-branch --branch v$alea_inference_version https://github.com/XENONnT/alea ./alea
+    pytest -v alea || { echo 'alea tests failed' ; exit 1; }
+    rm -r alea
+  ;;
+
   xedocs )
     echo " ... xedocs tests"
     xedocs_version=`python -c "import xedocs; print(xedocs.__version__)"`

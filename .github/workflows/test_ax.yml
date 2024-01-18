@@ -15,7 +15,7 @@ jobs:
     strategy:
       fail-fast: False
       matrix:
-        package: [ 'strax', 'straxen', 'wfsim', 'pema', 'cutax', 'appletree' ]
+        package: [ 'strax', 'straxen', 'wfsim', 'pema', 'cutax', 'appletree', 'alea-inference' ]
     runs-on: ubuntu-latest
     if: ${{ github.repository_owner == 'XENONnT' && github.triggering_actor != 'dependabot[bot]' }}
     steps:
@@ -33,7 +33,7 @@ jobs:
           ${{ secrets.HOST_KEY }}
           EOF
           sleep $[ ( $RANDOM % 100 )  + 1 ]s
-          scp ${{ secrets.PROXY_LOCATION }} ./
+          scp ${{ secrets.PROXY_LOCATION }} ./user_cert
           echo $PWD
           ls -l $PWD/user_cert
       - name: Write utilix config
@@ -79,5 +79,5 @@ jobs:
           DISABLE_RUCIO_TEST: 1
         run: |
           source /cvmfs/xenon.opensciencegrid.org/releases/nT/development/setup.sh
-          straxen-print_versions strax straxen wfsim cutax npshmex numba numpy nton admix
+          straxen-print_versions strax straxen wfsim cutax appletree alea-inference npshmex numba numpy nton admix
           bash .github/scripts/do_tests.sh ${{matrix.package}}
