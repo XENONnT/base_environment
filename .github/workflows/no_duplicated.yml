@@ -29,7 +29,7 @@ jobs:
         if [ -z "${{ steps.detector.outputs.duplicated }}" ]; then
           echo "No duplications detected between requirements.txt and extra_requirements/requirements-tests.txt"
         else
-          echo "Duplications detected between requirements.txt and extra_requirements/requirements-tests.txt\nThey are:"
+          echo -e "Duplications detected between requirements.txt and extra_requirements/requirements-tests.txt\nThey are:"
           echo "${{ steps.detector.outputs.duplicated }}"
           exit 1
         fi
