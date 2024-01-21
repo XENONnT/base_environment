@@ -10,25 +10,24 @@ Example:
     git push
 """
 
-from straxen import get_resource
+import urllib.request
 import sys
 
 def update_req_file(
-        pull_from='https://raw.githubusercontent.com/XENONnT/ax_env/master/extra_requirements/requirements-tests.txt',
-        replace='./requirements.txt',
-        ignore_lines=('git+',),
-        dry=False,
-
+    pull_from='https://raw.githubusercontent.com/XENONnT/ax_env/master/extra_requirements/requirements-tests.txt',
+    replace='./requirements.txt',
+    ignore_lines=('git+',),
+    dry=False,
 ):
     """
-    Uppdate requirements fril with that of ax_env
+    Update requirements file with that of ax_env
     :param pull_from: url to fetch requirements from
     :param replace: path to requirements file to be updated
     :param ignore_lines: ignore lines that match this pattern
     :param dry: do a test run (print only and don't modify)
     :return:
     """
-    new_requirements = get_resource(pull_from, fmt='txt').split('\n')
+    new_requirements = urllib.request.urlopen(pull_from).read().decode().split('\n')
     with open(replace, 'r') as f:
         old_file = f.read()
     old_file = old_file.split('\n')
@@ -53,8 +52,11 @@ def update_req_file(
                 print(f'-{o}\n+{n}\n')
         return
     with open(replace, 'w') as f:
-        for line in new_file:
-            f.write(f'{line}\n')
+        for i, line in enumerate(new_file):
+            if i == len(new_file) - 1:
+                f.write(line)
+            else:
+                f.write(f'{line}\n')
 
 
 if __name__ == '__main__':

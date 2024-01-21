@@ -1,6 +1,5 @@
 generated
-
-# Pycharm
 .idea
-
 resource_cache
+.hypothesis
+strax_test_data
