@@ -22,7 +22,7 @@ cd ~/deployhq/
 ls
 
 # for logs, cat the requirements file
-cat requirements.txt
+cat extra_requirements/requirements-tests.txt requirements.txt
 
 # ensure we have the latest base image
 docker pull opensciencegrid/osgvo-el7

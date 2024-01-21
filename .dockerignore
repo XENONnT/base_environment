@@ -3,6 +3,7 @@
 
 # include only required files
 !labels.json
+!extra_requirements
 !requirements.txt
 !create-env
 !conda_xnt.yml

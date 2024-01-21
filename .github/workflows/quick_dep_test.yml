@@ -29,11 +29,13 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
           cache: 'pip'
-          cache-dependency-path: 'requirements.txt'
+          cache-dependency-path: |
+            extra_requirements/requirements-tests.txt
+            requirements.txt
       - name: Install requirements
         env:
           SKLEARN_ALLOW_DEPRECATED_SKLEARN_PACKAGE_INSTALL: true
         run:
-          pip cache purge && pip install --no-cache-dir -r requirements.txt
+          pip cache purge && pip install --no-cache-dir -r extra_requirements/requirements-tests.txt -r requirements.txt
       - name: goodbye
         run: echo "tests done, bye bye"
