@@ -20,7 +20,7 @@ jobs:
     - name: Run the command and capture output
       id: detector
       run: |
-        output=$(bash .github/scripts/detect_duplications.sh)))
+        output=$(bash .github/scripts/detect_duplications.sh)
         echo "::set-output name=command-output::$output"
       shell: bash
 
