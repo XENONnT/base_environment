@@ -21,16 +21,14 @@ jobs:
       id: detector
       run: |
         bash .github/scripts/detect_duplications.sh > duplicated.txt
-        ls -l
       shell: bash
 
     - name: Check if duplicated is empty
       run: |
-        ls -l
         if [ -s "duplicated.txt" ]; then
-          echo "No duplications detected between requirements.txt and extra_requirements/requirements-tests.txt"
-        else
           echo -e "Duplications detected between requirements.txt and extra_requirements/requirements-tests.txt\nThey are:"
           cat duplicated.txt
           exit 1
+        else
+          echo "No duplications detected between requirements.txt and extra_requirements/requirements-tests.txt"
         fi
