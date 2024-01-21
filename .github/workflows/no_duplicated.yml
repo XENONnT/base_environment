@@ -20,16 +20,16 @@ jobs:
     - name: Run the command and capture output
       id: detector
       run: |
-        output=$(bash .github/scripts/detect_duplications.sh)
-        echo "::set-output name=duplicated::$output"
+        duplicated=$(bash .github/scripts/detect_duplications.sh)
+        echo "::set-output name=duplicated::$duplicated"
       shell: bash
 
-    - name: Check if output is empty
+    - name: Check if duplicated is empty
       run: |
         if [ -z "${{ steps.detector.outputs.duplicated }}" ]; then
           echo "No duplications detected between requirements.txt and extra_requirements/requirements-tests.txt"
         else
           echo -e "Duplications detected between requirements.txt and extra_requirements/requirements-tests.txt\nThey are:"
-          echo "${{ steps.detector.outputs.duplicated }}"
+          printf "%s\n" "${{ steps.detector.outputs.duplicated }}"
           exit 1
         fi
