@@ -1,0 +1,35 @@
+name: Duplications detection
+on:
+  workflow_dispatch:
+  release:
+    types: [ created ]
+  pull_request:
+  push:
+    branches:
+      - master
+      - stable
+
+jobs:
+  duplications-detection:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Run the command and capture output
+      id: detector
+      run: |
+        output=$(bash .github/scripts/detect_duplications.sh)))
+        echo "::set-output name=command-output::$output"
+      shell: bash
+
+    - name: Check if output is empty
+      run: |
+        if [ -z "${{ steps.detector.outputs.command-output }}" ]; then
+          echo "No duplications detected between requirements.txt and extra_requirements/requirements-tests.txt"
+        else
+          echo "Duplications detected between requirements.txt and extra_requirements/requirements-tests.txt"
+          echo "They are\n: ${{ steps.detector.outputs.command-output }}"
+          exit 1
+        fi
