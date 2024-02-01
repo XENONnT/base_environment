@@ -2,7 +2,7 @@ alea-inference==0.2.2
 appletree[cpu]==0.3.1
 astropy==6.0.0
 atomicwrites==1.4.1
-awkward==2.5.1
+awkward==2.5.2
 blosc==1.11.1                                      # strax dependency
 blueice==1.2.0
 bokeh==3.2.2
