@@ -26,7 +26,7 @@ GitPython==3.1.41                                 # Pegasus dependency
 GOFevaluation==0.1.3
 h5py==3.10.0
 holoviews==1.18.1
-hypothesis==6.93.0
+hypothesis==6.97.4
 iminuit==2.24.0
 inference-interface==0.0.2
 ipykernel==6.28.0                                  # For ipywidgets
