@@ -4,4 +4,5 @@ dependencies:
   - pip
   - python=3.9
   - pip:
+    - -r extra_requirements/requirements-tests.txt
     - -r requirements.txt
