@@ -18,7 +18,7 @@ dask-jobqueue==0.8.2
 datashader==0.16.0
 dill==0.3.7                                        # strax dependency
 emcee==3.1.4
-epix==0.3.6
+epix==0.3.7
 flake8==7.0.0
 flamedisx==2.0.0
 future==0.18.3
@@ -90,7 +90,7 @@ tqdm==4.66.1
 typing-extensions==4.9.0                           # Tensorflow and bokeh dependency
 uproot==5.2.1
 utilix==0.7.7                                      # dependency for straxen, admix
-wfsim==1.2.0
+wfsim==1.2.1
 xarray==2023.12.0
 xe-admix==1.0.13
 xedocs==0.2.25
