@@ -1,4 +1,4 @@
-awkward==2.5.1
+awkward==2.6.1
 blosc==1.11.1                                      # strax dependency
 bokeh==3.2.2
 boltons==23.1.1
