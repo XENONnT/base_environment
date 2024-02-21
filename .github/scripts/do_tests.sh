@@ -45,25 +45,6 @@ case "$1" in
     rm $HOME/pre_apply_function.py
   ;;
 
-  wfsim )
-    # wfsim
-    echo " ... wfsim tests"
-    wfsim_version=`python -c "import wfsim; print(wfsim.__version__)"`
-    echo "Testing $wfsim_version"
-    git clone --single-branch --branch v$wfsim_version https://github.com/XENONnT/wfsim ./wfsim
-    pytest -v wfsim || { echo 'wfsim tests failed' ; exit 1; }
-    rm -r wfsim
-  ;;
-
-  pema )
-    echo " ... pema tests"
-    pema_version=`python -c "import pema; print(pema.__version__)"`
-    echo "Testing $pema_version"
-    git clone --single-branch --branch v$pema_version https://github.com/XENONnT/pema ./pema
-    pytest -v pema || { echo 'pema tests failed' ; exit 1; }
-    rm -r pema
-  ;;
-
   cutax )
     # cutax
     # we have already checked out cutax in the actions workflow
@@ -73,6 +54,7 @@ case "$1" in
 
     CUTAX_VERSION=$(grep "cutax_version=" create-env)
     CUTAX_VERSION=${CUTAX_VERSION//cutax_version=}
+    unset ALLOW_MC_TEST
     echo "Testing with cutax version ${CUTAX_VERSION}"
     cd cutax
     if [ $CUTAX_VERSION != 'latest' ]

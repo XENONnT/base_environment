@@ -8,7 +8,6 @@ comm==0.2.1
 corner==2.2.2
 cython==0.29.35
 emcee==3.1.4
-epix==0.3.6
 flamedisx==2.0.0
 future==0.18.3
 GOFevaluation==0.1.3
@@ -30,13 +29,11 @@ line-profiler==4.0.3
 mergedeep==1.3.4
 ml-dtypes==0.2.0
 nbsphinx==0.9.3
-nestpy==2.0.0                                      # WFSim/epix dependency - do not update unless validated
 notebook==7.0.6
 numpy==1.26.3
 numpyro==0.13.2
 pandoc==2.3
 parso==0.8.3                                       # upgrading to 0.8.0 breaks autocomplete in ipython
-pema==0.7.0
 pika==1.3.2                                        # Pegasus
 prettytable==3.9.0
 pre-commit==3.6.0
@@ -53,6 +50,5 @@ strax==1.6.0
 straxen==2.2.0
 tables==3.9.2                                      # pytables, necessary for pandas hdf5 i/o
 tensorflow-probability==0.23.0
-wfsim==1.2.0
 xe-admix==1.0.14
 xgboost==2.0.3
