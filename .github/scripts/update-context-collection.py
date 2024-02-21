@@ -35,10 +35,12 @@ def main():
             
         try:
             if 'sim' in context:
-                st = getattr(cutax.contexts, context)(cut_list=None)
+                # st = getattr(cutax.contexts, context)(cut_list=None)
+                print(f"Skipping {context}")
             else:
-                st = getattr(cutax.contexts, context)(cut_list=None,
-                                                      _include_rucio_remote=True)
+                st = getattr(cutax.contexts, context)(
+                    cut_list=None, _include_rucio_remote=True,
+                )
         except NotImplementedError:
             print(f"Skipping {context}")
             continue
