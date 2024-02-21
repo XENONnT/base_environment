@@ -52,7 +52,9 @@ RUN  yum -y install centos-release-scl && \
     yum clean all && \
     localedef -i en_US -f UTF-8 en_US.UTF-8
 
-ADD create-env conda_xnt.yml extra_requirements/requirements-tests.txt requirements.txt /tmp/
+ADD create-env conda_xnt.yml requirements.txt /tmp/
+
+COPY extra_requirements/requirements-tests.txt /tmp/extra_requirements/requirements-tests.txt
 
 RUN source /opt/rh/devtoolset-9/enable && \
     cd /tmp && \
