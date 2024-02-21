@@ -32,7 +32,7 @@ packaging==23.2
 pandas==1.5.3
 panel==1.2.3
 pdmongo==0.3.4                                     # strax dependency
-psutil==5.9.7                                      # strax dependency
+psutil==5.9.8                                      # strax dependency
 pymongo==4.3.3
 pytest==7.4.4
 pytest-cov==4.0.0
