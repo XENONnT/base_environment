@@ -1,3 +1,4 @@
+import os
 from argparse import ArgumentParser
 import strax
 import straxen
@@ -35,10 +36,15 @@ def main():
             
         try:
             if 'sim' in context:
-                st = getattr(cutax.contexts, context)(cut_list=None)
+                if "ALLOW_MC_TEST" not in os.environ:
+                    print(f"Skipping {context}")
+                    continue
+                else:
+                    st = getattr(cutax.contexts, context)(cut_list=None)
             else:
-                st = getattr(cutax.contexts, context)(cut_list=None,
-                                                      _include_rucio_remote=True)
+                st = getattr(cutax.contexts, context)(
+                    cut_list=None, _include_rucio_remote=True,
+                )
         except NotImplementedError:
             print(f"Skipping {context}")
             continue
