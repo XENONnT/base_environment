@@ -21,7 +21,7 @@ ipython==8.12.1
 jax[cuda12_pip]==0.4.24
 jedi==0.19.1                                       # upgrading to 0.18.0 breaks autocomplete in ipython
 jupyter==1.0.0
-jupyterlab==4.0.10                                 
+jupyterlab==4.0.12                                 # <4.1.0 for compatibility with xeauth
 jupyterlab-widgets==3.0.9
 jupyter-resource-usage==1.0.1                      # Memory viewer for notebooks
 lightgbm==4.3.0                                    
