@@ -30,7 +30,7 @@ numba==0.59.0                                      # strax dependency
 numexpr==2.9.0
 packaging==23.2
 pandas==1.5.3                                      
-panel==1.2.3
+panel==1.3.8
 pdmongo==0.3.4                                     # strax dependency
 psutil==5.9.8                                      # strax dependency 
 pymongo==4.3.3
