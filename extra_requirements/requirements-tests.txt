@@ -29,7 +29,7 @@ npshmex==0.2.1                                     # strax dependency
 numba==0.59.0                                      # strax dependency 
 numexpr==2.9.0
 packaging==23.2
-pandas==1.5.3                                      
+pandas==2.2.1                                      
 panel==1.2.3
 pdmongo==0.3.4                                     # strax dependency
 psutil==5.9.8                                      # strax dependency 
