@@ -14,7 +14,7 @@ GOFevaluation==0.1.4
 h5py==3.10.0
 iminuit==2.25.2                                    
 inference-interface==0.0.2
-ipykernel==6.29.2                                  # For ipywidgets
+ipykernel==6.29.3                                  # For ipywidgets
 ipympl==0.9.3                                      # For online monitoring
 ipython==8.12.1                                    
 --find-links https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
