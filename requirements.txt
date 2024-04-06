@@ -10,7 +10,6 @@ corner==2.2.2
 cython==3.0.8
 emcee==3.1.4
 flamedisx==2.0.0
-flake8==7.0.0
 future==1.0.0
 GOFevaluation==0.1.4
 h5py==3.10.0
