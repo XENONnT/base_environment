@@ -1,5 +1,5 @@
 alea-inference==0.2.3
-appletree[cpu]==0.3.1
+appletree[cpu]==0.3.2
 astropy==6.0.0
 atomicwrites==1.4.1
 black==24.3.0
