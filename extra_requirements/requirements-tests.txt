@@ -35,7 +35,7 @@ panel==1.2.3                                       # upgrading it causes conflic
 pdmongo==0.3.4                                     # strax dependency
 psutil==5.9.8                                      # strax dependency
 pymongo==4.3.3
-pytest==8.0.2
+pytest==8.1.1
 pytest-cov==4.1.0
 pytest-xdist==3.5.0
 scikit-learn==1.2.2
