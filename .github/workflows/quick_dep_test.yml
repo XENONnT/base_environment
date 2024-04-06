@@ -33,8 +33,6 @@ jobs:
             extra_requirements/requirements-tests.txt
             requirements.txt
       - name: Install requirements
-        env:
-          SKLEARN_ALLOW_DEPRECATED_SKLEARN_PACKAGE_INSTALL: true
         run:
           pip cache purge && pip install --no-cache-dir -r extra_requirements/requirements-tests.txt -r requirements.txt
       - name: goodbye

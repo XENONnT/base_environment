@@ -4,7 +4,6 @@ echo "Running tests"
 
 # spool up test-database for tests
 export TEST_MONGO_URI='mongodb://localhost:27017/'
-export SKLEARN_ALLOW_DEPRECATED_SKLEARN_PACKAGE_INSTALL=True
 
 
 case "$1" in
