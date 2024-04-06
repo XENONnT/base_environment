@@ -53,7 +53,7 @@ statsmodels==0.14.1
 strax==1.6.1
 straxen==2.2.1
 tables==3.9.2                                      # pytables, necessary for pandas hdf5 i/o
-tensorflow-probability==0.23.0
+tensorflow-probability==0.24.0
 uncertainties==3.1.7
 xe-admix==1.0.14
 xgboost==2.0.3
