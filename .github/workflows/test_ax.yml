@@ -76,6 +76,7 @@ jobs:
           # Could not get rucio tests to work :( Please see https://github.com/XENONnT/base_environment/pull/1109
           DISABLE_RUCIO_TEST: 1
         run: |
+          unset ALLOW_MC_TEST
           source /cvmfs/xenon.opensciencegrid.org/releases/nT/development/setup.sh
           straxen-print_versions strax straxen cutax appletree alea-inference npshmex numba numpy nton admix
           bash .github/scripts/do_tests.sh ${{matrix.package}}
