@@ -44,6 +44,7 @@ pyarrow==15.0.2                                    # Necessary for pandas feathe
 pydantic==1.10.14                                  # utilix dependency
 pytest-runner==6.0.1
 reprox==0.2.2
+requests==2.31.0
 seaborn==0.13.2
 simple-slurm==0.2.7
 sharedarray==3.2.3
