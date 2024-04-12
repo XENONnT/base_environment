@@ -27,7 +27,7 @@ mongomock==4.1.2
 multihist==0.6.5
 nbmake==1.5.3
 npshmex==0.2.1                                     # strax dependency
-numba==0.59.1                                      # strax dependency
+numba==0.59.0                                      # strax dependency
 numexpr==2.10.0
 packaging==23.2
 pandas==1.5.3                                      # pdmongo 0.3.4 requires pandas<1.6
