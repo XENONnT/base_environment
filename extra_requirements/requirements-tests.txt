@@ -1,51 +1,51 @@
-awkward==2.6.1
+awkward==2.6.3
 blosc==1.11.1                                      # strax dependency
 bokeh==3.2.2
-boltons==23.1.1
+boltons==24.0.0
 commentjson==0.9.0                                 # straxen dependency
 coverage==6.5.0                                    # coveralls prevent further update
 coveralls==3.3.1
-dask==2024.2.0
+dask==2024.4.1
 dask-jobqueue==0.8.5
 datashader==0.16.0
-deepdiff==6.7.1
+deepdiff==7.0.1
 dill==0.3.8                                        # strax dependency
 flake8==7.0.0
-GitPython==3.1.42                                  # Pegasus dependency
+GitPython==3.1.43                                  # Pegasus dependency
 graphviz==0.20.3
 holoviews==1.18.3
-hypothesis==6.98.15
-immutabledict== 4.1.0
+hypothesis==6.100.1
+immutabledict== 4.2.0
 ipywidgets==8.1.2                                  # For online monitoring
 Jinja2==3.1.3
 jupyter-client==8.6.0
 keras==2.15.0                                      # tensorflow 2.15.0 depends on keras2.16 and=2.15.0
 lz4==4.3.3                                         # strax dependency
-matplotlib==3.8.3
+matplotlib==3.8.4
 memory-profiler==0.61.0
 mongomock==4.1.2
 multihist==0.6.5
-nbmake==1.5.0
+nbmake==1.5.3
 npshmex==0.2.1                                     # strax dependency
 numba==0.59.0                                      # strax dependency
-numexpr==2.9.0
+numexpr==2.10.0
 packaging==23.2
 pandas==1.5.3                                      # pdmongo 0.3.4 requires pandas<1.6
 panel==1.2.3                                       # upgrading it causes conflict with xeauth
 pdmongo==0.3.4                                     # strax dependency
 psutil==5.9.8                                      # strax dependency
-pymongo==4.3.3
-pytest==8.0.2
-pytest-cov==4.1.0
+pymongo==4.3.3                                     # pdmongo 0.3.4 requires pymongo<4.4
+pytest==8.1.1
+pytest-cov==5.0.0
 pytest-xdist==3.5.0
 scikit-learn==1.2.2
-scipy==1.12.0
+scipy==1.13.0
 tensorflow==2.15.0.post1
 typing-extensions==4.10.0                          # Tensorflow and bokeh dependency
 tqdm==4.66.2
-uproot==5.3.1
+uproot==5.3.3
 utilix==0.8.0                                      # dependency for straxen, admix
-xarray==2024.2.0
+xarray==2024.3.0
 xedocs==0.2.26
-zarr==2.17.0
+zarr==2.17.2
 zstd==1.5.5.1                                      # strax dependency
