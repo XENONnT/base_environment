@@ -18,7 +18,7 @@ hypothesis==6.100.1
 immutabledict== 4.2.0
 ipywidgets==8.1.2                                  # For online monitoring
 Jinja2==3.1.3
-jupyter-client==8.6.0
+jupyter-client==8.6.1
 keras==2.15.0                                      # tensorflow 2.15.0 depends on keras2.16 and=2.15.0
 lz4==4.3.3                                         # strax dependency
 matplotlib==3.8.4
