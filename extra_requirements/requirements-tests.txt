@@ -46,6 +46,6 @@ tqdm==4.66.2
 uproot==5.3.3
 utilix==0.8.0                                      # dependency for straxen, admix
 xarray==2024.3.0
-xedocs==0.2.26
+xedocs==0.2.27
 zarr==2.17.2
 zstd==1.5.5.1                                      # strax dependency
