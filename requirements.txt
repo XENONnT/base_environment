@@ -52,7 +52,7 @@ snakeviz==2.2.0
 sphinx==7.2.6
 statsmodels==0.14.1
 strax==1.6.2
-straxen==2.2.1
+straxen==2.2.2
 tables==3.9.2                                      # pytables, necessary for pandas hdf5 i/o
 tensorflow-probability==0.24.0
 timeout_decorator==0.5.0                           # needed by fuse
