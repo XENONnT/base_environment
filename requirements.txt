@@ -8,7 +8,7 @@ codenamize==1.2.3                                  # for human-readable hashing
 comm==0.2.2
 corner==2.2.2
 cython==3.0.10
-emcee==3.1.4
+emcee==3.1.6
 flamedisx==2.1.0
 future==1.0.0
 GOFevaluation==0.1.4
