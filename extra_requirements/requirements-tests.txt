@@ -44,7 +44,7 @@ tensorflow==2.15.0.post1
 typing-extensions==4.10.0                          # Tensorflow and bokeh dependency
 tqdm==4.66.2
 uproot==5.3.3
-utilix==0.8.0                                      # dependency for straxen, admix
+utilix==0.8.3                                      # dependency for straxen, admix
 xarray==2024.3.0
 xedocs==0.2.27
 zarr==2.17.2
