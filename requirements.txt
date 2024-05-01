@@ -50,7 +50,7 @@ simple-slurm==0.2.7
 sharedarray==3.2.3
 snakeviz==2.2.0
 sphinx==7.2.6
-statsmodels==0.14.1
+statsmodels==0.14.2
 strax==1.6.2
 straxen==2.2.1
 tables==3.9.2                                      # pytables, necessary for pandas hdf5 i/o
