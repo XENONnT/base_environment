@@ -14,7 +14,7 @@ flake8==7.0.0
 GitPython==3.1.43                                  # Pegasus dependency
 graphviz==0.20.3
 holoviews==1.18.3
-hypothesis==6.100.5
+hypothesis==6.100.1
 immutabledict== 4.2.0
 ipywidgets==8.1.2                                  # For online monitoring
 Jinja2==3.1.4
