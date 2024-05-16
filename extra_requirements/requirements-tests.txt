@@ -21,7 +21,7 @@ Jinja2==3.1.4
 jupyter-client==8.6.0
 keras==2.15.0                                      # tensorflow 2.15.0 depends on keras2.16 and=2.15.0
 lz4==4.3.3                                         # strax dependency
-m2r==0.3.1
+m2r==0.2.1
 matplotlib==3.8.4
 memory-profiler==0.61.0
 mongomock==4.1.2
