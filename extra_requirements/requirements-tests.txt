@@ -44,7 +44,7 @@ pytest-xdist==3.5.0
 scikit-learn==1.2.2
 scipy==1.13.0
 tensorflow==2.15.0.post1
-typing-extensions==4.10.0                          # Tensorflow and bokeh dependency
+typing-extensions==4.12.0                          # Tensorflow and bokeh dependency
 tqdm==4.66.4
 uproot==5.3.6
 utilix==0.8.4                                      # dependency for straxen, admix
