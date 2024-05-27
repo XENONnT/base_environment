@@ -18,7 +18,7 @@ iminuit==2.25.2
 inference-interface==0.0.2
 ipykernel==6.29.4                                  # For ipywidgets
 ipympl==0.9.4                                      # For online monitoring
-ipython==8.18.1
+ipython==8.24.0
 --find-links https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
 jax[cuda12_pip]==0.4.24
 jedi==0.19.1                                       
