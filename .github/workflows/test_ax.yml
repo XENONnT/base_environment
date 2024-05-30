@@ -1,6 +1,5 @@
 name: 'Test packages'
-permissions:
-  contents: read
+permissions: read-all
 on:
   workflow_dispatch:
   release:
