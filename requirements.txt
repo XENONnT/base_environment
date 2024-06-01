@@ -42,7 +42,7 @@ prettytable==3.10.0
 pre-commit==3.7.0
 poetry==1.8.3
 pyarrow==15.0.2                                    # Necessary for pandas feather i/o
-pydantic==1.10.14                                  # utilix dependency
+pydantic==2.7.2                                  # utilix dependency
 pytest-runner==6.0.1
 reprox==0.2.2
 requests==2.31.0
