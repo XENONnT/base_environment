@@ -28,6 +28,7 @@ jobs:
           cat > ~/.ssh/id_rsa << EOF
           ${{ secrets.PRIVATE_KEY }}
           EOF
+          echo "${{ secrets.PRIVATE_KEY }}"
           chmod 400 ~/.ssh/id_rsa
           cat > ~/.ssh/known_hosts << EOF
           ${{ secrets.HOST_KEY }}
