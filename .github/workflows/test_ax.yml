@@ -33,7 +33,7 @@ jobs:
           ${{ secrets.HOST_KEY }}
           EOF
           sleep $[ ( $RANDOM % 100 )  + 1 ]s
-          scp /project/lgrandi/grid_proxy/xenon_service_proxy ./user_cert
+          scp ${{ secrets.PROXY_LOCATION }} ./user_cert
           echo $PWD
           ls -l $PWD/user_cert
       - name: Write utilix config
