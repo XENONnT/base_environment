@@ -28,13 +28,12 @@ jobs:
           cat > ~/.ssh/id_rsa << EOF
           ${{ secrets.PRIVATE_KEY }}
           EOF
-          echo "${{ secrets.PRIVATE_KEY }}"
           chmod 400 ~/.ssh/id_rsa
           cat > ~/.ssh/known_hosts << EOF
           ${{ secrets.HOST_KEY }}
           EOF
           sleep $[ ( $RANDOM % 100 )  + 1 ]s
-          scp ${{ secrets.PROXY_LOCATION }} ./user_cert
+          scp /project/lgrandi/grid_proxy/xenon_service_proxy ./user_cert
           echo $PWD
           ls -l $PWD/user_cert
       - name: Write utilix config
