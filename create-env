@@ -87,7 +87,7 @@ announce "Installing nodejs"
 conda install -c conda-forge nodejs=18.15.0 --yes
 
 # Install to avoid md2 problem in openssl
-conda install anaconda::openldap
+conda install anaconda::openldap --yes
 
 # boost
 announce "Installing Boost"
