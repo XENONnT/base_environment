@@ -86,9 +86,6 @@ source $target_dir/anaconda/bin/activate ${env_name}
 announce "Installing nodejs"
 conda install -c conda-forge nodejs=18.15.0 --yes
 
-# Install to avoid md2 problem in openssl
-conda install anaconda::openldap
-
 # boost
 announce "Installing Boost"
 cd ${target_dir}
