@@ -25,7 +25,7 @@ lz4==4.3.3                                         # strax dependency
 m2r==0.2.1
 matplotlib==3.8.4
 memory-profiler==0.61.0
-mistune==0.8.4
+mistune==3.0.2
 mongomock==4.1.2
 multihist==0.6.5
 nbmake==1.5.3
