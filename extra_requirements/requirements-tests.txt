@@ -50,5 +50,5 @@ uproot==5.3.6
 utilix==0.8.5                                      # dependency for straxen, admix
 xarray==2024.3.0
 xedocs==0.2.28
-zarr==2.18.0
+zarr==2.18.2
 zstd==1.5.5.1                                      # strax dependency
