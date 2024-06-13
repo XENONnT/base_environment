@@ -7,7 +7,7 @@ coverage==6.5.0                                    # coveralls prevent further u
 coveralls==3.3.1
 dask==2024.5.0
 dask-jobqueue==0.8.5
-datashader==0.16.1
+datashader==0.16.2
 deepdiff==7.0.1
 dill==0.3.8                                        # strax dependency
 docutils==0.18.1
