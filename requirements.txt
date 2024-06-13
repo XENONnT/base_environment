@@ -23,7 +23,7 @@ ipython==8.18.1
 jax[cuda12_pip]==0.4.24
 jedi==0.19.1                                       
 jupyter==1.0.0
-jupyterlab==4.0.12                                 # <4.1.0 for compatibility with xeauth 0.2.3
+jupyterlab==4.2.2                                 # <4.1.0 for compatibility with xeauth 0.2.3
 jupyterlab-widgets==3.0.10
 jupyter-resource-usage==1.0.2                      # Memory viewer for notebooks
 lightgbm==4.3.0
