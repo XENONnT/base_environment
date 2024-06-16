@@ -247,13 +247,10 @@ elif [ -e \$config_path_midway3 ]; then
 fi
 
 # grab a local cutax installation if we have one
-DALI_CUTAX_DIR=/dali/lgrandi/xenonnt/software/cutax/${cutax_version}
-MIDWAY2_CUTAX_DIR=/project2/lgrandi/xenonnt/software/cutax/${cutax_version}
-MIDWAY3_CUTAX_DIR=/project/lgrandi/xenonnt/software/cutax/${cutax_version}
+MIDWAY_CUTAX_DIR=/dali/lgrandi/xenonnt/software/cutax/${cutax_version}
 OSG_CUTAX_DIR=/ospool/uc-shared/project/xenon/xenonnt/software/cutax/${cutax_version}
-
 if [ "x\${CUTAX_LOCATION}" = "x" ]; then
-  for dir in \${DALI_CUTAX_DIR} \${MIDWAY2_CUTAX_DIR} \${MIDWAY3_CUTAX_DIR} \${OSG_CUTAX_DIR}; do
+  for dir in \${MIDWAY_CUTAX_DIR} \${OSG_CUTAX_DIR}; do
     if [ -e \$dir ]; then
        CUTAX_LOCATION=\$dir
     fi
