@@ -24,6 +24,10 @@ jobs:
       # Setup and installation
       - name: Checkout repo
         uses: actions/checkout@v2
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y python3-dev build-essential
       - name: Setup python
         uses: actions/setup-python@v2.3.0
         with:
