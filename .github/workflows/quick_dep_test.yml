@@ -39,6 +39,7 @@ jobs:
       - name: Install requirements
         run:
           pip install --no-cache-dir numpy==1.19.5
-          pip install --no-cache-dir sharedarray
+          pip install --no-cache-dir sharedarray@https://xenon.isi.edu/python/SharedArray-3.2.3.tar.gz 
+
       - name: goodbye
         run: echo "tests done, bye bye"
