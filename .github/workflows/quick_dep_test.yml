@@ -38,7 +38,7 @@ jobs:
             requirements.txt
       - name: Install requirements
         run:
-          pip install --no-cache-dir numpy==1.21.6
+          pip install --no-cache-dir numpy==1.19.5
           pip install --no-cache-dir sharedarray
       - name: goodbye
         run: echo "tests done, bye bye"
