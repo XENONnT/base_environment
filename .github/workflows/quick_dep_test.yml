@@ -38,6 +38,6 @@ jobs:
             requirements.txt
       - name: Install requirements
         run:
-          pip install sharedarray
+          pip cache purge && pip install --no-cache-dir sharedarray
       - name: goodbye
         run: echo "tests done, bye bye"
