@@ -38,7 +38,6 @@ jobs:
             requirements.txt
       - name: Install requirements
         run:
-          pip cache purge 
           pip install --no-cache-dir numpy==1.21.6
           pip install --no-cache-dir sharedarray
       - name: goodbye
