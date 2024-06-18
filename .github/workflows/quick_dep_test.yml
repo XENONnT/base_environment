@@ -38,8 +38,7 @@ jobs:
             requirements.txt
       - name: Install requirements
         run:
-          pip install --no-cache-dir numpy==1.19.5
-          pip install --no-cache-dir sharedarray@https://xenon.isi.edu/python/SharedArray-3.2.3.tar.gz 
+          pip cache purge && pip install sharedarray@https://xenon.isi.edu/python/SharedArray-3.2.3.tar.gz 
 
       - name: goodbye
         run: echo "tests done, bye bye"
