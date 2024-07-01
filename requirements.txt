@@ -1,6 +1,6 @@
 alea-inference==0.2.3
 appletree[cpu]==0.4.0
-astropy==6.0.1
+astropy==6.1.1
 atomicwrites==1.4.1
 axidence==0.3.1
 black==24.4.2
