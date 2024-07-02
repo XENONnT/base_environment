@@ -12,8 +12,10 @@ RUN echo "Building Docker container for XENONnT_${XENONnT_TAG} ..."
 
 RUN yum-config-manager --disable Pegasus
 
-RUN yum -y clean all && yum -y --skip-broken upgrade
-
+RUN yum makecache -y --disablerepo=Pegasus \
+  && yum update -y --disablerepo=Pegasus \
+  && yum upgrade -y --skip-broken --disablerepo=Pegasus
+  
 RUN  yum -y install centos-release-scl && \
      yum -y install \
             cmake \
