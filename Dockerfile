@@ -6,10 +6,6 @@ LABEL opensciencegrid.url="http://www.xenon1t.org/"
 LABEL opensciencegrid.category="Project"
 LABEL opensciencegrid.definition_url="https://github.com/XENONnT/base_environment"
 
-# Set up the repository to use vault.centos.org
-RUN sed -i 's|mirrorlist=http://mirrorlist.centos.org|#mirrorlist=http://mirrorlist.centos.org|' /etc/yum.repos.d/CentOS-*.repo && \
-    sed -i 's|#baseurl=http://vault.centos.org|baseurl=http://vault.centos.org|' /etc/yum.repos.d/CentOS-*.repo
-
 ARG XENONnT_TAG
 
 RUN echo "Building Docker container for XENONnT_${XENONnT_TAG} ..."
