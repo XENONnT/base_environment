@@ -6,8 +6,7 @@ LABEL opensciencegrid.url="http://www.xenon1t.org/"
 LABEL opensciencegrid.category="Project"
 LABEL opensciencegrid.definition_url="https://github.com/XENONnT/base_environment"
 
-RUN sed -i 's|mirrorlist=http://mirrorlist.centos.org|#mirrorlist=http://mirrorlist.centos.org|' /etc/yum.repos.d/CentOS-*.repo && \
-    sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-*
+FROM hub.opensciencegrid.org/htc/centos:7
 
 ARG XENONnT_TAG
 
