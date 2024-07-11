@@ -29,7 +29,7 @@ jupyter-resource-usage==1.0.2                      # Memory viewer for notebooks
 lightgbm==4.4.0
 line-profiler==4.1.3
 mergedeep==1.3.4
-ml-dtypes==0.3.1                                   # tensorflow 2.15.0.post1 requires ml-dtypes~=0.2.0
+ml-dtypes==0.2.0                                   # tensorflow 2.15.0.post1 requires ml-dtypes~=0.2.0
 nbsphinx==0.9.4
 nestpy==2.0.2
 notebook==7.0.8                                    # <7.1.0 for compatibility with jupyterlab 4.0.12
