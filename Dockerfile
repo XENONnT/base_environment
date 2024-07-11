@@ -64,6 +64,7 @@ RUN source /opt/rh/devtoolset-9/enable && \
     rm -f create-env conda_xnt.yml
 
 # relax permissions so we can build cvmfs tar balls
+RUN mkdir -p /cvmfs
 RUN chmod 1777 /cvmfs
 
 COPY labels.json /.singularity.d/
