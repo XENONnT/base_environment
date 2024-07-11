@@ -9,7 +9,6 @@ gfal2_util_version=1.8.1
 rucio_version=32.8.0
 ## REMEMBER THE 'v' IN CUTAX_VERSION!! (unless it is 'latest')
 cutax_version=v1.18.3
-
 #######################################################################
 
 set -e
@@ -114,18 +113,15 @@ git clone https://gitlab.cern.ch/dmc/gfal2-bindings.git
 cd gfal2-bindings
 git checkout v$gfal2_bindings_version
 perl -p -i -e "s;.*\\\${Boost_LIBRARYDIR};            \"${target_dir}/anaconda/envs/${env_name}/lib\";" CMakeLists.txt
-export CXXFLAGS=-I${target_dir}/anaconda/envs/${env_name}/include
 cmake -DPYTHON_EXECUTABLE=${target_dir}/anaconda/envs/${env_name}/bin/python3.9 \
       -DPYTHON_EXECUTABLE_3=${target_dir}/anaconda/envs/${env_name}/bin/python3.9 \
       -DPYTHON_EXECUTABLE_3.9=${target_dir}/anaconda/envs/${env_name}/bin/python3.9 \
       -DBOOST_ROOT=${target_dir}/anaconda/envs/${env_name} \
-      -DSKIP_DOC=TRUE -DSKIP_TESTS=TRUE \
-      -DCMAKE_RULE_MESSAGES=OFF
+      -DSKIP_DOC=TRUE -DSKIP_TESTS=TRUE
 make
 make install
 cd ${target_dir}
 rm -rf gfal2-bindings
-unset CXXFLAGS
 
 # gfal2 clients
 announce "Installing GFAL2 clients"
