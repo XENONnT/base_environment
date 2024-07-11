@@ -1,6 +1,6 @@
 alea-inference==0.2.3
-appletree[cpu]==0.4.0
-astropy==6.0.1
+appletree[cpu]==0.5.0
+astropy==6.1.1
 atomicwrites==1.4.1
 axidence==0.3.1
 black==24.4.2
@@ -14,9 +14,9 @@ flamedisx==2.1.0
 future==1.0.0
 GOFevaluation==0.1.4
 h5py==3.11.0
-iminuit==2.25.2
+iminuit==2.26.0
 inference-interface==0.0.2
-ipykernel==6.29.4                                  # For ipywidgets
+ipykernel==6.29.5                                  # For ipywidgets
 ipympl==0.9.4                                      # For online monitoring
 ipython==8.18.1                                    # >=8.19.0 Requires-Python >=3.10
 --find-links https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
@@ -26,7 +26,7 @@ jupyter==1.0.0
 jupyterlab==4.0.12                                 # <4.1.0 for compatibility with xeauth 0.2.3
 jupyterlab-widgets==3.0.11
 jupyter-resource-usage==1.0.2                      # Memory viewer for notebooks
-lightgbm==4.3.0
+lightgbm==4.4.0
 line-profiler==4.1.3
 mergedeep==1.3.4
 ml-dtypes==0.2.0                                   # tensorflow 2.15.0.post1 requires ml-dtypes~=0.2.0
@@ -54,10 +54,10 @@ snakeviz==2.2.0
 sphinx==7.3.7
 statsmodels==0.14.2
 strax==1.6.4
-straxen==2.2.3
+straxen==2.2.4
 tables==3.9.2                                      # pytables, necessary for pandas hdf5 i/o
 tensorflow-probability==0.24.0
 timeout_decorator==0.5.0                           # needed by fuse
-uncertainties==3.1.7
+uncertainties==3.2.1
 xe-admix==1.0.15
 xgboost==2.0.3
