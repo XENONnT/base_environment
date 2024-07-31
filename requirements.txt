@@ -1,8 +1,8 @@
-alea-inference==0.2.5
+alea-inference==0.2.6
 appletree[cpu]==0.5.0
 astropy==6.0.1                                     # 6.1.x Requires-Python >=3.10
 atomicwrites==1.4.1
-axidence==0.3.1
+axidence==0.3.2
 black==24.4.2
 blueice==1.2.0
 codenamize==1.2.3                                  # for human-readable hashing
@@ -53,7 +53,7 @@ sharedarray @ https://xenon.isi.edu/python/SharedArray-3.2.3.tar.gz   # workarou
 snakeviz==2.2.0
 sphinx==7.3.7
 statsmodels==0.14.2
-strax==1.6.4
+strax==1.6.5
 straxen==2.2.4
 tables==3.9.2                                      # pytables, necessary for pandas hdf5 i/o
 tensorflow-probability==0.24.0
