@@ -32,7 +32,7 @@ ml-dtypes==0.2.0                                   # tensorflow 2.15.0.post1 req
 nbsphinx==0.9.4
 nestpy==2.0.3
 notebook==7.0.8                                    # <7.1.0 for compatibility with jupyterlab 4.0.12
-numpy==2.0.1
+numpy==1.26.4                                      # tensorflow isn't compatible with 2.x.x
 numpyro==0.15.2
 pandoc==2.3
 parso==0.8.4                                       # upgrading to 0.8.0 breaks autocomplete in ipython
@@ -50,7 +50,7 @@ simple-slurm==0.2.7
 sharedarray==3.2.4
 #sharedarray @ https://xenon.isi.edu/python/SharedArray-3.2.3.tar.gz   # workaround for numpy 2.0.0 build problem
 snakeviz==2.2.0
-sphinx==8.0.2
+sphinx==7.3.7                                      # higher versions require python 3.10
 statsmodels==0.14.2
 strax==1.6.5
 straxen==2.2.4
