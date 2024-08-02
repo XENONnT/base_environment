@@ -12,6 +12,6 @@ CUTAX_VERSION=${CUTAX_VERSION//cutax_version=}
 if [ $CUTAX_VERSION = 'latest' ]; then echo "Dont upload for latest version" && exit 0; fi
 cd cutax
 git checkout $CUTAX_VERSION
-python setup.py install --user
+pip install ./ --user
 cd $HOME
 python .github/scripts/update-context-collection.py ${GITHUB_REF_NAME} ${GITHUB_REF_TYPE}
