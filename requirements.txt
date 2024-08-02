@@ -32,7 +32,7 @@ ml-dtypes==0.2.0                                   # tensorflow 2.15.0.post1 req
 nbsphinx==0.9.4
 nestpy==2.0.3
 notebook==7.0.8                                    # <7.1.0 for compatibility with jupyterlab 4.0.12
-numpy==2.0.1
+numpy==1.26.4                                      $ tensorflow isn't compatible with 2.x.x
 numpyro==0.15.2
 pandoc==2.3
 parso==0.8.4                                       # upgrading to 0.8.0 breaks autocomplete in ipython
