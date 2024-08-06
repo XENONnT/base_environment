@@ -51,6 +51,6 @@ tqdm==4.66.4
 uproot==5.3.10
 utilix==0.8.5                                      # dependency for straxen, admix
 xarray==2024.3.0                                   # xarray 2024.6.0 depends on pandas>=2.0
-xedocs==0.2.29
+xedocs==0.2.30
 zarr==2.18.2
 zstd==1.5.5.1                                      # strax dependency
