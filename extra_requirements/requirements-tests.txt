@@ -24,7 +24,7 @@ jupyter-client==8.6.2
 keras==2.15.0                                      # tensorflow 2.15.0 depends on keras2.16 and=2.15.0
 lz4==4.3.3                                         # strax dependency
 m2r==0.2.1                                         # don't update, straxen dependency
-matplotlib==3.9.1
+matplotlib==3.9.2
 memory-profiler==0.61.0
 mistune==0.8.4                                     # nbconvert 6.5.4 requires mistune<2
 mongomock==4.1.2
