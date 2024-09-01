@@ -54,7 +54,7 @@ sphinx==7.3.7                                      # higher versions require pyt
 statsmodels==0.14.2
 strax==1.6.5
 straxen==2.2.4
-tables==3.9.2                                      # pytables, necessary for pandas hdf5 i/o
+tables==3.10.1                                      # pytables, necessary for pandas hdf5 i/o
 tensorflow-probability==0.24.0
 timeout_decorator==0.5.0                           # needed by fuse
 uncertainties==3.2.2
