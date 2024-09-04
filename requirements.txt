@@ -1,8 +1,8 @@
-alea-inference==0.2.3
-appletree[cpu]==0.3.2
-astropy==6.0.1
+alea-inference==0.2.8
+appletree[cpu]==0.5.1
+astropy==6.0.1                                     # 6.1.x Requires-Python >=3.10
 atomicwrites==1.4.1
-axidence==0.3.1
+axidence==0.3.2
 black==24.4.2
 blueice==1.2.0
 codenamize==1.2.3                                  # for human-readable hashing
@@ -14,49 +14,49 @@ flamedisx==2.1.0
 future==1.0.0
 GOFevaluation==0.1.4
 h5py==3.11.0
-iminuit==2.25.2
-inference-interface==0.0.2
-ipykernel==6.29.4                                  # For ipywidgets
+iminuit==2.28.0
+inference-interface==0.0.3
+ipykernel==6.29.5                                  # For ipywidgets
 ipympl==0.9.4                                      # For online monitoring
-ipython==8.18.1
+ipython==8.18.1                                    # >=8.19.0 Requires-Python >=3.10
 --find-links https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
-jax[cuda12_pip]==0.4.24
 jedi==0.19.1                                       
 jupyter==1.0.0
 jupyterlab==4.0.12                                 # <4.1.0 for compatibility with xeauth 0.2.3
-jupyterlab-widgets==3.0.10
-jupyter-resource-usage==1.0.2                      # Memory viewer for notebooks
-lightgbm==4.3.0
+jupyterlab-widgets==3.0.11
+jupyter-resource-usage==1.1.0                      # Memory viewer for notebooks
+lightgbm==4.5.0
 line-profiler==4.1.3
 mergedeep==1.3.4
 ml-dtypes==0.2.0                                   # tensorflow 2.15.0.post1 requires ml-dtypes~=0.2.0
 nbsphinx==0.9.4
 nestpy==2.0.3
 notebook==7.0.8                                    # <7.1.0 for compatibility with jupyterlab 4.0.12
-numpy==1.26.4
-numpyro==0.14.0
+numpy==1.26.4                                      # tensorflow isn't compatible with 2.x.x
+numpyro==0.15.2
 pandoc==2.3
 parso==0.8.4                                       # upgrading to 0.8.0 breaks autocomplete in ipython
 pika==1.3.2                                        # Pegasus
-prettytable==3.10.0
-pre-commit==3.7.0
+prettytable==3.10.2
+pre-commit==3.8.0
 poetry==1.8.3
-pyarrow==15.0.2                                    # Necessary for pandas feather i/o
-pydantic==1.10.14                                  # utilix dependency
+pyarrow==17.0.0                                    # Necessary for pandas feather i/o
+pydantic==1.10.14                                    # rframe needs pydantic<2.0.0
 pytest-runner==6.0.1
 reprox==0.2.2
-requests==2.31.0
+requests==2.31.0                                   # rucio-clients 32.8.0 requires requests<=2.31.0
 seaborn==0.13.2
 simple-slurm==0.2.7
-sharedarray==3.2.3
+sharedarray==3.2.4
+#sharedarray @ https://xenon.isi.edu/python/SharedArray-3.2.3.tar.gz   # workaround for numpy 2.0.0 build problem
 snakeviz==2.2.0
-sphinx==7.3.7
+sphinx==7.3.7                                      # higher versions require python 3.10
 statsmodels==0.14.2
-strax==1.6.4
-straxen==2.2.3
+strax==1.6.5
+straxen==2.2.4
 tables==3.9.2                                      # pytables, necessary for pandas hdf5 i/o
 tensorflow-probability==0.24.0
 timeout_decorator==0.5.0                           # needed by fuse
-uncertainties==3.1.7
+uncertainties==3.2.2
 xe-admix==1.0.15
-xgboost==2.0.3
+xgboost==2.1.1

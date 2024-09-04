@@ -1,4 +1,4 @@
-FROM opensciencegrid/osgvo-el7
+FROM hub.opensciencegrid.org/htc/centos:7
 
 LABEL opensciencegrid.name="XENONnT"
 LABEL opensciencegrid.description="Base software environment for XENONnT, including Python 3.9 and data management tools"
@@ -7,14 +7,17 @@ LABEL opensciencegrid.category="Project"
 LABEL opensciencegrid.definition_url="https://github.com/XENONnT/base_environment"
 
 ARG XENONnT_TAG
+ENV CONDA_OVERRIDE_GLIBC=2.36
 
 RUN echo "Building Docker container for XENONnT_${XENONnT_TAG} ..."
 
 RUN yum-config-manager --disable Pegasus
 
 RUN yum -y clean all && yum -y --skip-broken upgrade
-
+  
 RUN  yum -y install centos-release-scl && \
+     sed -i.bak 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-* && \
+     sed -i.bak 's|#.*baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-* && \
      yum -y install \
             cmake \
             davix-devel \
@@ -62,6 +65,7 @@ RUN source /opt/rh/devtoolset-9/enable && \
     rm -f create-env conda_xnt.yml
 
 # relax permissions so we can build cvmfs tar balls
+RUN mkdir -p /cvmfs
 RUN chmod 1777 /cvmfs
 
 COPY labels.json /.singularity.d/

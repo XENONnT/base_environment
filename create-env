@@ -8,7 +8,7 @@ gfal2_bindings_version=1.12.2
 gfal2_util_version=1.8.1
 rucio_version=32.8.0
 ## REMEMBER THE 'v' IN CUTAX_VERSION!! (unless it is 'latest')
-cutax_version=v1.18.1
+cutax_version=v1.18.4
 #######################################################################
 
 set -e
@@ -85,6 +85,9 @@ source $target_dir/anaconda/bin/activate ${env_name}
 # Forging nodejs (for jupyter)
 announce "Installing nodejs"
 conda install -c conda-forge nodejs=18.15.0 --yes
+
+# Install to avoid md2 problem in openssl
+conda install anaconda::openldap --yes
 
 # boost
 announce "Installing Boost"
@@ -221,7 +224,7 @@ fi
 
 
 # site-specific stuff
-for space in /project2/lgrandi/grid_proxy /xenon/grid_proxy; do
+for space in /project/lgrandi/grid_proxy /project2/lgrandi/grid_proxy /xenon/grid_proxy; do
     if [ -d \$space ]; then
         if [ "x\$X509_USER_PROXY" = "x" ]; then
             export X509_USER_PROXY=\${space}/xenon_service_proxy
@@ -232,16 +235,22 @@ for space in /project2/lgrandi/grid_proxy /xenon/grid_proxy; do
 done
 
 # xenon config location on midway
-config_path=/project2/lgrandi/xenonnt/xenon.config
-if [ -e \$config_path ]; then
-   export XENON_CONFIG=\$config_path
+config_path_midway2=/project2/lgrandi/xenonnt/xenon.config
+config_path_midway3=/project/lgrandi/xenonnt/xenon.config
+if [ -e \$config_path_midway2 ]; then
+   export XENON_CONFIG=\$config_path_midway2
+elif [ -e \$config_path_midway3 ]; then
+   export XENON_CONFIG=\$config_path_midway3
 fi
 
 # grab a local cutax installation if we have one
-MIDWAY_CUTAX_DIR=/dali/lgrandi/xenonnt/software/cutax/${cutax_version}
+DALI_CUTAX_DIR=/dali/lgrandi/xenonnt/software/cutax/${cutax_version}
+MIDWAY2_CUTAX_DIR=/project2/lgrandi/xenonnt/software/cutax/${cutax_version}
+MIDWAY3_CUTAX_DIR=/project/lgrandi/xenonnt/software/cutax/${cutax_version}
 OSG_CUTAX_DIR=/ospool/uc-shared/project/xenon/xenonnt/software/cutax/${cutax_version}
+
 if [ "x\${CUTAX_LOCATION}" = "x" ]; then
-  for dir in \${MIDWAY_CUTAX_DIR} \${OSG_CUTAX_DIR}; do
+  for dir in \${DALI_CUTAX_DIR} \${MIDWAY2_CUTAX_DIR} \${MIDWAY3_CUTAX_DIR} \${OSG_CUTAX_DIR}; do
     if [ -e \$dir ]; then
        CUTAX_LOCATION=\$dir
     fi
