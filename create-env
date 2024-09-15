@@ -97,9 +97,10 @@ wget -nv https://boostorg.jfrog.io/artifactory/main/release/1.74.0/source/boost_
 tar xjf boost_1_74_0.tar.bz2
 rm -f boost_1_74_0.tar.bz2
 cd boost_1_74_0
-./bootstrap.sh --prefix=${target_dir}/anaconda/envs/${env_name} --show-libraries \
-               --with-libraries=atomic,chrono,date_time,exception,filesystem,graph,iostreams,locale,log,math,program_options,random,regex,serialization,system,test,thread,timer,wave,python \
-               --with-python=${target_dir}/anaconda/envs/${env_name}/bin/python3
+./bootstrap.sh \
+    --prefix=${target_dir}/anaconda/envs/${env_name} --show-libraries \
+    --with-libraries=atomic,chrono,date_time,exception,filesystem,graph,iostreams,locale,log,math,program_options,random,regex,serialization,system,test,thread,timer,wave,python \
+    --with-python=${target_dir}/anaconda/envs/${env_name}/bin/python3
 ./b2 install --prefix=${target_dir}/anaconda/envs/${env_name}
 cd ${target_dir}
 rm -rf boost_*
@@ -238,9 +239,9 @@ done
 config_path_midway2=/project2/lgrandi/xenonnt/xenon.config
 config_path_midway3=/project/lgrandi/xenonnt/xenon.config
 if [ -e \$config_path_midway2 ]; then
-   export XENON_CONFIG=\$config_path_midway2
+    export XENON_CONFIG=\$config_path_midway2
 elif [ -e \$config_path_midway3 ]; then
-   export XENON_CONFIG=\$config_path_midway3
+    export XENON_CONFIG=\$config_path_midway3
 fi
 
 # grab a local cutax installation if we have one
@@ -250,11 +251,11 @@ MIDWAY3_CUTAX_DIR=/project/lgrandi/xenonnt/software/cutax/${cutax_version}
 OSG_CUTAX_DIR=/ospool/uc-shared/project/xenon/xenonnt/software/cutax/${cutax_version}
 
 if [ "x\${CUTAX_LOCATION}" = "x" ]; then
-  for dir in \${DALI_CUTAX_DIR} \${MIDWAY2_CUTAX_DIR} \${MIDWAY3_CUTAX_DIR} \${OSG_CUTAX_DIR}; do
-    if [ -e \$dir ]; then
-       CUTAX_LOCATION=\$dir
-    fi
-  done
+    for dir in \${DALI_CUTAX_DIR} \${MIDWAY2_CUTAX_DIR} \${MIDWAY3_CUTAX_DIR} \${OSG_CUTAX_DIR}; do
+        if [ -e \$dir ]; then
+            CUTAX_LOCATION=\$dir
+        fi
+    done
 fi
 
 if [ "x\$INSTALL_CUTAX" = "x" ]; then
@@ -262,16 +263,16 @@ if [ "x\$INSTALL_CUTAX" = "x" ]; then
 fi
 
 if [ \$INSTALL_CUTAX -eq 1 ]; then
-  if [ -e "\${CUTAX_LOCATION}" ]; then
-    export CUTAX_LOCATION
-    export PYTHONPATH=\${CUTAX_LOCATION}:\$PYTHONPATH
-  fi
+    if [ -e "\${CUTAX_LOCATION}" ]; then
+        export CUTAX_LOCATION
+        export PYTHONPATH=\${CUTAX_LOCATION}:\$PYTHONPATH
+    fi
 fi
 
 # set env variable for matplotlib styles on Midway
 MPL_DIR='/dali/lgrandi/xenonnt/software/nton/mplconfigs/'
 if [ -e \$MPL_DIR ]; then
-   export MPLCONFIGDIR=\$MPL_DIR
+    export MPLCONFIGDIR=\$MPL_DIR
 fi
 
 EOF
