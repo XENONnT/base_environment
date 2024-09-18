@@ -7,6 +7,7 @@ LABEL opensciencegrid.category="Project"
 LABEL opensciencegrid.definition_url="https://github.com/XENONnT/base_environment"
 
 ARG XENONnT_TAG
+ENV CONDA_OVERRIDE_GLIBC=2.36
 
 RUN echo "Building Docker container for XENONnT_${XENONnT_TAG} ..."
 
