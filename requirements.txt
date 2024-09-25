@@ -19,7 +19,6 @@ inference-interface==0.0.3
 ipykernel==6.29.5                                  # For ipywidgets
 ipympl==0.9.4                                      # For online monitoring
 ipython==8.18.1                                    # >=8.19.0 Requires-Python >=3.10
---find-links https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
 jedi==0.19.1                                       
 jupyter==1.1.1
 jupyterlab==4.0.12                                 # <4.1.0 for compatibility with xeauth 0.2.3
