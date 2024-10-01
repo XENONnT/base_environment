@@ -9,7 +9,7 @@ dask==2024.6.2                                     # 2024.7.0 depends on pandas>
 dask-jobqueue==0.8.5                               # 0.9.0 Requires-Python >=3.10
 datashader==0.16.3
 deepdiff==8.0.1
-dill==0.3.8                                        # strax dependency
+dill==0.3.9                                        # strax dependency
 docutils==0.18.1                                   # don't update, straxen dependency
 flake8==7.1.1
 GitPython==3.1.43                                  # Pegasus dependency
