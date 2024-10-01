@@ -48,7 +48,7 @@ scipy==1.13.1                                     # 1.14.0 Requires-Python >=3.1
 tensorflow==2.15.0.post1
 typing-extensions==4.12.2                          # Tensorflow and bokeh dependency
 tqdm==4.66.5
-uproot==5.3.12
+uproot==5.4.0
 utilix==0.9.1                                      # dependency for straxen, admix
 xarray==2024.3.0                                   # xarray 2024.6.0 depends on pandas>=2.0
 xedocs==0.2.30
