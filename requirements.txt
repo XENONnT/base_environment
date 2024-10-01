@@ -14,7 +14,7 @@ flamedisx==2.1.0
 future==1.0.0
 GOFevaluation==0.1.4
 h5py==3.11.0
-iminuit==2.29.1
+iminuit==2.30.0
 inference-interface==0.0.3
 ipykernel==6.29.5                                  # For ipywidgets
 ipympl==0.9.4                                      # For online monitoring
