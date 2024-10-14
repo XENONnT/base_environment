@@ -177,7 +177,7 @@ cat >${target_dir}/setup.sh <<EOF
 for VAR in X509_CERT_DIR X509_VOMS_DIR; do
     VALUE=\${!VAR}
     if [ "X\$VALUE" != "X" ]; then
-        echo "WARNING: \$VAR is set set and could lead to problems when using this environment" 1>&2
+        echo "WARNING: \$VAR is set and could lead to problems when using this environment" 1>&2
     fi
 done
 
