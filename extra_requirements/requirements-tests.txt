@@ -53,4 +53,4 @@ utilix==0.9.1                                      # dependency for straxen, adm
 xarray==2024.3.0                                   # xarray 2024.6.0 depends on pandas>=2.0
 xedocs==0.2.30
 zarr==2.18.2
-zstd==1.5.5.1                                      # strax dependency
+zstandard==0.23.0                                      # strax dependency
