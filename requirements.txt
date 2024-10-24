@@ -50,7 +50,7 @@ sharedarray==3.2.4
 snakeviz==2.2.0
 sphinx==7.3.7                                      # higher versions require python 3.10
 statsmodels==0.14.3
-strax==1.6.5
+strax==2.0.0
 straxen==3.0.0
 tables==3.9.2                                      # higher versions require python 3.10; pytables, necessary for pandas hdf5 i/o
 tensorflow-probability==0.24.0
