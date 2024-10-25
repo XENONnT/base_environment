@@ -78,5 +78,5 @@ jobs:
         run: |
           unset ALLOW_MC_TEST
           source /cvmfs/xenon.opensciencegrid.org/releases/nT/development/setup.sh
-          straxen-print_versions strax straxen cutax appletree alea-inference npshmex numba numpy nton admix
+          straxen_print_versions strax straxen cutax appletree alea-inference npshmex numba numpy nton admix
           bash .github/scripts/do_tests.sh ${{matrix.package}}
