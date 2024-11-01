@@ -36,7 +36,7 @@ numpyro==0.15.3
 pandoc==2.4
 parso==0.8.4                                       # upgrading to 0.8.0 breaks autocomplete in ipython
 pika==1.3.2                                        # Pegasus
-prettytable==3.11.0
+prettytable==3.12.0
 pre-commit==3.8.0
 poetry==1.8.3
 pyarrow==17.0.0                                    # Necessary for pandas feather i/o
