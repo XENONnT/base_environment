@@ -16,7 +16,7 @@ GitPython==3.1.43                                  # Pegasus dependency
 graphviz==0.20.3
 holoviews==1.18.3                                  # Don't update, conflicts with xeauth 
 hypothesis==6.116.0
-immutabledict== 4.2.0
+immutabledict== 4.2.1
 ipywidgets==8.1.5                                  # For online monitoring
 jax==0.4.30                                        # >0.4.30 Requires-Python >=3.10
 Jinja2==3.1.4
