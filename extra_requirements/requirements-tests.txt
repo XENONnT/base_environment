@@ -27,7 +27,7 @@ m2r==0.2.1                                         # don't update, straxen depen
 matplotlib==3.9.2
 memory-profiler==0.61.0
 mistune==0.8.4                                     # nbconvert 6.5.4 requires mistune<2
-mongomock==4.2.0.post1
+mongomock==4.3.0
 multihist==0.6.5
 nbmake==1.5.4
 npshmex==0.2.1                                     # strax dependency
