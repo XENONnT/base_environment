@@ -47,7 +47,7 @@ requests==2.31.0                                   # rucio-clients 32.8.0 requir
 seaborn==0.13.2
 simple-slurm==0.2.7
 sharedarray==3.2.4
-snakeviz==2.2.0
+snakeviz==2.2.2
 sphinx==7.3.7                                      # higher versions require python 3.10
 statsmodels==0.14.4
 strax==2.0.0
