@@ -21,7 +21,7 @@ ipywidgets==8.1.5                                  # For online monitoring
 jax==0.4.30                                        # >0.4.30 Requires-Python >=3.10
 Jinja2==3.1.4
 jupyter-client==8.6.3
-keras==2.15.0                                      # tensorflow 2.15.0 depends on keras2.16 and=2.15.0
+keras==3.5.0                                      # tensorflow 2.15.0 depends on keras2.16 and=2.15.0
 lz4==4.3.3                                         # strax dependency
 m2r==0.2.1                                         # don't update, straxen dependency
 matplotlib==3.9.2
@@ -45,7 +45,7 @@ pytest-xdist==3.6.1
 rframe==0.2.21
 scikit-learn==1.2.2                                # don't update
 scipy==1.13.1                                      # 1.14.0 Requires-Python >=3.10
-tensorflow==2.15.0.post1
+tensorflow==2.18.0
 typing-extensions==4.12.2                          # Tensorflow and bokeh dependency
 tqdm==4.66.6
 uproot==5.4.1

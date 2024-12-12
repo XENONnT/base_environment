@@ -1,6 +1,5 @@
 alea-inference==0.3.0
-appletree[cpu]==0.5.1
-astropy==6.0.1                                     # 6.1.x Requires-Python >=3.10
+appletree[cpu]==0.5.3
 atomicwrites==1.4.1
 axidence==0.3.2
 black==24.10.0
@@ -27,11 +26,11 @@ jupyter-resource-usage==1.1.0                      # Memory viewer for notebooks
 lightgbm==4.5.0
 line-profiler==4.1.3
 mergedeep==1.3.4
-ml-dtypes==0.2.0                                   # tensorflow 2.15.0.post1 requires ml-dtypes~=0.2.0
+ml-dtypes==0.4.0                                   # tensorflow 2.15.0.post1 requires ml-dtypes~=0.2.0
 nbsphinx==0.9.5
 nestpy==2.0.3
 notebook==7.0.8                                    # <7.1.0 for compatibility with jupyterlab 4.0.12
-numpy==1.26.4                                      # tensorflow isn't compatible with 2.x.x
+numpy==2.0.2                                       # 2.1.0 Requires-Python >=3.10
 numpyro==0.15.3
 pandoc==2.4
 parso==0.8.4                                       # upgrading to 0.8.0 breaks autocomplete in ipython
