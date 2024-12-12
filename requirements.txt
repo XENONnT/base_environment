@@ -1,6 +1,5 @@
 alea-inference==0.3.0
 appletree[cpu]==0.5.3
-astropy==6.0.1                                     # 6.1.x Requires-Python >=3.10
 atomicwrites==1.4.1
 axidence==0.3.2
 black==24.10.0
