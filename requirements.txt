@@ -17,7 +17,7 @@ h5py==3.12.1
 iminuit==2.30.1
 inference-interface==0.0.3
 ipykernel==6.29.5                                  # For ipywidgets
-ipympl==0.9.4                                      # For online monitoring
+ipympl==0.9.5                                      # For online monitoring
 ipython==8.18.1                                    # >=8.19.0 Requires-Python >=3.10
 jedi==0.19.1                                       
 jupyter==1.1.1
