@@ -12,7 +12,7 @@ cython==3.0.11
 emcee==3.1.6
 flamedisx==2.1.0
 future==1.0.0
-GOFevaluation==0.1.4
+GOFevaluation==0.1.5
 h5py==3.12.1
 iminuit==2.30.1
 inference-interface==0.0.3
