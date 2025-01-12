@@ -43,7 +43,7 @@ pytest==8.3.3
 pytest-cov==6.0.0
 pytest-xdist==3.6.1
 rframe==0.2.21
-scikit-learn==1.2.2                                # don't update
+scikit-learn==1.6.1                                # don't update
 scipy==1.13.1                                      # 1.14.0 Requires-Python >=3.10
 tensorflow==2.15.0.post1
 typing-extensions==4.12.2                          # Tensorflow and bokeh dependency
