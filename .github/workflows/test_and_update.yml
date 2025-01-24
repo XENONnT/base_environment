@@ -1,4 +1,4 @@
-name: 'Test and update contexts'
+name: "Test and update contexts"
 on:
   workflow_dispatch:
   release:
@@ -17,19 +17,19 @@ jobs:
         uses: actions/checkout@v2
       - name: create key
         run: |
-           mkdir ~/.ssh
-           cat > ~/.ssh/id_rsa << EOF
-           ${{ secrets.PRIVATE_KEY }}
-           EOF
-           chmod 400 ~/.ssh/id_rsa
-           cat > ~/.ssh/known_hosts << EOF
-           ${{ secrets.HOST_KEY }}
-           EOF
+          mkdir ~/.ssh
+          cat > ~/.ssh/id_rsa << EOF
+          ${{ secrets.PRIVATE_KEY }}
+          EOF
+          chmod 400 ~/.ssh/id_rsa
+          cat > ~/.ssh/known_hosts << EOF
+          ${{ secrets.HOST_KEY }}
+          EOF
       - name: Get proxy
         run: |
-           sleep $[ ( $RANDOM % 100 )  + 1 ]s
-           scp ${{ secrets.PROXY_LOCATION }} ./user_cert
-           ls -l $PWD/user_cert
+          sleep $[ ( $RANDOM % 100 )  + 1 ]s
+          scp ${{ secrets.PROXY_LOCATION }} ./user_cert
+          ls -l $PWD/user_cert
       - name: Write utilix config
         run: |
             bash .github/scripts/create-utilix-config.sh
