@@ -18,7 +18,7 @@ jobs:
     strategy:
       fail-fast: False
       matrix:
-        python-version: [3.9]
+        python-version: ["3.11"]
     if: ${{ github.triggering_actor != 'dependabot[bot]' }}
     steps:
       # Setup and installation
@@ -28,7 +28,7 @@ jobs:
         uses: actions/setup-python@v2.3.0
         with:
           python-version: ${{ matrix.python-version }}
-          cache: 'pip'
+          cache: "pip"
           cache-dependency-path: |
             extra_requirements/requirements-tests.txt
             requirements.txt

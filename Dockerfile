@@ -1,7 +1,7 @@
 FROM hub.opensciencegrid.org/htc/centos:7
 
 LABEL opensciencegrid.name="XENONnT"
-LABEL opensciencegrid.description="Base software environment for XENONnT, including Python 3.9 and data management tools"
+LABEL opensciencegrid.description="Base software environment for XENONnT, including Python 3.11 and data management tools"
 LABEL opensciencegrid.url="http://www.xenon1t.org/"
 LABEL opensciencegrid.category="Project"
 LABEL opensciencegrid.definition_url="https://github.com/XENONnT/base_environment"
@@ -14,11 +14,11 @@ RUN echo "Building Docker container for XENONnT_${XENONnT_TAG} ..."
 RUN yum-config-manager --disable Pegasus
 
 RUN yum -y clean all && yum -y --skip-broken upgrade
-  
+
 RUN  yum -y install centos-release-scl && \
-     sed -i.bak 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-* && \
-     sed -i.bak 's|#.*baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-* && \
-     yum -y install \
+    sed -i.bak 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-* && \
+    sed -i.bak 's|#.*baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-* && \
+    yum -y install \
             cmake \
             davix-devel \
             dcap-devel \
@@ -72,5 +72,3 @@ COPY labels.json /.singularity.d/
 
 # build info
 RUN echo "Timestamp:" `date --utc` | tee /image-build-info.txt
-
-

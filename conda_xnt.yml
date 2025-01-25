@@ -2,7 +2,7 @@ dependencies:
   - cmake=3.18.2
   - graphviz
   - pip
-  - python=3.9
+  - python=3.11
   - pip:
     - -r extra_requirements/requirements-tests.txt
     - -r requirements.txt
