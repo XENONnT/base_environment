@@ -60,7 +60,7 @@ export LC_ALL=en_US.utf8
 export LANG=en_US.utf8
 
 announce "Installing Miniconda"
-wget -nv -O conda_setup.sh https://repo.anaconda.com/miniconda/Miniconda3-py39_23.11.0-2-Linux-x86_64.sh
+wget -nv -O conda_setup.sh https://repo.anaconda.com/miniconda/Miniconda3-py310_24.11.1-0-Linux-x86_64.sh
 
 bash conda_setup.sh -b -p $target_dir/anaconda
 rm -f conda_setup.sh
@@ -93,7 +93,7 @@ conda install anaconda::openldap --yes
 announce "Installing Boost"
 cd ${target_dir}
 rm -rf boost_*
-wget -nv https://boostorg.jfrog.io/artifactory/main/release/1.87.0/source/boost_1_87_0.tar.bz2
+wget -nv https://archives.boost.io/release/1.87.0/source/boost_1_87_0.tar.bz2
 tar xjf boost_1_87_0.tar.bz2
 rm -f boost_1_87_0.tar.bz2
 cd boost_1_87_0
@@ -114,11 +114,11 @@ git clone https://gitlab.cern.ch/dmc/gfal2-bindings.git
 cd gfal2-bindings
 git checkout v$gfal2_bindings_version
 perl -p -i -e "s;.*\\\${Boost_LIBRARYDIR};            \"${target_dir}/anaconda/envs/${env_name}/lib\";" CMakeLists.txt
-cmake -DPYTHON_EXECUTABLE=${target_dir}/anaconda/envs/${env_name}/bin/python3.9 \
-      -DPYTHON_EXECUTABLE_3=${target_dir}/anaconda/envs/${env_name}/bin/python3.9 \
-      -DPYTHON_EXECUTABLE_3.9=${target_dir}/anaconda/envs/${env_name}/bin/python3.9 \
-      -DBOOST_ROOT=${target_dir}/anaconda/envs/${env_name} \
-      -DSKIP_DOC=TRUE -DSKIP_TESTS=TRUE
+cmake -DPYTHON_EXECUTABLE=${target_dir}/anaconda/envs/${env_name}/bin/python3.10 \
+    -DPYTHON_EXECUTABLE_3=${target_dir}/anaconda/envs/${env_name}/bin/python3.10 \
+    -DPYTHON_EXECUTABLE_3.10=${target_dir}/anaconda/envs/${env_name}/bin/python3.10 \
+    -DBOOST_ROOT=${target_dir}/anaconda/envs/${env_name} \
+    -DSKIP_DOC=TRUE -DSKIP_TESTS=TRUE
 make
 make install
 cd ${target_dir}
