@@ -1,7 +1,7 @@
 FROM hub.opensciencegrid.org/htc/rocky:9
 
 LABEL opensciencegrid.name="XENONnT"
-LABEL opensciencegrid.description="Base software environment for XENONnT, including Python 3.9 and data management tools"
+LABEL opensciencegrid.description="Base software environment for XENONnT, including Python 3.10 and data management tools"
 LABEL opensciencegrid.url="http://www.xenon1t.org/"
 LABEL opensciencegrid.category="Project"
 LABEL opensciencegrid.definition_url="https://github.com/XENONnT/base_environment"
@@ -14,7 +14,7 @@ RUN echo "Building Docker container for XENONnT_${XENONnT_TAG} ..."
 RUN yum-config-manager --disable Pegasus
 
 RUN dnf -y clean all && dnf -y --skip-broken upgrade
-  
+
 RUN dnf -y install \
             cmake \
             davix-devel \
@@ -64,5 +64,3 @@ COPY labels.json /.singularity.d/
 
 # build info
 RUN echo "Timestamp:" `date --utc` | tee /image-build-info.txt
-
-

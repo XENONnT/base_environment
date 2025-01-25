@@ -15,7 +15,7 @@ requires = open_requirements('extra_requirements/requirements-tests.txt')
 
 setuptools.setup(
     name='base_environment',
-    version='2024.01.1',
+    version='2025.01.2',
     description='Base software environment for XENONnT, including python and data management tools',
     author='base_environment contributors, the XENON collaboration',
     url='https://github.com/XENONnT/base_environment',
@@ -23,7 +23,7 @@ setuptools.setup(
     long_description_content_type="text/markdown",
     setup_requires=['pytest-runner'],
     install_requires=requires,
-    python_requires=">=3.9",
+    python_requires=">=3.10",
     packages=setuptools.find_packages() + ['extra_requirements'],
     package_dir={'extra_requirements': 'extra_requirements'},
     package_data={'extra_requirements': ['requirements-tests.txt']},
@@ -31,8 +31,8 @@ setuptools.setup(
         'Development Status :: 5 - Production/Stable',
         'License :: OSI Approved :: BSD License',
         'Natural Language :: English',
-        'Programming Language :: Python :: 3.9',
         'Programming Language :: Python :: 3.10',
+        'Programming Language :: Python :: 3.11',
         'Intended Audience :: Science/Research',
         'Programming Language :: Python :: Implementation :: CPython',
         'Topic :: Scientific/Engineering :: Physics',
