@@ -59,7 +59,6 @@ RUN cd /tmp && \
 # relax permissions so we can build cvmfs tar balls
 RUN mkdir -p /cvmfs && chmod 1777 /cvmfs
 
-
 COPY labels.json /.singularity.d/
 
 # build info
