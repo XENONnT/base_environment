@@ -42,7 +42,7 @@ pymongo==3.13.0                                    # don't upgrade it
 pytest==8.3.4
 pytest-cov==6.0.0
 pytest-xdist==3.6.1
-rframe==0.2.21
+rframe==0.2.22
 scikit-learn==1.2.2                                # don't update
 scipy==1.13.1                                      # 1.14.0 Requires-Python >=3.10
 tensorflow==2.15.0.post1
@@ -51,6 +51,6 @@ tqdm==4.67.1
 uproot==5.5.1
 utilix==0.11.0                                     # dependency for straxen, admix
 xarray==2024.3.0                                   # xarray 2024.6.0 depends on pandas>=2.0
-xedocs==0.2.34
+xedocs==0.2.36
 zarr==2.18.2                                       # 2.18.3 Requires-Python >=3.10
 zstd==1.5.6.1                                      # strax dependency
