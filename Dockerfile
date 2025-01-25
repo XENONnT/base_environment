@@ -15,7 +15,7 @@ RUN yum-config-manager --disable Pegasus
 
 RUN yum -y clean all && yum -y --skip-broken upgrade
 
-RUN  yum -y install centos-release-scl && \
+RUN yum -y install centos-release-scl && \
     sed -i.bak 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-* && \
     sed -i.bak 's|#.*baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-* && \
     yum -y install \
@@ -65,8 +65,7 @@ RUN source /opt/rh/devtoolset-9/enable && \
     rm -f create-env conda_xnt.yml
 
 # relax permissions so we can build cvmfs tar balls
-RUN mkdir -p /cvmfs
-RUN chmod 1777 /cvmfs
+RUN mkdir -p /cvmfs && chmod 1777 /cvmfs
 
 COPY labels.json /.singularity.d/
 
