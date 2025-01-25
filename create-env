@@ -93,10 +93,10 @@ conda install anaconda::openldap --yes
 announce "Installing Boost"
 cd ${target_dir}
 rm -rf boost_*
-wget -nv https://archives.boost.io/release/1.74.0/source/boost_1_74_0.tar.bz2
-tar xjf boost_1_74_0.tar.bz2
-rm -f boost_1_74_0.tar.bz2
-cd boost_1_74_0
+wget -nv https://boostorg.jfrog.io/artifactory/main/release/1.87.0/source/boost_1_87_0.tar.bz2
+tar xjf boost_1_87_0.tar.bz2
+rm -f boost_1_87_0.tar.bz2
+cd boost_1_87_0
 ./bootstrap.sh \
     --prefix=${target_dir}/anaconda/envs/${env_name} --show-libraries \
     --with-libraries=atomic,chrono,date_time,exception,filesystem,graph,iostreams,locale,log,math,program_options,random,regex,serialization,system,test,thread,timer,wave,python \
@@ -105,8 +105,8 @@ cd boost_1_74_0
 cd ${target_dir}
 rm -rf boost_*
 # required by gfal2-python, but maybe others
-ln -s ${target_dir}/anaconda/envs/${env_name}/lib/libboost_python39.so ${target_dir}/anaconda/envs/${env_name}/lib/libboost_python.so
-ln -s ${target_dir}/anaconda/envs/${env_name}/lib/libboost_python39.a ${target_dir}/anaconda/envs/${env_name}/lib/libboost_python.a
+ln -s ${target_dir}/anaconda/envs/${env_name}/lib/libboost_python310.so ${target_dir}/anaconda/envs/${env_name}/lib/libboost_python.so
+ln -s ${target_dir}/anaconda/envs/${env_name}/lib/libboost_python310.a ${target_dir}/anaconda/envs/${env_name}/lib/libboost_python.a
 
 # gfal2-python bindings
 announce "Installing GFAL2 Python bindings"
