@@ -94,10 +94,10 @@ conda install anaconda::openldap --yes
 announce "Installing Boost"
 cd ${target_dir}
 rm -rf boost_*
-wget -nv https://archives.boost.io/release/1.78.0/source/boost_1_78_0.tar.bz2
-tar xjf boost_1_78_0.tar.bz2
-rm -f boost_1_78_0.tar.bz2
-cd boost_1_78_0
+wget -nv https://archives.boost.io/release/1.82.0/source/boost_1_82_0.tar.bz2
+tar xjf boost_1_82_0.tar.bz2
+rm -f boost_1_82_0.tar.bz2
+cd boost_1_82_0
 ./bootstrap.sh \
     --prefix=${target_dir}/anaconda/envs/${env_name} --show-libraries \
     --with-libraries=atomic,chrono,date_time,exception,filesystem,graph,iostreams,locale,log,math,program_options,random,regex,serialization,system,test,thread,timer,wave,python \
