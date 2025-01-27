@@ -6,7 +6,7 @@ set -e
 
 TAG=$1
 TARGET_DIR=/cvmfs/xenon.opensciencegrid.org/releases/nT
-
+source /opt/rh/devtoolset-9/enable
 cd /srv
 ./create-env $TARGET_DIR/$TAG $TAG
 
