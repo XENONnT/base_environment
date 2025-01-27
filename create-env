@@ -9,6 +9,7 @@ gfal2_util_version=1.8.1
 rucio_version=32.8.0
 ## REMEMBER THE 'v' IN CUTAX_VERSION!! (unless it is 'latest')
 cutax_version=v2.0.0
+nestpy_version=v2.0.4
 #######################################################################
 
 set -e
@@ -60,7 +61,7 @@ export LC_ALL=en_US.utf8
 export LANG=en_US.utf8
 
 announce "Installing Miniconda"
-wget -nv -O conda_setup.sh https://repo.anaconda.com/miniconda/Miniconda3-py310_24.11.1-0-Linux-x86_64.sh
+wget -nv -O conda_setup.sh https://repo.anaconda.com/miniconda/Miniconda3-py311_24.9.2-0-Linux-x86_64.sh
 
 bash conda_setup.sh -b -p $target_dir/anaconda
 rm -f conda_setup.sh
@@ -93,10 +94,10 @@ conda install anaconda::openldap --yes
 announce "Installing Boost"
 cd ${target_dir}
 rm -rf boost_*
-wget -nv https://archives.boost.io/release/1.78.0/source/boost_1_78_0.tar.bz2
-tar xjf boost_1_78_0.tar.bz2
-rm -f boost_1_78_0.tar.bz2
-cd boost_1_78_0
+wget -nv https://archives.boost.io/release/1.82.0/source/boost_1_82_0.tar.bz2
+tar xjf boost_1_82_0.tar.bz2
+rm -f boost_1_82_0.tar.bz2
+cd boost_1_82_0
 ./bootstrap.sh \
     --prefix=${target_dir}/anaconda/envs/${env_name} --show-libraries \
     --with-libraries=atomic,chrono,date_time,exception,filesystem,graph,iostreams,locale,log,math,program_options,random,regex,serialization,system,test,thread,timer,wave,python \
@@ -105,8 +106,8 @@ cd boost_1_78_0
 cd ${target_dir}
 rm -rf boost_*
 # required by gfal2-python, but maybe others
-ln -s ${target_dir}/anaconda/envs/${env_name}/lib/libboost_python310.so ${target_dir}/anaconda/envs/${env_name}/lib/libboost_python.so
-ln -s ${target_dir}/anaconda/envs/${env_name}/lib/libboost_python310.a ${target_dir}/anaconda/envs/${env_name}/lib/libboost_python.a
+ln -s ${target_dir}/anaconda/envs/${env_name}/lib/libboost_python311.so ${target_dir}/anaconda/envs/${env_name}/lib/libboost_python.so
+ln -s ${target_dir}/anaconda/envs/${env_name}/lib/libboost_python311.a ${target_dir}/anaconda/envs/${env_name}/lib/libboost_python.a
 
 # gfal2-python bindings
 announce "Installing GFAL2 Python bindings"
@@ -114,9 +115,9 @@ git clone https://gitlab.cern.ch/dmc/gfal2-bindings.git
 cd gfal2-bindings
 git checkout v$gfal2_bindings_version
 perl -p -i -e "s;.*\\\${Boost_LIBRARYDIR};            \"${target_dir}/anaconda/envs/${env_name}/lib\";" CMakeLists.txt
-cmake -DPYTHON_EXECUTABLE=${target_dir}/anaconda/envs/${env_name}/bin/python3.10 \
-    -DPYTHON_EXECUTABLE_3=${target_dir}/anaconda/envs/${env_name}/bin/python3.10 \
-    -DPYTHON_EXECUTABLE_3.10=${target_dir}/anaconda/envs/${env_name}/bin/python3.10 \
+cmake -DPYTHON_EXECUTABLE=${target_dir}/anaconda/envs/${env_name}/bin/python3.11 \
+    -DPYTHON_EXECUTABLE_3=${target_dir}/anaconda/envs/${env_name}/bin/python3.11 \
+    -DPYTHON_EXECUTABLE_3.11=${target_dir}/anaconda/envs/${env_name}/bin/python3.11 \
     -DBOOST_ROOT=${target_dir}/anaconda/envs/${env_name} \
     -DSKIP_DOC=TRUE -DSKIP_TESTS=TRUE
 make
@@ -167,6 +168,15 @@ client_key = \$X509_USER_PROXY
 client_x509_proxy = \$X509_USER_PROXY
 request_retries = 3
 EOF
+
+# nestpy
+announce "Installing nestpy"
+git clone --branch $nestpy_version --single-branch https://github.com/NESTCollaboration/nestpy.git
+cd nestpy
+git submodule update --init --recursive
+pip install .
+cd ${target_dir}
+rm -rf nestpy
 
 announce "Adding setup.sh"
 
