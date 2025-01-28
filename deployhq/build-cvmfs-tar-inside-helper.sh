@@ -6,7 +6,10 @@ set -e
 
 TAG=$1
 TARGET_DIR=/cvmfs/xenon.opensciencegrid.org/releases/nT
-source /opt/rh/devtoolset-9/enable
+# devtools-9 environment for updated compilers
+if [ -e /opt/rh/devtoolset-9/enable ]; then
+    source /opt/rh/devtoolset-9/enable
+fi
 cd /srv
 ./create-env $TARGET_DIR/$TAG $TAG
 
