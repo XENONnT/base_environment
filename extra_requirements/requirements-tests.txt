@@ -12,7 +12,7 @@ deepdiff==8.1.1
 dill==0.3.9                                        # strax dependency
 docutils==0.18.1                                   # don't update, straxen dependency
 flake8==7.1.1
-GitPython==3.1.43                                  # Pegasus dependency
+GitPython==3.1.44                                  # Pegasus dependency
 graphviz==0.20.3
 holoviews==1.18.3                                  # Don't update, conflicts with xeauth 
 hypothesis==6.123.2
