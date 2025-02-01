@@ -2,7 +2,7 @@ alea-inference==0.3.0
 appletree[cpu]==0.5.1
 atomicwrites==1.4.1
 axidence==0.3.2
-black==24.10.0
+black==25.1.0
 blueice==1.2.1
 codenamize==1.2.3                                  # for human-readable hashing
 comm==0.2.2
