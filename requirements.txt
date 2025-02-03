@@ -1,5 +1,5 @@
-alea-inference==0.3.0
-appletree[cpu]==0.5.1
+alea-inference==0.3.1
+appletree[cpu]==0.5.3
 atomicwrites==1.4.1
 axidence==0.3.2
 black==25.1.0
