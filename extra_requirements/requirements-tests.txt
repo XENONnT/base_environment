@@ -34,9 +34,8 @@ npshmex==0.2.1                                     # strax dependency
 numba==0.61.0                                      # strax dependency
 numexpr==2.10.2
 packaging==24.2
-pandas==1.5.3                                      # pdmongo 0.3.4 requires pandas<1.6
+pandas==2.2.3
 panel==1.2.3                                       # upgrading it causes conflict with xeauth
-pdmongo==0.3.4                                     # strax dependency
 psutil==5.9.8                                      # upgrading it causes conflict with jupyter-resource-usage
 pymongo==3.13.0                                    # don't upgrade it
 pytest==8.3.4
