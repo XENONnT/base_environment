@@ -12,7 +12,7 @@ deepdiff==8.1.1
 dill==0.3.9                                        # strax dependency
 docutils==0.18.1                                   # don't update, straxen dependency
 flake8==7.1.1
-fsspec==2022.11.0
+fsspec==2025.2.0
 GitPython==3.1.44                                  # pegasus dependency
 graphviz==0.20.3
 holoviews==1.18.3                                  # don't update, conflicts with xeauth 
@@ -42,7 +42,7 @@ pymongo==3.13.0                                    # don't upgrade it
 pytest==8.3.4
 pytest-cov==6.0.0
 pytest-xdist==3.6.1
-rframe==0.2.22
+rframe==0.2.23
 scikit-learn==1.6.1                                # don't update
 scipy==1.15.1
 tensorflow==2.18.0
@@ -52,6 +52,6 @@ tqdm==4.67.1
 uproot==5.5.1
 utilix==0.11.0                                     # dependency for straxen, admix
 xarray==2025.1.2
-xedocs==0.2.36
+xedocs==0.2.37
 zarr==3.0.2
 zstd==1.5.6.2                                      # strax dependency
