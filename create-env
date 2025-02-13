@@ -8,7 +8,7 @@ gfal2_bindings_version=1.12.2
 gfal2_util_version=1.8.1
 rucio_version=32.8.0
 ## REMEMBER THE 'v' IN CUTAX_VERSION!! (unless it is 'latest')
-cutax_version=v2.0.0
+cutax_version=v2.1.1
 nestpy_version=v2.0.4
 #######################################################################
 
