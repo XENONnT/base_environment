@@ -7,7 +7,7 @@ blueice==1.2.1
 codenamize==1.2.3                                  # for human-readable hashing
 comm==0.2.2
 corner==2.2.3
-cython==3.0.11
+cython==3.0.12
 emcee==3.1.6
 flamedisx==2.1.0
 future==1.0.0
