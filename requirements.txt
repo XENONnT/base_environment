@@ -38,7 +38,7 @@ pika==1.3.2                                        # pegasus
 prettytable==3.14.0
 pre-commit==4.1.0
 poetry==2.0.1
-pydantic==1.10.14                                  # rframe needs pydantic<2.0.0
+pydantic==2.10.6                                  # rframe needs pydantic<2.0.0
 pytest-runner==6.0.1
 reprox==0.2.2
 requests==2.31.0                                   # rucio-clients 32.8.0 requires requests<=2.31.0
