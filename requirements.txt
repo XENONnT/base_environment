@@ -30,7 +30,7 @@ ml-dtypes==0.4.1
 nbsphinx==0.9.5
 notebook==7.0.8                                    # <7.1.0 for compatibility with jupyterlab 4.0.12
 numpy==2.0.2
-numpyro==0.16.1
+numpyro==0.17.0
 pandoc==2.4
 parso==0.8.4                                       # upgrading to 0.8.0 breaks autocomplete in ipython
 periodictable==2.0.2
