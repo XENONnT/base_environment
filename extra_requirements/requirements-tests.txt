@@ -1,7 +1,7 @@
 awkward==2.7.4
 blosc==1.11.2                                      # strax dependency
 bokeh==3.2.2                                       # panel 1.2.3 depends on bokeh<3.3.0 and >=3.1.1
-boltons==24.1.0
+boltons==25.0.0
 commentjson==0.9.0                                 # straxen dependency
 coverage==7.6.10                                    
 coveralls==4.0.1
