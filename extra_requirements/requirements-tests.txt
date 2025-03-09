@@ -16,7 +16,7 @@ fsspec==2025.2.0
 GitPython==3.1.44                                  # pegasus dependency
 graphviz==0.20.3
 holoviews==1.18.3                                  # don't update, conflicts with xeauth 
-hypothesis==6.124.9
+hypothesis==6.127.9
 immutabledict== 4.2.1
 ipywidgets==8.1.5                                  # for online monitoring
 jax==0.5.0
