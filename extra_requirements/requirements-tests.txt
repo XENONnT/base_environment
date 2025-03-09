@@ -56,4 +56,4 @@ xarray==2025.1.2
 xedocs==0.2.37
 zarr==2.18.4
 zstandard==0.23.0                                  # strax dependency
-zstd==1.5.6.2                                      # strax dependency
+zstd==1.5.6.6                                      # strax dependency
