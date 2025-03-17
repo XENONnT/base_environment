@@ -95,7 +95,7 @@ conda install anaconda::openldap --yes
 announce "Installing Boost"
 cd ${target_dir}
 rm -rf boost_*
-wget -nv https://boostorg.jfrog.io/artifactory/main/release/1.74.0/source/boost_1_74_0.tar.bz2
+wget -nv https://archives.boost.io/release/1.74.0/source/boost_1_74_0.tar.bz2
 tar xjf boost_1_74_0.tar.bz2
 rm -f boost_1_74_0.tar.bz2
 cd boost_1_74_0
