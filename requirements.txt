@@ -27,7 +27,7 @@ lightgbm==4.5.0
 line-profiler==4.2.0
 mergedeep==1.3.4
 ml-dtypes==0.4.1
-nbsphinx==0.9.5
+nbsphinx==0.9.7
 notebook==7.0.8                                    # <7.1.0 for compatibility with jupyterlab 4.0.12
 numpy==2.0.2
 numpyro==0.16.1
