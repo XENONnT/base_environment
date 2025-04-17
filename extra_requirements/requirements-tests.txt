@@ -46,7 +46,7 @@ pytest-xdist==3.6.1
 rframe==0.2.24
 scikit-learn==1.6.1                                # don't update
 scipy==1.15.1
-tensorflow==2.18.0
+tensorflow==2.18.1
 tf-keras==2.18.0
 typing-extensions==4.12.2                          # tensorflow and bokeh dependency
 tqdm==4.67.1
