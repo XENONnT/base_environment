@@ -173,7 +173,6 @@ EOF
 announce "Installing nestpy"
 git clone --branch $nestpy_version --single-branch https://github.com/NESTCollaboration/nestpy.git
 cd nestpy
-git checkout 3b5ce87
 git submodule update --init --recursive
 cd lib/pybind11
 git fetch --tags
