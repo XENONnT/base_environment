@@ -8,9 +8,7 @@ gfal2_bindings_version=1.12.2
 gfal2_util_version=1.8.1
 rucio_version=32.8.0
 ## REMEMBER THE 'v' IN CUTAX_VERSION!! (unless it is 'latest')
-nestpy_version=v2.0.4
 cutax_version=v1.19.5
-
 #######################################################################
 
 set -e
@@ -172,15 +170,6 @@ client_key = \$X509_USER_PROXY
 client_x509_proxy = \$X509_USER_PROXY
 request_retries = 3
 EOF
-
-# nestpy
-announce "Installing nestpy"
-git clone --branch $nestpy_version --single-branch https://github.com/NESTCollaboration/nestpy.git
-cd nestpy
-git submodule update --init --recursive
-pip install .
-cd ${target_dir}
-rm -rf nestpy
 
 announce "Adding setup.sh"
 
