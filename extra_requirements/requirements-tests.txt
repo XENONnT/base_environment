@@ -1,56 +1,56 @@
-awkward==2.7.2
+awkward==2.6.8
 blosc==1.11.2                                      # strax dependency
 bokeh==3.2.2                                       # panel 1.2.3 depends on bokeh<3.3.0 and >=3.1.1
-boltons==24.1.0
+boltons==24.0.0
 commentjson==0.9.0                                 # straxen dependency
-coverage==7.6.10                                    
+coverage==7.6.1                                    
 coveralls==4.0.1
 dask==2024.6.2                                     # 2024.7.0 depends on pandas>=2.0
 dask-jobqueue==0.8.5                               # 0.9.0 Requires-Python >=3.10
 datashader==0.16.3
-deepdiff==8.1.1
+deepdiff==8.0.1
 dill==0.3.9                                        # strax dependency
 docutils==0.18.1                                   # don't update, straxen dependency
 flake8==7.1.1
 GitPython==3.1.43                                  # Pegasus dependency
 graphviz==0.20.3
 holoviews==1.18.3                                  # Don't update, conflicts with xeauth 
-hypothesis==6.123.2
-immutabledict== 4.2.1
+hypothesis==6.112.2
+immutabledict== 4.2.0
 ipywidgets==8.1.5                                  # For online monitoring
 jax==0.4.30                                        # >0.4.30 Requires-Python >=3.10
-Jinja2==3.1.5
+Jinja2==3.1.4
 jupyter-client==8.6.3
 keras==2.15.0                                      # tensorflow 2.15.0 depends on keras2.16 and=2.15.0
 lz4==4.3.3                                         # strax dependency
 m2r==0.2.1                                         # don't update, straxen dependency
-matplotlib==3.9.4                                 # 3.10.0 Requires-Python >=3.10
+matplotlib==3.9.2
 memory-profiler==0.61.0
 mistune==0.8.4                                     # nbconvert 6.5.4 requires mistune<2
-mongomock==4.3.0
+mongomock==4.2.0.post1
 multihist==0.6.5
-nbmake==1.5.5
+nbmake==1.5.4
 npshmex==0.2.1                                     # strax dependency
 numba==0.60.0                                      # strax dependency
-numexpr==2.10.2
-packaging==24.2
+numexpr==2.10.1
+packaging==24.1
 pandas==1.5.3                                      # pdmongo 0.3.4 requires pandas<1.6
 panel==1.2.3                                       # upgrading it causes conflict with xeauth
 pdmongo==0.3.4                                     # strax dependency
-psutil==5.9.8                                      # upgrading it causes conflict with jupyter-resource-usage
+psutil==5.9.8                                      # strax dependency
 pymongo==3.13.0                                    # don't upgrade it
-pytest==8.3.4
-pytest-cov==6.0.0
+pytest==8.3.3
+pytest-cov==5.0.0
 pytest-xdist==3.6.1
 rframe==0.2.21
 scikit-learn==1.2.2                                # don't update
 scipy==1.13.1                                      # 1.14.0 Requires-Python >=3.10
 tensorflow==2.15.0.post1
 typing-extensions==4.12.2                          # Tensorflow and bokeh dependency
-tqdm==4.67.1
-uproot==5.5.1
-utilix==0.11.0                                     # dependency for straxen, admix
+tqdm==4.66.5
+uproot==5.4.0
+utilix==0.9.1                                      # dependency for straxen, admix
 xarray==2024.3.0                                   # xarray 2024.6.0 depends on pandas>=2.0
-xedocs==0.2.34
+xedocs==0.2.31
 zarr==2.18.2                                       # 2.18.3 Requires-Python >=3.10
-zstd==1.5.6.1                                      # strax dependency
+zstd==1.5.5.1                                      # strax dependency
