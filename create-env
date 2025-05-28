@@ -93,10 +93,22 @@ conda install anaconda::openldap --yes
 announce "Installing Boost"
 cd ${target_dir}
 rm -rf boost_*
-wget -nv https://boostorg.jfrog.io/artifactory/main/release/1.74.0/source/boost_1_74_0.tar.bz2
-tar xjf boost_1_74_0.tar.bz2
-rm -f boost_1_74_0.tar.bz2
-cd boost_1_74_0
+BOOST_VERSION=1.74.0
+BOOST_UNDERSCORE=${BOOST_VERSION//./_}
+BOOST_TAR=boost_${BOOST_UNDERSCORE}.tar.bz2
+BOOST_URL="https://sourceforge.net/projects/boost/files/boost/${BOOST_VERSION}/${BOOST_TAR}/download"
+
+wget -nv -O ${BOOST_TAR} "${BOOST_URL}"
+
+# Check that it's actually a bzip2 file (not HTML!)
+if ! file ${BOOST_TAR} | grep -q 'bzip2 compressed'; then
+    echo "ERROR: Downloaded Boost archive is not a valid .tar.bz2 file." >&2
+    head -n 10 ${BOOST_TAR}
+    exit 1
+fi
+tar xjf ${BOOST_TAR}
+rm -f ${BOOST_TAR}
+cd boost_${BOOST_UNDERSCORE}
 ./bootstrap.sh \
     --prefix=${target_dir}/anaconda/envs/${env_name} --show-libraries \
     --with-libraries=atomic,chrono,date_time,exception,filesystem,graph,iostreams,locale,log,math,program_options,random,regex,serialization,system,test,thread,timer,wave,python \
