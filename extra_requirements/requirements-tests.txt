@@ -46,7 +46,6 @@ rframe==0.2.21
 scikit-learn==1.2.2                                # don't update
 scipy==1.13.1                                      # 1.14.0 Requires-Python >=3.10
 tensorflow==2.15.0.post1
-tf-keras==2.15.0
 typing-extensions==4.12.2                          # Tensorflow and bokeh dependency
 tqdm==4.66.5
 uproot==5.4.0
