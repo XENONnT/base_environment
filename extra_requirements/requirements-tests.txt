@@ -41,7 +41,7 @@ psutil==5.9.8                                      # upgrading it causes conflic
 pyarrow==19.0.0
 pymongo==3.13.0                                    # don't upgrade it
 pytest==8.3.4
-pytest-cov==6.0.0
+pytest-cov==6.1.1
 pytest-xdist==3.6.1
 rframe==0.2.24
 scikit-learn==1.6.1                                # don't update
