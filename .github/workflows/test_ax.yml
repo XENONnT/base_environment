@@ -21,7 +21,7 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
-      - name: create key & get proxy
+      - name: Create key & Get proxy
         if: matrix.package == 'cutax'
         run: |
           mkdir ~/.ssh
@@ -51,7 +51,7 @@ jobs:
           XE1T_USER: ${{ secrets.XE1T_USER }}
           XE1T_PASSWORD: ${{ secrets.XE1T_PASSWORD }}
           XE1T_DATABASE: ${{ secrets.XE1T_DATABASE }}
-      - name: checkout cutax
+      - name: Checkout cutax
         if: github.repository_owner == 'XENONnT'
         uses: actions/checkout@v3
         with:
