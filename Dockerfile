@@ -20,6 +20,7 @@ RUN dnf -y install \
             davix-devel \
             dcap-devel \
             doxygen \
+            dpm-devel \
             gfal2-all \
             gfal2-devel \
             gfal2-plugin-file \
@@ -33,6 +34,7 @@ RUN dnf -y install \
             graphviz \
             gtest-devel \
             json-c-devel \
+            lfc-devel \
             libarchive \
             libattr-devel \
             libffi-devel \
@@ -44,6 +46,7 @@ RUN dnf -y install \
             zlib-devel \
             nano \
             bash-completion \
+            bash-completion-extras \
     && \
     dnf clean all && \
     localedef -i en_US -f UTF-8 en_US.UTF-8
@@ -52,7 +55,9 @@ ADD create-env conda_xnt.yml requirements.txt /tmp/
 
 COPY extra_requirements/requirements-tests.txt /tmp/extra_requirements/requirements-tests.txt
 
-RUN bash -lc 'set -Eeuo pipefail; set -x; cd /tmp; bash -x ./create-env /opt/XENONnT "${XENONnT_TAG}"; rm -f create-env conda_xnt.yml'
+RUN cd /tmp && \
+    bash create-env /opt/XENONnT ${XENONnT_TAG} && \
+    rm -f create-env conda_xnt.yml
 
 # relax permissions so we can build cvmfs tar balls
 RUN mkdir -p /cvmfs && chmod 1777 /cvmfs
