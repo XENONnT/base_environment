@@ -1,4 +1,4 @@
-FROM hub.opensciencegrid.org/htc/rocky:8
+FROM hub.opensciencegrid.org/htc/rocky:9
 
 LABEL opensciencegrid.name="XENONnT"
 LABEL opensciencegrid.description="Base software environment for XENONnT, including Python 3.11 and data management tools"
