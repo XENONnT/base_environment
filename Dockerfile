@@ -24,10 +24,14 @@ RUN yum -y clean all && \
 
 RUN yum -y install centos-release-scl
 
-RUN sed -i \
-    -e 's|^mirrorlist=|#mirrorlist=|g' \
-    -e 's|^#baseurl=http://mirror.centos.org/centos/\$releasever|baseurl=http://vault.centos.org/7.9.2009|g' \
-    /etc/yum.repos.d/CentOS-SCLo-*.repo
+RUN yum -y install centos-release-scl && \
+    sed -i \
+        -e 's|^mirrorlist=|#mirrorlist=|g' \
+        -e 's|^#\?baseurl=https\?://mirror.centos.org/centos/\$releasever|baseurl=http://vault.centos.org/7.9.2009|g' \
+        /etc/yum.repos.d/CentOS-SCLo-*.repo && \
+    yum clean all && rm -rf /var/cache/yum && \
+    yum -y makecache fast
+
 
 RUN yum -y install \
             cmake \
