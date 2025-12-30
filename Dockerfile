@@ -13,11 +13,12 @@ RUN echo "Building Docker container for XENONnT_${XENONnT_TAG} ..."
 
 RUN yum-config-manager --disable Pegasus
 
+RUN sed -i.bak 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-* && \
+    sed -i.bak 's|#.*baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-*
+
 RUN yum -y clean all && yum -y --skip-broken upgrade
 
-RUN sed -i.bak 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-* && \
-    sed -i.bak 's|#.*baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-* && \
-    yum -y install centos-release-scl && \
+RUN yum -y install centos-release-scl && \
     yum -y install \
             cmake \
             davix-devel \
