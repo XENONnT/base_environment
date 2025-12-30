@@ -25,7 +25,7 @@ ls
 cat extra_requirements/requirements-tests.txt requirements.txt
 
 # ensure we have the latest base image
-docker pull opensciencegrid/osgvo-el7
+docker pull opensciencegrid/osgvo-el8
 
 # build the Docker image (minimized)
 docker build --no-cache --network=host --memory 8g --build-arg XENONnT_TAG=$TAG -t osgvo-xenon-layers .
