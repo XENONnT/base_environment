@@ -1,4 +1,4 @@
-FROM centos:7
+FROM quay.io/centos/centos:centos7.9.2009
 
 LABEL opensciencegrid.name="XENONnT"
 LABEL opensciencegrid.description="Base software environment for XENONnT, including Python 3.11 and data management tools"
