@@ -13,8 +13,10 @@ RUN echo "Building Docker container for XENONnT_${XENONnT_TAG} ..."
 
 RUN yum-config-manager --disable Pegasus
 
-RUN sed -i.bak 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-* && \
-    sed -i.bak 's|#.*baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-*
+RUN sed -i \
+    -e 's|^mirrorlist=|#mirrorlist=|g' \
+    -e 's|^#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' \
+    /etc/yum.repos.d/CentOS-*.repo
 
 RUN yum -y clean all && yum -y --skip-broken upgrade
 
