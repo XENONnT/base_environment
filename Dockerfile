@@ -1,4 +1,4 @@
-FROM hub.opensciencegrid.org/htc/rocky:8
+FROM hub.opensciencegrid.org/htc/rocky:9
 
 LABEL opensciencegrid.name="XENONnT"
 LABEL opensciencegrid.description="Base software environment for XENONnT, including Python 3.11 and data management tools"
@@ -20,7 +20,6 @@ RUN dnf -y install \
             davix-devel \
             dcap-devel \
             doxygen \
-            dpm-devel \
             gfal2-all \
             gfal2-devel \
             gfal2-plugin-file \
@@ -34,7 +33,6 @@ RUN dnf -y install \
             graphviz \
             gtest-devel \
             json-c-devel \
-            lfc-devel \
             libarchive \
             libattr-devel \
             libffi-devel \
@@ -46,7 +44,6 @@ RUN dnf -y install \
             zlib-devel \
             nano \
             bash-completion \
-            bash-completion-extras \
     && \
     dnf clean all && \
     localedef -i en_US -f UTF-8 en_US.UTF-8
