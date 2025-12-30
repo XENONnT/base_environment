@@ -22,8 +22,14 @@ RUN yum -y clean all && \
     yum -y --skip-broken upgrade --setopt=tsflags=nodocs && \
     yum clean all && rm -rf /var/cache/yum
 
-RUN yum -y install centos-release-scl && \
-    yum -y install \
+RUN yum -y install centos-release-scl
+
+RUN sed -i \
+    -e 's|^mirrorlist=|#mirrorlist=|g' \
+    -e 's|^#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' \
+    /etc/yum.repos.d/CentOS-SCLo-*.repo
+
+RUN yum -y install \
             cmake \
             davix-devel \
             dcap-devel \
