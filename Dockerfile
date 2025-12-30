@@ -52,9 +52,7 @@ ADD create-env conda_xnt.yml requirements.txt /tmp/
 
 COPY extra_requirements/requirements-tests.txt /tmp/extra_requirements/requirements-tests.txt
 
-RUN cd /tmp && \
-    bash create-env /opt/XENONnT ${XENONnT_TAG} && \
-    rm -f create-env conda_xnt.yml
+RUN bash -lc 'set -Eeuo pipefail; set -x; cd /tmp; bash -x ./create-env /opt/XENONnT "${XENONnT_TAG}"; rm -f create-env conda_xnt.yml'
 
 # relax permissions so we can build cvmfs tar balls
 RUN mkdir -p /cvmfs && chmod 1777 /cvmfs
