@@ -18,7 +18,9 @@ RUN sed -i \
     -e 's|^#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' \
     /etc/yum.repos.d/CentOS-*.repo
 
-RUN yum -y clean all && yum -y --skip-broken upgrade
+RUN yum -y clean all && \
+    yum -y --skip-broken upgrade --setopt=tsflags=nodocs && \
+    yum clean all && rm -rf /var/cache/yum
 
 RUN yum -y install centos-release-scl && \
     yum -y install \
