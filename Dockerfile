@@ -19,7 +19,6 @@ RUN dnf -y install \
             cmake \
             davix-devel \
             dcap-devel \
-            devtoolset-9 \
             doxygen \
             gfal2-all \
             gfal2-devel \
@@ -53,8 +52,7 @@ ADD create-env conda_xnt.yml requirements.txt /tmp/
 
 COPY extra_requirements/requirements-tests.txt /tmp/extra_requirements/requirements-tests.txt
 
-RUN source /opt/rh/devtoolset-9/enable && \
-    cd /tmp && \
+RUN cd /tmp && \
     bash create-env /opt/XENONnT ${XENONnT_TAG} && \
     rm -f create-env conda_xnt.yml
 
