@@ -25,7 +25,7 @@ ls
 cat extra_requirements/requirements-tests.txt requirements.txt
 
 # build the Docker image (minimized)
-docker build --progress=plain --no-cache --network=host --memory 8g --build-arg XENONnT_TAG=$TAG -t osgvo-xenon-layers .
+docker build --no-cache --network=host --memory 8g --build-arg XENONnT_TAG=$TAG -t osgvo-xenon-layers .
 docker run -it osgvo-xenon-layers bash -c "exit"
 sleep 30s
 CONT_ID=`docker ps -a | grep osgvo-xenon-layers | sed 's/ .*//'`

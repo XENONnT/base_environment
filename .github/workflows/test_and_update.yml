@@ -55,7 +55,7 @@ jobs:
       - name: Build container
         run: |
             while sleep 9m; do echo "=====[ Build is still running after $SECONDS seconds ]====="; done &
-            docker build --progress=plain -t testing . --build-arg XENONnT_TAG=testing --network host
+            docker build -t testing . --build-arg XENONnT_TAG=testing --network host
       - name: Start test MongoDB (doesn't end up in any build or so)
         uses: supercharge/mongodb-github-action@1.6.0
         with:

@@ -53,7 +53,6 @@ ADD create-env conda_xnt.yml requirements.txt /tmp/
 COPY extra_requirements/requirements-tests.txt /tmp/extra_requirements/requirements-tests.txt
 
 RUN cd /tmp && \
-    set -euxo pipefail && \
     bash create-env /opt/XENONnT ${XENONnT_TAG} && \
     rm -f create-env conda_xnt.yml
 
