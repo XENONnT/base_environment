@@ -15,7 +15,7 @@ RUN yum-config-manager --disable Pegasus
 
 RUN sed -i \
     -e 's|^mirrorlist=|#mirrorlist=|g' \
-    -e 's|^#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' \
+    -e 's|^#baseurl=http://mirror.centos.org/centos/\$releasever|baseurl=http://vault.centos.org/7.9.2009|g' \
     /etc/yum.repos.d/CentOS-*.repo
 
 RUN yum -y clean all && \
@@ -26,7 +26,7 @@ RUN yum -y install centos-release-scl
 
 RUN sed -i \
     -e 's|^mirrorlist=|#mirrorlist=|g' \
-    -e 's|^#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' \
+    -e 's|^#baseurl=http://mirror.centos.org/centos/\$releasever|baseurl=http://vault.centos.org/7.9.2009|g' \
     /etc/yum.repos.d/CentOS-SCLo-*.repo
 
 RUN yum -y install \
