@@ -1,4 +1,4 @@
-FROM hub.opensciencegrid.org/htc/rocky:9
+FROM hub.opensciencegrid.org/htc/rocky:8
 
 LABEL opensciencegrid.name="XENONnT"
 LABEL opensciencegrid.description="Base software environment for XENONnT, including Python 3.11 and data management tools"
@@ -11,7 +11,7 @@ ENV CONDA_OVERRIDE_GLIBC=2.36
 
 RUN echo "Building Docker container for XENONnT_${XENONnT_TAG} ..."
 
-RUN yum-config-manager --disable Pegasus
+RUN dnf -y config-manager --set-disabled Pegasus
 
 RUN dnf -y clean all && dnf -y --skip-broken upgrade
 
@@ -45,7 +45,7 @@ RUN dnf -y install \
             nano \
             bash-completion \
     && \
-    yum clean all && \
+    dnf clean all && \
     localedef -i en_US -f UTF-8 en_US.UTF-8
 
 ADD create-env conda_xnt.yml requirements.txt /tmp/
