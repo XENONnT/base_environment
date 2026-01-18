@@ -143,11 +143,6 @@ git clone https://github.com/rucio/rucio.git
 cd rucio
 # For some strange reason `git checkout $rucio_version` does not work 2022/07/22
 git checkout $rucio_version -f
-# don't mess with our version of setuptools, urllib3 and requests
-perl -p -i -e 's/^setuptools.*//' etc/pip-requires-client
-perl -p -i -e 's/^urllib3.*//' etc/pip-requires-client
-perl -p -i -e 's/^requests.*//' etc/pip-requires-client
-perl -p -i -e 's/six>=1.12.0<1.15.0/six>=1.12.0,<1.15.0/' etc/pip-requires-client
 python3 setup_rucio_client.py install --prefix=${target_dir}/anaconda/envs/${env_name}
 cd ${target_dir}
 rm -rf rucio
