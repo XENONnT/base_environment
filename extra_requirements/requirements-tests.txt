@@ -18,7 +18,7 @@ graphviz==0.20.3
 holoviews==1.18.3                                  # don't update, conflicts with xeauth 
 hypothesis==6.124.9
 immutabledict== 4.2.1
-ipywidgets==8.1.5                                  # for online monitoring
+ipywidgets==8.1.6                                  # for online monitoring
 jax==0.5.0
 Jinja2==3.1.5
 jupyter-client==8.6.3
