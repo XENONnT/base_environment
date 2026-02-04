@@ -143,7 +143,8 @@ git clone https://github.com/rucio/rucio.git
 cd rucio
 # For some strange reason `git checkout $rucio_version` does not work 2022/07/22
 git checkout $rucio_version -f
-python3 -m pip install -r requirements.txt
+# dependency of rucio-clients
+pip install dogpile.cache~=1.2.2
 python3 setup_rucio_client.py install --prefix=${target_dir}/anaconda/envs/${env_name}
 cd ${target_dir}
 rm -rf rucio
