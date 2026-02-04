@@ -42,6 +42,7 @@ pydantic==1.10.14                                  # rframe needs pydantic<2.0.0
 pytest-runner==6.0.1
 reprox==0.2.2
 requests==2.31.0                                   # rucio-clients 32.8.0 requires requests<=2.31.0
+rucio-clients==32.8.0
 seaborn==0.13.2
 simple-slurm==0.3.5
 sharedarray==3.2.4
