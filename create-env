@@ -8,7 +8,7 @@ gfal2_bindings_version=1.12.2
 gfal2_util_version=1.8.1
 rucio_version=32.8.0
 ## REMEMBER THE 'v' IN CUTAX_VERSION!! (unless it is 'latest')
-cutax_version=v2.3.6
+cutax_version=v2.3.7
 nestpy_version=v2.0.4
 #######################################################################
 
@@ -143,11 +143,8 @@ git clone https://github.com/rucio/rucio.git
 cd rucio
 # For some strange reason `git checkout $rucio_version` does not work 2022/07/22
 git checkout $rucio_version -f
-# don't mess with our version of setuptools, urllib3 and requests
-perl -p -i -e 's/^setuptools.*//' etc/pip-requires-client
-perl -p -i -e 's/^urllib3.*//' etc/pip-requires-client
-perl -p -i -e 's/^requests.*//' etc/pip-requires-client
-perl -p -i -e 's/six>=1.12.0<1.15.0/six>=1.12.0,<1.15.0/' etc/pip-requires-client
+# dependency of rucio-clients
+grep -E '^dogpile\.cache' requirements.txt | cut -d' ' -f1 | xargs pip install --prefix=${target_dir}/anaconda/envs/${env_name}
 python3 setup_rucio_client.py install --prefix=${target_dir}/anaconda/envs/${env_name}
 cd ${target_dir}
 rm -rf rucio
