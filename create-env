@@ -145,6 +145,7 @@ cd rucio
 git checkout $rucio_version -f
 # dependency of rucio-clients
 grep -E '^dogpile\.cache' requirements.txt | cut -d' ' -f1 | xargs pip install --prefix=${target_dir}/anaconda/envs/${env_name}
+grep -E '^tabulate' requirements.txt | cut -d' ' -f1 | xargs pip install --prefix=${target_dir}/anaconda/envs/${env_name}
 python3 setup_rucio_client.py install --prefix=${target_dir}/anaconda/envs/${env_name}
 cd ${target_dir}
 rm -rf rucio
