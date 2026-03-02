@@ -29,7 +29,7 @@ matplotlib==3.9.4
 memory-profiler==0.61.0
 mistune==0.8.4                                     # nbconvert 6.5.4 requires mistune<2
 mongomock==4.3.0
-multihist==0.6.5
+multihist==0.6.6
 nbmake==1.5.5
 npshmex==0.2.1                                     # strax dependency
 numba==0.61.0                                      # strax dependency
@@ -43,7 +43,7 @@ pymongo==3.13.0                                    # don't upgrade it
 pytest==8.3.4
 pytest-cov==6.0.0
 pytest-xdist==3.6.1
-rframe==0.2.24
+rframe==0.2.25
 scikit-learn==1.6.1                                # don't update
 scipy==1.15.1
 tensorflow==2.18.0
@@ -51,9 +51,9 @@ tf-keras==2.18.0
 typing-extensions==4.12.2                          # tensorflow and bokeh dependency
 tqdm==4.67.1
 uproot==5.5.1
-utilix==0.12.0                                     # dependency for straxen, admix
+utilix==0.12.1                                     # dependency for straxen, admix
 xarray==2025.1.2
-xedocs==0.2.43
+xedocs==0.2.44
 zarr==2.18.4
 zstandard==0.23.0                                  # strax dependency
 zstd==1.5.6.2                                      # strax dependency
