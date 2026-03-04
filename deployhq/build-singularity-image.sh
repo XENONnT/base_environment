@@ -33,8 +33,8 @@ ls -l *.simg
 echo
 
 # assuming we are running on xenon.isi.edu
-mv xenonnt-base-environment:${TAG}.simg /lizard/projects/XENONnT/xenon.isi.edu-webroot/images/.xenonnt-base-environment:${TAG}.simg
-mv /lizard/projects/XENONnT/xenon.isi.edu-webroot/images/.xenonnt-base-environment:${TAG}.simg /lizard/projects/XENONnT/xenon.isi.edu-webroot/images/xenonnt-base-environment:${TAG}.simg
+mv xenonnt-base-environment:${TAG}.simg /scitech/shared/projects/XENONnT/xenon.isi.edu-webroot/images/.xenonnt-base-environment:${TAG}.simg
+mv /scitech/shared/projects/XENONnT/xenon.isi.edu-webroot/images/.xenonnt-base-environment:${TAG}.simg /scitech/shared/projects/XENONnT/xenon.isi.edu-webroot/images/xenonnt-base-environment:${TAG}.simg
 
 ### mrynge 2020-04-30 Disabled uploading to Singularity librarary - we do not have
 ###                   enough space there so we just put it on https for now
