@@ -247,7 +247,14 @@ for space in /project/lgrandi/grid_proxy /project2/lgrandi/grid_proxy /xenon/gri
             export X509_USER_PROXY=\${space}/xenon_service_proxy
         fi
         # change where we cache the .pyc files if we are on one of these sites.
-        export PYTHONPYCACHEPREFIX=/tmp/\$USER
+        for base in /scratch/midway3/$USER /scratch/midway2/$USER /scratch/dali/$USER "$HOME/.cache"; do
+            if [ -d "$base" ] && [ -w "$base" ]; then
+                export PYTHONPYCACHEPREFIX="$base/pycache_xenonnt"
+                mkdir -p "$PYTHONPYCACHEPREFIX"
+                break
+            fi
+        done
+
     fi
 done
 
