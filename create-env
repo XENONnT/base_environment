@@ -325,5 +325,10 @@ if [ "x\$XENON_DEBUG" != "x" ]; then
 fi
 EOF
 
+announce "Removing packaged Python bytecode"
+find ${target_dir}/anaconda -type d -name __pycache__ -prune -exec rm -rf {} +
+find ${target_dir}/anaconda -type f -name '*.pyc' -delete
+find ${target_dir}/anaconda -type f -name '*.pyo' -delete
+
 # Done testing
 announce "All done!"
