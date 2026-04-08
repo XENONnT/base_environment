@@ -23,7 +23,7 @@ setuptools.setup(
     long_description_content_type="text/markdown",
     setup_requires=['pytest-runner'],
     install_requires=requires,
-    python_requires=">=3.11",
+    python_requires=">=3.12",
     packages=setuptools.find_packages() + ['extra_requirements'],
     package_dir={'extra_requirements': 'extra_requirements'},
     package_data={'extra_requirements': ['requirements-tests.txt']},
