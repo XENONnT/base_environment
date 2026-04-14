@@ -54,6 +54,7 @@ jobs:
           password: ${{ secrets.EVAN_DOCKER_PASSWORD }}
       - name: Build container
         run: |
+            set -e
             while sleep 9m; do echo "=====[ Build is still running after $SECONDS seconds ]====="; done &
             docker build -t testing . --build-arg XENONnT_TAG=testing --network host
       - name: Start test MongoDB (doesn't end up in any build or so)
