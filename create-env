@@ -61,7 +61,6 @@ export LC_ALL=en_US.utf8
 export LANG=en_US.utf8
 
 announce "Installing Miniconda"
-# wget -nv -O conda_setup.sh https://repo.anaconda.com/miniconda/Miniconda3-py312_26.1.1-1-Linux-x86_64.sh
 wget -nv -O conda_setup.sh https://repo.anaconda.com/miniconda/Miniconda3-py312_24.9.2-0-Linux-x86_64.sh
 
 bash conda_setup.sh -b -p $target_dir/anaconda
@@ -147,11 +146,6 @@ git checkout $rucio_version -f
 # dependency of rucio-clients
 grep -E '^dogpile\.cache' requirements.txt | cut -d' ' -f1 | xargs pip install --prefix=${target_dir}/anaconda/envs/${env_name}
 grep -E '^tabulate' requirements.txt | cut -d' ' -f1 | xargs pip install --prefix=${target_dir}/anaconda/envs/${env_name}
-# grep -E '^setuptools' extra_requirements/requirements-test.txt | cut -d' ' -f1 | xargs pip install --prefix=${target_dir}/anaconda/envs/${env_name}
-python -m pip install --upgrade pip wheel
-# Pin setuptools for compatibility with older Rucio installer code that imports pkg_resources.
-# python -m pip install --upgrade "setuptools==69.5.1"
-# python -m pip install --upgrade packaging
 python setup_rucio_client.py install --prefix=${target_dir}/anaconda/envs/${env_name}
 cd ${target_dir}
 rm -rf rucio
