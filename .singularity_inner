@@ -1,0 +1,25 @@
+#!/bin/bash
+if [[ -n "$SINGULARITYENV_XENON_CONFIG" && -f "$SINGULARITYENV_XENON_CONFIG" ]]; then
+    export XENON_CONFIG="$SINGULARITYENV_XENON_CONFIG"
+    echo "Forcibly set XENON_CONFIG inside container to: $XENON_CONFIG"
+fi
+
+JUP_HOST=$(hostname -i)
+## print tunneling instructions
+echo -e "
+    Copy/Paste this in your local terminal to ssh tunnel with remote
+    -----------------------------------------------------------------
+    ssh -N -f -L localhost:18977:$JUP_HOST:18977 caioishikawa@midway3.rcc.uchicago.edu
+    -----------------------------------------------------------------
+
+    Then open a browser on your local machine to the following address
+    ------------------------------------------------------------------
+    localhost:18977
+    ------------------------------------------------------------------
+    and use the token that appears below to login.
+
+    OR replace "" in the address below with "localhost" and copy
+    to your local browser.
+    " 2>&1
+
+jupyter lab --no-browser --port=18977 --ip=$JUP_HOST --notebook-dir /home/caioishikawa 2>&1
