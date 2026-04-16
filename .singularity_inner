@@ -9,12 +9,12 @@ JUP_HOST=$(hostname -i)
 echo -e "
     Copy/Paste this in your local terminal to ssh tunnel with remote
     -----------------------------------------------------------------
-    ssh -N -f -L localhost:18977:$JUP_HOST:18977 caioishikawa@midway3.rcc.uchicago.edu
+    ssh -N -f -L localhost:16279:$JUP_HOST:16279 caioishikawa@midway3.rcc.uchicago.edu
     -----------------------------------------------------------------
 
     Then open a browser on your local machine to the following address
     ------------------------------------------------------------------
-    localhost:18977
+    localhost:16279
     ------------------------------------------------------------------
     and use the token that appears below to login.
 
@@ -22,4 +22,4 @@ echo -e "
     to your local browser.
     " 2>&1
 
-jupyter lab --no-browser --port=18977 --ip=$JUP_HOST --notebook-dir /home/caioishikawa 2>&1
+jupyter lab --no-browser --port=16279 --ip=$JUP_HOST --notebook-dir /home/caioishikawa 2>&1
