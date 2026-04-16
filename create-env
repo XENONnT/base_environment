@@ -83,6 +83,7 @@ rm -f ${target_dir}/anaconda/pkgs/rope-0.11.0-py37_0/info/LICENSE.txt
 
 announce "Activating Anaconda environment"
 source $target_dir/anaconda/bin/activate ${env_name}
+pip install setuptools --prefix=${target_dir}/anaconda/envs/${env_name}
 
 # Forging nodejs (for jupyter)
 announce "Installing nodejs"
