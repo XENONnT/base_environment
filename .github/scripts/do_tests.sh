@@ -53,6 +53,7 @@ case "$1" in
 
     CUTAX_VERSION=$(grep "cutax_version=" create-env)
     CUTAX_VERSION=${CUTAX_VERSION//cutax_version=}
+    CUTAX_VERSION=test_pre_sr3
     echo "Testing with cutax version ${CUTAX_VERSION}"
     cd cutax
     if [ $CUTAX_VERSION != 'latest' ]
