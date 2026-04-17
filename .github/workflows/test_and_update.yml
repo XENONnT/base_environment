@@ -54,13 +54,27 @@ jobs:
           password: ${{ secrets.EVAN_DOCKER_PASSWORD }}
       - name: Build container (with retries)
         run: |
+          set -euo pipefail
           while sleep 9m; do echo "=====[ Build is still running after $SECONDS seconds ]====="; done &
+          watchdog_pid=$!
+
+          ok=0
           for i in 1 2 3 4 5; do
             echo "Build attempt $i..."
-            docker build -t testing . --build-arg XENONnT_TAG=testing --network host && break
+            if docker build -t testing . --build-arg XENONnT_TAG=testing --network host; then
+              ok=1
+              break
+            fi
             echo "Build failed; retrying after backoff..."
             sleep $((i*30))
           done
+
+          kill "$watchdog_pid" || true
+
+          if [ "$ok" -ne 1 ]; then
+            echo "Docker build failed after all retries."
+            exit 1
+          fi
       # - name: Build container
       #   run: |
       #       while sleep 9m; do echo "=====[ Build is still running after $SECONDS seconds ]====="; done &
