@@ -48,7 +48,7 @@ scikit-learn==1.6.1                                # don't update
 scipy==1.17.1
 setuptools==69.5.1
 tensorflow==2.21.0
-tf-keras==2.18.0
+tf-keras==2.21.0
 typing-extensions==4.12.2                          # tensorflow and bokeh dependency
 tqdm==4.67.3
 uproot==5.5.1
