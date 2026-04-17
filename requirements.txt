@@ -12,7 +12,7 @@ emcee==3.1.6
 flamedisx==2.1.0
 future==1.0.0
 GOFevaluation==0.1.6
-h5py==3.16.0
+h5py==3.14.0
 iminuit==2.32.0
 inference-interface==0.0.3
 ipykernel==6.29.5                                  # for ipywidgets
