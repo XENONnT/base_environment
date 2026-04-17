@@ -35,7 +35,7 @@ npshmex==0.2.1                                     # strax dependency
 numba==0.65.0                                      # strax dependency
 numexpr==2.10.2
 packaging==24.2
-pandas==3.0.2
+pandas==2.3.3                                      # pandas > 3.0.0 conflicts with rframe 0.25.0
 panel==1.2.3                                       # upgrading it causes conflict with xeauth
 psutil==5.9.8                                      # upgrading it causes conflict with jupyter-resource-usage
 pyarrow==23.0.1
