@@ -66,6 +66,9 @@ wget -nv -O conda_setup.sh https://repo.anaconda.com/miniconda/Miniconda3-py312_
 bash conda_setup.sh -b -p $target_dir/anaconda
 rm -f conda_setup.sh
 
+conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/main
+conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/r
+
 export PKG_CONFIG_PATH=${target_dir}/anaconda/envs/${env_name}/lib64/pkgconfig:/usr/lib64/pkgconfig:/usr/share/pkgconfig
 
 announce "Updating conda"
