@@ -4,7 +4,7 @@ channel_priority: strict
 dependencies:
   - cmake=3.18.2
   - graphviz
-`  - pip
+  - pip
   - python=3.12
   - pip:
     - -r extra_requirements/requirements-tests.txt
