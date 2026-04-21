@@ -48,7 +48,7 @@ sharedarray==3.2.4
 snakeviz==2.2.2
 sphinx==7.3.7
 statsmodels==0.14.6
-strax==2.2.2
+strax @ git+https://github.com/caioishikawa/strax.git@fix-numpy-compatibility 
 straxen @ git+https://github.com/XENONnT/straxen.git@to_numpy_upgrade
 tables==3.10.2
 tensorflow-probability==0.25.0
