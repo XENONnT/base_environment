@@ -19,16 +19,18 @@ case "$1" in
 
   strax )
     echo " ... strax tests"
-    strax_version=`python -c "import strax; print(strax.__version__)"`
-    git clone --single-branch --branch v$strax_version https://github.com/AxFoundation/strax.git
+    # strax_version=`python -c "import strax; print(strax.__version__)"`
+    # git clone --single-branch --branch v$strax_version https://github.com/AxFoundation/strax.git
+    git clone https://github.com/caioishikawa/strax.git@fix-numpy-compatibility 
     pytest -v strax || { echo 'strax tests failed' ; exit 1; }
     rm -r strax
   ;;
 
   straxen )
     echo " ... straxen tests"
-    straxen_version=`python -c "import straxen; print(straxen.__version__)"`
-    git clone --single-branch --branch v$straxen_version https://github.com/XENONnT/straxen.git
+    # straxen_version=`python -c "import straxen; print(straxen.__version__)"`
+    # git clone --single-branch --branch v$straxen_version https://github.com/XENONnT/straxen.git
+    git clone https://github.com/XENONnT/straxen.git@to_numpy_upgrade
     # TODO remove this cheat, can't get it to work now
     if [ $DISABLE_RUCIO_TEST ];
       then echo "removing rucio remote test";
