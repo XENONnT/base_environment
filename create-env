@@ -10,6 +10,8 @@ rucio_version=32.8.0
 ## REMEMBER THE 'v' IN CUTAX_VERSION!! (unless it is 'latest')
 cutax_version=v2.3.7
 nestpy_version=v2.0.4
+root_version=6.26.18
+geant4_version=10.06.p02
 #######################################################################
 
 set -e
@@ -331,6 +333,105 @@ if [ "x\$XENON_DEBUG" != "x" ]; then
     echo 1>&2
 fi
 EOF
+
+# MC installation section
+function install_montecarlo {
+    local target_dir=$1
+
+    # Use the base environment we just created
+    . ${target_dir}/setup.sh
+    export PATH=$target_dir/bin:$PATH
+
+    # ROOT needs compat-openssl10 on EL8
+    if command -v dnf >/dev/null 2>&1; then
+        dnf -y install compat-openssl10
+    elif command -v yum >/dev/null 2>&1; then
+        yum -y install compat-openssl10
+    fi
+
+    announce "Installing ROOT"
+    cd /tmp
+    wget -nv -O root_v${root_version}.Linux-AlmaLinux8.10-x86_64-gcc8.5.tar.gz \
+        https://root.cern/download/root_v${root_version}.Linux-AlmaLinux8.10-x86_64-gcc8.5.tar.gz
+    tar xzf root_v${root_version}.Linux-AlmaLinux8.10-x86_64-gcc8.5.tar.gz -C /opt
+    mkdir -p ${target_dir}/root
+    mv /opt/root ${target_dir}/root
+    rm -f root_v${root_version}.Linux-AlmaLinux8.10-x86_64-gcc8.5.tar.gz
+
+    # Ensure ROOT works
+    . ${target_dir}/root/bin/thisroot.sh
+    installed_root_version=$(root-config --version | tr '/' '.')
+    if [ "$installed_root_version" != "$root_version" ]; then
+        echo "Unexpected ROOT version: $installed_root_version" >&2
+        exit 1
+    fi
+
+    announce "Installing GEANT4"
+    cd /tmp
+    wget -nv -O geant4.${geant4_version}.tar.gz \
+        http://cern.ch/geant4-data/releases/geant4.${geant4_version}.tar.gz
+    tar xzf geant4.${geant4_version}.tar.gz
+    cd geant4.${geant4_version}
+    mkdir build
+    cd build
+    cmake -DCMAKE_INSTALL_PREFIX=$target_dir \
+          -DGEANT4_INSTALL_DATA=ON \
+          -DGEANT4_USE_OPENGL_X11=OFF \
+          -DGEANT4_BUILD_MULTITHREADED=OFF \
+          -DGEANT4_USE_QT=ON \
+          -DGEANT4_USE_GDML=OFF \
+          -DGEANT4_USE_RAYTRACER_X11=OFF \
+          -DGEANT4_USE_XM=OFF \
+          -DGEANT4_USE_HDF5=OFF \
+          /tmp/geant4.${geant4_version}
+    make -j8
+    make install
+    cd /tmp
+    rm -rf geant4.${geant4_version}.tar.gz geant4.${geant4_version}
+
+    # Minimal thisroot.sh for /opt/XENONnT/root
+    cat > ${target_dir}/bin/thisroot.sh <<'EOF'
+
+#!/bin/bash
+ROOTSYS=/opt/XENONnT/root
+export ROOTSYS
+if [ -z "${PATH}" ]; then
+    PATH=$ROOTSYS/bin; export PATH
+else
+    PATH=$ROOTSYS/bin:$PATH; export PATH
+fi
+if [ -z "${LD_LIBRARY_PATH}" ]; then
+    LD_LIBRARY_PATH=$ROOTSYS/lib; export LD_LIBRARY_PATH
+else
+    LD_LIBRARY_PATH=$ROOTSYS/lib:$LD_LIBRARY_PATH; export LD_LIBRARY_PATH
+fi
+export CLING_STANDARD_PCH=none
+EOF
+    chmod +x ${target_dir}/bin/thisroot.sh
+
+    # Source MC env on container start
+    cat > /.singularity.d/env/zzz-60-xenon-montecarlo.sh <<EOF
+
+#!/bin/sh
+if [ "x\$XENON_DEBUG" != "x" ]; then
+    echo
+    env
+    echo
+fi
+if [ \$XENON_SOURCE -eq 1 ]; then
+    START_DIR=\$PWD
+    cd ${target_dir}/bin
+    . ./thisroot.sh
+    . ./geant4.sh
+    cd ${target_dir}/share/Geant4-*/geant4make/
+    . ./geant4make.sh
+    cd \$START_DIR
+fi
+EOF
+}
+
+# Run MC install (same prefix)
+install_montecarlo ${target_dir}
 
 announce "Removing packaged Python bytecode"
 find ${target_dir}/anaconda -type d -name __pycache__ -prune -exec rm -rf {} +
