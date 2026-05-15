@@ -52,6 +52,7 @@ RUN dnf -y install \
 RUN dnf -y install \
         avahi-compat-libdns_sd-devel \
         cfitsio-devel \
+        compat-openssl10 \
         expat \
         expat-devel \
         fftw-devel \
