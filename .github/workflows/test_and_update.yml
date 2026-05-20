@@ -61,7 +61,7 @@ jobs:
           ROOT_VERSION=$(grep '^root_version=' create-env | cut -d= -f2)
 
           docker run --rm -e ROOT_VERSION="$ROOT_VERSION" testing:latest bash -lc '
-            set -euo pipefail
+            set -eo pipefail
             source /opt/XENONnT/setup.sh
 
             test "$ROOTSYS" = "/opt/XENONnT/root"
