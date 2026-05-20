@@ -10,7 +10,7 @@ rucio_version=32.8.0
 ## REMEMBER THE 'v' IN CUTAX_VERSION!! (unless it is 'latest')
 cutax_version=v2.3.7
 nestpy_version=v2.0.4
-root_version=6.26.18
+root_version=6.32.00
 geant4_version=10.06.p02
 #######################################################################
 
