@@ -153,7 +153,7 @@ if [ -n "${ROOTSYS}" ] ; then
 fi
 
 
-ROOTSYS=/opt/geant4
+ROOTSYS=/opt/XENONnT/root
 export ROOTSYS
 
 
