@@ -342,11 +342,11 @@ export PATH=$target_dir/bin:$PATH
 announce "Installing ROOT"
 cd /tmp
 rm -rf /tmp/root
-wget -nv -O root_v${root_version}.Linux-AlmaLinux8.10-x86_64-gcc8.5.tar.gz \
-    https://root.cern/download/root_v${root_version}.Linux-AlmaLinux8.10-x86_64-gcc8.5.tar.gz
-tar xzf root_v${root_version}.Linux-AlmaLinux8.10-x86_64-gcc8.5.tar.gz -C /tmp
+wget -nv -O root_v${root_version}.Linux-almalinux8.10-x86_64-gcc8.5.tar.gz \
+    https://root.cern/download/root_v${root_version}.Linux-almalinux8.10-x86_64-gcc8.5.tar.gz
+tar xzf root_v${root_version}.Linux-almalinux8.10-x86_64-gcc8.5.tar.gz -C /tmp
 mv /tmp/root ${target_dir}/root
-rm -f root_v${root_version}.Linux-AlmaLinux8.10-x86_64-gcc8.5.tar.gz
+rm -f root_v${root_version}.Linux-almalinux8.10-x86_64-gcc8.5.tar.gz
 
 # Ensure ROOT works
 . ${target_dir}/root/bin/thisroot.sh
