@@ -81,6 +81,7 @@ RUN dnf -y install \
         redhat-lsb-core \
         xerces-c \
         xerces-c-devel \
+        xxhash-devel \
     &&\
     dnf clean all
 

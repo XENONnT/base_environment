@@ -56,26 +56,80 @@ jobs:
         run: |
             while sleep 9m; do echo "=====[ Build is still running after $SECONDS seconds ]====="; done &
             docker build -t testing . --build-arg XENONnT_TAG=testing --network host
+      - name: Debug built Docker image
+        if: always()
+        run: |
+            set -x
+            pwd
+            git rev-parse --short HEAD || true
+            docker images | head -20
+            docker image inspect testing:latest | head -80 || true
+            if docker image inspect testing:latest >/dev/null 2>&1; then
+              docker run --rm testing:latest bash -lc '
+                echo "Container debug reached"
+                ls -l /opt/XENONnT/setup.sh || true
+                ls -l /opt/XENONnT/bin/thisroot.sh || true
+                ls -l /opt/XENONnT/bin/geant4-config || true
+                ls -l /opt/XENONnT/root/bin/root-config || true
+              ' || true
+            else
+              echo "testing:latest was not built locally"
+            fi
       - name: Smoke test ROOT and Geant4
         run: |
-          ROOT_VERSION=$(grep '^root_version=' create-env | cut -d= -f2)
+            set -euxo pipefail
+            echo "::group::Host smoke-test preflight"
+            pwd
+            ls -l create-env
+            docker images testing
+            docker image inspect testing:latest | head -40
+            ROOT_VERSION=$(grep '^root_version=' create-env | cut -d= -f2)
+            echo "Expected ROOT_VERSION=$ROOT_VERSION"
+            echo "::endgroup::"
 
-          docker run --rm -e ROOT_VERSION="$ROOT_VERSION" testing:latest bash -lc '
+            docker run --rm -e ROOT_VERSION="$ROOT_VERSION" testing:latest bash -s <<'BASH'
             set -exo pipefail
+            echo "Container smoke test reached"
+            echo "PATH before setup: $PATH"
+            ls -l /opt/XENONnT/setup.sh
             source /opt/XENONnT/setup.sh
-
+            echo "PATH after setup: $PATH"
             echo "ROOTSYS=$ROOTSYS"
-            echo "ROOT_VERSION=$ROOT_VERSION"
-            echo "root-config version=$(root-config --version | tr "/" ".")"
-            echo "geant4 prefix=$(geant4-config --prefix)"
-            echo "geant4 cflags=$(geant4-config --cflags)"
+            command -v root-config
+            command -v geant4-config
+            root-config --version
+            geant4-config --version
+            geant4-config --prefix
+            geant4-config --cflags
 
             test "$ROOTSYS" = "/opt/XENONnT/root"
             test "$(root-config --version | tr "/" ".")" = "$ROOT_VERSION"
             test "$(realpath "$(geant4-config --prefix)")" = "/opt/XENONnT"
             geant4-config --cflags | grep -q -- "-std=c++17"
             ! geant4-config --cflags | grep -q -- "-std=c++11"
-          '
+            mkdir -p /tmp/g4-cmake-smoke
+            cd /tmp/g4-cmake-smoke
+            cat > CMakeLists.txt <<'CMAKE'
+            cmake_minimum_required(VERSION 3.16)
+            project(g4_cmake_smoke LANGUAGES CXX)
+            find_package(Geant4 REQUIRED)
+            add_executable(g4_cmake_smoke main.cc)
+            target_include_directories(g4_cmake_smoke PRIVATE ${Geant4_INCLUDE_DIRS})
+            target_link_libraries(g4_cmake_smoke PRIVATE ${Geant4_LIBRARIES})
+            target_compile_features(g4_cmake_smoke PRIVATE cxx_std_17)
+            CMAKE
+            cat > main.cc <<'CPP'
+            #include "G4Version.hh"
+            #include <iostream>
+            int main() {
+              std::cout << G4VERSION_NUMBER << std::endl;
+              return 0;
+            }
+            CPP
+              cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+              cmake --build build -j2
+              ./build/g4_cmake_smoke
+            BASH
       - name: Start test MongoDB (doesn't end up in any build or so)
         uses: supercharge/mongodb-github-action@1.6.0
         with:
