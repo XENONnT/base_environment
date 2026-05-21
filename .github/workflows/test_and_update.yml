@@ -60,22 +60,45 @@ jobs:
         run: |
           ROOT_VERSION=$(grep '^root_version=' create-env | cut -d= -f2)
 
-          docker run --rm -e ROOT_VERSION="$ROOT_VERSION" testing:latest bash -lc '
+          docker run --rm -e ROOT_VERSION="$ROOT_VERSION" testing:latest bash -s <<'BASH'
             set -exo pipefail
             source /opt/XENONnT/setup.sh
-
-            echo "ROOTSYS=$ROOTSYS"
-            echo "ROOT_VERSION=$ROOT_VERSION"
-            echo "root-config version=$(root-config --version | tr "/" ".")"
-            echo "geant4 prefix=$(geant4-config --prefix)"
-            echo "geant4 cflags=$(geant4-config --cflags)"
 
             test "$ROOTSYS" = "/opt/XENONnT/root"
             test "$(root-config --version | tr "/" ".")" = "$ROOT_VERSION"
             test "$(realpath "$(geant4-config --prefix)")" = "/opt/XENONnT"
             geant4-config --cflags | grep -q -- "-std=c++17"
             ! geant4-config --cflags | grep -q -- "-std=c++11"
-          '
+
+            mkdir -p /tmp/g4-cmake-smoke
+            cd /tmp/g4-cmake-smoke
+
+            cat > CMakeLists.txt <<'CMAKE'
+          cmake_minimum_required(VERSION 3.16)
+          project(g4_cmake_smoke LANGUAGES CXX)
+
+          find_package(Geant4 REQUIRED)
+
+          add_executable(g4_cmake_smoke main.cc)
+          target_include_directories(g4_cmake_smoke PRIVATE ${Geant4_INCLUDE_DIRS})
+          target_link_libraries(g4_cmake_smoke PRIVATE ${Geant4_LIBRARIES})
+          target_compile_features(g4_cmake_smoke PRIVATE cxx_std_17)
+          CMAKE
+
+            cat > main.cc <<'CPP'
+          #include "G4Version.hh"
+          #include <iostream>
+
+          int main() {
+            std::cout << G4VERSION_NUMBER << std::endl;
+            return 0;
+          }
+          CPP
+
+            cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+            cmake --build build -j2
+            ./build/g4_cmake_smoke
+          BASH
       - name: Start test MongoDB (doesn't end up in any build or so)
         uses: supercharge/mongodb-github-action@1.6.0
         with:
