@@ -72,7 +72,7 @@ jobs:
 
             test "$ROOTSYS" = "/opt/XENONnT/root"
             test "$(root-config --version | tr "/" ".")" = "$ROOT_VERSION"
-            geant4-config --prefix | grep -qx "/opt/XENONnT"
+            test "$(realpath "$(geant4-config --prefix)")" = "/opt/XENONnT"
             geant4-config --cflags | grep -q -- "-std=c++17"
             ! geant4-config --cflags | grep -q -- "-std=c++11"
           '
