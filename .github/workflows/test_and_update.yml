@@ -64,11 +64,11 @@ jobs:
             set -exo pipefail
             source /opt/XENONnT/setup.sh
 
-            ROOTSYS=$ROOTSYS
-            ROOT_VERSION=$ROOT_VERSION
-            root-config version=$(root-config --version | tr "/" ".")
-            geant4 prefix=$(geant4-config --prefix)
-            geant4 cflags=$(geant4-config --cflags)
+            echo "ROOTSYS=$ROOTSYS"
+            echo "ROOT_VERSION=$ROOT_VERSION"
+            echo "root-config version=$(root-config --version | tr "/" ".")"
+            echo "geant4 prefix=$(geant4-config --prefix)"
+            echo "geant4 cflags=$(geant4-config --cflags)"
 
             test "$ROOTSYS" = "/opt/XENONnT/root"
             test "$(root-config --version | tr "/" ".")" = "$ROOT_VERSION"
