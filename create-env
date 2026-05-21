@@ -1,8 +1,7 @@
 #!/bin/bash
 
 #######################################################################
-#
-# versions in this release
+## versions in this release
 
 gfal2_bindings_version=1.12.2
 gfal2_util_version=1.8.1

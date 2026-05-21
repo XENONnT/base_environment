@@ -56,6 +56,26 @@ jobs:
         run: |
             while sleep 9m; do echo "=====[ Build is still running after $SECONDS seconds ]====="; done &
             docker build -t testing . --build-arg XENONnT_TAG=testing --network host
+      - name: Smoke test ROOT and Geant4
+        run: |
+          ROOT_VERSION=$(grep '^root_version=' create-env | cut -d= -f2)
+
+          docker run --rm -e ROOT_VERSION="$ROOT_VERSION" testing:latest bash -lc '
+            set -exo pipefail
+            source /opt/XENONnT/setup.sh
+
+            echo "ROOTSYS=$ROOTSYS"
+            echo "ROOT_VERSION=$ROOT_VERSION"
+            echo "root-config version=$(root-config --version | tr "/" ".")"
+            echo "geant4 prefix=$(geant4-config --prefix)"
+            echo "geant4 cflags=$(geant4-config --cflags)"
+
+            test "$ROOTSYS" = "/opt/XENONnT/root"
+            test "$(root-config --version | tr "/" ".")" = "$ROOT_VERSION"
+            test "$(realpath "$(geant4-config --prefix)")" = "/opt/XENONnT"
+            geant4-config --cflags | grep -q -- "-std=c++17"
+            ! geant4-config --cflags | grep -q -- "-std=c++11"
+          '
       - name: Start test MongoDB (doesn't end up in any build or so)
         uses: supercharge/mongodb-github-action@1.6.0
         with:
