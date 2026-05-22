@@ -374,10 +374,11 @@ fi
 
 announce "Installing GEANT4"
 cd /tmp
-wget -nv -O geant4-${geant4_version}.tar.gz \
-    http://cern.ch/geant4-data/releases/geant4-${geant4_version}.tar.gz
-tar xzf geant4-${geant4_version}.tar.gz
-cd geant4-${geant4_version}
+geant4_source_dir=geant4-${geant4_version}
+wget -nv -O ${geant4_source_dir}.tar.gz \
+    https://cern.ch/geant4-data/releases/${geant4_source_dir}.tar.gz
+tar xzf ${geant4_source_dir}.tar.gz
+cd ${geant4_source_dir}
 mkdir build
 cd build
 cmake -DCMAKE_INSTALL_PREFIX=$target_dir \
@@ -389,14 +390,26 @@ cmake -DCMAKE_INSTALL_PREFIX=$target_dir \
       -DGEANT4_USE_RAYTRACER_X11=OFF \
       -DGEANT4_USE_XM=OFF \
       -DGEANT4_USE_HDF5=OFF \
-      /tmp/geant4.${geant4_version}
+      /tmp/${geant4_source_dir}
 make -j8
 make install
 
-# Geant4 10.06 still exports -std=c++11 in geant4make/geant4-config on EL8.
-sed -i 's/-std=c++11/-std=c++17/g' "${target_dir}/bin/geant4-config"
-sed -i 's/-std=c++11/-std=c++17/g' "${target_dir}"/share/Geant4-*/geant4make/config/sys/Linux-g++.gmk
-sed -i 's/-std=c++11/-std=c++17/g' "${target_dir}"/lib*/Geant4-*/Geant4Config.cmake
+if [ ! -x "${target_dir}/bin/geant4-config" ]; then
+    echo "ERROR: Installed Geant4 did not provide ${target_dir}/bin/geant4-config" >&2
+    exit 1
+fi
+
+# Older Geant4 installs export -std=c++11 in geant4make/geant4-config on EL8.
+# Geant4 11 does not always install every legacy geant4make file, so patch only
+# files that actually exist.
+for geant4_config_file in \
+    "${target_dir}/bin/geant4-config" \
+    "${target_dir}"/share/Geant4-*/geant4make/config/sys/Linux-g++.gmk \
+    "${target_dir}"/lib*/Geant4-*/Geant4Config.cmake; do
+    if [ -f "$geant4_config_file" ]; then
+        sed -i 's/-std=c++11/-std=c++17/g' "$geant4_config_file"
+    fi
+done
 
 # Fail early if the install still exports C++11
 if "${target_dir}/bin/geant4-config" --cflags | grep -q -- '-std=c++11'; then
@@ -405,7 +418,7 @@ if "${target_dir}/bin/geant4-config" --cflags | grep -q -- '-std=c++11'; then
 fi
 
 cd /tmp
-rm -rf geant4.${geant4_version}.tar.gz geant4.${geant4_version}
+rm -rf ${geant4_source_dir}.tar.gz ${geant4_source_dir}
 
 announce "Adding ROOT/Geant4 setup"
 
