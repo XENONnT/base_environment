@@ -10,7 +10,7 @@ rucio_version=32.8.0
 cutax_version=v2.3.7
 nestpy_version=v2.0.4
 root_version=6.32.08
-geant4_version=10.06.p02
+geant4_version=11.1.2
 #######################################################################
 
 set -e
