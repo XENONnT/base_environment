@@ -374,10 +374,10 @@ fi
 
 announce "Installing GEANT4"
 cd /tmp
-wget -nv -O geant4.${geant4_version}.tar.gz \
+wget -nv -O geant4-${geant4_version}.tar.gz \
     http://cern.ch/geant4-data/releases/geant4-${geant4_version}.tar.gz
-tar xzf geant4.${geant4_version}.tar.gz
-cd geant4.${geant4_version}
+tar xzf geant4-${geant4_version}.tar.gz
+cd geant4-${geant4_version}
 mkdir build
 cd build
 cmake -DCMAKE_INSTALL_PREFIX=$target_dir \
