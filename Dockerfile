@@ -42,6 +42,7 @@ RUN dnf -y install \
             srm-ifce-devel \
             xrootd-client-devel \
             zlib-devel \
+            ninja-build \
             nano \
             bash-completion \
     && \

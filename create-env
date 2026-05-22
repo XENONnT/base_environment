@@ -15,6 +15,9 @@ geant4_version=10.06.p02
 
 set -e
 
+script_start_time=$(date +%s)
+last_announce_time=$script_start_time
+
 target_dir=$1
 
 xenonnt_tag=$2
@@ -23,6 +26,11 @@ if [ "x$xenonnt_tag" = "x" ]; then
 fi
 
 env_name=XENONnT_${xenonnt_tag}
+detected_build_jobs=$(nproc 2>/dev/null || echo 8)
+if [ "$detected_build_jobs" -gt 8 ]; then
+    detected_build_jobs=8
+fi
+build_jobs=${BUILD_JOBS:-$detected_build_jobs}
 
 if [ "X$target_dir" = "X" ]; then
     echo "Please specify a target directory. Example: ./create-env /tmp/myenv" >&1
@@ -36,11 +44,21 @@ fi
 mkdir -p $target_dir
 
 
+function format_seconds {
+    local total=$1
+    printf "%02d:%02d:%02d" $((total / 3600)) $(((total % 3600) / 60)) $((total % 60))
+}
+
+
 function announce {
+    local now=$(date +%s)
+    local step_elapsed=$((now - last_announce_time))
+    local total_elapsed=$((now - script_start_time))
     echo
     echo "#######################################################################################"
-    echo "## $1       ("`date -u`")"
+    echo "## $1       ("`date -u`", step +$(format_seconds $step_elapsed), total $(format_seconds $total_elapsed))"
     echo
+    last_announce_time=$now
 }
 
 
@@ -70,8 +88,12 @@ rm -f conda_setup.sh
 
 export PKG_CONFIG_PATH=${target_dir}/anaconda/envs/${env_name}/lib64/pkgconfig:/usr/lib64/pkgconfig:/usr/share/pkgconfig
 
-announce "Updating conda"
-$target_dir/anaconda/bin/conda update conda --yes
+announce "Configuring conda"
+if $target_dir/anaconda/bin/conda config --set solver libmamba; then
+    export CONDA_SOLVER=libmamba
+else
+    echo "WARNING: libmamba solver not available; falling back to conda default solver" >&2
+fi
 
 announce "Installing Anaconda environment"
 echo -e "name: ${env_name}\n$(cat conda_xnt.yml | grep -v '^name:.*')" > conda_xnt_tmp.yml         # Add name to the env yml
@@ -83,13 +105,6 @@ rm -f ${target_dir}/anaconda/pkgs/rope-0.11.0-py37_0/info/LICENSE.txt
 
 announce "Activating Anaconda environment"
 source $target_dir/anaconda/bin/activate ${env_name}
-
-# Forging nodejs (for jupyter)
-announce "Installing nodejs"
-conda install -c conda-forge nodejs=18.15.0 --yes
-
-# Install to avoid md2 problem in openssl
-conda install anaconda::openldap --yes
 
 # boost
 announce "Installing Boost"
@@ -103,7 +118,7 @@ cd boost_1_87_0
     --prefix=${target_dir}/anaconda/envs/${env_name} --show-libraries \
     --with-libraries=atomic,chrono,date_time,exception,filesystem,graph,iostreams,locale,log,math,program_options,random,regex,serialization,system,test,thread,timer,wave,python \
     --with-python=${target_dir}/anaconda/envs/${env_name}/bin/python3
-./b2 install --prefix=${target_dir}/anaconda/envs/${env_name}
+./b2 -j${build_jobs} install --prefix=${target_dir}/anaconda/envs/${env_name}
 cd ${target_dir}
 rm -rf boost_*
 # required by gfal2-python, but maybe others
@@ -112,9 +127,8 @@ ln -s ${target_dir}/anaconda/envs/${env_name}/lib/libboost_python312.a ${target_
 
 # gfal2-python bindings
 announce "Installing GFAL2 Python bindings"
-git clone https://gitlab.cern.ch/dmc/gfal2-bindings.git
+git clone --branch v$gfal2_bindings_version --single-branch --depth 1 https://gitlab.cern.ch/dmc/gfal2-bindings.git
 cd gfal2-bindings
-git checkout v$gfal2_bindings_version
 perl -p -i -e 's;.*\$\{Boost_LIBRARYDIR\};            "${target_dir}/anaconda/envs/${env_name}/lib";' CMakeLists.txt
 export CXXFLAGS=-I${target_dir}/anaconda/envs/${env_name}/include
 cmake -DPYTHON_EXECUTABLE=${target_dir}/anaconda/envs/${env_name}/bin/python3.12 \
@@ -123,7 +137,7 @@ cmake -DPYTHON_EXECUTABLE=${target_dir}/anaconda/envs/${env_name}/bin/python3.12
     -DBOOST_ROOT=${target_dir}/anaconda/envs/${env_name} \
     -DSKIP_DOC=TRUE -DSKIP_TESTS=TRUE \
     -DCMAKE_RULE_MESSAGES=OFF
-make
+make -j${build_jobs}
 make install
 cd ${target_dir}
 rm -rf gfal2-bindings
@@ -131,19 +145,16 @@ unset CXXFLAGS
 
 # gfal2 clients
 announce "Installing GFAL2 clients"
-git clone https://gitlab.cern.ch/dmc/gfal2-util.git
+git clone --branch v$gfal2_util_version --single-branch --depth 1 https://gitlab.cern.ch/dmc/gfal2-util.git
 cd gfal2-util/
-git checkout v$gfal2_util_version
 python3 setup.py install --prefix=${target_dir}/anaconda/envs/${env_name}
 cd ${target_dir}
 rm -rf gfal2-util
 
 # rucio-clients
 announce "Installing Rucio"
-git clone https://github.com/rucio/rucio.git
+git clone --branch $rucio_version --single-branch --depth 1 https://github.com/rucio/rucio.git
 cd rucio
-# For some strange reason `git checkout $rucio_version` does not work 2022/07/22
-git checkout $rucio_version -f
 # dependency of rucio-clients
 grep -E '^dogpile\.cache' requirements.txt | cut -d' ' -f1 | xargs pip install --prefix=${target_dir}/anaconda/envs/${env_name}
 grep -E '^tabulate' requirements.txt | cut -d' ' -f1 | xargs pip install --prefix=${target_dir}/anaconda/envs/${env_name}
@@ -173,11 +184,11 @@ EOF
 
 # nestpy
 announce "Installing nestpy"
-git clone --branch $nestpy_version --single-branch https://github.com/NESTCollaboration/nestpy.git
+git clone --branch $nestpy_version --single-branch --depth 1 https://github.com/NESTCollaboration/nestpy.git
 cd nestpy
-git submodule update --init --recursive
+git submodule update --init --recursive --depth 1
 cd lib/pybind11
-git fetch --tags
+git fetch --depth 1 origin tag v2.13.0
 git checkout v2.13.0
 cd ../../
 sed -i 's/cmake_minimum_required(VERSION 2.8.12)/cmake_minimum_required(VERSION 2.8.12...3.30)/' CMakeLists.txt
@@ -380,7 +391,8 @@ tar xzf geant4.${geant4_version}.tar.gz
 cd geant4.${geant4_version}
 mkdir build
 cd build
-cmake -DCMAKE_INSTALL_PREFIX=$target_dir \
+cmake -G Ninja \
+      -DCMAKE_INSTALL_PREFIX=$target_dir \
       -DGEANT4_INSTALL_DATA=ON \
       -DGEANT4_USE_OPENGL_X11=OFF \
       -DGEANT4_BUILD_MULTITHREADED=OFF \
@@ -390,8 +402,8 @@ cmake -DCMAKE_INSTALL_PREFIX=$target_dir \
       -DGEANT4_USE_XM=OFF \
       -DGEANT4_USE_HDF5=OFF \
       /tmp/geant4.${geant4_version}
-make -j8
-make install
+ninja -j${build_jobs}
+ninja install
 
 # Geant4 10.06 still exports -std=c++11 in geant4make/geant4-config on EL8.
 sed -i 's/-std=c++11/-std=c++17/g' "${target_dir}/bin/geant4-config"

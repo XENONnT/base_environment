@@ -52,10 +52,18 @@ jobs:
         with:
           username: ${{ secrets.EVAN_DOCKER_USERNAME }}
           password: ${{ secrets.EVAN_DOCKER_PASSWORD }}
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
       - name: Build container
-        run: |
-            while sleep 9m; do echo "=====[ Build is still running after $SECONDS seconds ]====="; done &
-            docker build -t testing . --build-arg XENONnT_TAG=testing --network host
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          tags: testing:latest
+          build-args: XENONnT_TAG=testing
+          network: host
+          load: true
+          cache-from: type=gha
+          cache-to: type=gha,mode=max,ignore-error=true
       - name: Debug built Docker image
         if: always()
         run: |
