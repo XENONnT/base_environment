@@ -416,7 +416,9 @@ cat >> ${target_dir}/setup.sh <<EOF
 if [ -f ${target_dir}/bin/thisroot.sh ] && [ -f ${target_dir}/bin/geant4.sh ]; then
     XENON_START_DIR=\$PWD
     . ${target_dir}/bin/thisroot.sh
-    . ${target_dir}/bin/geant4.sh
+
+    cd ${target_dir}/bin
+    . ./geant4.sh
 
     for XENON_GEANT4MAKE_DIR in ${target_dir}/share/Geant4-*/geant4make; do
         if [ -f "\$XENON_GEANT4MAKE_DIR/geant4make.sh" ]; then
