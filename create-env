@@ -1,8 +1,7 @@
 #!/bin/bash
 
 #######################################################################
-#
-# versions in this release
+## versions in this release
 
 gfal2_bindings_version=1.12.2
 gfal2_util_version=1.8.1
@@ -348,8 +347,26 @@ tar xzf root_v${root_version}.Linux-almalinux9.4-x86_64-gcc11.4.tar.gz -C /tmp
 mv /tmp/root ${target_dir}/root
 rm -f root_v${root_version}.Linux-almalinux9.4-x86_64-gcc11.4.tar.gz
 
+announce "Installing custom ROOT setup"
+thisroot_source=
+if [ -f ./thisroot.sh ]; then
+    thisroot_source=./thisroot.sh
+elif [ -f /tmp/thisroot.sh ]; then
+    thisroot_source=/tmp/thisroot.sh
+fi
+
+if [ "x$thisroot_source" = "x" ]; then
+    echo "ERROR: custom thisroot.sh not found; refusing to use ROOT's default thisroot.sh" >&2
+    exit 1
+fi
+
+mkdir -p ${target_dir}/bin
+sed "s;^ROOTSYS=.*;ROOTSYS=${target_dir}/root;" "$thisroot_source" > ${target_dir}/bin/thisroot.sh
+chmod +x ${target_dir}/bin/thisroot.sh
+
 # Ensure ROOT works
-. ${target_dir}/root/bin/thisroot.sh
+. ${target_dir}/bin/thisroot.sh
+
 installed_root_version=$(root-config --version | tr '/' '.')
 if [ "$installed_root_version" != "$root_version" ]; then
     echo "Unexpected ROOT version: $installed_root_version" >&2
@@ -376,34 +393,42 @@ cmake -DCMAKE_INSTALL_PREFIX=$target_dir \
       /tmp/geant4.${geant4_version}
 make -j8
 make install
+
+# Geant4 10.06 still exports -std=c++11 in geant4make/geant4-config on EL8.
+sed -i 's/-std=c++11/-std=c++17/g' "${target_dir}/bin/geant4-config"
+sed -i 's/-std=c++11/-std=c++17/g' "${target_dir}"/share/Geant4-*/geant4make/config/sys/Linux-g++.gmk
+sed -i 's/-std=c++11/-std=c++17/g' "${target_dir}"/lib*/Geant4-*/Geant4Config.cmake
+
+# Fail early if the install still exports C++11
+if "${target_dir}/bin/geant4-config" --cflags | grep -q -- '-std=c++11'; then
+    echo "ERROR: Installed Geant4 still exports -std=c++11" >&2
+    exit 1
+fi
+
 cd /tmp
 rm -rf geant4.${geant4_version}.tar.gz geant4.${geant4_version}
 
 announce "Adding ROOT/Geant4 setup"
-cat > ${target_dir}/bin/thisroot.sh <<EOF
-#!/bin/bash
-. ${target_dir}/root/bin/thisroot.sh
-export CLING_STANDARD_PCH=none
-EOF
-chmod +x ${target_dir}/bin/thisroot.sh
 
-# Source MC env on container start
-cat > /.singularity.d/env/zzz-60-xenon-montecarlo.sh <<EOF
+cat >> ${target_dir}/setup.sh <<EOF
 
-#!/bin/sh
-if [ "x\$XENON_DEBUG" != "x" ]; then
-    echo
-    env
-    echo
-fi
-if [ \$XENON_SOURCE -eq 1 ]; then
-    START_DIR=\$PWD
-    cd ${target_dir}/bin
-    . ./thisroot.sh
-    . ./geant4.sh
-    cd ${target_dir}/share/Geant4-*/geant4make/
-    . ./geant4make.sh
-    cd \$START_DIR
+# ROOT / Geant4
+if [ -f ${target_dir}/bin/thisroot.sh ] && [ -f ${target_dir}/bin/geant4.sh ]; then
+    XENON_START_DIR=\$PWD
+    . ${target_dir}/bin/thisroot.sh
+    . ${target_dir}/bin/geant4.sh
+
+    for XENON_GEANT4MAKE_DIR in ${target_dir}/share/Geant4-*/geant4make; do
+        if [ -f "\$XENON_GEANT4MAKE_DIR/geant4make.sh" ]; then
+            cd "\$XENON_GEANT4MAKE_DIR"
+            . ./geant4make.sh
+            break
+        fi
+    done
+
+    cd "\$XENON_START_DIR"
+    unset XENON_START_DIR XENON_GEANT4MAKE_DIR
+>>>>>>> origin/master
 fi
 EOF
 
