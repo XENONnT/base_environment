@@ -8,6 +8,9 @@ set -e
 # /usr/sbin is needed for mksquashfs
 export PATH=$PATH:/usr/sbin
 
+# Work around a proot/seccomp ptrace failure when Apptainer builds rootless.
+export PROOT_NO_SECCOMP=1
+
 # git branch and tag (if any), from DeployHQ
 BRANCH=$1
 TAG=$2
@@ -44,6 +47,5 @@ mv /scitech/shared/projects/XENONnT/xenon.isi.edu-webroot/images/.xenonnt-base-e
 ### if [ "X$TAG" = "Xdevelopment" ]; then
 ###     singularity push --allow-unsigned xenonnt.simg library://rynge/default/xenonnt:latest
 ### fi
-
 
 
