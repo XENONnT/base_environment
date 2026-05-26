@@ -8,6 +8,9 @@ set -e
 # /usr/sbin is needed for mksquashfs
 export PATH=$PATH:/usr/sbin
 
+# Work around proot/seccomp ptrace failures when Apptainer builds rootless.
+export PROOT_NO_SECCOMP=1
+
 # git branch and tag (if any), from DeployHQ
 BRANCH=$1
 TAG=$2
@@ -19,13 +22,14 @@ if [ "X$TAG" = "Xmaster" ];then
 fi
 echo
 echo "Building for target \"$TAG\"..."
+echo "Using PROOT_NO_SECCOMP=$PROOT_NO_SECCOMP for rootless Apptainer/proot builds"
 echo
 
 # DeployHQ puts the checkout in ~/deployhq/
 cd ~/deployhq/
 
 rm -f xenonnt.simg
-singularity build xenonnt-base-environment:${TAG}.simg docker://opensciencegrid/osgvo-xenon:$TAG
+PROOT_NO_SECCOMP=1 singularity build xenonnt-base-environment:${TAG}.simg docker://opensciencegrid/osgvo-xenon:$TAG
 
 echo
 echo "Created simg file:"
@@ -44,6 +48,4 @@ mv /scitech/shared/projects/XENONnT/xenon.isi.edu-webroot/images/.xenonnt-base-e
 ### if [ "X$TAG" = "Xdevelopment" ]; then
 ###     singularity push --allow-unsigned xenonnt.simg library://rynge/default/xenonnt:latest
 ### fi
-
-
 
