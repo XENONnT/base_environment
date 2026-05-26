@@ -5,6 +5,8 @@
 
 set -e
 
+export PROOT_NO_SECCOMP=1
+
 # /usr/sbin is needed for mksquashfs
 export PATH=$PATH:/usr/sbin
 
