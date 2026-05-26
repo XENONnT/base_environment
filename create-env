@@ -93,22 +93,27 @@ conda install anaconda::openldap --yes
 
 # boost
 announce "Installing Boost"
-cd ${target_dir}
-rm -rf boost_*
+boost_prefix=${target_dir}/anaconda/envs/${env_name}
+boost_stage_dir=${target_dir}/boost-stage
+cd "${target_dir}"
+rm -rf boost_* "${boost_stage_dir}"
 wget -nv https://archives.boost.io/release/1.87.0/source/boost_1_87_0.tar.bz2
 tar xjf boost_1_87_0.tar.bz2
 rm -f boost_1_87_0.tar.bz2
 cd boost_1_87_0
 ./bootstrap.sh \
-    --prefix=${target_dir}/anaconda/envs/${env_name} --show-libraries \
+    --prefix="${boost_prefix}" \
     --with-libraries=atomic,chrono,date_time,exception,filesystem,graph,iostreams,locale,log,math,program_options,random,regex,serialization,system,test,thread,timer,wave,python \
-    --with-python=${target_dir}/anaconda/envs/${env_name}/bin/python3
-./b2 install --prefix=${target_dir}/anaconda/envs/${env_name}
-cd ${target_dir}
-rm -rf boost_*
+    --with-python="${boost_prefix}/bin/python3"
+./b2 stage --stagedir="${boost_stage_dir}"
+install -d "${boost_prefix}/include" "${boost_prefix}/lib"
+cp -a boost "${boost_prefix}/include/"
+cp -a "${boost_stage_dir}/lib/." "${boost_prefix}/lib/"
+cd "${target_dir}"
+rm -rf boost_* "${boost_stage_dir}"
 # required by gfal2-python, but maybe others
-ln -s ${target_dir}/anaconda/envs/${env_name}/lib/libboost_python312.so ${target_dir}/anaconda/envs/${env_name}/lib/libboost_python.so
-ln -s ${target_dir}/anaconda/envs/${env_name}/lib/libboost_python312.a ${target_dir}/anaconda/envs/${env_name}/lib/libboost_python.a
+ln -s "${boost_prefix}/lib/libboost_python312.so" "${boost_prefix}/lib/libboost_python.so"
+ln -s "${boost_prefix}/lib/libboost_python312.a" "${boost_prefix}/lib/libboost_python.a"
 
 # gfal2-python bindings
 announce "Installing GFAL2 Python bindings"
