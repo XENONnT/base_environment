@@ -51,9 +51,10 @@ statsmodels==0.14.4
 strax==2.2.2
 straxen==3.2.8
 tables==3.10.2
+tensorflow-probability==0.25.0
 timeout_decorator==0.5.0                           # needed by fuse
 uncertainties==3.2.2
 xe-admix==1.0.15
 xe-outsource==0.4.5
-xenon-fuse==1.4.4                                  # install fuse by default
+# xenon-fuse==1.4.4                                  # install fuse by default
 xgboost==3.1.3
