@@ -8,9 +8,6 @@ set -e
 # /usr/sbin is needed for mksquashfs
 export PATH=$PATH:/usr/sbin
 
-# Work around a proot/seccomp ptrace failure when Apptainer builds rootless.
-export PROOT_NO_SECCOMP=1
-
 # git branch and tag (if any), from DeployHQ
 BRANCH=$1
 TAG=$2
