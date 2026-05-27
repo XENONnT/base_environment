@@ -367,7 +367,7 @@ cd /tmp
 debug "ROOT install cwd=$(pwd)"
 debug "ROOT tarball=root_v${root_version}.Linux-almalinux8.10-x86_64-gcc8.5.tar.gz"
 rm -rf /opt/root
-wget --nv -4 --continue --timeout 60 --tries 5 -O root_v${root_version}.Linux-almalinux8.10-x86_64-gcc8.5.tar.gz \
+wget -nv -4 --continue --timeout 60 --tries 5 -O root_v${root_version}.Linux-almalinux8.10-x86_64-gcc8.5.tar.gz \
     https://root.cern/download/root_v${root_version}.Linux-almalinux8.10-x86_64-gcc8.5.tar.gz
 debug_path "/tmp/root_v${root_version}.Linux-almalinux8.10-x86_64-gcc8.5.tar.gz"
 tar xzf root_v${root_version}.Linux-almalinux8.10-x86_64-gcc8.5.tar.gz -C /opt
