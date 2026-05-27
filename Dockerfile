@@ -87,6 +87,8 @@ RUN dnf -y install \
 
 ADD create-env conda_xnt.yml requirements.txt thisroot.sh /tmp/
 
+RUN ls -l /tmp/create-env /tmp/conda_xnt.yml /tmp/requirements.txt /tmp/thisroot.sh
+
 COPY extra_requirements/requirements-tests.txt /tmp/extra_requirements/requirements-tests.txt
 
 RUN cd /tmp && \
