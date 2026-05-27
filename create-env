@@ -9,7 +9,7 @@ rucio_version=32.8.0
 ## REMEMBER THE 'v' IN CUTAX_VERSION!! (unless it is 'latest')
 cutax_version=v2.3.7
 nestpy_version=v2.0.4
-root_version=6.32.08
+root_version=6-32-08
 geant4_version=10.06.p02
 #######################################################################
 
@@ -344,38 +344,29 @@ announce "Preparing Monte Carlo environment"
 export PATH=$target_dir/bin:$PATH
 
 announce "Installing ROOT"
-cd /tmp
-rm -rf /opt/root
-wget -nv -O root_v${root_version}.Linux-almalinux8.10-x86_64-gcc8.5.tar.gz \
-    https://root.cern/download/root_v${root_version}.Linux-almalinux8.10-x86_64-gcc8.5.tar.gz
-tar xzf root_v${root_version}.Linux-almalinux8.10-x86_64-gcc8.5.tar.gz -C /opt
-mv /opt/root ${target_dir}/root
-rm -f root_v${root_version}.Linux-almalinux8.10-x86_64-gcc8.5.tar.gz
-
-announce "Installing custom ROOT setup"
-thisroot_source=
-if [ -f ./thisroot.sh ]; then
-    thisroot_source=./thisroot.sh
-elif [ -f /tmp/thisroot.sh ]; then
-    thisroot_source=/tmp/thisroot.sh
-fi
-
-if [ "x$thisroot_source" = "x" ]; then
-    echo "ERROR: custom thisroot.sh not found; refusing to use ROOT's default thisroot.sh" >&2
-    exit 1
-fi
+cd ${target_dir}
+rm -rf ${target_dir}/root_*
+git clone --branch v${root_version} --single-branch --depth=1 https://github.com/root-project/root.git root_src
+mkdir root_build
+cd root_build
+cmake -DCMAKE_INSTALL_PREFIX=${target_dir}/root ../root_src
+cmake --build . --target install -j4
 
 mkdir -p ${target_dir}/bin
-sed "s;^ROOTSYS=.*;ROOTSYS=${target_dir}/root;" "$thisroot_source" > ${target_dir}/bin/thisroot.sh
+sed "s;^ROOTSYS=.*;ROOTSYS=${target_dir}/root;" /tmp/thisroot.sh > ${target_dir}/bin/thisroot.sh
 chmod +x ${target_dir}/bin/thisroot.sh
-
-# Ensure ROOT works
 . ${target_dir}/bin/thisroot.sh
-installed_root_version=$(root-config --version | tr '/' '.')
-if [ "$installed_root_version" != "$root_version" ]; then
+
+installed_root_version=$(root-config --version | tr '/-' '..')
+expected_root_version=$(echo "$root_version" | tr '-' '.')
+if [ "$installed_root_version" != "$expected_root_version" ]; then
     echo "Unexpected ROOT version: $installed_root_version" >&2
     exit 1
 fi
+
+cd ${target_dir}
+rm -rf ${target_dir}/root_*
+
 
 announce "Installing GEANT4"
 cd /tmp
