@@ -1,7 +1,7 @@
-FROM hub.opensciencegrid.org/htc/centos:7
+FROM hub.opensciencegrid.org/htc/rocky:8
 
 LABEL opensciencegrid.name="XENONnT"
-LABEL opensciencegrid.description="Base software environment for XENONnT, including Python 3.11 and data management tools"
+LABEL opensciencegrid.description="Base software environment for XENONnT, including Python 3.12, Geant4, ROOT and data management tools"
 LABEL opensciencegrid.url="http://www.xenon1t.org/"
 LABEL opensciencegrid.category="Project"
 LABEL opensciencegrid.definition_url="https://github.com/XENONnT/base_environment"
@@ -11,20 +11,15 @@ ENV CONDA_OVERRIDE_GLIBC=2.36
 
 RUN echo "Building Docker container for XENONnT_${XENONnT_TAG} ..."
 
-RUN yum-config-manager --disable Pegasus
+RUN dnf -y config-manager --set-disabled Pegasus
 
-RUN yum -y clean all && yum -y --skip-broken upgrade
+RUN dnf -y clean all && dnf -y --skip-broken upgrade
 
-RUN yum -y install centos-release-scl && \
-    sed -i.bak 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-* && \
-    sed -i.bak 's|#.*baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-* && \
-    yum -y install \
+RUN dnf -y install \
             cmake \
             davix-devel \
             dcap-devel \
-            devtoolset-9 \
             doxygen \
-            dpm-devel \
             gfal2-all \
             gfal2-devel \
             gfal2-plugin-file \
@@ -38,7 +33,6 @@ RUN yum -y install centos-release-scl && \
             graphviz \
             gtest-devel \
             json-c-devel \
-            lfc-devel \
             libarchive \
             libattr-devel \
             libffi-devel \
@@ -50,17 +44,54 @@ RUN yum -y install centos-release-scl && \
             zlib-devel \
             nano \
             bash-completion \
-            bash-completion-extras \
     && \
-    yum clean all && \
+    dnf clean all && \
     localedef -i en_US -f UTF-8 en_US.UTF-8
 
-ADD create-env conda_xnt.yml requirements.txt /tmp/
+# --- MC dependencies ---
+RUN dnf -y install \
+        avahi-compat-libdns_sd-devel \
+        cfitsio-devel \
+        compat-openssl10 \
+        expat \
+        expat-devel \
+        fftw-devel \
+        ftgl-devel \
+        gcc-gfortran \
+        glew-devel \
+        graphviz-devel \
+        gsl-devel \
+        libX11-devel \
+        libXdmcp \
+        libXdmcp-devel \
+        libXext-devel \
+        libXft-devel \
+        libxml2-devel \
+        libXmu-devel \
+        libXpm-devel \
+        mesa-libGL-devel \
+        mesa-libGLU-devel \
+        motif \
+        mysql-devel \
+        openldap-devel \
+        openmotif-devel \
+        openssl-devel \
+        pcre-devel \
+        qt5-qtbase-devel \
+        redhat-lsb-core \
+        xerces-c \
+        xerces-c-devel \
+        xxhash-devel \
+    &&\
+    dnf clean all
+
+ADD create-env conda_xnt.yml requirements.txt thisroot.sh /tmp/
+
+RUN ls -l /tmp/create-env /tmp/conda_xnt.yml /tmp/requirements.txt /tmp/thisroot.sh
 
 COPY extra_requirements/requirements-tests.txt /tmp/extra_requirements/requirements-tests.txt
 
-RUN source /opt/rh/devtoolset-9/enable && \
-    cd /tmp && \
+RUN cd /tmp && \
     bash create-env /opt/XENONnT ${XENONnT_TAG} && \
     rm -f create-env conda_xnt.yml
 
