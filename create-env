@@ -43,6 +43,17 @@ function announce {
     echo
 }
 
+function debug {
+    echo "DEBUG create-env: $*" 1>&2
+}
+
+function debug_path {
+    if [ -e "$1" ]; then
+        ls -ld "$1" 1>&2
+    else
+        echo "DEBUG create-env: missing path: $1" 1>&2
+    fi
+}
 
 function run_quietly {
     log=`mktemp --suffix=.log`
@@ -60,6 +71,12 @@ function run_quietly {
 # build environment
 export LC_ALL=en_US.utf8
 export LANG=en_US.utf8
+
+debug "target_dir=${target_dir}"
+debug "xenonnt_tag=${xenonnt_tag}"
+debug "env_name=${env_name}"
+debug "root_version=${root_version}"
+debug "geant4_version=${geant4_version}"
 
 announce "Installing Miniconda"
 wget -nv -O conda_setup.sh https://repo.anaconda.com/miniconda/Miniconda3-py312_24.9.2-0-Linux-x86_64.sh
@@ -93,22 +110,27 @@ conda install anaconda::openldap --yes
 
 # boost
 announce "Installing Boost"
-cd ${target_dir}
-rm -rf boost_*
+boost_prefix=${target_dir}/anaconda/envs/${env_name}
+boost_stage_dir=${target_dir}/boost-stage
+cd "${target_dir}"
+rm -rf boost_* "${boost_stage_dir}"
 wget -nv https://archives.boost.io/release/1.87.0/source/boost_1_87_0.tar.bz2
 tar xjf boost_1_87_0.tar.bz2
 rm -f boost_1_87_0.tar.bz2
 cd boost_1_87_0
 ./bootstrap.sh \
-    --prefix=${target_dir}/anaconda/envs/${env_name} --show-libraries \
+    --prefix="${boost_prefix}" \
     --with-libraries=atomic,chrono,date_time,exception,filesystem,graph,iostreams,locale,log,math,program_options,random,regex,serialization,system,test,thread,timer,wave,python \
-    --with-python=${target_dir}/anaconda/envs/${env_name}/bin/python3
-./b2 install --prefix=${target_dir}/anaconda/envs/${env_name}
-cd ${target_dir}
-rm -rf boost_*
+    --with-python="${boost_prefix}/bin/python3"
+./b2 stage --stagedir="${boost_stage_dir}"
+install -d "${boost_prefix}/include" "${boost_prefix}/lib"
+cp -a boost "${boost_prefix}/include/"
+cp -a "${boost_stage_dir}/lib/." "${boost_prefix}/lib/"
+cd "${target_dir}"
+rm -rf boost_* "${boost_stage_dir}"
 # required by gfal2-python, but maybe others
-ln -s ${target_dir}/anaconda/envs/${env_name}/lib/libboost_python312.so ${target_dir}/anaconda/envs/${env_name}/lib/libboost_python.so
-ln -s ${target_dir}/anaconda/envs/${env_name}/lib/libboost_python312.a ${target_dir}/anaconda/envs/${env_name}/lib/libboost_python.a
+ln -s "${boost_prefix}/lib/libboost_python312.so" "${boost_prefix}/lib/libboost_python.so"
+ln -s "${boost_prefix}/lib/libboost_python312.a" "${boost_prefix}/lib/libboost_python.a"
 
 # gfal2-python bindings
 announce "Installing GFAL2 Python bindings"
@@ -337,17 +359,34 @@ EOF
 announce "Preparing Monte Carlo environment"
 . ${target_dir}/setup.sh
 export PATH=$target_dir/bin:$PATH
+debug "PATH after initial setup=${PATH}"
+debug "LD_LIBRARY_PATH after initial setup=${LD_LIBRARY_PATH}"
 
 announce "Installing ROOT"
 cd /tmp
-rm -rf /tmp/root
-wget -nv -O root_v${root_version}.Linux-almalinux9.4-x86_64-gcc11.4.tar.gz \
-    https://root.cern/download/root_v${root_version}.Linux-almalinux9.4-x86_64-gcc11.4.tar.gz
-tar xzf root_v${root_version}.Linux-almalinux9.4-x86_64-gcc11.4.tar.gz -C /tmp
-mv /tmp/root ${target_dir}/root
-rm -f root_v${root_version}.Linux-almalinux9.4-x86_64-gcc11.4.tar.gz
+debug "ROOT install cwd=$(pwd)"
+debug "ROOT tarball=root_v${root_version}.Linux-almalinux8.10-x86_64-gcc8.5.tar.gz"
+rm -rf /opt/root
+
+df -h / /opt /tmp ${target_dir}
+
+wget -nv -4 --continue --timeout 60 --tries 5 -O root_v${root_version}.Linux-almalinux8.10-x86_64-gcc8.5.tar.gz \
+    https://root.cern/download/root_v${root_version}.Linux-almalinux8.10-x86_64-gcc8.5.tar.gz
+
+df -h / /opt /tmp ${target_dir}
+
+debug_path "/tmp/root_v${root_version}.Linux-almalinux8.10-x86_64-gcc8.5.tar.gz"
+tar xzf root_v${root_version}.Linux-almalinux8.10-x86_64-gcc8.5.tar.gz -C /opt
+debug_path /opt/root
+mv /opt/root ${target_dir}/root
+debug_path "${target_dir}/root"
+debug_path "${target_dir}/root/bin/root-config"
+rm -f root_v${root_version}.Linux-almalinux8.10-x86_64-gcc8.5.tar.gz
 
 announce "Installing custom ROOT setup"
+
+debug_path "/tmp"
+
 thisroot_source=
 if [ -f ./thisroot.sh ]; then
     thisroot_source=./thisroot.sh
@@ -359,15 +398,20 @@ if [ "x$thisroot_source" = "x" ]; then
     echo "ERROR: custom thisroot.sh not found; refusing to use ROOT's default thisroot.sh" >&2
     exit 1
 fi
+debug "Using custom ROOT setup source: ${thisroot_source}"
 
 mkdir -p ${target_dir}/bin
 sed "s;^ROOTSYS=.*;ROOTSYS=${target_dir}/root;" "$thisroot_source" > ${target_dir}/bin/thisroot.sh
 chmod +x ${target_dir}/bin/thisroot.sh
+debug_path "${target_dir}/bin/thisroot.sh"
+grep '^ROOTSYS=' "${target_dir}/bin/thisroot.sh" 1>&2
 
 # Ensure ROOT works
 . ${target_dir}/bin/thisroot.sh
-
+debug "ROOTSYS after sourcing thisroot.sh=${ROOTSYS}"
+debug "root-config path=$(command -v root-config || true)"
 installed_root_version=$(root-config --version | tr '/' '.')
+debug "installed_root_version=${installed_root_version}"
 if [ "$installed_root_version" != "$root_version" ]; then
     echo "Unexpected ROOT version: $installed_root_version" >&2
     exit 1
@@ -375,12 +419,17 @@ fi
 
 announce "Installing GEANT4"
 cd /tmp
+debug "Geant4 install cwd=$(pwd)"
+debug "Geant4 tarball=geant4.${geant4_version}.tar.gz"
 wget -nv -O geant4.${geant4_version}.tar.gz \
     http://cern.ch/geant4-data/releases/geant4.${geant4_version}.tar.gz
+debug_path "/tmp/geant4.${geant4_version}.tar.gz"
 tar xzf geant4.${geant4_version}.tar.gz
+debug_path "/tmp/geant4.${geant4_version}"
 cd geant4.${geant4_version}
 mkdir build
 cd build
+debug "Geant4 build cwd=$(pwd)"
 cmake -DCMAKE_INSTALL_PREFIX=$target_dir \
       -DGEANT4_INSTALL_DATA=ON \
       -DGEANT4_USE_OPENGL_X11=OFF \
@@ -393,11 +442,17 @@ cmake -DCMAKE_INSTALL_PREFIX=$target_dir \
       /tmp/geant4.${geant4_version}
 make -j8
 make install
+debug_path "${target_dir}/bin/geant4.sh"
+debug_path "${target_dir}/bin/geant4-config"
 
 # Geant4 10.06 still exports -std=c++11 in geant4make/geant4-config on EL8.
 sed -i 's/-std=c++11/-std=c++17/g' "${target_dir}/bin/geant4-config"
 sed -i 's/-std=c++11/-std=c++17/g' "${target_dir}"/share/Geant4-*/geant4make/config/sys/Linux-g++.gmk
 sed -i 's/-std=c++11/-std=c++17/g' "${target_dir}"/lib*/Geant4-*/Geant4Config.cmake
+debug "geant4-config path=$(command -v geant4-config || true)"
+debug "geant4-config prefix=$("${target_dir}/bin/geant4-config" --prefix)"
+debug "geant4-config version=$("${target_dir}/bin/geant4-config" --version)"
+debug "geant4-config cflags=$("${target_dir}/bin/geant4-config" --cflags)"
 
 # Fail early if the install still exports C++11
 if "${target_dir}/bin/geant4-config" --cflags | grep -q -- '-std=c++11'; then
@@ -413,11 +468,19 @@ announce "Adding ROOT/Geant4 setup"
 cat >> ${target_dir}/setup.sh <<EOF
 
 # ROOT / Geant4
+if [ "x\$XENON_DEBUG" != "x" ]; then
+    echo "ROOT/Geant4 setup block:" 1>&2
+    echo "  cwd before setup: \$PWD" 1>&2
+    echo "  expected thisroot.sh: ${target_dir}/bin/thisroot.sh" 1>&2
+    echo "  expected geant4.sh: ${target_dir}/bin/geant4.sh" 1>&2
+    ls -l ${target_dir}/bin/thisroot.sh ${target_dir}/bin/geant4.sh 1>&2 || true
+fi
+
 if [ -f ${target_dir}/bin/thisroot.sh ] && [ -f ${target_dir}/bin/geant4.sh ]; then
     XENON_START_DIR=\$PWD
-    . ${target_dir}/bin/thisroot.sh
 
     cd ${target_dir}/bin
+    . ./thisroot.sh
     . ./geant4.sh
 
     for XENON_GEANT4MAKE_DIR in ${target_dir}/share/Geant4-*/geant4make; do
@@ -430,7 +493,21 @@ if [ -f ${target_dir}/bin/thisroot.sh ] && [ -f ${target_dir}/bin/geant4.sh ]; t
 
     cd "\$XENON_START_DIR"
     unset XENON_START_DIR XENON_GEANT4MAKE_DIR
->>>>>>> origin/master
+
+    if [ "x\$XENON_DEBUG" != "x" ]; then
+        echo "ROOT/Geant4 setup complete:" 1>&2
+        echo "  ROOTSYS=\${ROOTSYS:-}" 1>&2
+        echo "  root-config=\$(command -v root-config || true)" 1>&2
+        echo "  root-config version=\$(root-config --version 2>/dev/null || true)" 1>&2
+        echo "  geant4-config=\$(command -v geant4-config || true)" 1>&2
+        echo "  geant4-config prefix=\$(geant4-config --prefix 2>/dev/null || true)" 1>&2
+        echo "  geant4-config version=\$(geant4-config --version 2>/dev/null || true)" 1>&2
+        echo "  cwd after setup: \$PWD" 1>&2
+    fi
+else
+    if [ "x\$XENON_DEBUG" != "x" ]; then
+        echo "Skipping ROOT/Geant4 setup because one or both setup scripts are missing" 1>&2
+    fi
 fi
 EOF
 
