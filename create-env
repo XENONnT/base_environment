@@ -420,13 +420,13 @@ fi
 announce "Installing GEANT4"
 cd /tmp
 debug "Geant4 install cwd=$(pwd)"
-debug "Geant4 tarball=geant4.${geant4_version}.tar.gz"
-wget -nv -O geant4.${geant4_version}.tar.gz \
-    http://cern.ch/geant4-data/releases/geant4.${geant4_version}.tar.gz
-debug_path "/tmp/geant4.${geant4_version}.tar.gz"
-tar xzf geant4.${geant4_version}.tar.gz
-debug_path "/tmp/geant4.${geant4_version}"
-cd geant4.${geant4_version}
+debug "Geant4 tarball=geant4-${geant4_version}.tar.gz"
+wget -nv -O geant4-${geant4_version}.tar.gz \
+    http://cern.ch/geant4-data/releases/geant4-${geant4_version}.tar.gz
+debug_path "/tmp/geant4-${geant4_version}.tar.gz"
+tar xzf geant4-${geant4_version}.tar.gz
+debug_path "/tmp/geant4-${geant4_version}"
+cd geant4-${geant4_version}
 mkdir build
 cd build
 debug "Geant4 build cwd=$(pwd)"
