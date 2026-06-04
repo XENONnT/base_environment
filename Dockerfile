@@ -81,10 +81,13 @@ RUN dnf -y install \
         redhat-lsb-core \
         xerces-c \
         xerces-c-devel \
+        xxhash-devel \
     &&\
     dnf clean all
 
-ADD create-env conda_xnt.yml requirements.txt /tmp/
+ADD create-env conda_xnt.yml requirements.txt thisroot.sh /tmp/
+
+RUN ls -l /tmp/create-env /tmp/conda_xnt.yml /tmp/requirements.txt /tmp/thisroot.sh
 
 COPY extra_requirements/requirements-tests.txt /tmp/extra_requirements/requirements-tests.txt
 
