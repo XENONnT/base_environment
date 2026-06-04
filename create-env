@@ -439,7 +439,7 @@ cmake -DCMAKE_INSTALL_PREFIX=$target_dir \
       -DGEANT4_USE_RAYTRACER_X11=OFF \
       -DGEANT4_USE_XM=OFF \
       -DGEANT4_USE_HDF5=OFF \
-      /tmp/${geant4_source_dir}
+      /tmp/geant4-${geant4_version}
 make -j8
 make install
 debug_path "${target_dir}/bin/geant4.sh"
