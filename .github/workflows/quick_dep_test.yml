@@ -18,14 +18,14 @@ jobs:
     strategy:
       fail-fast: False
       matrix:
-        python-version: ["3.11"]
+        python-version: ["3.12"]
     if: ${{ github.triggering_actor != 'dependabot[bot]' }}
     steps:
       # Setup and installation
       - name: Checkout repo
         uses: actions/checkout@v2
       - name: Setup python
-        uses: actions/setup-python@v2.3.0
+        uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
           cache: 'pip'
