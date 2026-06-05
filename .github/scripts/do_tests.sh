@@ -27,8 +27,8 @@ case "$1" in
 
   straxen )
     echo " ... straxen tests"
-    straxen_version=`python -c "import straxen; print(straxen.__version__)"`
-    git clone --single-branch --branch v$straxen_version https://github.com/XENONnT/straxen.git
+    straxen_version=$(python -c "import importlib.metadata; print(importlib.metadata.version('straxen'))")
+    git clone --single-branch --branch "v${straxen_version}" https://github.com/XENONnT/straxen.git || { echo 'straxen clone failed' ; exit 1; }
     # TODO remove this cheat, can't get it to work now
     if [ $DISABLE_RUCIO_TEST ];
       then echo "removing rucio remote test";
