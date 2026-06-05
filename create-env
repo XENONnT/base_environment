@@ -426,9 +426,8 @@ wget -nv -O geant4-${geant4_version}.tar.gz \
 debug_path "/tmp/geant4-${geant4_version}.tar.gz"
 tar xzf geant4-${geant4_version}.tar.gz
 debug_path "/tmp/geant4-${geant4_version}"
-cd geant4-${geant4_version}
-mkdir build
-cd build
+mkdir geant4-${geant4_version}-build
+cd geant4-${geant4_version}-build
 debug "Geant4 build cwd=$(pwd)"
 cmake -DCMAKE_INSTALL_PREFIX=$target_dir \
       -DGEANT4_INSTALL_DATA=ON \
