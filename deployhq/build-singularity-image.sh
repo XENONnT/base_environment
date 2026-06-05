@@ -19,14 +19,13 @@ if [ "X$TAG" = "Xmaster" ];then
 fi
 echo
 echo "Building for target \"$TAG\"..."
-echo "Using PROOT_NO_SECCOMP=$PROOT_NO_SECCOMP for rootless Apptainer/proot builds"
 echo
 
 # DeployHQ puts the checkout in ~/deployhq/
 cd ~/deployhq/
 
 rm -f xenonnt.simg
-PROOT_NO_SECCOMP=1 singularity build xenonnt-base-environment:${TAG}.simg docker://opensciencegrid/osgvo-xenon:$TAG
+singularity build xenonnt-base-environment:${TAG}.simg docker://opensciencegrid/osgvo-xenon:$TAG
 
 echo
 echo "Created simg file:"
@@ -45,4 +44,3 @@ mv /scitech/shared/projects/XENONnT/xenon.isi.edu-webroot/images/.xenonnt-base-e
 ### if [ "X$TAG" = "Xdevelopment" ]; then
 ###     singularity push --allow-unsigned xenonnt.simg library://rynge/default/xenonnt:latest
 ### fi
-
