@@ -16,6 +16,7 @@ pip install ./ --user
 cd $HOME
 
 max_attempts=3
+retry_delay_base=30
 attempt=1
 while true; do
     if python .github/scripts/update-context-collection.py ${GITHUB_REF_NAME} ${GITHUB_REF_TYPE}; then
@@ -27,7 +28,7 @@ while true; do
         exit 1
     fi
 
-    sleep_seconds=$((attempt * 30))
+    sleep_seconds=$((attempt * retry_delay_base))
     next_attempt=$((attempt + 1))
     echo "Retrying update-context-collection.py in ${sleep_seconds}s (attempt ${next_attempt}/${max_attempts})"
     sleep "$sleep_seconds"
