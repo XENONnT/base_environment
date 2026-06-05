@@ -25,15 +25,15 @@ fi
 env_name=XENONnT_${xenonnt_tag}
 
 if [ "X$target_dir" = "X" ]; then
-    echo "Please specify a target directory. Example: ./create-env /tmp/myenv" >&1
+    echo "Please specify a target directory. Example: ./create-env /tmp/myenv" >&2
     exit 1
 fi
 
-if [ -e $target_dir ]; then
-    echo "Target directory already exists - refusing to work on it" >&1
+if [ -e "$target_dir" ]; then
+    echo "Target directory already exists - refusing to work on it" >&2
     exit 1
 fi
-mkdir -p $target_dir
+mkdir -p "$target_dir"
 
 
 function announce {
@@ -59,11 +59,11 @@ function run_quietly {
     log=`mktemp --suffix=.log`
     rc=0
     echo "Running quietly: $@"
-    if ! $@ >$log 2>&1; then
+    if ! "$@" >"$log" 2>&1; then
         rc=$?
-        tail -n 500 $log
+        tail -n 500 "$log"
     fi
-    rm -f $log
+    rm -f "$log"
     return $rc
 }
 
@@ -81,25 +81,25 @@ debug "geant4_version=${geant4_version}"
 announce "Installing Miniconda"
 wget -nv -O conda_setup.sh https://repo.anaconda.com/miniconda/Miniconda3-py312_24.9.2-0-Linux-x86_64.sh
 
-bash conda_setup.sh -b -p $target_dir/anaconda
+bash conda_setup.sh -b -p "$target_dir/anaconda"
 rm -f conda_setup.sh
 
 
 export PKG_CONFIG_PATH=${target_dir}/anaconda/envs/${env_name}/lib64/pkgconfig:/usr/lib64/pkgconfig:/usr/share/pkgconfig
 
 announce "Updating conda"
-$target_dir/anaconda/bin/conda update conda --yes
+"$target_dir/anaconda/bin/conda" update conda --yes
 
 announce "Installing Anaconda environment"
 echo -e "name: ${env_name}\n$(cat conda_xnt.yml | grep -v '^name:.*')" > conda_xnt_tmp.yml         # Add name to the env yml
-$target_dir/anaconda/bin/conda env create -f conda_xnt_tmp.yml
+"$target_dir/anaconda/bin/conda" env create -f conda_xnt_tmp.yml
 
 announce "Cleaning Anaconda environment"
-$target_dir/anaconda/bin/conda clean --all --yes
+"$target_dir/anaconda/bin/conda" clean --all --yes
 rm -f ${target_dir}/anaconda/pkgs/rope-0.11.0-py37_0/info/LICENSE.txt
 
 announce "Activating Anaconda environment"
-source $target_dir/anaconda/bin/activate ${env_name}
+source "$target_dir/anaconda/bin/activate" ${env_name}
 
 # Forging nodejs (for jupyter)
 announce "Installing nodejs"
@@ -137,7 +137,7 @@ announce "Installing GFAL2 Python bindings"
 git clone https://gitlab.cern.ch/dmc/gfal2-bindings.git
 cd gfal2-bindings
 git checkout v$gfal2_bindings_version
-perl -p -i -e 's;.*\$\{Boost_LIBRARYDIR\};            "${target_dir}/anaconda/envs/${env_name}/lib";' CMakeLists.txt
+perl -p -i -e 's;.*\$\{Boost_LIBRARYDIR\}; "'${target_dir}'/anaconda/envs/'${env_name}'/lib";' CMakeLists.txt
 export CXXFLAGS=-I${target_dir}/anaconda/envs/${env_name}/include
 cmake -DPYTHON_EXECUTABLE=${target_dir}/anaconda/envs/${env_name}/bin/python3.12 \
     -DPYTHON_EXECUTABLE_3=${target_dir}/anaconda/envs/${env_name}/bin/python3.12 \
@@ -368,12 +368,12 @@ debug "ROOT install cwd=$(pwd)"
 debug "ROOT tarball=root_v${root_version}.Linux-almalinux8.10-x86_64-gcc8.5.tar.gz"
 rm -rf /opt/root
 
-df -h / /opt /tmp ${target_dir}
+df -h / /opt /tmp "${target_dir}"
 
 wget -nv -4 --continue --timeout 60 --tries 5 -O root_v${root_version}.Linux-almalinux8.10-x86_64-gcc8.5.tar.gz \
     https://root.cern/download/root_v${root_version}.Linux-almalinux8.10-x86_64-gcc8.5.tar.gz
 
-df -h / /opt /tmp ${target_dir}
+df -h / /opt /tmp "${target_dir}"
 
 debug_path "/tmp/root_v${root_version}.Linux-almalinux8.10-x86_64-gcc8.5.tar.gz"
 tar xzf root_v${root_version}.Linux-almalinux8.10-x86_64-gcc8.5.tar.gz -C /opt
@@ -422,12 +422,13 @@ cd /tmp
 debug "Geant4 install cwd=$(pwd)"
 debug "Geant4 tarball=geant4-${geant4_version}.tar.gz"
 wget -nv -O geant4-${geant4_version}.tar.gz \
-    http://cern.ch/geant4-data/releases/geant4-${geant4_version}.tar.gz
+    https://cern.ch/geant4-data/releases/geant4-${geant4_version}.tar.gz
 debug_path "/tmp/geant4-${geant4_version}.tar.gz"
 tar xzf geant4-${geant4_version}.tar.gz
 debug_path "/tmp/geant4-${geant4_version}"
-mkdir geant4-${geant4_version}-build
-cd geant4-${geant4_version}-build
+cd geant4-${geant4_version}
+mkdir build
+cd build
 debug "Geant4 build cwd=$(pwd)"
 cmake -DCMAKE_INSTALL_PREFIX=$target_dir \
       -DGEANT4_INSTALL_DATA=ON \
@@ -468,7 +469,7 @@ if "${target_dir}/bin/geant4-config" --cflags | grep -q -- '-std=c++11'; then
 fi
 
 cd /tmp
-rm -rf ${geant4_source_dir}.tar.gz ${geant4_source_dir}
+rm -rf geant4-${geant4_version}.tar.gz geant4-${geant4_version}
 
 announce "Adding ROOT/Geant4 setup"
 
