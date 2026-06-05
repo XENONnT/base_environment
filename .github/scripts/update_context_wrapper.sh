@@ -28,7 +28,8 @@ while true; do
     fi
 
     sleep_seconds=$((attempt * 30))
-    echo "Retrying update-context-collection.py in ${sleep_seconds}s (attempt ${attempt}/${max_attempts})"
+    next_attempt=$((attempt + 1))
+    echo "Retrying update-context-collection.py in ${sleep_seconds}s (attempt ${next_attempt}/${max_attempts})"
     sleep "$sleep_seconds"
-    attempt=$((attempt + 1))
+    attempt=$next_attempt
 done
