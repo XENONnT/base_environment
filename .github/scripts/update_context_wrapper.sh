@@ -23,7 +23,7 @@ while true; do
     fi
 
     if [ "$attempt" -ge "$max_attempts" ]; then
-        echo "WARNING: update-context-collection.py failed after ${max_attempts} attempts"
+        echo "ERROR: update-context-collection.py failed after ${max_attempts} attempts"
         exit 1
     fi
 
