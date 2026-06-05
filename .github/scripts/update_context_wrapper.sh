@@ -14,4 +14,21 @@ cd cutax
 git checkout $CUTAX_VERSION
 pip install ./ --user
 cd $HOME
-python .github/scripts/update-context-collection.py ${GITHUB_REF_NAME} ${GITHUB_REF_TYPE}
+
+max_attempts=3
+attempt=1
+while true; do
+    if python .github/scripts/update-context-collection.py ${GITHUB_REF_NAME} ${GITHUB_REF_TYPE}; then
+        break
+    fi
+
+    if [ "$attempt" -ge "$max_attempts" ]; then
+        echo "WARNING: update-context-collection.py failed after ${max_attempts} attempts"
+        exit 1
+    fi
+
+    sleep_seconds=$((attempt * 30))
+    echo "Retrying update-context-collection.py in ${sleep_seconds}s (attempt ${attempt}/${max_attempts})"
+    sleep "$sleep_seconds"
+    attempt=$((attempt + 1))
+done
