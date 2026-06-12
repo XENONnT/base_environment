@@ -524,5 +524,14 @@ find ${target_dir}/anaconda -type d -name __pycache__ -prune -exec rm -rf {} +
 find ${target_dir}/anaconda -type f -name '*.pyc' -delete
 find ${target_dir}/anaconda -type f -name '*.pyo' -delete
 
+# Install additional packages
+announce "Installing additional Python packages: xenon-plot-style"
+cd ${target_dir}
+git clone https://github.com/XENONnT/xenon_plot_style.git
+cd xenon_plot_style
+pip install .
+cd ${target_dir}
+rm -rf xenon_plot_style
+
 # Done testing
 announce "All done!"
