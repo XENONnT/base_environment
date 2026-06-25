@@ -293,7 +293,7 @@ fi
 # grab a local cutax installation if we have one
 DALI_CUTAX_DIR=/dali/lgrandi/xenonnt/software/cutax/${cutax_version}
 MIDWAY2_CUTAX_DIR=/project2/lgrandi/xenonnt/software/cutax/${cutax_version}
-MIDWAY3_CUTAX_DIR=/project/lgrandi/xenonnt/software/cutax/${cutax_version}
+MIDWAY3_CUTAX_DIR=/project2/lgrandi/xenonnt/software/cutax/${cutax_version}
 OSG_CUTAX_DIR=/ospool/uc-shared/project/xenon/xenonnt/software/cutax/${cutax_version}
 
 if [ "x\${CUTAX_LOCATION}" = "x" ]; then
