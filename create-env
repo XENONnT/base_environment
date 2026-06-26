@@ -11,6 +11,7 @@ cutax_version=v2.3.7
 nestpy_version=v2.0.4
 root_version=6.32.08
 geant4_version=v11.1.2
+fuse_version=v1.6.3
 #######################################################################
 
 set -e
@@ -315,11 +316,36 @@ if [ \$INSTALL_CUTAX -eq 1 ]; then
     fi
 fi
 
+# do the same for fuse, instead of installing with pip, we will use a local installation if available
+MIDWAY2_FUSE_DIR=/project2/lgrandi/xenonnt/software/fuse/${fuse_version}
+MIDWAY3_FUSE_DIR=/project2/lgrandi/xenonnt/software/fuse/${fuse_version}
+OSG_FUSE_DIR=/ospool/uc-shared/project/xenon/xenonnt/software/fuse/${fuse_version}
+
+if [ "x\${FUSE_LOCATION}" = "x" ]; then
+    for dir in \${MIDWAY2_FUSE_DIR} \${MIDWAY3_FUSE_DIR} \${OSG_FUSE_DIR}; do
+        if [ -e \$dir ]; then
+            FUSE_LOCATION=\$dir
+        fi
+    done
+fi
+
+if [ "x\$INSTALL_FUSE" = "x" ]; then
+    export INSTALL_FUSE=1
+fi
+
+if [ \$INSTALL_FUSE -eq 1 ]; then
+    if [ -e "\${FUSE_LOCATION}" ]; then
+        export FUSE_LOCATION
+        export PYTHONPATH=\${FUSE_LOCATION}:\$PYTHONPATH
+    fi
+fi
+
 # set env variable for matplotlib styles on Midway
 MPL_DIR='/dali/lgrandi/xenonnt/software/nton/mplconfigs/'
 if [ -e \$MPL_DIR ]; then
     export MPLCONFIGDIR=\$MPL_DIR
 fi
+
 
 EOF
 
