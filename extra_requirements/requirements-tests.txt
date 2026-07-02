@@ -1,4 +1,4 @@
-awkward==2.9.0
+awkward==2.9.1
 blosc==1.11.2                                      # strax dependency
 bokeh==3.2.2                                       # panel 1.2.3 depends on bokeh<3.3.0 and >=3.1.1
 boltons==24.1.0
@@ -8,12 +8,12 @@ coveralls==4.0.1
 dask==2025.1.0
 dask-jobqueue==0.8.5
 datashader==0.17.0
-deepdiff==8.4.2
+deepdiff==8.6.2
 dill==0.3.9                                        # strax dependency
 docutils==0.18.1                                   # don't update, straxen dependency
 flake8==7.1.1
 fsspec==2025.2.0
-GitPython==3.1.44                                  # pegasus dependency
+GitPython==3.1.50                                  # pegasus dependency
 graphviz==0.20.3
 holoviews==1.18.3                                  # don't update, conflicts with xeauth 
 hypothesis==6.124.9
@@ -35,26 +35,27 @@ npshmex==0.2.1                                     # strax dependency
 numba==0.65.0                                      # strax dependency
 numexpr==2.10.2
 packaging==24.2
-pandas==2.3.3                                      # pandas > 3.0.0 conflicts with rframe 0.25.0
+pandas==2.3.3
 panel==1.2.3                                       # upgrading it causes conflict with xeauth
 psutil==5.9.8                                      # upgrading it causes conflict with jupyter-resource-usage
 pyarrow==23.0.1
 pymongo==3.13.0                                    # don't upgrade it
-pytest==8.3.4
+pytest==9.0.3
 pytest-cov==6.0.0
 pytest-xdist==3.6.1
 rframe==0.2.25
 scikit-learn==1.6.1                                # don't update
 scipy==1.17.1
-setuptools==69.5.1
 tensorflow==2.21.0
 tf-keras==2.21.0
+scipy==1.15.1
+setuptools==78.1.1
 typing-extensions==4.12.2                          # tensorflow and bokeh dependency
-tqdm==4.67.3
-uproot==5.5.1
+tqdm==4.68.2
+uproot==5.7.4
 utilix==0.12.1                                     # dependency for straxen, admix
-xarray==2025.1.2
+xarray==2026.4.0
 xedocs==0.2.44
 zarr==2.18.4
 zstandard==0.23.0                                  # strax dependency
-zstd==1.5.6.2                                      # strax dependency
+zstd==1.5.7.3                                      # strax dependency
