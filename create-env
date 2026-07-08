@@ -168,9 +168,9 @@ cd rucio
 # For some strange reason `git checkout $rucio_version` does not work 2022/07/22
 git checkout $rucio_version -f
 # dependency of rucio-clients
-grep -E '^dogpile\.cache' requirements.txt | cut -d' ' -f1 | xargs pip install --prefix=${target_dir}/anaconda/envs/${env_name}
-grep -E '^tabulate' requirements.txt | cut -d' ' -f1 | xargs pip install --prefix=${target_dir}/anaconda/envs/${env_name}
-python setup_rucio_client.py install --prefix=${target_dir}/anaconda/envs/${env_name}
+grep -E '^dogpile-cache' requiments/requirements.client.txt | cut -d' ' -f1 | xargs pip install --prefix=${target_dir}/anaconda/envs/${env_name}
+grep -E '^tabulate' requiments/requirements.client.txt | cut -d' ' -f1 | xargs pip install --prefix=${target_dir}/anaconda/envs/${env_name}
+
 cd ${target_dir}
 rm -rf rucio
 
