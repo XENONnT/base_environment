@@ -5,7 +5,7 @@
 
 gfal2_bindings_version=1.12.2
 gfal2_util_version=1.8.1
-rucio_version=32.8.0
+rucio_version=35.8.0
 ## REMEMBER THE 'v' IN CUTAX_VERSION!! (unless it is 'latest')
 cutax_version=v2.3.7
 nestpy_version=v2.0.4
@@ -168,9 +168,9 @@ cd rucio
 # For some strange reason `git checkout $rucio_version` does not work 2022/07/22
 git checkout $rucio_version -f
 # dependency of rucio-clients
-grep -E '^dogpile\.cache' requirements.txt | cut -d' ' -f1 | xargs pip install --prefix=${target_dir}/anaconda/envs/${env_name}
-grep -E '^tabulate' requirements.txt | cut -d' ' -f1 | xargs pip install --prefix=${target_dir}/anaconda/envs/${env_name}
-python setup_rucio_client.py install --prefix=${target_dir}/anaconda/envs/${env_name}
+grep -E '^dogpile-cache' requirements/requirements.client.txt | cut -d' ' -f1 | xargs pip install --prefix=${target_dir}/anaconda/envs/${env_name}
+grep -E '^tabulate' requirements/requirements.client.txt | cut -d' ' -f1 | xargs pip install --prefix=${target_dir}/anaconda/envs/${env_name}
+
 cd ${target_dir}
 rm -rf rucio
 
