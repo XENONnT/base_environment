@@ -5,7 +5,7 @@ axidence==0.4.0
 black==25.1.0
 blueice==1.2.1
 codenamize==1.2.3                                  # for human-readable hashing
-comm==0.2.2
+comm==0.2.3
 corner==2.2.3
 cython==3.0.11
 emcee==3.1.6
