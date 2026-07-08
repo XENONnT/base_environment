@@ -8,7 +8,7 @@ coveralls==4.1.0
 dask==2026.6.0
 dask-jobqueue==0.8.5
 datashader==0.17.0
-deepdiff==9.1.0
+deepdiff==8.6.2
 dill==0.4.1                                        # strax dependency
 docutils==0.18.1                                   # don't update, straxen dependency
 flake8==7.3.0
@@ -46,7 +46,7 @@ pytest-xdist==3.6.1
 rframe==0.2.25
 scikit-learn==1.6.1                                # don't update
 scipy==1.18.0
-setuptools==83.0.0
+setuptools==78.1.1
 tensorflow==2.21.0
 tf-keras==2.21.0
 typing-extensions==4.12.2                          # tensorflow and bokeh dependency
