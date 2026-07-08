@@ -14,7 +14,7 @@ docutils==0.18.1                                   # don't update, straxen depen
 flake8==7.1.1
 fsspec==2025.2.0
 GitPython==3.1.50                                  # pegasus dependency
-graphviz==0.20.3
+graphviz==0.21
 holoviews==1.18.3                                  # don't update, conflicts with xeauth 
 hypothesis==6.124.9
 immutabledict== 4.2.1
