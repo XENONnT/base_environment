@@ -8,7 +8,7 @@ coveralls==4.1.0
 dask==2026.6.0
 dask-jobqueue==0.8.5
 datashader==0.17.0
-deepdiff==8.6.2
+deepdiff==9.1.0
 dill==0.4.1                                        # strax dependency
 docutils==0.18.1                                   # don't update, straxen dependency
 flake8==7.3.0
