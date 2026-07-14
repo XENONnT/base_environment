@@ -16,7 +16,7 @@ fsspec==2025.12.0                                  # rframe 0.25.0 requires fssp
 GitPython==3.1.50                                  # pegasus dependency
 graphviz==0.21
 holoviews==1.18.3                                  # don't update, conflicts with xeauth 
-hypothesis==6.156.2
+hypothesis==6.156.6
 immutabledict== 4.2.1
 ipywidgets==8.1.8                                  # for online monitoring
 jax==0.10.2
