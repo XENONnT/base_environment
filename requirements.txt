@@ -46,7 +46,7 @@ seaborn==0.13.2
 simple-slurm==0.3.6
 sharedarray==3.2.4
 snakeviz==2.2.2
-sphinx==7.3.7                                      # sphinx >= 7.4.0 requires docutils>=0.20
+sphinx==9.1.0                                      # sphinx >= 7.4.0 requires docutils>=0.20
 statsmodels==0.14.6
 strax==2.2.3
 straxen==4.0.0
