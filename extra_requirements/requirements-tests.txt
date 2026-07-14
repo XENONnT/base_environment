@@ -10,7 +10,7 @@ dask-jobqueue==0.8.5
 datashader==0.17.0
 deepdiff==9.1.0
 dill==0.4.1                                        # strax dependency
-docutils==0.18.1                                   # don't update, straxen dependency
+docutils==0.23                                   # don't update, straxen dependency
 flake8==7.3.0
 fsspec==2025.12.0                                  # rframe 0.25.0 requires fsspec<2026.0.0
 GitPython==3.1.50                                  # pegasus dependency
