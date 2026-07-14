@@ -36,7 +36,7 @@ numba==0.61.0                                      # strax dependency
 numexpr==2.10.2
 packaging==26.2
 pandas==2.3.3
-panel==1.2.3                                       # upgrading it causes conflict with xeauth
+panel==1.9.3                                       # upgrading it causes conflict with xeauth
 psutil==7.2.2                                      # upgrading it causes conflict with jupyter-resource-usage
 pyarrow==24.0.0
 pymongo==3.13.0                                    # don't upgrade it
