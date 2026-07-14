@@ -59,9 +59,9 @@ case "$1" in
     then
       git checkout $CUTAX_VERSION
     fi
-    # pip install -e ./ --user
-    # cd ..
-    # pytest cutax || { echo 'cutax tests failed' ; exit 1; }
+    pip install -e ./ --user
+    cd ..
+    pytest cutax || { echo 'cutax tests failed' ; exit 1; }
   ;;
 
   appletree )
