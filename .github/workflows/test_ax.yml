@@ -22,7 +22,7 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v3
       - name: create key & get proxy
-        if: matrix.package == 'cutax'
+        if: matrix.package == 'dummy' # took cutax out temporarily
         run: |
           mkdir ~/.ssh
           cat > ~/.ssh/id_rsa << EOF
