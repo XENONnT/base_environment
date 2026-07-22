@@ -1,6 +1,6 @@
 awkward==2.9.1
 blosc==1.11.4                                      # strax dependency
-bokeh==3.2.2                                       # panel 1.2.3 depends on bokeh<3.3.0 and >=3.1.1
+bokeh==3.9.1                                       # panel 1.2.3 depends on bokeh<3.3.0 and >=3.1.1
 boltons==24.1.0
 commentjson==0.9.0                                 # straxen dependency
 coverage==7.15.0                                    
@@ -12,7 +12,7 @@ deepdiff==9.1.0
 dill==0.4.1                                        # strax dependency
 docutils==0.18.1                                   # don't update, straxen dependency
 flake8==7.3.0
-fsspec==2025.12.0                                  # rframe 0.25.0 requires fsspec<2026.0.0
+fsspec==2025.12.0                                  # rframe 0.2.25 requires fsspec<2026.0.0
 GitPython==3.1.50                                  # pegasus dependency
 graphviz==0.21
 holoviews==1.18.3                                  # don't update, conflicts with xeauth 
@@ -36,7 +36,7 @@ numba==0.61.0                                      # strax dependency
 numexpr==2.10.2
 packaging==26.2
 pandas==2.3.3
-panel==1.2.3                                       # upgrading it causes conflict with xeauth
+panel==1.9.3                                       # Upgraded after removing xeauth
 psutil==7.2.2                                      # upgrading it causes conflict with jupyter-resource-usage
 pyarrow==24.0.0
 pymongo==3.13.0                                    # don't upgrade it
@@ -44,7 +44,7 @@ pytest==9.0.3
 pytest-cov==6.0.0
 pytest-xdist==3.6.1
 rframe==0.2.25
-scikit-learn==1.6.1                                # don't update
+scikit-learn==1.9.0                                # updated for SR3
 scipy==1.18.0
 setuptools==78.1.1
 tensorflow==2.21.0
