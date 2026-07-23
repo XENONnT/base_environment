@@ -54,7 +54,7 @@ tqdm==4.68.3
 uproot==5.7.4
 utilix==0.12.1                                     # dependency for straxen, admix
 xarray==2026.4.0
-xedocs==0.2.44
+xedocs @ git+https://github.com/XENONnT/xedocs.git@remove-xeauth-dependence
 zarr==2.18.4                                       # strax requires zarr<3.0.0
 zstandard==0.25.0                                  # strax dependency
 zstd==1.5.7.3                                      # strax dependency
