@@ -15,7 +15,7 @@ requires = open_requirements('extra_requirements/requirements-tests.txt')
 
 setuptools.setup(
     name='base_environment',
-    version='2026.06.2',
+    version='2026.07.1',
     description='Base software environment for XENONnT, including Python, ROOT, Geant4 and data management tools',
     author='base_environment contributors, the XENON collaboration',
     url='https://github.com/XENONnT/base_environment',
