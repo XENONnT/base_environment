@@ -15,7 +15,7 @@ jobs:
     strategy:
       fail-fast: False
       matrix:
-        package: [ 'strax', 'straxen', 'appletree', 'alea-inference', 'fuse' ]
+        package: [ 'strax', 'straxen', 'cutax', 'appletree', 'alea-inference', 'fuse' ]
     runs-on: ubuntu-latest
     if: ${{ github.repository_owner == 'XENONnT' && github.triggering_actor != 'dependabot[bot]' }}
     steps:
@@ -71,6 +71,8 @@ jobs:
           python -c "print('hello XENON!')"
           pip install --no-cache-dir -r extra_requirements/requirements-tests.txt -r requirements.txt --user
       - name: Test
+        # for tmp cutax skip
+        if: matrix.package != 'cutax'
         env:
           X509_USER_PROXY: /home/runner/work/base_environment/base_environment/user_cert
           # Could not get rucio tests to work :( Please see https://github.com/XENONnT/base_environment/pull/1109
@@ -80,3 +82,7 @@ jobs:
           source /cvmfs/xenon.opensciencegrid.org/releases/nT/development/setup.sh
           straxen_print_versions strax straxen cutax appletree alea-inference npshmex numba numpy nton admix fuse
           bash .github/scripts/do_tests.sh ${{matrix.package}}
+
+      - name: Skip cutax tests temporarily # for tmp cutax skip
+        if: matrix.package == 'cutax'
+        run: echo "cutax tests temporarily skipped"
