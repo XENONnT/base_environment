@@ -53,13 +53,11 @@ case "$1" in
 
     CUTAX_VERSION=$(grep "cutax_version=" create-env)
     CUTAX_VERSION=${CUTAX_VERSION//cutax_version=}
-    TEST_REF=${TEST_REF:-$(determine_release_version)}
     echo "Testing with cutax version ${CUTAX_VERSION}"
     cd cutax
     if [ $CUTAX_VERSION != 'latest' ]
     then
-      # git checkout $CUTAX_VERSION
-      git checkout $TEST_REF
+      git checkout $CUTAX_VERSION
     fi
     pip install -e ./ --user
     cd ..
