@@ -28,13 +28,7 @@ case "$1" in
   straxen )
     echo " ... straxen tests"
     straxen_version=`python -c "import straxen; print(straxen.__version__)"`
-    git clone --single-branch --branch v$straxen_version https://github.com/XENONnT/straxen.git
-    # TODO remove this cheat, can't get it to work now
-    if [ $DISABLE_RUCIO_TEST ];
-      then echo "removing rucio remote test";
-      rm straxen/tests/storage/test_rucio_remote.py;
-    fi
-    # /TODO
+    git clone --single-branch --branch "v$straxen_version" https://github.com/XENONnT/straxen.git || { echo 'straxen clone failed' ; exit 1; }
     # Make sure all new numba code is cached to one directory
     mkdir $HOME/numba_cache
     export NUMBA_CACHE_DIR=$HOME/numba_cache/
