@@ -73,6 +73,7 @@ jobs:
           echo "$HOME/.local/bin" >> "$GITHUB_PATH"
       - name: Test
         env:
+          TF_USE_LEGACY_KERAS: "1"
           X509_USER_PROXY: /home/runner/work/base_environment/base_environment/user_cert
           # Could not get rucio tests to work :( Please see https://github.com/XENONnT/base_environment/pull/1109
           DISABLE_RUCIO_TEST: 1
