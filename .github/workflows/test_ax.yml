@@ -67,7 +67,7 @@ jobs:
       - uses: cvmfs-contrib/github-action-cvmfs@v3
       - name: Over install
         run: |
-          source /cvmfs/xenon.opensciencegrid.org/releases/nT/development/setup.sh
+          source /cvmfs/xenon.opensciencegrid.org/releases/nT/el7.sr1_wimp_unblind/setup.sh
           python -c "print('hello XENON!')"
           python -m pip install --no-cache-dir -r extra_requirements/requirements-tests.txt -r requirements.txt --user
           echo "$HOME/.local/bin" >> "$GITHUB_PATH"
@@ -79,7 +79,7 @@ jobs:
           DISABLE_RUCIO_TEST: 1
         run: |
           unset ALLOW_MC_TEST
-          source /cvmfs/xenon.opensciencegrid.org/releases/nT/development/setup.sh
+          source /cvmfs/xenon.opensciencegrid.org/releases/nT/el7.sr1_wimp_unblind/setup.sh
           export PATH="$HOME/.local/bin:$PATH"
           hash -r
           python -c "import straxen; print(f'straxen {straxen.__version__} from {straxen.__file__}')"
