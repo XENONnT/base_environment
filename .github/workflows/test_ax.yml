@@ -67,16 +67,35 @@ jobs:
       - uses: cvmfs-contrib/github-action-cvmfs@v3
       - name: Over install
         run: |
-          source /cvmfs/xenon.opensciencegrid.org/releases/nT/development/setup.sh
+          source /cvmfs/xenon.opensciencegrid.org/releases/nT/el7.sr1_wimp_unblind/setup.sh
           python -c "print('hello XENON!')"
-          pip install --no-cache-dir -r extra_requirements/requirements-tests.txt -r requirements.txt --user
+          python -m pip install --no-cache-dir -r extra_requirements/requirements-tests.txt -r requirements.txt --user
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
       - name: Test
         env:
+          TF_USE_LEGACY_KERAS: "1"
           X509_USER_PROXY: /home/runner/work/base_environment/base_environment/user_cert
           # Could not get rucio tests to work :( Please see https://github.com/XENONnT/base_environment/pull/1109
           DISABLE_RUCIO_TEST: 1
         run: |
           unset ALLOW_MC_TEST
-          source /cvmfs/xenon.opensciencegrid.org/releases/nT/development/setup.sh
-          straxen_print_versions strax straxen cutax appletree alea-inference npshmex numba numpy nton admix fuse
+          source /cvmfs/xenon.opensciencegrid.org/releases/nT/el7.sr1_wimp_unblind/setup.sh
+          export PATH="$HOME/.local/bin:$PATH"
+          hash -r
+          python -c "import straxen; print(f'straxen {straxen.__version__} from {straxen.__file__}')"
+                    python - <<'PY'
+          from importlib.metadata import PackageNotFoundError, version
+
+          packages = [
+              "strax", "straxen", "cutax", "appletree",
+              "alea-inference", "npshmex", "numba", "numpy",
+              "nton", "admix", "fuse",
+          ]
+
+          for package in packages:
+              try:
+                  print(f"{package} {version(package)}")
+              except PackageNotFoundError:
+                  print(f"{package}: not installed")
+          PY
           bash .github/scripts/do_tests.sh ${{matrix.package}}
