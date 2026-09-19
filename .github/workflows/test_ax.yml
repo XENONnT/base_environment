@@ -83,5 +83,19 @@ jobs:
           export PATH="$HOME/.local/bin:$PATH"
           hash -r
           python -c "import straxen; print(f'straxen {straxen.__version__} from {straxen.__file__}')"
-          "$HOME/.local/bin/straxen-print_versions" strax straxen cutax appletree alea-inference npshmex numba numpy nton admix fuse
+                    python - <<'PY'
+          from importlib.metadata import PackageNotFoundError, version
+
+          packages = [
+              "strax", "straxen", "cutax", "appletree",
+              "alea-inference", "npshmex", "numba", "numpy",
+              "nton", "admix", "fuse",
+          ]
+
+          for package in packages:
+              try:
+                  print(f"{package} {version(package)}")
+              except PackageNotFoundError:
+                  print(f"{package}: not installed")
+          PY
           bash .github/scripts/do_tests.sh ${{matrix.package}}
