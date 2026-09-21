@@ -48,9 +48,9 @@ RUN dnf -y install \
     dnf clean all && \
     localedef -i en_US -f UTF-8 en_US.UTF-8
 
-ADD create-env conda_xnt.yml requirements.txt thisroot.sh /tmp/
+ADD create-env conda_xnt.yml requirements.txt /tmp/
 
-RUN ls -l /tmp/create-env /tmp/conda_xnt.yml /tmp/requirements.txt /tmp/thisroot.sh
+RUN ls -l /tmp/create-env /tmp/conda_xnt.yml /tmp/requirements.txt
 
 COPY extra_requirements/requirements-tests.txt /tmp/extra_requirements/requirements-tests.txt
 
