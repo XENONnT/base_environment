@@ -48,46 +48,9 @@ RUN dnf -y install \
     dnf clean all && \
     localedef -i en_US -f UTF-8 en_US.UTF-8
 
-# --- MC dependencies ---
-RUN dnf -y install \
-        avahi-compat-libdns_sd-devel \
-        cfitsio-devel \
-        compat-openssl10 \
-        expat \
-        expat-devel \
-        fftw-devel \
-        ftgl-devel \
-        gcc-gfortran \
-        glew-devel \
-        graphviz-devel \
-        gsl-devel \
-        libX11-devel \
-        libXdmcp \
-        libXdmcp-devel \
-        libXext-devel \
-        libXft-devel \
-        libxml2-devel \
-        libXmu-devel \
-        libXpm-devel \
-        mesa-libGL-devel \
-        mesa-libGLU-devel \
-        motif \
-        mysql-devel \
-        openldap-devel \
-        openmotif-devel \
-        openssl-devel \
-        pcre-devel \
-        qt5-qtbase-devel \
-        redhat-lsb-core \
-        xerces-c \
-        xerces-c-devel \
-        xxhash-devel \
-    &&\
-    dnf clean all
+ADD create-env conda_xnt.yml requirements.txt /tmp/
 
-ADD create-env conda_xnt.yml requirements.txt thisroot.sh /tmp/
-
-RUN ls -l /tmp/create-env /tmp/conda_xnt.yml /tmp/requirements.txt /tmp/thisroot.sh
+RUN ls -l /tmp/create-env /tmp/conda_xnt.yml /tmp/requirements.txt
 
 COPY extra_requirements/requirements-tests.txt /tmp/extra_requirements/requirements-tests.txt
 
