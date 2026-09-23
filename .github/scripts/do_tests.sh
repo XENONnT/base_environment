@@ -19,8 +19,9 @@ case "$1" in
 
   strax )
     echo " ... strax tests"
-    strax_version=`python -c "import strax; print(strax.__version__)"`
-    git clone --single-branch --branch v$strax_version https://github.com/AxFoundation/strax.git
+    # strax_version=`python -c "import strax; print(strax.__version__)"`
+    # git clone --single-branch --branch v$strax_version https://github.com/AxFoundation/strax.git
+    git clone -b fix-numpy-compatibility --single-branch https://github.com/caioishikawa/strax.git
     pytest -v strax || { echo 'strax tests failed' ; exit 1; }
     rm -r strax
   ;;
@@ -47,6 +48,7 @@ case "$1" in
 
     CUTAX_VERSION=$(grep "cutax_version=" create-env)
     CUTAX_VERSION=${CUTAX_VERSION//cutax_version=}
+    CUTAX_VERSION=py311_to_py312
     echo "Testing with cutax version ${CUTAX_VERSION}"
     cd cutax
     if [ $CUTAX_VERSION != 'latest' ]
