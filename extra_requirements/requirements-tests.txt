@@ -45,7 +45,7 @@ pytest-cov==6.0.0
 pytest-xdist==3.6.1
 rframe==0.2.25
 scikit-learn==1.6.1                                # don't update
-scipy==1.18.0
+scipy==1.18.1
 setuptools==78.1.1
 tensorflow==2.21.0
 tf-keras==2.21.0
