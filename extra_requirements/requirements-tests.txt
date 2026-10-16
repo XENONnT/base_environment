@@ -53,7 +53,7 @@ typing-extensions==4.16.0                          # tensorflow and bokeh depend
 tqdm==4.68.3
 uproot==5.7.4
 utilix==0.12.1                                     # dependency for straxen, admix
-xarray==2026.4.0
+xarray==2026.7.0
 xedocs==0.2.44
 zarr==2.18.4                                       # strax requires zarr<3.0.0
 zstandard==0.25.0                                  # strax dependency
