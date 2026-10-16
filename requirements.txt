@@ -17,7 +17,7 @@ iminuit==2.32.0
 inference-interface==0.0.3
 ipykernel==6.29.5                                  # for ipywidgets
 ipympl==0.10.0                                     # for online monitoring
-ipython==9.15.0
+ipython==9.17.0
 jedi==0.19.1
 jupyter==1.1.1
 jupyterlab==4.0.12                                 # <4.1.0 for compatibility with xeauth 0.2.3
