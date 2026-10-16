@@ -20,7 +20,7 @@ ipympl==0.10.0                                     # for online monitoring
 ipython==9.15.0
 jedi==0.19.1
 jupyter==1.1.1
-jupyterlab==4.0.12                                 # <4.1.0 for compatibility with xeauth 0.2.3
+jupyterlab==4.5.10                                 # <4.1.0 for compatibility with xeauth 0.2.3
 jupyterlab-widgets==3.0.16
 jupyter-resource-usage==1.2.1                      # memory viewer for notebooks
 lightgbm==4.5.0
