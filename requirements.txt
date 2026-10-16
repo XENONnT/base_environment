@@ -15,7 +15,7 @@ GOFevaluation==0.1.6
 h5py==3.12.1
 iminuit==2.32.0
 inference-interface==0.0.3
-ipykernel==6.29.5                                  # for ipywidgets
+ipykernel==7.3.0                                  # for ipywidgets
 ipympl==0.10.0                                     # for online monitoring
 ipython==9.15.0
 jedi==0.19.1
