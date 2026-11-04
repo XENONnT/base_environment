@@ -32,7 +32,7 @@ notebook==7.0.8                                    # <7.1.0 for compatibility wi
 numpy==2.4.4
 numpyro==0.16.1
 pandoc==2.4
-parso==0.8.7                                       # upgrading to 0.8.0 breaks autocomplete in ipython
+parso==0.8.7                                       
 periodictable==2.1.0
 pika==1.4.1                                        # pegasus
 prettytable==3.18.0
