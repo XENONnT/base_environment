@@ -406,6 +406,18 @@ debug_path "/tmp/root_v${root_version}.Linux-almalinux8.10-x86_64-gcc8.5.tar.gz"
 tar xzf root_v${root_version}.Linux-almalinux8.10-x86_64-gcc8.5.tar.gz -C /opt
 debug_path /opt/root
 mv /opt/root ${target_dir}/root
+
+# ROOT needs libxxhash.so.0 at runtime. The build image has this library in
+# /usr/lib64, but the sourceable CVMFS environment does not include the image's
+# system libraries, so bundle the runtime library with the environment.
+xxhash_library=/usr/lib64/libxxhash.so.0
+if [ ! -r "$xxhash_library" ]; then
+    echo "Missing $xxhash_library; install xxhash-libs in the build image" >&2
+    exit 1
+fi
+mkdir -p "${target_dir}/lib64"
+install -m 755 "$xxhash_library" "${target_dir}/lib64/libxxhash.so.0"
+
 debug_path "${target_dir}/root"
 debug_path "${target_dir}/root/bin/root-config"
 rm -f root_v${root_version}.Linux-almalinux8.10-x86_64-gcc8.5.tar.gz
@@ -512,6 +524,11 @@ if [ -f ${target_dir}/bin/thisroot.sh ] && [ -f ${target_dir}/bin/geant4.sh ]; t
     XENON_START_DIR=\$PWD
 
     cd ${target_dir}/bin
+    if [ -n "\$LD_LIBRARY_PATH" ]; then
+        export LD_LIBRARY_PATH=${target_dir}/lib64:\$LD_LIBRARY_PATH
+    else
+        export LD_LIBRARY_PATH=${target_dir}/lib64
+    fi
     . ./thisroot.sh
     . ./geant4.sh
 
