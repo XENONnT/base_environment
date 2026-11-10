@@ -27,8 +27,7 @@ case "$1" in
 
   straxen )
     echo " ... straxen tests temporarily skipped"
-    exit 0
-    straxen_version=`python -c "import straxen; print(straxen.__version__)"`
+    straxen_version=`python -c "from importlib.metadata import version; print(version('straxen'))"`
     git clone --single-branch --branch "v$straxen_version" https://github.com/XENONnT/straxen.git || { echo 'straxen clone failed' ; exit 1; }
     # Make sure all new numba code is cached to one directory
     mkdir $HOME/numba_cache
