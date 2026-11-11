@@ -135,7 +135,7 @@ ln -s "${boost_prefix}/lib/libboost_python312.a" "${boost_prefix}/lib/libboost_p
 
 # gfal2-python bindings
 announce "Installing GFAL2 Python bindings"
-git clone https://gitlab.cern.ch/dmc/gfal2-bindings.git
+git clone https://github.com/cern-fts/gfal2-python.git gfal2-bindings
 cd gfal2-bindings
 git checkout v$gfal2_bindings_version
 perl -p -i -e 's;.*\$\{Boost_LIBRARYDIR\}; "'${target_dir}'/anaconda/envs/'${env_name}'/lib";' CMakeLists.txt
@@ -154,7 +154,7 @@ unset CXXFLAGS
 
 # gfal2 clients
 announce "Installing GFAL2 clients"
-git clone https://gitlab.cern.ch/dmc/gfal2-util.git
+git clone https://github.com/cern-fts/gfal2-util.git
 cd gfal2-util/
 git checkout v$gfal2_util_version
 python3 setup.py install --prefix=${target_dir}/anaconda/envs/${env_name}
