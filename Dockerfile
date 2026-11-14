@@ -1,4 +1,4 @@
-FROM hub.opensciencegrid.org/htc/rocky:8
+FROM hub.opensciencegrid.org/htc/rocky:9
 
 LABEL opensciencegrid.name="XENONnT"
 LABEL opensciencegrid.description="Base software environment for XENONnT, including Python 3.12, Geant4, ROOT and data management tools"
@@ -48,40 +48,42 @@ RUN dnf -y install \
     dnf clean all && \
     localedef -i en_US -f UTF-8 en_US.UTF-8
 
-# --- MC dependencies ---
+# --- MC dependencies for OSG ---
 RUN dnf -y install \
-        avahi-compat-libdns_sd-devel \
-        cfitsio-devel \
-        compat-openssl10 \
-        expat \
-        expat-devel \
-        fftw-devel \
-        ftgl-devel \
-        gcc-gfortran \
-        glew-devel \
-        graphviz-devel \
-        gsl-devel \
-        libX11-devel \
-        libXdmcp \
-        libXdmcp-devel \
-        libXext-devel \
-        libXft-devel \
-        libxml2-devel \
-        libXmu-devel \
-        libXpm-devel \
-        mesa-libGL-devel \
-        mesa-libGLU-devel \
-        motif \
-        mysql-devel \
-        openldap-devel \
-        openmotif-devel \
-        openssl-devel \
-        pcre-devel \
-        qt5-qtbase-devel \
-        redhat-lsb-core \
-        xerces-c \
-        xerces-c-devel \
-        xxhash-devel \
+            avahi-compat-libdns_sd-devel \
+            cfitsio-devel \
+            expat \
+            expat-devel \
+            fftw-devel \
+            ftgl-devel \
+            gcc-c++ \
+            gcc-gfortran \
+            glew-devel \
+            graphviz-devel \
+            gsl-devel \
+            libX11-devel \
+            libXdmcp \
+            libXdmcp \
+            libXdmcp-devel \
+            libXdmcp-devel \
+            libXext-devel \
+            libXft-devel \
+            libxml2-devel \
+            libXmu-devel \
+            libXpm-devel \
+            mesa-libGL-devel \
+            mesa-libGLU-devel \
+            motif \
+            mysql-devel \
+            openldap-devel \
+            openmotif-devel \
+            openssl-devel \
+            pcre-devel \
+            qt5-qtbase-devel \
+            tbb-devel \
+            xerces-c \
+            xerces-c-devel \
+            xxhash-devel \
     &&\
     dnf clean all
 
